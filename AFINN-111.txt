@@ -2593,7 +2593,7 @@ kuat	-2
 kekuatan	2
 kaya	2
 miskin	-2
-teman	2kawan	2
+teman	2
 isteri	2
 suami	2
 anak	2
@@ -2609,3 +2609,24 @@ wangi	1
 pukau	1
 hijau	2
 bangga	2
+kawan	2
+member	2
+berhantu	-1
+salahkan	-1
+blackout	-1
+anjing	-4
+cb	-5
+cibai	-5
+putang	-5
+salahkan	-2
+niat	2
+alhamdulillah	4
+subhanallah	4
+insyaallah	4
+weekend	3
+assalamualaikum	3
+salam	3
+tidur	-2
+tinggal	-1
+elakkan	-2
+tahukah	1
