@@ -2,7 +2,7 @@ import requests
 import json
 import time
 from datetime import datetime
-from dateutil import tz
+# from dateutil import tz
 from flask import Flask, render_template
 from instagram.client import InstagramAPI
 
@@ -19,8 +19,7 @@ class Instagram():
     client_id = "b20129c9e6c04c009d310c99b0d490e0" # Obtained from https://www.instagram.com/developer/
     client_secret = "e0fc4d2c42734a668096137bb4cd30ed" # Obtained from https://www.instagram.com/developer/
     api = InstagramAPI(access_token=token, client_secret=client_secret)
-    from_zone = tz.tzutc()
-    to_zone = tz.tzlocal()
+
 
     def user_search(self,nama):
         profile = self.api.user_search(q = nama)
@@ -47,8 +46,6 @@ class Instagram():
                 print
 
     def comment_media(self, mediaID):
-        from_zone = tz.tzutc()
-        to_zone = tz.tzlocal()
         recent_comment = self.api.media_comments(media_id=mediaID)
         if not recent_comment:
             print "Comments can't be found"
@@ -81,12 +78,15 @@ class Instagram():
 hai = Instagram()
 
 var = raw_input("Who do you want to search?")
-hai.user_search(var)
-var1 = raw_input("Which profile do you want to view?")
-hai.user_profile(var1)
-hai.user_media(var1)
-var2 = raw_input("Which image do you want to view the comments?")
-hai.comment_media(var2)
+a=hai.user_search(var)
+if a:
+    var1 = raw_input("Which profile do you want to view?")
+    hai.user_profile(var1)
+
+
+    hai.user_media(var1)
+    var2 = raw_input("Which image do you want to view the comments?")
+    hai.comment_media(var2)
 """
 @app.route("/")
 def index():
