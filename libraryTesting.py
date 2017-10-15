@@ -6,7 +6,7 @@ sys.setdefaultencoding('utf8')
 from nltk.tokenize import word_tokenize
 sentiment_dictionary = {}
 
-textfile = open('C:/Users/musfirah/Desktop/AFINN/AFINN-111.txt')
+textfile = open('/library/AFINN-111.txt')
 for line in textfile:
         wordInsideDictionary, score = line.split('\t')
         sentiment_dictionary[wordInsideDictionary] = int(score)

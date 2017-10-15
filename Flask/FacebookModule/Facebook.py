@@ -1,16 +1,13 @@
-import os
-import json
+from datetime import datetime
+from flask_bootstrap import Bootstrap
+
 import facebook
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+# import libraryTesting
 import requests
 from celery import Celery
-
-from datetime import datetime
-from flask import Flask , render_template
+from flask import Flask, render_template
 from flask_googlemaps import GoogleMaps
 from flask_googlemaps import Map
-
 
 app = Flask(__name__)
 broker_url = 'amqp://guest@localhost'
@@ -26,7 +23,7 @@ class Facebook():
     # token = 'EAAFyPKV2cOIBAM1GJtjCW7oIftQzwo8RxujFy9ZBLeYNPrSNpMiuUbMAcpzvEkH6sJ0F2ZAf5ey0yle7toaSLJ2wd3yqZACnXJjKXotl8YHZA8KCLNWPBMHlV2ZAcdD4M4p8Y7RqiXV43sF5rfZCa7pmwOaZBWB6qsZD';
 
     token = 'EAAFyPKV2cOIBANz6EDcSV0CJAoKPt1YCeYGaWF5Tl6FLEmbELopL4XLUp5GZCS2OmwI1zNaa60D5MngsUGW4SZByLZB7w86wyZAZCR50ZAuGZC3dXZAZCLLZCAn5BDzj2UxkP1nlhZCvSmx9LAeZA3fHETSmAJIFZBZCSmooUZD'
-    # token = 'EAACEdEose0cBANkF7dXkK76lntZCWBgmS646s0QWcJBzoZAI7iai8xsEOPGU3EmZCOeUMknsuotMNozA429e6JOmOrsmIa7In1lPZBlRliDIPeRCYWH5uu4ZAAXWA1ZA6ZAYrtjY3hLzf7nDyeC6rHbj7p4DJ9hhDqprjrDtZBteEw0i8135ca7Ii8120wKw2skZD'
+    token = 'EAACEdEose0cBANEJyQXjKgw7D6Ipt4fCxENusrnGrMooXoWYsNS2WahhJ7mvXWEVFVkSG0DCyhZA0mzFFgKADkoEMPeZCYSrWHvjFmGoEKZB7RmJtVFaUGSnM8ohgqSoWSQOh5yf12kVVI9TKNCSBXUk4gzpblBxb8aBrzLXJMQM6acIawGApjMDLiRzj2KLzPvwZB9SQAZDZD'
     graph = facebook.GraphAPI(token);
     object = 'me';
 
@@ -78,7 +75,7 @@ class Facebook():
         print "                       Friends                              "
         print "------------------------------------------------------------"
 
-        friends = self.graph.get_connections(self.object,'friends');
+        friends = self.graph.get_connections(self.object, 'friends');
         # friends = [friends['id'] for friends in friends['data']];
         #
         # if not friends:
@@ -92,25 +89,22 @@ class Facebook():
 
     def Post(self):
         print "------------------------------------------------------------"
-        print "                       Recent Post                              "
+        print "                       Recent Post                          "
         print "------------------------------------------------------------"
-
         post =self.graph.get_connections(self.object,'posts')
-        print(post)
-        print "----------------------------------------------------------"
+        print "------------------------------------------------------------"
         return post
 
     def get_post_like_comment_location(self, post):
         location = {}
-
         amount_likes = {}
         amount_comment = {}
 
-
         for post in post['data']:
-            # likes = self.graph.get_object(id=post['id'], fields='likes')
-            # comment = self.graph.get_object(id=post['id'], fields='comments')
+            likes = self.graph.get_object(id=post['id'], fields='likes')
+            comment = self.graph.get_object(id=post['id'], fields='comments')
             place = self.graph.get_object(id=post['id'], fields='place')
+
 
 
             if 'place' in place :
@@ -119,31 +113,26 @@ class Facebook():
                 location['longitude']= place['place']['location']['longitude']
                 location['latitude']= place['place']['location']['latitude']
 
-        print(location)
 
+            if 'likes' in likes :
+                for likes in likes['likes']['data']:
+                    # print likes
 
+                    if not likes['id'] in amount_likes:
+                        amount_likes[likes['id']] = 1;
+                    else:
+                        amount_likes[likes['id']] += 1;
 
-            # print comment
-            #
-            # if 'likes' in likes :
-            #     for likes in likes['likes']['data']:
-            #         # print likes
-            #
-            #         if not likes['id'] in amount_likes:
-            #             amount_likes[likes['id']] = 1;
-            #         else:
-            #             amount_likes[likes['id']] += 1;
-            #
-            # if 'comments' in comment:
-            #
-            #     for comments in comment['comments']['data']:
-            #
-            #         print comments['from']['id']
-            #         print comments['message']
-            #         if not comments['from']['id'] in amount_comment:
-            #             amount_comment[comments['from']['id']] = 1;
-            #         else:
-            #             amount_comment[comments['from']['id']] += 1;
+            if 'comments' in comment:
+
+                for comments in comment['comments']['data']:
+
+                    print comments['from']['id']
+                    print comments['message']
+                    if not comments['from']['id'] in amount_comment:
+                        amount_comment[comments['from']['id']] = 1;
+                    else:
+                        amount_comment[comments['from']['id']] += 1;
 
         if(amount_likes):
             amount_likes['top'] = max(amount_likes, key=amount_likes.get)
@@ -229,11 +218,10 @@ def profile(username):
     x.object = userID
     post = x.Post()
     name = profile['name']
-    # family = x.Family()
+    family = x.Family()
     likes , comments ,location= x.get_post_like_comment_location(post)
     post = post['data']
     friends = x.Friends()
-    print location
     mymap = Map(
         identifier="view-side",
         lat=location['latitude'],
@@ -243,10 +231,11 @@ def profile(username):
 
 
 
-    return render_template("profile.html", mymap=mymap,likes=likes, comments=comments, friends=friends, userID = userID, name = name, post=post)
+    return render_template("Facebook.html",family=family, mymap=mymap,likes=likes, comments=comments, friends=friends, userID = userID, name = name, post=post)
 
 if __name__ == "__main__":
     x = Facebook()
     x.Main()
     print x.Post()
+    app.static_folder = 'static'
     app.run(debug=True)
