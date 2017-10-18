@@ -4,13 +4,15 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 from nltk.tokenize import word_tokenize
+from list import words
 sentiment_dictionary = {}
 
-textfile = open('/library/AFINN-111.txt')
-for line in textfile:
+#Ambik words dari list
+for line in words:
+        #Split score according to List
         wordInsideDictionary, score = line.split('\t')
         sentiment_dictionary[wordInsideDictionary] = int(score)
-
+#### Testing method return array of TOTAL negative and positive of A STRING eg [4,-6], NEGATIVE IS ALWAYS IN NEGATIVE NUMBER
 def testing(string):
 
     pos = 0
