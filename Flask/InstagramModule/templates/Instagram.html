@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Instagram</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="static/css/round-about_instagram.css" rel="stylesheet">
+
+    <!--Content link-->
+    <link type="text/css" rel="stylesheet" href="static/css/instagram.css" />
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Profiling System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="page_home.html">Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="page_search.html">Evidence Search
+			  <span class="sr-only">(current)</span>
+			  </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Report</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="page_login.html">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+
+    <!--Kotak Profile-->
+    <div class="bodyn">
+      <img src={{ user.profile_picture }} id="img_profpic"/>
+      <h3>{{ user.username }}</h3>
+    </div>
+
+    <!--Kotak FULLNAME-->
+    <div id="box_fullname" class="bodyn">      
+      <p id="p_fullname">{{ user.full_name }}</p>
+    </div>
+
+    <!--Kotak STATUS-->
+    <div id="box_status" class="bodyn">  
+        <p id="p_status">
+            {% if user.bio %}
+                {{ user.bio }}
+            {% endif %}
+        </p>
+    </div>
+
+    <div id="box_status" class="bodyn">
+        <p id="p_status">
+            {% if user.website %}
+                {{ user.website }}
+            {% endif %}
+        </p>
+    </div>
+
+    <!--Kotak Total Post-->
+    <div id="box_totalPost" class="bodyn">
+        <p id="p_status">
+
+        </p>
+    </div>
+
+    <!--Kotak Total Followers-->
+    <div id="box_totalFollowers" class="bodyn">  
+        <p id="p_status">
+
+        </p>
+    </div>
+
+    <!--Kotak Total Following-->
+    <div id="box_totalFollowing" class="bodyn">  
+        <p id="p_status">
+
+        </p>
+    </div>
+
+
+
+    <!--Kotak Post-->
+
+    <div class="mainbox_post">
+      <div id="box_title">
+        <p id="p_title">Post</p>
+      </div>
+
+      <div id="box_id_post">
+        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
+        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
+        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
+        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
+        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
+        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
+        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
+        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
+        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
+      </div>
+    </div>
+
+
+    <!--Kotak big Post-->
+    <div class="mainbox_bigPost">
+      <div id="box_title">
+        <p id="p_title">Post Details</p>
+      </div>
+
+      <div id="box_bigPost_location">
+      	<img src="static/img/gfx_location_icon.png" id="img_location_icon"/>
+      	<p id="p_bigPost_location">Stadium Bukit Jalil</p>
+      </div>
+
+      <div id="box_bigPost_picture">
+          <img src="static/img/gfx_insta_icon.png" id="img_bigPost"/>
+          <img src="static/img/gfx_love_icon2.png" id="img_small_icon"/>
+          <p id="p_bigPost_likes">74 likes</p>
+      </div>
+
+      <div id="box_caption">
+      	  <p id="p_caption">
+      	  	<strong>LilyKhoo</strong> Todays agenda.<br>
+      	  	<p id="p_hashtag">
+      	  	#KL2017<br>
+      	  	#SeaGames2017
+      	  </p>
+      	  </p>
+      </div>
+    </div>  
+
+  
+    <!--Kotak MAP-->
+    <div class="mainbox_map">
+      <div id="box_title">
+        <p id="p_title">Recent Location</p>
+      </div>
+
+      <div id="map"></div>
+
+      <script>
+        function myMap(){
+          var mapOptions = {
+            center: new google.maps.LatLng(51.5,-0.12),
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.HYBRID
+          }
+          var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        }
+      </script>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap">
+      </script>
+
+      <!--
+      To use this code on your website, get a free API key from Google.
+      Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+      -->
+
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/popper/popper.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  </body>
+
+</html>
