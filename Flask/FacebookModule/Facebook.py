@@ -1,4 +1,6 @@
 from datetime import datetime
+from collections import Counter
+
 
 import facebook
 import requests
@@ -20,16 +22,19 @@ class Facebook():
     global cache_comments
     global cache_likes
     global user_id
-    global amount_likes
+    global location
     global amount_comment
-    global current_username
-    global cache
+    global amount_likes
 
+    current_username = ""
     cache = False
     amount_likes = {}
     amount_comment = {}
     cache_likes = {}
     cache_comments = {}
+    cache = False
+    location = []
+
     #original app token
     # token = 'EAAFyPKV2cOIBAM1GJtjCW7oIftQzwo8RxujFy9ZBLeYNPrSNpMiuUbMAcpzvEkH6sJ0F2ZAf5ey0yle7toaSLJ2wd3yqZACnXJjKXotl8YHZA8KCLNWPBMHlV2ZAcdD4M4p8Y7RqiXV43sF5rfZCa7pmwOaZBWB6qsZD';
 
@@ -38,8 +43,20 @@ class Facebook():
     object = 'me';
     post = [];
 
+    def initialize(self):
+        print("initializing")
+        amount_likes = {}
+        amount_comment = {}
+        cache_likes = {}
+        cache_comments = {}
+        cache = False
+        location = []
+
     def getUsername(self):
-        return current_username
+        return self.current_username
+
+    def setUsername(self, username):
+        self.current_username = username
 
     def getCache(self):
         return cache_comments , cache_likes
@@ -63,70 +80,78 @@ class Facebook():
     def getGraph(self):
         return self.graph
 
+    def isCache(self):
+        return self.cache
+
+    def isSameUser(self):
+        return self.sameUser
     @celery.task(bind=True)
     def get_post_like_comment_location(self, graph , post):
 
-        location = []
-        post_comments = {}
-        post_likes = {}
-        postString = {}
-        print post['data']
+        if not x.isCache():
+            print post['data']
+            cache_com = {}
+            cache_like = {}
+            cache_com , cache_like = x.getCache()
 
-        cache_com , cache_like = x.getCache()
+            print cache_com, cache_like
+            for post in post['data']:
+                likes = graph.get_object(id=post['id'], fields='likes')
+                comment = graph.get_object(id=post['id'], fields='comments')
+                place = graph.get_object(id=post['id'], fields='place')
 
-        print cache_com, cache_like
-        for post in post['data']:
-            likes = graph.get_object(id=post['id'], fields='likes')
-            comment = graph.get_object(id=post['id'], fields='comments')
-            place = graph.get_object(id=post['id'], fields='place')
+                # if 'message' in post:
+                #         print(post['message']))
+                #         pos, neg = libraryTesting.testing(post['message'])
+                #         print("positive " + str(pos))
+                #         print("negative " + str(neg))
 
-            # if 'message' in post:
-            #         print(post['message']))
-            #         pos, neg = libraryTesting.testing(post['message'])
-            #         print("positive " + str(pos))
-            #         print("negative " + str(neg))
+                if 'place' in place:
+                    location.insert(0 , ( place['place']['location']['latitude'],place['place']['location']['longitude']))
 
-            if 'place' in place:
-                location.insert(0 , ( place['place']['location']['latitude'],place['place']['location']['longitude']))
+                if 'likes' in likes:
+                    for likes in likes['likes']['data']:
 
-            if 'likes' in likes:
-                for likes in likes['likes']['data']:
+                        if not likes['id'] in amount_likes:
+                            amount_likes[likes['id']] = 1;
+                            cache_like[likes['id']] = [likes]
+                        else:
+                            amount_likes[likes['id']] += 1;
+                            cache_like[likes['id']] = [likes]
 
-                    if not likes['id'] in amount_likes:
-                        amount_likes[likes['id']] = 1;
-                        cache_like[likes['id']] = [likes]
-                    else:
-                        amount_likes[likes['id']] += 1;
-                        cache_like[likes['id']] = [likes]
+                if 'comments' in comment:
+                    for comments in comment['comments']['data']:
 
-            if 'comments' in comment:
-                for comments in comment['comments']['data']:
+                        print comments['from']['id']
+                        print comments['message']
 
-                    print comments['from']['id']
-                    print comments['message']
+                        if not comments['from']['id'] in amount_comment:
+                            cache_com[comments['from']['id']] = [comments]
+                            print cache_com[comments['from']['id']]
+                            amount_comment[comments['from']['id']] = 1;
+                        else:
+                            cache_com[comments['from']['id']].append(comments)
+                            print cache_com[comments['from']['id']]
+                            amount_comment[comments['from']['id']] += 1;
 
-                    if not comments['from']['id'] in amount_comment:
-                        cache_com[comments['from']['id']] = [comments]
-                        print cache_com[comments['from']['id']]
-                        amount_comment[comments['from']['id']] = 1;
-                    else:
-                        cache_com[comments['from']['id']].append(comments)
-                        print cache_com[comments['from']['id']]
-                        amount_comment[comments['from']['id']] += 1;
-
-    #get top commentator and likers
+        #get top commentator and likers
         if (amount_likes):
             if 'top' in amount_likes:
                 amount_likes.pop('top', None)
-            amount_likes['top']  = dict(sorted(amount_likes.iteritems(), key=amount_likes.get, reverse=True)[:5])
-
+            amount_likes['top'] = dict(Counter(amount_likes).most_common(5))
+            print amount_likes
 
         if (amount_comment):
             if 'top' in amount_comment:
-                amount_comment.pop('top', None)
-            amount_comment['top'] = dict(sorted(amount_comment.iteritems(), key=amount_comment.get, reverse=True)[:5])
+               amount_comment.pop('top', None)
+            amount_comment['top'] = dict(Counter(amount_comment).most_common(5))
+            print amount_comment
 
-        return amount_likes['top'] , amount_comment['top'], location
+        if amount_likes and amount_comment :
+            return amount_likes['top'] , amount_comment['top'], location
+
+        else:
+            return [], [] , None
 
     def get_relation_post(self, id):
         cache_com , cache_loc = x.getCache()
@@ -236,8 +261,10 @@ class Facebook():
         profile = self.graph.get_object(id)
         return profile
 
-    def cache(self, bool):
+    def setCache(self, bool):
+
         self.cache = bool
+        print(self.cache , "is cache")
 
     def getCentre(self, location):
         lat , lng , count = 0, 0, 0
@@ -272,10 +299,18 @@ def relation(username, id):
 @app.route("/fb/profile/<username>")
 def profile(username):
 
+    print "username adalah ", x.getUsername()
+
     if username == x.getUsername():
-        x.cache(True)
+        print x.getUsername()
+        print username
+        x.setCache(True)
     else:
-        x.cache(False)
+        print "new user not cach"
+        x.setUsername(username)
+        x.setCache(False)
+        x.initialize()
+        print "sekarang username adalah ", x.getUsername()
 
     profile     = x.getProfile(username)
     userID      = profile['id']
@@ -303,12 +338,17 @@ def testAnaly():
 @app.route('/nextAnalysis', methods = ['POST'])
 @celery.task
 def getNextAnalysis():
-    reqURL = x.Post()['paging']['next']
-    reqData = requests.get(reqURL)
-    postData = reqData.json()
-    like , comment , location =x.get_post_like_comment_location(x.getGraph() , postData)
-    print x.getCache()
-    return jsonify({ 'LikesComments': render_template('TopFriends.html', likes=like, comments=comment)})
+
+    post = x.Post()
+    if "paging" in post :
+        reqData = requests.get(post['paging']['next'])
+        postData = reqData.json()
+        like , comment , location =x.get_post_like_comment_location(x.getGraph() , postData)
+        print x.getCache()
+
+        return jsonify({ 'LikesComments': render_template('TopFriends.html', likes=like, comments=comment)})
+
+    return jsonify()
 
 
 @app.route('/analysis', methods=['POST'])
