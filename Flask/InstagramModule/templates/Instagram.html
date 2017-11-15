@@ -11,13 +11,13 @@
     <title>Instagram</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="static/css/round-about_instagram.css" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/round-about_instagram.css') }}" rel="stylesheet">
 
     <!--Content link-->
-    <link type="text/css" rel="stylesheet" href="static/css/instagram.css" />
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='css/instagram.css') }}" />
 
   </head>
 
@@ -61,21 +61,24 @@
     </div>
 
     <!--Kotak FULLNAME-->
-    <div id="box_fullname" class="bodyn">      
+    <div id="box_fullname" class="bodyn">
       <p id="p_fullname">{{ user.full_name }}</p>
     </div>
 
     <!--Kotak STATUS-->
-    <div id="box_status" class="bodyn">  
+    <div id="box_status" class="bodyn">
         <p id="p_status">
+            Bio:
             {% if user.bio %}
                 {{ user.bio }}
             {% endif %}
         </p>
-    </div>
 
-    <div id="box_status" class="bodyn">
+
+
+
         <p id="p_status">
+        Website:
             {% if user.website %}
                 {{ user.website }}
             {% endif %}
@@ -85,23 +88,24 @@
     <!--Kotak Total Post-->
     <div id="box_totalPost" class="bodyn">
         <p id="p_status">
-
+            Media : {{ user.counts['media'] }}
         </p>
     </div>
 
     <!--Kotak Total Followers-->
-    <div id="box_totalFollowers" class="bodyn">  
+    <div id="box_totalFollowers" class="bodyn">
         <p id="p_status">
-
+            Followers : {{ user.counts['followed_by'] }}
         </p>
     </div>
 
     <!--Kotak Total Following-->
-    <div id="box_totalFollowing" class="bodyn">  
+    <div id="box_totalFollowing" class="bodyn">
         <p id="p_status">
-
+            Follows : {{ user.counts['follows'] }}
         </p>
     </div>
+
 
 
 
@@ -113,15 +117,9 @@
       </div>
 
       <div id="box_id_post">
-        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
-        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
-        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
-        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
-        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
-        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
-        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
-        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
-        <img src="static/img/gfx_insta_icon.png" id="img_post_profpic"/>
+          {% for media in media %}
+        <img src={{ media.images['standard_resolution'].url }} id="img_post_profpic"/>
+          {% endfor %}
       </div>
     </div>
 
@@ -185,9 +183,9 @@
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="static/vendor/jquery/jquery.min.js"></script>
-    <script src="static/vendor/popper/popper.min.js"></script>
-    <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static',filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='vendor/popper/popper.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
   </body>
 

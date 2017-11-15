@@ -14,7 +14,7 @@
             <br>
             Name : {{ result.full_name }}
             <br>
-            <a href=""{{ result.id }}
+            <a href="{{ url_for('user_profile', id = result.id) }}">Click here</a>
 
 
         {% endfor %}
