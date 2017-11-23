@@ -1,11 +1,11 @@
 from datetime import datetime
 from collections import Counter
 
-
+import json
 import facebook
 import requests
 from celery import Celery
-from flask import Flask, render_template, jsonify, url_for
+from flask import Flask, render_template, jsonify, url_for, request
 from flask_googlemaps import GoogleMaps
 from flask_googlemaps import Map
 
@@ -25,6 +25,12 @@ class Facebook():
     global location
     global amount_comment
     global amount_likes
+    global hour , day , month
+
+    day = {}
+    hour = {}
+    month = {}
+
 
     current_username = ""
     cache = False
@@ -39,19 +45,35 @@ class Facebook():
     # token = 'EAAFyPKV2cOIBAM1GJtjCW7oIftQzwo8RxujFy9ZBLeYNPrSNpMiuUbMAcpzvEkH6sJ0F2ZAf5ey0yle7toaSLJ2wd3yqZACnXJjKXotl8YHZA8KCLNWPBMHlV2ZAcdD4M4p8Y7RqiXV43sF5rfZCa7pmwOaZBWB6qsZD';
 
     token = 'EAAFyPKV2cOIBANz6EDcSV0CJAoKPt1YCeYGaWF5Tl6FLEmbELopL4XLUp5GZCS2OmwI1zNaa60D5MngsUGW4SZByLZB7w86wyZAZCR50ZAuGZC3dXZAZCLLZCAn5BDzj2UxkP1nlhZCvSmx9LAeZA3fHETSmAJIFZBZCSmooUZD'
-
     graph = facebook.GraphAPI(token);
     object = 'me';
     post = [];
 
     def initialize(self):
         print("initializing")
+        global cache_comments
+        global cache_likes
+        global user_id
+        global location
+        global amount_comment
+        global amount_likes
+        # global day , hour ,month
+
+        day = {}
+        hour = {}
+        month = {}
         amount_likes = {}
         amount_comment = {}
         cache_likes = {}
         cache_comments = {}
         cache = False
         location = []
+        self.post = [];
+
+    @app.template_filter()
+    def format_date(date):  # date = datetime object.
+        date = datetime.strptime(date[0:16], '%Y-%m-%dT%H:%M')
+        return date.strftime('%Y-%m-%d  %H:%M:%S')
 
     def getUsername(self):
         return self.current_username
@@ -62,12 +84,6 @@ class Facebook():
     def getCache(self):
         return cache_comments , cache_likes
 
-    @app.template_filter()
-    def format_date(date):  # date = datetime object.
-        date = datetime.strptime(date[0:16], '%Y-%m-%dT%H:%M')
-        return date.strftime('%Y-%m-%d  %H:%M:%S')
-
-    @app.template_filter()
     def get_picture(self, post_id):  # date = datetime object.
         picture_url = self.graph.get_object(id=post_id, fields="picture")
         return picture_url
@@ -86,8 +102,12 @@ class Facebook():
 
     def isSameUser(self):
         return self.sameUser
+
     @celery.task(bind=True)
     def get_post_like_comment_location(self, graph , post):
+        print x.isCache()
+        print amount_likes
+        print amount_comment
 
         if not x.isCache():
             print post['data']
@@ -97,6 +117,26 @@ class Facebook():
 
             print cache_com, cache_like
             for post in post['data']:
+                date = datetime.strptime(post['created_time'][0:16], '%Y-%m-%dT%H:%M')
+                # return date.strftime('%Y-%m-%d  %H:%M:%S')
+
+                if date.hour not in hour:
+                    hour[date.hour] = [post]
+                else:
+                    print date.hour , "sudah ada"
+                    hour[date.hour].append(post)
+                if date.month not in month:
+                    month[date.month] = [post]
+                else:
+                    month[date.month].append(post)
+
+                if date.weekday() not in day:
+                    day[date.weekday()]=[post]
+                else:
+                    day[date.weekday()].append(post)
+
+                print hour, month ,day
+
                 likes = graph.get_object(id=post['id'], fields='likes')
                 comment = graph.get_object(id=post['id'], fields='comments')
                 place = graph.get_object(id=post['id'], fields='place')
@@ -154,6 +194,9 @@ class Facebook():
         else:
             return [], [] , None
 
+    def getTimePost(self):
+        return hour, month , day
+
     def get_relation_post(self, id):
         cache_com , cache_loc = x.getCache()
         print "sasa", cache_com
@@ -175,6 +218,7 @@ class Facebook():
         return primpi['top']
 
     def Main(self):
+        print "starting Facebook Module"
         profile = self.graph.get_object(self.object);
         print profile;
 
@@ -239,7 +283,7 @@ class Facebook():
                 for user in user:
                     self.getProfile(user)
 
-        return Result['data']
+        return Result
 
     def taggedPost(self):
         print "------------------------------------------------------------"
@@ -263,7 +307,6 @@ class Facebook():
         return profile
 
     def setCache(self, bool):
-
         self.cache = bool
         print(self.cache , "is cache")
 
@@ -278,22 +321,37 @@ class Facebook():
 
 @app.route("/")
 def index():
-    return "welcome"
-
-# @app.route("/fb/search/<username>")
-# def search(username):
-#     x.post        = x.Post()
-#     return render_template("search.html", result=[])
+    return render_template("Home.html")
 
 @app.route("/fb/search/<username>")
-def search(username):
-    result  = x.Find(username);
-    print result
-    return render_template("search.html", result=result)
+def searchs(username):
+    x.post        = x.Post()
+    return render_template("search.html", result=[])
 
+@app.route("/fb/search")
+def search():
+    return render_template("search.html", result="")
+
+@app.route("/searchResult",  methods=['POST'])
+def searchResult():
+    data = json.loads(request.data)
+    print data
+    result  = x.Find(data);
+    print result
+
+    return jsonify({'result': render_template("searchResult.html", result=result['data'])})
+
+@app.route("/analysis")
+def analysis():
+    postHour , postMonth, postDay = x.getTimePost()
+    print postHour
+    print postDay
+    print postMonth
+    return render_template("analysis.html", postHour=postHour, postMonth=postMonth, postDay=postDay)
 
 @app.route("/fb/profile/<username>/relation/<id>")
 def relation(username, id):
+    print "relation"
     cache_comment, cache_like = x.get_relation_post(id)
     return render_template("test.html", comment = cache_comment, like =cache_like)
 
@@ -308,9 +366,9 @@ def profile(username):
         x.setCache(True)
     else:
         print "new user not cach"
+        x.initialize()
         x.setUsername(username)
         x.setCache(False)
-        x.initialize()
         print "sekarang username adalah ", x.getUsername()
 
     profile     = x.getProfile(username)
@@ -335,6 +393,28 @@ def testAnaly():
     test = x.test()
     print(test)
     return jsonify({ 'Test': render_template('test.html', test = test)})
+
+@app.route('/getPostMonth')
+@celery.task
+def getPostMonth():
+    postMonth = x.month
+    print postMonth
+    return jsonify({ 'result': render_template('postItem.html', item = postMonth)})
+
+@app.route('/getPostDay')
+@celery.task
+def getPostDay():
+    postDay = x.day
+    print postDay
+    return jsonify({ 'result': render_template('postItem.html', item =postDay)})
+
+
+@app.route('/getPostHour')
+@celery.task
+def getPostHour():
+    postHour = x.hour
+    print postHour
+    return jsonify({ 'result': render_template('postItem.html', item = postHour)})
 
 @app.route('/nextAnalysis', methods = ['POST'])
 @celery.task

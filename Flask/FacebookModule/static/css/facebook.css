@@ -1,154 +1,159 @@
-
 /*BOX-------------------------------------------------------*/
 .bodyn{
     top:101px;
     left:30px;
-    position:absolute;
     width:283px;
     font-family:verdana;
     min-height:0px;
+    margin: auto;
 }
 
 #box_relationship{
-	box-shadow: 10px 10px grey;
+  box-shadow: 10px 10px grey;
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
-    top:372px;
     left:30px;
-    position:absolute;
-    width:283px;
+    width:90%;
     height:84px;
     font-family:verdana;
     background-color: #336699;
-    padding: 30px;
+    padding: 20px;
+    padding-left: 30px;
+    padding-top: 30px;
+    margin-top: 30px;
 }
 
 #box_relative{
-	box-shadow: 10px 10px grey;
-	border-bottom-right-radius: 6px;
- 	border-bottom-left-radius: 6px;
-    top:456px;
-    left:30px;
-    position:absolute;
-    width:283px;
+  box-shadow: 10px 10px grey;
+  border-bottom-right-radius: 6px;
+   border-bottom-left-radius: 6px;
+    width:90%;
     font-family:verdana;
     background-color: #8497B0;
     padding: 30px;
     min-height: 10px;
+    margin-bottom: 47px;
 }
 
 .mainbox_topfriend{
-	top:119px;
-	left:386px;
-	position: absolute;
-	width:545px;
-	min-height:0px;
-	background-color: #8497B0;
+  margin:auto;
+  width:90%;
+  min-height:0px;
+  background-color: #8497B0;
+  margin-bottom: 47px;
 }
 #box_title{
-	background-color: #336699;
-	min-height: 0px;
-	padding: 5px;
+  background-color: #336699;
+  min-height: 0px;
+  padding: 5px;
 }
 #box_id_topfriend{
-	margin:20px;
-	min-height: 250px;
+  padding-bottom: 20px;
+  margin:20px;
+  min-height: 0px;
 }
 .mainbox_post{
-	top:500px;
-	left:386px;
-	position: absolute;
-	width:545px;
-	min-height:0px;
-	background-color: #8497B0;	
+  margin-top: 20px;
+  margin:auto;
+  width:90%;
+  min-height:0px;
+  background-color: #8497B0;
+  padding-bottom: 35px;
+  margin-bottom: 47px;
 }
 #box_post_white{
-	height:150px;
-	margin:35px;
-	background-color: white;
+  height:150px;
+  margin:35px;
+  background-color: white;
 }
 
 .mainbox_friend{
-top:490px;
-left:987px;
-width:322px;
+width:90%;
+margin: auto;
 min-height:0px;
-background:  #8497B0;
+background: #8497B0;
 border-radius:3px/3px;
-margin:10px;
-position:absolute;
 }
+
+#box_friends2{
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+  /*flex-wrap: wrap;*/
+  /*justify-content: space-between;*/
+  /*justify-content: space-around;*/
+}
+
 #box_friend_profpic{
-	width:76px;
-	height:90px;
-	margin: 15px;
-	float:left;
-	text-align: center;
+  width:76px;
+  height:90px;
+  margin: 10px;
+  text-align: center;
 }
 #box_friend_name{
-	text-align: center;
+  text-align: center;
 }
 .mainbox_map{
-	top:109px;
-	left:987px;
-	width:322px;
-	height:322px;
-	background:  #8497B0;
-	border-radius:3px/3px;
-	margin:10px;
-	position:absolute;
+  top:109px;
+  left:987px;
+  width:322px;
+  height:322px;
+  background:  #8497B0;
+  border-radius:3px/3px;
+  margin:10px;
+  position:absolute;
 }
 #map{
-	width:322px;
-	height: 322px;
-	background: yellow;
+  width:322px;
+  height: 322px;
+  background: yellow;
 }
 
 /*FONT-------------------------------------------------------*/
 h3{
-	text-align: center;
-	padding: 15px;
-	font-family: calibri;
+  text-align: center;
+  padding: 15px;
+  font-family: calibri;
 }
 #p_relationship{
-	text-align: absolute;
-	font-size: 14px;
-	color: white;
-	font-style: bold;
-	font-family: calibri;
+  text-align: absolute;
+  font-size: 14px;
+  color: white;
+  font-style: bold;
+  font-family: calibri;
 }
 #p_relationship_name{
-	text-align: absolute;
-	font-size: 14px;
-	color: #ccd9ff;
-	font-weight: bold;
-	font-family: calibri;	
+  text-align: absolute;
+  font-size: 14px;
+  color: #ccd9ff;
+  font-weight: bold;
+  font-family: calibri;
 }
 #p_relative{
-	font-size: 13px;
-	color: #1F4E79;
-	font-weight: bold;
-	padding: 4px;
-	padding-left: 60px;
-	font-family: calibri;
+  font-size: 13px;
+  color: #1F4E79;
+  font-weight: bold;
+  padding: 4px;
+  padding-left: 60px;
+  font-family: calibri;
 }
 #p_relative_relation{
-	font-size: 11px;
-	font-weight: normal;
-	color: white;
-	padding: 10px;
-	padding-left: 0px;
-	font-family: calibri;
+  font-size: 11px;
+  font-weight: normal;
+  color: white;
+  padding: 10px;
+  padding-left: 0px;
+  font-family: calibri;
 }
 #p_title{
-	text-align: center;
-	font-size: 15px;
-	font-family: calibri;
-	color: white;
-	margin:auto;
-	}
+  text-align: center;
+  font-size: 15px;
+  font-family: calibri;
+  color: white;
+  margin:auto;
+  }
 #p_friend_name{
-	font-size: 10px;
+  font-size: 10px;
 }
 
 
@@ -159,27 +164,26 @@ h3{
 
 #img_profpic{
 height:164px;
-margin-left: 78px;
-margin-top: 30px;
+display:block;
+margin:auto;
 }
 
 #img_small_icon{
-	height: 20px;
-	float: left;
-	padding-right: 10px;
+  height: 20px;
+  float: left;
+  padding-right: 10px;
 }
 
 #img_relative_profpic{
-	height: 50px;
-	float: left;
+  height: 50px;
+  float: left;
 }
 
 #img_topfriends_profpic{
-	margin:10px;
-	height:80px;
-	float: left;
+  margin:10px;
+  height:80px;
 }
 
 #img_friend_profpic{
-	height: 70px;
+  height: 70px;
 }

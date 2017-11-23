@@ -1,0 +1,12 @@
+
+dasasdsa
+    {% if item %}
+        {% for key, value in item.iteritems() %}
+
+            {% for i in value %}
+                <li>{{ i }}</li>
+            {% endfor %}
+
+        {% endfor %}
+
+    {% endif %}

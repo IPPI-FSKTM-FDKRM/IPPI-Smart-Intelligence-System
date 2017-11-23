@@ -8,13 +8,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Search</title>
+    <title>Home</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
+            <link href="{{ url_for('static', filename='vendor/bootstrap/css/round-about.css') }}" rel="stylesheet"/>
+
 
     <!-- Custom styles for this template -->
-    <link href="css/round-about.css" rel="stylesheet">
 
   </head>
 
@@ -30,14 +31,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+
+                    <a class="nav-link" href={{ url_for('index') }}>Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Search
-			  <span class="sr-only">(current)</span>
-			  </a>
+                    <a class="nav-link" href={{ url_for('search') }}>Evidence Search
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Report</a>
@@ -54,44 +54,26 @@
     <div class="container">
 
       <!-- Introduction Row -->
-      <h1 class="my-4">Search Evidence</h1>
-	  <form>
-		<input type="text" name="search" placeholder="Search..">
-	  </form>
+      <!--<h1 class="my-4">Profiling System Main Page</h1>	-->	
 		
       <!-- Team Members Row -->
       <div class="row">
         <!--<div class="col-lg-12">
           <h2 class="my-4">Our Team</h2>
         </div>-->
-		
-{#		#}
-{#        <div class="col-lg-4 col-sm-6 text-center mb-4">#}
-{#		<a href="search.html">#}
-{#          <img class="rounded-circle img-fluid d-block mx-auto" src="twitter_icon.png" alt="" style="width:200px; height:200px;">#}
-{#          </a>#}
-{#		  <h3>Twitter</h3>#}
-{#		  <input type="radio" name="social_media" value="twitter" checked>#}
-{#        </div>#}
-{#		#}
-{##}
-{#        <div class="col-lg-4 col-sm-6 text-center mb-4">#}
-{#		<a href="search.html">#}
-{#          <img class="rounded-circle img-fluid d-block mx-auto" src="facebook_icon.png" alt="" style="width:200px; height:200px;">#}
-{#          </a>#}
-{#		  <h3>Facebook</h3>#}
-{#		  <input type="radio" name="social_media" value="twitter" checked>#}
-{#        </div>#}
-{#		#}
-{#		<div class="col-lg-4 col-sm-6 text-center mb-4">#}
-{#		<a href="search.html">#}
-{#          <img class="rounded-circle img-fluid d-block mx-auto" src="instagram_icon.png" alt="" style="width:200px; height:200px;">#}
-{#          </a>#}
-{#		  <h3>Instagram</h3>#}
-{#		  <input type="radio" name="social_media" value="twitter" checked>#}
-{#        </div>#}
-{#		#}
-		
+        <div class="col-lg-6 col-sm-6 text-center mb-4">
+		<a href="{{ url_for('search') }}">
+          <img class="rounded-circle img-fluid d-block mx-auto" src={{ url_for('static', filename='img/search_icon.png') }} alt="" style="width:250px; height:250px;">
+          </a>
+		  <h3>Search Evidence</h3>
+          <!--<p>What does this team member to? Keep it short! This is also a great spot for social links!</p>-->
+        </div>
+        <div class="col-lg-6 col-sm-6 text-center mb-4">
+          <img class="rounded-circle img-fluid d-block mx-auto" src={{ url_for('static', filename='img/report_icon.png') }} alt="" style="width:250px; height:250px;">
+          </a>
+		  <h3>Report</h3>
+        </div>
+  
       </div>
 
     </div>

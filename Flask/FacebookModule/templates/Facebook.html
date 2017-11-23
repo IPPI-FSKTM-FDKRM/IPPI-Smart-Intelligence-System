@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-  <head>
+<head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,160 +11,168 @@
     <title>Facebook</title>
 
     <!-- Bootstrap core CSS -->
-      <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
-
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
     <!-- Custom styles for this template -->
-      <link href="{{ url_for('static', filename='css/round-about_facebook.css') }}" rel="stylesheet"/>
-
+    <link href="{{ url_for('static', filename='css/round-about_facebook.css') }}" rel="stylesheet"/>
     <!--Content link-->
-      <link type="text/css" href="{{ url_for('static', filename='css/facebook.css') }}" rel="stylesheet"/>
+    <!--Content link-->
 
+</head>
 
-  </head>
+<body>
 
-  <body>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
         <a class="navbar-brand" href="#">Profiling System</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="page_home.html">Home
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="page_search.html">Evidence Search
-			  <span class="sr-only">(current)</span>
-			  </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Report</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="page_login.html">Logout</a>
-            </li>
-          </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href={{ url_for('index') }}>Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={{ url_for('search') }}>Evidence Search
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Report</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="page_login.html">Logout</a>
+                </li>
+            </ul>
         </div>
-      </div>
-    </nav>
-
-    <!-- Page Content -->
-   
-    <!--Kotak Profile-->
-    <div class="bodyn">
-            <img src="https://graph.facebook.com/{{userID}}/picture?type=large" id="img_profpic">
-        <h3>  {{   name    }}
-o</h3>
     </div>
+</nav>
 
-    <!--Kotak Relationship-->
-    <div id="box_relationship" class="bodyn">
+<!-- Page Content -->
 
-{#      <img src="img/gfx_love_icon.png" id="img_small_icon"/>#}
-      <p id="p_relationship">
-{#      Married to <span id="p_relationship_name">Edward Smith</span>#}
-{#      </p>#}
+<div class="kotakbesar">
+    <div class="row">
+
+        <div class="col-md-2">
+
+            <!--Kotak Profile-->
+            <div id="box_dp">
+                <img src="https://graph.facebook.com/{{ userID }}/picture?type=large" id="img_profpic">
+                <h3>  {{ name }}</h3>
+            </div>
+
+            <!--Kotak Relationship-->
+            <div id="box_relationship" class="bodyn">
+                <img src="img/gfx_love_icon.png" id="img_small_icon"/>
+                <p id="p_relationship">
+                    Married to <span id="p_relationship_name">Edward Smith</span>
+                </p>
+            </div>
+
+            <!--Kotak Relatives-->
+            <div id="box_relative" class="bodyn">
+                {% if not family %}
+                    cant fetch family data members
+                {% else %}
+
+                    {% for family in family %}
+                        <br>
+                        <a href="{{ url_for('profile', username = family['id']) }}"><img
+                                src="https://graph.facebook.com/{{ family['id'] }}/picture?type=large"></a>
+                        <br>
+                        <p id="p_relative">
+                            {{ family['name'] }}</p>
+                        <br>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+            <!--Kotak Top Friends-->
+
+            <div class="mainbox_topfriend">
+                <div id="box_title">
+                    <p id="p_title">Top Friends</p>
+                </div>
+
+                {#      <div id="box_id_topfriend">#}
+                <div id="topFriends"></div>
+
+                {#      </div>#}
+            </div>
+
+            <!--Kotak Post-->
+
+            <div class="mainbox_post">
+                <div id="box_title">
+                    <p id="p_title">Top Self Post / Mention Post</p>
+                </div>
+                {% if not post %}
+                    Cant fetch post data from user
+                {% else %}
+                    {% for post in post %}
+                        <a href="https://facebook.com/{{ post['id'] }}">
+                            <div id="box_post_white">
+                                Posted on {{ post['created_time']|format_date }} <br>
+
+                                <img src="https://graph.facebook.com/{{ post['id'] }}/picture?type=album">
+
+                                {% if 'message' in post %}
+                                    {{ post['message'] }}
+                                {% elif 'story' in post %}
+                                    {{ post['story'] }}
+                                {% endif %}
+
+                            </div>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+        </div>
+        <a href="{{ url_for('analysis', username=me) }}"> Analysis Page </a>
+
+        <div class="col-md-2">
+
+            <!--Kotak Friends-->
+            <div class="mainbox_friend">
+                <div id="box_title">
+                    <p id="p_title">Friends</p>
+                </div>
+
+
+                {% if not friends %}
+                    cant fetch friends data
+                {% else %}
+                    {% for friends in friends %}
+                        <div id="box_friend_profpic">
+                            <a href="{{ url_for('profile', username = friends['id']) }}">
+                                <img src="https://graph.facebook.com/{{ friends['id'] }}/picture?type=album"
+                                     id="img_friend_profpic"/>
+                            </a>
+                            <p id="p_friend_name">{{ friends['name'] }}</p>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+        </div>
+
     </div>
-
-    <!--Kotak Relatives-->
-    <div id="box_relative" class="bodyn">
-          {% if not family %}
-                cant fetch family data members
-        {% else %}
-
-        {% for family in family %}
-            <br>
-            <a href="{{ url_for('profile', username = family['id']) }}"><img src="https://graph.facebook.com/{{family['id']}}/picture?type=album"></a>
-            <br>
-             <p id="p_relative">
-                 {{family['name']}}</p>
-        <br>
-        {% endfor %}
-        {% endif %}
-
-
-      
-
-    </div>
-
-    <!--Kotak Top Friends-->
-
-    <div class="mainbox_topfriend">
-      <div id="box_title">
-        <p id="p_title">Top Friends</p>
-      </div>
-                  <div id="topFriends"></div>
-
-    </div>
-
-    <!--Kotak Post-->
-
-  <div class="mainbox_post">
-    <div id="box_title">
-      <p id="p_title">Top Self Post / Mention Post</p>
-    </div>
-
-       {% if not post %}
-            Cant fetch post data from user
-        {% else %}
-    {% for post in post %}
-        <a href="https://facebook.com/{{post['id']}}">
-    <div id="box_post_white">
-    Posted on  {{  post['created_time']|format_date }} <br>
-
-    <img src="https://graph.facebook.com/{{post['id']}}/picture?type=album">
-
-        {% if 'message' in post %}
-                 {{ post['message'] }}
-        {% elif 'story' in post %}
-                     {{ post['story'] }}
-        {% endif %}
-
-    </div></a>
-    {% endfor %}
-    {% endif %}
-    
-  </div>
-      <div class="mainbox_map">
-      <div id="box_title">
-        <p id="p_title">Recent Location</p>
-      </div>
-
-        <div id="pam" style="height: 500px ; width: 500px"></div>
 </div>
 
+<!-- Bootstrap core JavaScript -->
+<link type="text/css" href="{{ url_for('static', filename='css/facebook.css') }}" rel="stylesheet"/>
+<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/popper/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
-    <!--Kotak Friends-->
-    <div class="mainbox_friend">
-      <div id="box_title">
-        <p id="p_title">Friends</p>
-      </div>
-
-        {% if not friends %}
-            cant fetch friends data
-        {% else %}
-        {% for friends in friends %}
-            <div id="box_friend_profpic">
-                 <a href="{{ url_for('profile', username = friends['id']) }}">
-                     <img src="https://graph.facebook.com/{{friends['id']}}/picture?type=album" id="img_friend_profpic"/>
-                </a>
-                <p id="p_friend_name">{{friends['name']}}</p>
-            </div>
-        {% endfor %}
-        {% endif %}
-
-
-    </div>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
       <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
@@ -185,7 +192,7 @@ o</h3>
                 success: function(resp) {
 
                     topFriend(resp)
-                    start_next()
+{#                    start_next()#}
 
 
                 },
@@ -253,6 +260,8 @@ o</h3>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeNL8cEdLSeUcniCTWVazfV71fXkXqcso&callback=initMap"
     async defer></script>
 
-  </body>
+
+
+</body>
 
 </html>
