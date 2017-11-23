@@ -1,53 +1,58 @@
-import requests
-import json
-import time
-from datetime import date,datetime
-from dateutil import tz
-from flask import Flask, render_template, url_for, redirect
+#import requests
+#import json
+#import time
+#from datetime import date,datetime
+#from dateutil import tz
+from flask import Flask, render_template, url_for, redirect, flash, request
 from instagram.client import InstagramAPI
-from key import GoogleKey, InstaClient_id, InstaClient_secret, InstaToken
+from key import *
 import pytz
 from flask_googlemaps import GoogleMaps
 from flask_googlemaps import Map
 from instagram.bind import InstagramAPIError
+from forms import LoginForm, RegisterForm
+from flask_sqlalchemy import SQLAlchemy
+import os
 
-
+file_path = os.path.abspath(os.getcwd()) + "\database.db"
 app = Flask(__name__)
+app.config['SECRET_KEY'] = SECRET_KEY
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mnt/c/Users/user/PycharmProjects/untitled1/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+ file_path
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(15), unique=True)
+    email = db.Column(db.String(50), unique=True)
+    password = db.Column(db.String(80))
 
 class Instagram():
     profile = ""
-    client_id = InstaClient_id
-    api = InstagramAPI(access_token=InstaToken, client_secret=InstaClient_secret)
+    client_id = INSTACLIENT_ID
+    api = InstagramAPI(access_token=INSTATOKEN, client_secret=INSTACLIENT_SECRET)
 
-    app.config['GOOGLEMAPS_KEY'] = GoogleKey
+    app.config['GOOGLEMAPS_KEY'] = GOOGLEKEY
     GoogleMaps(app)
 
 
     def user_search(self,nama):
         profile = self.api.user_search(q = nama)
-        if not profile:
-            print "User not found"
-        else:
-            for proff in profile:
-                print "Id = " + proff.id
-                print "Username : " + proff.username
-                print "Profile Picture : " + proff.profile_picture
-                print
+
         return profile
 
     def user_media(self, userID):
-        recent_media , nextt = self.api.user_recent_media(user_id=userID, count=20)
-        medialist = []
+        recent_media , nextt = self.api.user_recent_media(user_id=userID, count=50)
         if not recent_media:
             print "Can't retrieve user media"
-        """else:
+        else:
             for media in recent_media:
                 print "Id = " + media.id
                 print "Image = " + media.images['standard_resolution'].url
                 print "Caption = " + media.caption.text
                 print "Time = " , media.created_time.astimezone(pytz.timezone('Asia/Kuala_Lumpur'))
-                #print "Likes = " , media.likes.count
-                #print "Location = " + media.location.name"""
+                print "Likes = " , media.likes
+
 
         return recent_media
 
@@ -62,21 +67,6 @@ class Instagram():
 
     def user_profile(self, userID):
         profile = self.api.user(user_id=userID)
-        #if not profile:
-        #    print "Profile is private"
-        #else:
-        print "Id = " + profile.id
-        print profile
-        print "Username : " + profile.username
-        print "Profile Picture : " + profile.profile_picture
-        print "Name : " + profile.full_name
-        if profile.bio:
-            print "Bio : " + profile.bio
-        if profile.website:
-            print "Website : " + profile.website
-        print "Media : ", profile.counts['media']
-        print "Follows : ", profile.counts['follows']
-        print "Follow by : ", profile.counts['followed_by']
 
         return profile
 
@@ -94,43 +84,31 @@ class Instagram():
 
 hai = Instagram()
 
-"""var = raw_input("Who do you want to search?")
-hai.user_search(var)
-var1 = raw_input("Which profile do you want to view?")
-hai.user_profile(var1)
-print
-hai.user_media(var1)
-var2 = raw_input("Which image do you want to view the comments?")
-hai.comment_media(var2)"""
-#var3 = raw_input("User previous location")
-#hai.location(var3)
-
-
-
-
-
 @app.route("/")
 def index():
     return "Welcome"
 
 @app.route("/search/<word>")
-def user_search(word):
+def user_search(word=None):
     profile = hai.user_search(word)
-    return render_template("search.html", result=profile)
+    return render_template("page_search.html", result=profile)
 
 @app.route("/profile/<id>")
 def user_profile(id):
 
     profile = hai.user_profile(id)
-    print "here"
-    print "Username : " + profile.username
-    print profile.full_name
-
     media = hai.user_media(id)
-    print media
+
+    return render_template("Instagram.html", user=profile, media=media)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
 
 
-    return render_template("Instagram.html", user = profile, media = media)
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
 
-#            <!--<a href="{{ url_for('profile', username = result.id) }}"> View profile :</a>-->
