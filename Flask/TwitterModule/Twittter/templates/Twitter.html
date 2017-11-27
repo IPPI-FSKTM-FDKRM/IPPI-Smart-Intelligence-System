@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Twitter</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static',filename = 'vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename = 'css/round-about_twitter.css') }}" rel="stylesheet">
+
+    <!--Content link-->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename = 'css/twitter.css') }}" />
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Profiling System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="page_home.html">Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="page_search.html">Evidence Search
+			  <span class="sr-only">(current)</span>
+			  </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Report</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="page_login.html">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+   
+    <!--Kotak Profile-->
+    <div class="bodyn">
+    	<div id="box_profilePicture">
+      		<img src={{ user["profile_image_url"] }} id="img_profpic"/>
+     		<h3>{{ user["name"] }}</h3>
+  		</div>
+
+    	<div id="box_profileStatus">
+    		<p id="p_username">@{{ user["screen_name"] }}</p>
+    		<p id="p_status">{{ user["description"] }}</p>
+  		</div>
+
+		<div id="box_join">
+    		<img src="img/gfx_calendar_icon.png" id="img_smallIcon"/>
+    		<p id="p_join">Joined <br>{{ user["created_at"] }}</p>
+    	</div>
+
+    	<div id="box_ID">
+    		<p id="p_id">{{ user["id"] }}</p>
+    	</div>
+
+    </div>
+
+
+
+    <!--Kotak  Following-->
+    <div class="box_ff" > 
+
+      <div id="box_following">
+      	<p id="p_ff">
+      	Following <br> {{followingCount}}
+      	</p>
+      	{% for x in range(0,12) %}
+          <div id="box_friend_profpic">
+          <img src={{ followingImgURL[x] }} id="img_friend_profpic"/>
+          <p id="p_friend_name">@{{ followingName[x] }}</p>
+      </div>
+          {% endfor %}
+      </div>
+
+      <div id="box_follower">
+      	<p id="p_ff">
+      	Followers <br> {{followerCount}}
+      	</p>
+          {% for x in range(0,12) %}
+      	<div id="box_friend_profpic">
+          <img src={{ followerImgURL[x] }} id="img_friend_profpic"/>
+          <p id="p_friend_name">@{{followerName[x]}}</p>
+      </div>
+          {% endfor %}
+      </div>
+
+    </div>
+
+    
+
+    <!--Kotak Self Post/Mention Post-->
+
+  <div class="mainbox_post">
+    <div id="box_title">
+      <p id="p_title">Recent Tweets</p>
+    </div>
+
+    {% for x in range (0,(getTweetList|length)) %}
+    <div id="box_post_white">
+        {{getTweetList[x]}}
+    </div>
+      {% endfor %}
+
+  </div>
+
+    <!--Kotak Friends-->
+    <div class="mainbox_friend">
+      <div id="box_title">
+        <p id="p_title">Media</p>
+      </div>
+
+       	<div id="box_post_white">
+    	</div>
+
+   		<div id="box_post_white">
+    	</div>
+
+    </div>
+
+  
+    <!--Kotak MAP-->
+    <div class="mainbox_map">
+      <div id="box_title">
+        <p id="p_title">Recent Location</p>
+      </div>
+
+      <div id="map"></div>
+
+      <script>
+        function myMap(){
+          var mapOptions = {
+            center: new google.maps.LatLng(51.5,-0.12),
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.HYBRID
+          }
+          var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        }
+      </script>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap">
+      </script>
+
+      <!--
+      To use this code on your website, get a free API key from Google.
+      Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+      -->
+
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  </body>
+
+</html>
