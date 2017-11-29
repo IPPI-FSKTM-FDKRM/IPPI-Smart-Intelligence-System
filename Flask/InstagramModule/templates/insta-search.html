@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Search</title>
+    <title>Search Instagram</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -34,7 +34,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="insta-search.html">Evidence Search
+              <a class="nav-link" href="insta-search-result.html">Evidence Search
 			  <span class="sr-only">(current)</span>
 			  </a>
             </li>
@@ -58,32 +58,11 @@
 		<input type="text" name="search" placeholder="Search..">
 	  </form>
 
-      <!-- Team Members Row -->
-      <div class="row">
-        <!--<div class="col-lg-12">
-          <h2 class="my-4">Our Team</h2>
-        </div>-->
-
-		{% if not result %}
-          <h3>Nothing is found</h3>
-        {% else %}
-            {% for result in result %}
-                <div class="col-lg-3 col-sm-6 text-center mb-4">
-		        <a href="{{ url_for('user_profile', id = result.id) }}">
-                    <img class="rounded-circle img-fluid d-block mx-auto" src={{result.profile_picture}} alt="" style="width:200px; height:183px; margin-top:50px;">
-		                <h3>Username : {{ result.username }}</h3>
-                        <h3>Name : {{ result.full_name }}</h3>
-                </a>
-                </div>
-            {% endfor %}
-        {% endif %}
-
-      </div>
 
     </div>
     <!-- /.container -->
 
-    
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="{{ url_for('static',filename='vendor/jquery/jquery.min.js') }}"></script>
