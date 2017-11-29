@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Instagram</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="{{ url_for('static',filename='css/round-about_instagram.css') }}" rel="stylesheet">
+
+        <!--Content link-->
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static',filename='css/instagram.css') }}" />
+
+    </head>
+
+<body>
+
+  <!-- Navigation -->
+{% include "header.html" %}
+
+<!-- Page Content -->
+
+<div class="kotakbesar">
+ <div class="row">
+  <div class="col-md-3">
+
+    <!--Kotak Profile-->
+    <div id="box_dp">
+      <img src={{ user.profile_picture }} id="img_profpic"/>
+      <h3>{{ user.username }}</h3>
+    </div>
+
+    <!--Kotak FULLNAME-->
+    <div id="box_fullname" class="bodyn">      
+      <p id="p_fullname">{{ user.full_name }}</p>
+    </div>
+
+    <!--Kotak STATUS-->
+    <div id="box_status" class="bodyn">  
+      <p id="p_status">
+        <strong>Bio :</strong>
+            {% if user.bio %}
+                {{ user.bio }}
+             {% else %}
+                -
+            {% endif %}
+      </p>
+    </div>
+
+    <!--Kotak WEBSITE-->
+    <div id="box_website" class="bodyn">
+      <p id="p_status">
+        <strong>Website : </strong>
+          {% if user.website %}
+                {{ user.website }}
+          {% else %}
+                -
+          {% endif %}
+      </p>
+    </div>
+
+
+    <!--Kotak Total Post-->
+    <div id="box_totalPost" class="bodyn">  
+      <p id="p_status">
+          <strong>Post :</strong> {{ user.counts['media'] }}
+      </p>
+    </div>
+
+    <!--Kotak Total Followers-->
+    <div id="box_totalFollowers" class="bodyn">  
+      <p id="p_status">
+          <strong>Followers :</strong> {{ user.counts['followed_by'] }}
+      </p>
+    </div>
+
+    <!--Kotak Total Following-->
+    <div id="box_totalFollowing" class="bodyn">  
+      <p id="p_status">
+          <strong>Follows :</strong> {{ user.counts['follows'] }}
+      </p>
+    </div>
+  </div>
+
+  <!--Kotak Post-->
+  <div class="col-md-9">
+    <div id="mainbox_post">
+
+      <div id="box_title">
+        <p id="p_title">Post</p>
+      </div>
+
+      <div id="box_id_post">
+          {% for media in media %}
+        <div id="box_eachPost">
+          <!-- Location -->
+          <div id="box_bigPost_location">
+            <img src="{{ url_for('static',filename='img/gfx_location_icon.png')}}" id="img_location_icon"/>
+              {% if media.location %}
+                    <p id="p_bigPost_location">{{ media.location.name }}</p>
+              {% else %}
+                    <p id="p_bigPost_location">-</p>
+              {% endif %}
+          </div>
+          <!-- Image -->
+          <div id="box_bigPost_picture">
+            <img src={{ media.images['standard_resolution'].url }} id="img_bigPost"/>
+
+          </div>
+          <!-- Caption -->
+          <div id="box_caption">
+            <p id="p_caption">
+                    {% if media.caption.text %}
+                        <strong>{{ user.username }}</strong> {{ media.caption.text }}<br>
+                    {% else %}
+                        <strong>{{ user.username }}</strong><br>
+                {% endif %}
+                <p id="p_hashtag">
+              {% if media.tags %}
+                {{ media.tags }}
+              {% endif %}
+              </p>
+            </p>
+          </div>
+
+        </div>
+            {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</div>
+
+
+<!-- Bootstrap core JavaScript -->
+    <script src="{{ url_for('static',filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='vendor/popper/popper.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+
+</body>
+
+</html>

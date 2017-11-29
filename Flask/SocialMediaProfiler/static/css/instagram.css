@@ -1,0 +1,217 @@
+
+/*BOX-------------------------------------------------------*/
+.bodyn{
+    top:101px;
+    left:30px;
+    width:283px;
+    font-family:verdana;
+    min-height:0px;
+    margin: auto;
+}
+
+.kotakbesar{
+	padding:20px;
+}
+
+#box_fullname{
+	box-shadow: 10px 10px grey;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    width:95%;
+    height:84px;
+    font-family:verdana;
+    background-color: #d5d5c3;
+    padding: 20px;
+    padding-left: 30px;
+    padding-top: 30px;
+    margin-top: 30px;
+    }
+
+#box_status,#box_website,#box_totalPost,#box_totalFollowers,#box_totalFollowing{
+	box-shadow: 10px 10px grey;
+    width:95%;
+    font-family:verdana;
+    background-color: #d5d5c3;
+    padding: 10px;
+    padding-left: 30px;
+    min-height: 10px;
+}
+
+#mainbox_post{
+	margin-top:30px;
+	width:95%;
+	min-height:0px;
+	background-color: #d5d5c3;
+	padding-bottom:28px;
+	margin: auto;
+}
+#box_title{
+	background-color: #808080;
+	min-height: 0px;
+	padding: 5px;
+}
+#box_id_post{
+	margin:20px;
+	min-height: 0px;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	justify-content: space-around;
+}
+#box_eachPost{
+	margin:20px;
+	margin-bottom: 50px;
+	width:322px;
+	background-color: white;
+
+}
+/*.mainbox_bigPost{
+top:490px;
+left:987px;
+width:322px;
+min-height:0px;
+background:  #d5d5c3;
+border-radius:3px/3px;
+margin:10px;
+position:absolute;
+}*/
+#box_bigPost_picture{
+	width:322px;
+	min-height:90px;
+	margin-top: 15px;
+}
+#box_bigPost_location{
+	width:322px;
+	min-height:0px;
+	margin-top: 15px;
+}
+#box_friend_name{
+	text-align: center;
+}
+.mainbox_map{
+	top:109px;
+	left:987px;
+	width:322px;
+	height:322px;
+	background:  #8497B0;
+	border-radius:3px/3px;
+	margin:10px;
+	position:absolute;
+}
+#map{
+	width:322px;
+	height: 322px;
+	background: yellow;
+}
+
+
+
+/*FONT-------------------------------------------------------*/
+h3{
+	text-align: center;
+	padding: 15px;
+	font-family: calibri;
+}
+#p_fullname{
+	text-align: absolute;
+	font-size: 20px;
+	font-weight: bold;
+	font-family: calibri;
+}
+#p_status{
+	font-size: 16px;
+	padding: 4px;
+	font-family: calibri;
+}
+#p_relative_relation{
+	font-size: 11px;
+	font-weight: normal;
+	color: white;
+	padding: 10px;
+	padding-left: 0px;
+	font-family: calibri;
+}
+#p_title{
+	text-align: center;
+	font-size: 15px;
+	font-family: calibri;
+	color: white;
+	margin:auto;
+	}
+#p_bigPost_likes{
+	font-size: 18px;
+	font-weight: bold;
+	text-align: left;
+	margin-top:15px;
+	margin-left: 36px;
+}
+#p_bigPost_days{
+	font-size: 18px;
+	text-align: right;
+	margin-top:15px;
+	margin-right: 36px;
+}
+#p_caption{
+	font-size: 18px;
+	text-align: left;
+	margin-top:15px;
+	margin-left: 36px;
+}
+#p_hashtag{
+	font-size: 18px;
+	text-align: left;
+	margin-top:15px;
+	margin-left: 36px;
+	color: blue;
+}
+#p_bigPost_location{
+	font-size: 15px;
+	text-align: left;
+	margin-top:15px;
+	margin-left: 36px;
+}
+
+
+
+
+/*GAMBAR-------------------------------------------------------*/
+
+#img_profpic{
+height:164px;
+display:block;
+margin:auto;
+}
+
+#img_small_icon{
+	height: 20px;
+	float: left;
+	margin-top: 19px;
+	margin-left: 34px;
+	margin-right: 10px;
+}
+#img_location_icon{
+	height: 30px;
+	float: left;
+	margin-top: -3px;
+	margin-left: 34px;
+	margin-right: 10px;
+}
+
+#img_relative_profpic{
+	height: 50px;
+	float: left;
+}
+
+#img_post_profpic{
+	margin:10px;
+	height:147px;
+}
+
+#img_bigPost{
+	height: 260px;
+	width: 260px;
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

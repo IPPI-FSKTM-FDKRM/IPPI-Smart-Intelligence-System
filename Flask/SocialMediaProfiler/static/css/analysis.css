@@ -1,0 +1,170 @@
+
+/*BOX-------------------------------------------------------*/
+body{
+
+	background-color: #262626;
+}
+.bodyn{
+    top:101px;
+    left:30px;
+    position:left;
+    width:100%;
+    font-family:verdana;
+    min-height:0px;
+}
+
+.btn-group2 .button2 {
+    background-color: #404040; /* Orange */
+    border: 1px solid #404040;
+    color: white;
+    padding: 15px 32px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+}
+
+.btn-group2 .button2:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+.btn-group2 .button2:hover {
+    background-color: #808080;
+}
+.kotakbesar{
+}
+#box_sideNavigation{
+	width:90%;
+	height: 537px;
+	background-color: #404040;
+}
+
+#box_main_mapContent,#box_main_timeContent,#box_main_topicContent,#box_main_posnegContent{
+	width:98%;
+	/*background-color: yellow;*/
+}
+#box_main_timeContent,#box_main_topicContent,#box_main_posnegContent{
+	/*ni kotak yg mula2 yg invisible*/
+	display:none; 
+}
+
+#box_map,#box_time,#box_topic,#box_posneg{
+	width:100%;
+	height:446px;
+	/*background-color: blue;*/
+}
+
+
+#box_profileStatus{
+	width:100%;
+	float:left;
+	min-height:0px;
+}
+#box_join{
+	width:100%;
+}
+
+.box_ff{
+	box-shadow: 10px 10px grey;
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+    top:372px;
+    left:30px;
+    position:absolute;
+    width:283px;
+    height:565px;
+    font-family:verdana;
+    background-color: #336699;
+}
+
+
+
+
+#box_title{
+	background-color: #2977B9;
+	min-height: 0px;
+	padding: 5px;
+}
+
+
+.mainbox_map{
+	top:109px;
+	left:987px;
+	width:322px;
+	height:322px;
+	background:  #8497B0;
+	border-radius:3px/3px;
+	margin:10px;
+	position:absolute;
+}
+#map{
+	width:322px;
+	height: 322px;
+	background: yellow;
+}
+#box_icon{
+	width:70%;
+	margin:auto;
+	padding:10px;
+}
+
+/*FONT-------------------------------------------------------*/
+#p_title_content{
+	font-size: 30px;
+	color: white;
+}
+
+#p_title{
+	text-align: center;
+	font-size: 15px;
+	font-family: calibri;
+	color: white;
+	margin:auto;
+	}
+
+
+
+
+
+
+/*GAMBAR-------------------------------------------------------*/
+
+#img_profpic{
+height:164px;
+display:block;
+margin:auto;
+}
+
+#img_small_icon{
+	height: 150px;
+	display:block;
+	margin:auto;
+	padding:10px;
+}
+
+#img_relative_profpic{
+	height: 50px;
+	float: left;
+}
+
+#img_topfriends_profpic{
+	margin:10px;
+	height:80px;
+	float: left;
+}
+
+#img_friend_profpic{
+	height: 53px;
+}
+
+#img_smallIcon{
+	height:40px;
+}
+
+#img_map{
+	/*width:100%;
+	height:100%;*/
+}

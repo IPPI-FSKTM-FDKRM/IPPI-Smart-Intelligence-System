@@ -3,16 +3,17 @@
 #import time
 #from datetime import date,datetime
 #from dateutil import tz
-from flask import Flask, render_template, url_for, redirect, flash, request
-from instagram.client import InstagramAPI
-from key import *
 import pytz
-from flask_googlemaps import GoogleMaps, Map
-from forms import LoginForm, RegisterForm
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, url_for, redirect
 from flask_bootstrap import Bootstrap
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask_googlemaps import GoogleMaps
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
+from flask_sqlalchemy import SQLAlchemy
+from instagram.client import InstagramAPI
+from werkzeug.security import generate_password_hash, check_password_hash
+
+from Flask.SocialMediaProfiler.key import *
+from forms import LoginForm, RegisterForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
