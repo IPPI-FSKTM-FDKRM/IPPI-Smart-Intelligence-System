@@ -1,7 +1,8 @@
 
 import matplotlib.pyplot as plt
+import matplotlib as cm
 import numpy as np
-
+#['gold', 'lightskyblue', 'lightcoral']
 test = {"tuu":[1,1],"mama":[1,4,2]}
 def pieChart(dict):
     yv = dict.values()
@@ -11,7 +12,7 @@ def pieChart(dict):
         y.append(len(a))
     fig, ax = plt.subplots()
     ax.axis('equal')
-    ax.pie(y, radius=1.3, labels=x, colors=['gold', 'lightskyblue', 'lightcoral'],autopct='%d%%' )
+    ax.pie(y, radius=1.3, labels=x, colors=np.random.rand(3,4),autopct='%d%%' )
     plt.show()
 
 def lineChart(dict,stringX,stringY):
