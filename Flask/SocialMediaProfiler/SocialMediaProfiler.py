@@ -16,12 +16,13 @@ from flask_sqlalchemy import SQLAlchemy
 from instagram.client import InstagramAPI
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from Flask.SocialMediaProfiler.key import *
+from key import *
 from forms import LoginForm, RegisterForm
 
 from flask import render_template, jsonify, request
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = SECRET_KEY
 app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 app.config['GOOGLEMAPS_KEY'] = "AIzaSyCQaXdeh30YGYlYPK6eqt9AcAJC4or5I8w"
@@ -57,8 +58,10 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 @app.route("/")
+@login_required
 def index():
-    return render_template("Home.html")
+    user = current_user.username
+    return render_template("Home.html", user = user)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -78,6 +81,7 @@ def login():
     return render_template("login.html", form = form, error = error)
 
 @app.route('/register', methods=['GET', 'POST'])
+@login_required
 def register():
     form = RegisterForm()
 
@@ -98,5 +102,6 @@ def logout():
     return redirect(url_for('login'))
 
 @app.route("/searchGeneral")
+@login_required
 def searchGeneral():
     return render_template("searchGeneral.html")

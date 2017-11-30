@@ -1,6 +1,6 @@
 import json
 from datetime import datetime
-
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import requests
 from flask import render_template, jsonify, request
 from flask_googlemaps import Map
@@ -17,10 +17,12 @@ def Facebook_Get_Picture(self):
     self.modFacebook.get_picture()
 
 @app.route("/facebook/search" )
+@login_required
 def facebookSearch():
     return render_template("facebook_search.html", result="")
 
 @app.route("/facebook/searchResult",  methods=['POST'])
+@login_required
 def facebookSearchResult():
     data = json.loads(request.data)
     result  = fb.Find(data);
@@ -29,6 +31,7 @@ def facebookSearchResult():
     return jsonify({'result': render_template("searchResult.html", result=result['data'])})
 
 @app.route("/facebook/analysis")
+@login_required
 def facebookAnalysis():
     postHour , postMonth, postDay = fb.getTimePost()
     location = fb.getLocationPost()
@@ -71,12 +74,14 @@ def facebookAnalysis():
     return render_template("Analysis.html", posnegneu=posnegneu,topic=topic, postHour=postHour, postMonth=postMonth, postDay=postDay, sndmap=sndmap)
 
 @app.route("/facebook/profile/<username>/relation/<id>")
+@login_required
 def facebookRelation(username, id):
     print "relation"
     cache_comment, cache_like = fb.get_relation_post(id)
     return render_template("test.html", comment = cache_comment, like =cache_like)
 
 @app.route("/facebook/profile/<username>")
+@login_required
 def facebookProfile(username):
 
     print "username adalah ", fb.getUsername()
@@ -109,6 +114,7 @@ def facebookProfile(username):
                            , post=post)
 
 @app.route('/facebook/nextAnalysis', methods = ['POST'])
+@login_required
 @celery.task
 def getNextAnalysis():
 
@@ -125,6 +131,7 @@ def getNextAnalysis():
 
 
 @app.route('/facebook/analysis', methods=['POST'])
+@login_required
 @celery.task
 def getAnalysis():
 
