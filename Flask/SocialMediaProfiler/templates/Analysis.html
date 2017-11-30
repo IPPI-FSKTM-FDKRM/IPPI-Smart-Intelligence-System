@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {{sndmap.js}}
+
+
+    <title>Analysis Page</title>
+
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/round-about_analysis.css') }}" rel="stylesheet"/>
+
+    <!-- Bootstrap Grid css -->
+    <link href="{{ url_for('static', filename='css/bootstrap-grid.css') }}" rel="stylesheet"/>
+
+    <!--Content link-->
+    <link href="{{ url_for('static', filename='css/analysis.css') }}" rel="stylesheet"/>
+
+    <!-- Icon Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Icon Google -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Profiling System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href={{ url_for('index') }}>Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={{ url_for('facebookSearch') }}>Evidence Search
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Report</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="page_login.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Page Content -->
+<!-- <div class="container"> -->
+<div class="kotakbesar">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- KOTAK NAVIGATION KIRI -->
+            <div id="box_sideNavigation">
+                <div class="btn-group2">
+                    <button class="button2" onclick="myFunctionMap()"><i class="fa fa-map-pin"></i>&ensp; Map</button>
+
+                    <script>
+                        function myFunctionMap() {
+                            document.getElementById("box_main_timeContent").style.display = "none";
+                            document.getElementById("box_main_mapContent").style.display = "block";
+                            document.getElementById("box_main_topicContent").style.display = "none";
+                            document.getElementById("box_main_posnegContent").style.display = "none";
+                        }
+                    </script>
+
+                    <button class="button2" onclick="myFunctionTime()"><i class="fa fa-history"></i>&ensp; Time Log
+                    </button>
+
+                    <script>
+                        function myFunctionTime() {
+                            document.getElementById("box_main_mapContent").style.display = "none";
+                            document.getElementById("box_main_timeContent").style.display = "block";
+                            document.getElementById("box_main_topicContent").style.display = "none";
+                            document.getElementById("box_main_posnegContent").style.display = "none";
+                        }
+                    </script>
+
+                    <button class="button2" onclick="myFunctionTopic()"><i class="fa fa-bar-chart"></i>&ensp; Topic
+                        Category Chart
+                    </button>
+
+                    <script>
+                        function myFunctionTopic() {
+                            document.getElementById("box_main_mapContent").style.display = "none";
+                            document.getElementById("box_main_timeContent").style.display = "none";
+                            document.getElementById("box_main_topicContent").style.display = "block";
+                            document.getElementById("box_main_posnegContent").style.display = "none";
+                        }
+                    </script>
+
+                    <button class="button2" onclick="myFunctionPosNeg()"><i class="fa fa-pie-chart"></i>&ensp;
+                        Positive/Negative Chart
+                    </button>
+
+                    <script>
+                        function myFunctionPosNeg() {
+                            document.getElementById("box_main_mapContent").style.display = "none";
+                            document.getElementById("box_main_timeContent").style.display = "none";
+                            document.getElementById("box_main_topicContent").style.display = "none";
+                            document.getElementById("box_main_posnegContent").style.display = "block";
+                        }
+                    </script>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-9">
+            <!-- MAP PORTION CONTENT -->
+            <div id="box_main_mapContent">
+                <!-- MAP TITLE -->
+                <div id="box_maptitle">
+                    <p id="p_title_content"> MAP</p>
+                </div>
+
+                <div id="box_map">
+                    <!-- MAP - LETAK MAP HANG KAT SINI -->
+                    {{sndmap.html}}
+                    {#<button onclick='movingmap_markers.map(function(mk){mk.setPosition({lat: 37.44, lng:-122.135})})'>Go to next position </button>#}
+
+                    {#                    <img src="img/map.jpg"/ id="img_map">#}
+                </div>
+
+            </div>
+
+            <!-- TIME PORTION CONTENT -->
+            <div id="box_main_timeContent">
+                <!-- TIME TITLE -->
+                <div id="box_timetitle">
+                    <p id="p_title_content"> TIME</p>
+
+
+                </div>
+
+                <div id="box_time" style="color:white">
+
+                    <!-- TIME - LETAK TIME HANG KAT SINI -->
+                    {% for key, value in postHour.iteritems() %}
+                        <h1>{{ key }}</h1>
+                        {% for i in value %}
+                            {% if 'message' in i %}
+                                <li>{{ i['message'] }}</li>
+                            {% endif %}
+                            {% if 'story' in i %}
+                                <li>{{ i['story'] }}</li>
+                            {% endif %}
+
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- TOPIC CHART PORTION CONTENT -->
+            <div id="box_main_topicContent">
+                <!-- TOPIC CHART TITLE -->
+                <div id="box_topictitle">
+                    <p id="p_title_content"> TOPIC CATEGORY CHART</p>
+                </div>
+
+                <div id="box_topic" style="color:white">
+                    <!-- TOPIC CHART- LETAK TOPIC CHART HANG KAT SINI -->
+
+                    {% for key, value in topic.iteritems() %}
+                        <h1>{{ key }}</h1>
+                        {% for i in value %}
+                            {% if 'message' in i %}
+                                <li>{{ i['message'] }}</li>
+                            {% endif %}
+                            {% if 'story' in i %}
+                                <li>{{ i['story'] }}</li>
+                            {% endif %}
+
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- POSNEG PORTION CONTENT -->
+            <div id="box_main_posnegContent">
+                <!-- POSNEG TITLE -->
+                <div id="box_posnegtitle">
+                    <p id="p_title_content"> POSITIVE NEGATIVE CHART</p>
+                </div>
+
+                <div id="box_posneg" style="color:white">
+                    <!-- POSNEG- LETAK POSITIVE NEGATIVE CHART HANG KAT SINI -->
+                        {% for key, value in posnegneu.iteritems() %}
+                        <h1>{{ key }}</h1>
+                        {% for i in value %}
+                            {% if 'message' in i %}
+                                <li>{{ i['message'] }}</li>
+                            {% endif %}
+                            {% if 'story' in i %}
+                                <li>{{ i['story'] }}</li>
+                            {% endif %}
+
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/popper/popper.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script>
+
+    var map;
+    function initMap() {
+        alert("initmap");
+
+
+        map = new google.maps.Map(document.getElementById('box_map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8,
+        });
+
+        var marker = new google.maps.Marker({
+            position: {lat: -31.563910, lng:147.154312}
+            map: map
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeNL8cEdLSeUcniCTWVazfV71fXkXqcso&callback=initMap"
+        async defer></script>
+
+
+
+</body>
+
+</html>

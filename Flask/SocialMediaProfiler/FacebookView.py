@@ -12,12 +12,9 @@ def format_date(date):  # date = datetime object.
     date = datetime.strptime(date[0:16], '%Y-%m-%dT%H:%M')
     return date.strftime('%Y-%m-%d  %H:%M:%S')
 
-
 @app.template_filter()
 def Facebook_Get_Picture(self):
     self.modFacebook.get_picture()
-
-
 
 @app.route("/facebook/search" )
 def facebookSearch():
@@ -35,30 +32,43 @@ def facebookSearchResult():
 def facebookAnalysis():
     postHour , postMonth, postDay = fb.getTimePost()
     location = fb.getLocationPost()
+    topic = fb.getTopic()
+    posnegneu = fb.getPostNegNeu()
     print postHour
     print postDay
     print postMonth
     markers = []
-    for loc in location:
-        tagUser = ""
-        for tag in loc[4]:
-            tagUser = tagUser+"<img src = 'https://graph.facebook.com/"+tag+"/picture?type=small' style = 'width:30px; height:30px' >"
-        str = loc[1]+"<a href='https://facebook.com/"+loc[0]+"'><br><div al>"+tagUser+"</div></a>"
-        print str
-        markers.insert(0, {             'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-                                        'lat': loc[2],
-                                        'lng': loc[3],
-                                        'infobox': str })
-    sndmap = Map(
-        style="height:480px;width:950px;margin:0;",
-        identifier="cluster-map",
-        lat=location[0][2],
-        lng=location[0][3],
-        markers=markers,
-        fit_markers_to_bounds = True
+    if location:
+        for loc in location:
+            tagUser = ""
+            for tag in loc[4]:
+                tagUser = tagUser+"<img src = 'https://graph.facebook.com/"+tag+"/picture?type=small' style = 'width:30px; height:30px' >"
+            str = loc[1]+"<a href='https://facebook.com/"+loc[0]+"'><br><div al>"+tagUser+"</div></a>"
+            print str
+            markers.insert(0, {             'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                                            'lat': loc[2],
+                                            'lng': loc[3],
+                                            'infobox': str })
+        sndmap = Map(
+            style="height:480px;width:950px;margin:0;",
+            identifier="cluster-map",
+            lat=location[0][2],
+            lng=location[0][3],
+            markers=markers,
+            fit_markers_to_bounds = True
 
-    )
-    return render_template("Analysis.html", postHour=postHour, postMonth=postMonth, postDay=postDay, sndmap=sndmap)
+        )
+
+    else:
+        sndmap = Map(
+            style="height:480px;width:950px;margin:0;",
+            identifier="cluster-map",
+            lat=0,
+            lng=0
+            # fit_markers_to_bounds=True
+
+        )
+    return render_template("Analysis.html", posnegneu=posnegneu,topic=topic, postHour=postHour, postMonth=postMonth, postDay=postDay, sndmap=sndmap)
 
 @app.route("/facebook/profile/<username>/relation/<id>")
 def facebookRelation(username, id):
@@ -107,7 +117,7 @@ def getNextAnalysis():
         reqData = requests.get(post['paging']['next'])
         postData = reqData.json()
         like , comment , location =fb.get_post_like_comment_location(fb.isCache(),fb.getGraph() ,postData)
-        print fb.getCache()
+        print fb.getCacheCommentsAndLikes()
 
         return jsonify({ 'LikesComments': render_template('facebook_TopFriends.html', likes=like, comments=comment)})
 

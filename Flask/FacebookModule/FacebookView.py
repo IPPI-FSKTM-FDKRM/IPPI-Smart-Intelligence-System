@@ -107,7 +107,7 @@ def getNextAnalysis():
         reqData = requests.get(post['paging']['next'])
         postData = reqData.json()
         like , comment , location =fb.get_post_like_comment_location(fb.isCache(),fb.getGraph() ,postData)
-        print fb.getCache()
+        print fb.getCacheCommentsAndLikes()
 
         return jsonify({ 'LikesComments': render_template('TopFriends.html', likes=like, comments=comment)})
 

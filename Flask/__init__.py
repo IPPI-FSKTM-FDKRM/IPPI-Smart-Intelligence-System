@@ -1,14 +1,3 @@
-from datetime import datetime
-from collections import Counter
-import json
-import facebook
-import requests
-from celery import Celery
-from flask import Flask, render_template, jsonify, url_for, request
-from flask_googlemaps import GoogleMaps
-from flask_googlemaps import Map
-import pytz    # $ pip install pytz
-import tzlocal # $ pip install tzlocal
 
 import json
 import facebook
@@ -27,10 +16,8 @@ celery.conf.update(app.config)
 fb = Facebook.Facebook()
 
 class SocialMediaProfiler:
-
     app.config['GOOGLEMAPS_KEY'] = "AIzaSyCQaXdeh30YGYlYPK6eqt9AcAJC4or5I8w"
     GoogleMaps(app)
-
 
 
 @app.route("/")
