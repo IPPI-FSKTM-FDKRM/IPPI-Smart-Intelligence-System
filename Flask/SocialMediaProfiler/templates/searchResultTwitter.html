@@ -1,0 +1,6 @@
+{% for i in result %}
+    <p id="p_username">@{{ i["screen_name"] }}</p>
+    <p id="p_username">{{ i["name"] }}</p>
+    <a href="{{ url_for('twitterProfile', username = i["screen_name"]) }}">    <img src={{ i["profile_image_url"] }} id="img_profpic"/></a>
+
+{% endfor %}
