@@ -2,6 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+test = {"tuu":[1,1],"mama":[1,4,2]}
 def pieChart(dict):
     yv = dict.values()
     x = dict.keys()
@@ -10,7 +11,7 @@ def pieChart(dict):
         y.append(len(a))
     fig, ax = plt.subplots()
     ax.axis('equal')
-    ax.pie(y, radius=1.3, labels=x, colors=['gold', 'lightskyblue', 'lightcoral'],autopct='%1.1f%%' )
+    ax.pie(y, radius=1.3, labels=x, colors=['gold', 'lightskyblue', 'lightcoral'],autopct='%d%%' )
     plt.show()
 
 def lineChart(dict,stringX,stringY):
@@ -37,3 +38,5 @@ def barChart(dict,stringX,stringY):
     plt.ylabel(stringY)
     plt.xlabel(stringX)
     plt.show()
+
+pieChart(test)
