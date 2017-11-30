@@ -2,8 +2,8 @@
 import matplotlib.pyplot as plt
 import matplotlib as cm
 import numpy as np
-#['gold', 'lightskyblue', 'lightcoral']
-test = {"tuu":[1,1],"mama":[1,4,2]}
+from io import BytesIO
+
 def pieChart(dict):
     yv = dict.values()
     x = dict.keys()
@@ -13,7 +13,7 @@ def pieChart(dict):
     fig, ax = plt.subplots()
     ax.axis('equal')
     ax.pie(y, radius=1.3, labels=x, colors=np.random.rand(3,4),autopct='%d%%' )
-    plt.show()
+    return fig
 
 def lineChart(dict,stringX,stringY):
     x = dict.keys()
@@ -25,7 +25,8 @@ def lineChart(dict,stringX,stringY):
     plt.xticks(x)
     plt.xlabel(stringX)
     plt.ylabel(stringY)
-    plt.show()
+    fig = plt.figure()
+    return fig
 
 def barChart(dict,stringX,stringY):
     x = dict.keys()
@@ -39,5 +40,4 @@ def barChart(dict,stringX,stringY):
     plt.ylabel(stringY)
     plt.xlabel(stringX)
     plt.show()
-
-pieChart(test)
+    return
