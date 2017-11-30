@@ -1,8 +1,5 @@
-
 import matplotlib.pyplot as plt
-import matplotlib as cm
 import numpy as np
-from io import BytesIO
 
 def pieChart(dict):
     yv = dict.values()
@@ -25,8 +22,7 @@ def lineChart(dict,stringX,stringY):
     plt.xticks(x)
     plt.xlabel(stringX)
     plt.ylabel(stringY)
-    fig = plt.figure()
-    return fig
+    return plt
 
 def barChart(dict,stringX,stringY):
     x = dict.keys()
@@ -39,5 +35,4 @@ def barChart(dict,stringX,stringY):
     plt.xticks(y_plot, x)
     plt.ylabel(stringY)
     plt.xlabel(stringX)
-    plt.show()
-    return
+    return plt
