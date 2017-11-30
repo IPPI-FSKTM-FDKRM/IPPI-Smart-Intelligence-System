@@ -26,6 +26,7 @@
 <script>
 
      function start_search() {
+            document.getElementById("result").innerHTML = '<img  style="width:200px; margin:0 auto;" src="{{ url_for('static', filename='img/loading.gif') }}">'
             search = $('#search').val();
             // send ajax POST request to start background job
             $.ajax({

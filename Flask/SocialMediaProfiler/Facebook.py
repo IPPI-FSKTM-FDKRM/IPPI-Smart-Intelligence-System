@@ -1,5 +1,3 @@
-
-
 import facebook
 import pytz
 import requests
@@ -19,7 +17,6 @@ app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
-
 
 class Facebook():
     app.config['GOOGLEMAPS_KEY'] = "AIzaSyCQaXdeh30YGYlYPK6eqt9AcAJC4or5I8w"
@@ -53,7 +50,6 @@ class Facebook():
     # original app token
     # token = 'EAAFyPKV2cOIBAM1GJtjCW7oIftQzwo8RxujFy9ZBLeYNPrSNpMiuUbMAcpzvEkH6sJ0F2ZAf5ey0yle7toaSLJ2wd3yqZACnXJjKXotl8YHZA8KCLNWPBMHlV2ZAcdD4M4p8Y7RqiXV43sF5rfZCa7pmwOaZBWB6qsZD';
     token = 'EAAFyPKV2cOIBAGNxJZBXQxdIMZB3sZBAafeXMTS5mRyXwyuBsnZCL14P4o3EdzHZAcMbVUtOF7pfBmdYczTqcmFfNLWOpUqZCXT35aPVMueySyOd6qBhjvCtARx5UyCSb2bM3fwO1ne1OnlMtkxnUTcesZCHIyYdREZD'
-    token = 'EAACEdEose0cBAMmLZBXM1eHcmSJxaaeZAgEFXLMTvc5aI6MHozbeQsQtjQPHEQRWHERoevd8s3w6aHbLhSSiQiUk9tss3O5i5YoXYjEVIvf2yyNKOZBZAZAmPncGF0Lo0m4eouP6HyqpiKPXfu2HkotxYJjcdkRURYWdRAMSPr31XT0aLJ2UgzJzUVm0NNgmMgJA5DKu2GwZDZD'
     graph = facebook.GraphAPI(token);
 
     def initialize(self):

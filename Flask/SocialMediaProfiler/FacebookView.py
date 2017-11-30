@@ -1,11 +1,16 @@
+import base64
 import json
 from datetime import datetime
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import requests
-from flask import render_template, jsonify, request
+from flask import render_template, jsonify, request, send_file
 from flask_googlemaps import Map
+import Visualization
+# import StringIO
+import StringIO
 
 from SocialMediaProfiler import app, celery, fb
+
 
 @app.template_filter()
 def format_date(date):  # date = datetime object.
@@ -37,6 +42,12 @@ def facebookAnalysis():
     location = fb.getLocationPost()
     topic = fb.getTopic()
     posnegneu = fb.getPostNegNeu()
+    topicGraph = getTopicChart()
+    timeGraph = getTimeChart()
+    posnegneuGraph = getPosNegNeuChart()
+
+
+    print topic
     print postHour
     print postDay
     print postMonth
@@ -71,7 +82,31 @@ def facebookAnalysis():
             # fit_markers_to_bounds=True
 
         )
-    return render_template("Analysis.html", posnegneu=posnegneu,topic=topic, postHour=postHour, postMonth=postMonth, postDay=postDay, sndmap=sndmap)
+    return render_template("Analysis.html", posnegneuGraph=posnegneuGraph,timeGraph=timeGraph , topicGraph = topicGraph,posnegneu=posnegneu,topic=topic, postHour=postHour, postMonth=postMonth, postDay=postDay, sndmap=sndmap)
+def getPosNegNeuChart():
+    fig = Visualization.pieChart(fb.getPostNegNeu())
+    img = StringIO.StringIO()
+    fig.savefig(img, format='png', transparent=True)
+    img.seek(0)
+    posNegNeu_graph = base64.b64encode(img.getvalue())
+    return posNegNeu_graph
+
+def getTopicChart():
+    fig = Visualization.pieChart(fb.getTopic())
+    img = StringIO.StringIO()
+    fig.savefig(img, format='png', transparent=True)
+    img.seek(0)
+    topic_graph = base64.b64encode(img.getvalue())
+    return topic_graph
+
+def getTimeChart():
+    hour, Month, Day  = fb.getTimePost()
+    fig = Visualization.lineChart(hour,"","")
+    img = StringIO.StringIO()
+    fig.savefig(img, format='png', transparent=True)
+    img.seek(0)
+    time_graph = base64.b64encode(img.getvalue())
+    return time_graph
 
 @app.route("/facebook/profile/<username>/relation/<id>")
 @login_required

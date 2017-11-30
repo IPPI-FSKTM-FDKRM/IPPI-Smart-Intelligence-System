@@ -22,7 +22,7 @@
 <body>
 
 <!-- Navigation -->
-{% include "header.html" %}
+{#{% include "header.html" %}#}
 
 <!-- Page Content -->
 
@@ -75,7 +75,7 @@
                 </div>
 
                 {#      <div id="box_id_topfriend">#}
-                <div id="topFriends"></div>
+                <div id="topFriends"><img style="align-content: center ;margin:auto; height: 30px; width: 30px " src="{{ url_for('static', filename='img/loading.gif') }}"></div>
 
                 {#      </div>#}
             </div>

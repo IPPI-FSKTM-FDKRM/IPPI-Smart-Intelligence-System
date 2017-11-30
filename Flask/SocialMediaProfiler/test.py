@@ -1,6 +1,7 @@
 from collections import Counter
 from datetime import datetime
 import facebook
+import Visualization
 from Sentiment_Analysis import nBayesTesting
 from datetime import datetime
 import Flask.FacebookModule.TopicSentiment
@@ -23,6 +24,11 @@ class tahi():
 
     Hour = {}
     Day = {}
+
+    def testChart(self):
+        data = {'spending': [{u'created_time': u'2017-11-24T15:47:36+0000', u'message': u'Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan', u'story': u'Khairul Albertado Danial is at Kolej Kediaman Kelapan,Universiti Malaya.', u'id': u'1362815530452737_1554897484577873'}], 'travel': [], 'sports': [{u'created_time': u'2017-11-29T06:43:04+0000', u'message': u'Last day at um academia community conference 2017', u'story': u'Khairul Albertado Danial is at Crystal Crown Hotel Petaling Jaya.', u'id': u'1362815530452737_1559629380771350'}, {u'created_time': u'2017-11-19T05:25:25+0000', u'message': u'Datang la support boling padang ulk pada 25/26 november', u'story': u'Khairul Albertado Danial is at Kompleks Sukan Negara Bukit Kiara.', u'id': u'1362815530452737_1549934008407554'}], 'politic': [{u'created_time': u'2017-11-29T06:43:04+0000', u'message': u'Last day at um academia community conference 2017', u'story': u'Khairul Albertado Danial is at Crystal Crown Hotel Petaling Jaya.', u'id': u'1362815530452737_1559629380771350'}, {u'created_time': u'2017-11-24T15:47:36+0000', u'message': u'Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan', u'story': u'Khairul Albertado Danial is at Kolej Kediaman Kelapan,Universiti Malaya.', u'id': u'1362815530452737_1554897484577873'}, {u'created_time': u'2017-11-24T09:41:04+0000', u'message': u'Alhamdulillah , lots more to improve.. 1 more week towards integration. My team will do well... :Putnam:', u'story': u'Khairul Albertado Danial is at Kerinchi LRT station.', u'id': u'1362815530452737_1554649987935956'}, {u'created_time': u'2017-11-21T07:59:28+0000', u'message': u'Irfan Kamaruddin Raam Kanaisan Hafiz Redha Aida Baharun, actually this is how alzheimer brain looks like , it is good to know about all this topic', u'story': u"Khairul Albertado Danial shared Dr John's video.", u'id': u'1362815530452737_1551861968214758'}, {u'created_time': u'2017-10-16T12:44:58+0000', u'message': u'Hazim Kamaruzzaman Yeah manager', u'story': u"Khairul Albertado Danial shared Jawatankuasa Pelajar Luar Kampus Universiti Malaya's post.", u'id': u'1362815530452737_1519290884805200'}], 'education': [{u'created_time': u'2017-11-08T11:27:17+0000', u'message': u'Main lawn bowl bersama Raam Kanaisan Irfan Kamaruddin dan Hazim Kamaruzzaman\n\n#FYPpurpose', u'story': u'Khairul Albertado Danial is with Raam Kanaisan and 2 others at Malaysian Lawn Bowls Federation.', u'id': u'1362815530452737_1539814052752883'}], 'technology': [{u'created_time': u'2017-11-29T06:43:04+0000', u'message': u'Last day at um academia community conference 2017', u'story': u'Khairul Albertado Danial is at Crystal Crown Hotel Petaling Jaya.', u'id': u'1362815530452737_1559629380771350'}, {u'created_time': u'2017-11-24T15:47:36+0000', u'message': u'Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan', u'story': u'Khairul Albertado Danial is at Kolej Kediaman Kelapan,Universiti Malaya.', u'id': u'1362815530452737_1554897484577873'}, {u'created_time': u'2017-11-21T07:59:28+0000', u'message': u'Irfan Kamaruddin Raam Kanaisan Hafiz Redha Aida Baharun, actually this is how alzheimer brain looks like , it is good to know about all this topic', u'story': u"Khairul Albertado Danial shared Dr John's video.", u'id': u'1362815530452737_1551861968214758'}, {u'created_time': u'2017-11-19T05:25:25+0000', u'message': u'Datang la support boling padang ulk pada 25/26 november', u'story': u'Khairul Albertado Danial is at Kompleks Sukan Negara Bukit Kiara.', u'id': u'1362815530452737_1549934008407554'}, {u'created_time': u'2017-11-08T11:27:17+0000', u'message': u'Main lawn bowl bersama Raam Kanaisan Irfan Kamaruddin dan Hazim Kamaruzzaman\n\n#FYPpurpose', u'story': u'Khairul Albertado Danial is with Raam Kanaisan and 2 others at Malaysian Lawn Bowls Federation.', u'id': u'1362815530452737_1539814052752883'}]}
+
+        print Visualization.pieChart(data)
 
     def testPosNeg(self):
         string = ['Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan']
@@ -88,4 +94,4 @@ class tahi():
 if __name__ == "__main__":
     x= tahi()
     # x.tagUser()
-    x.testPosNeg()
+    x.testChart()

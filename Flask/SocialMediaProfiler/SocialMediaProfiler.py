@@ -1,12 +1,6 @@
 from celery import Celery
-from flask import Flask , blueprints
-from flask_googlemaps import GoogleMaps
-import Facebook , Instagram
-#import requests
-#import json
-#import time
-#from datetime import date,datetime
-#from dateutil import tz
+import Facebook , Instagram, Twitter
+import os
 import pytz
 from flask import Flask, render_template, url_for, redirect
 from flask_bootstrap import Bootstrap
@@ -20,14 +14,19 @@ from key import *
 from forms import LoginForm, RegisterForm
 
 from flask import render_template, jsonify, request
+__location__ = os.path.realpath(
+    os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 app.config['GOOGLEMAPS_KEY'] = "AIzaSyCQaXdeh30YGYlYPK6eqt9AcAJC4or5I8w"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/kayd/Project/IPPI-Smart-Intelligence-System/Flask/SocialMediaProfiler/database.db' #linux
+
 GoogleMaps(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\User\\PycharmProjects\\untitled1\\database.db' #windows
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\User\\PycharmProjects\\untitled1\\database.db' #windows
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
 login_manager = LoginManager()
@@ -38,6 +37,7 @@ celery.conf.update(app.config)
 
 fb = Facebook.Facebook()
 insta = Instagram.Instagram()
+twitter = Twitter.Twitter()
 
 from FacebookView import *
 from InstagramView import *
