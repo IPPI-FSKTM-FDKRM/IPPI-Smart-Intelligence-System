@@ -3,8 +3,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def pieChart(dict):
-    y = dict.values()
+    yv = dict.values()
     x = dict.keys()
+    y = []
+    for a in yv:
+        y.append(len(a))
     fig, ax = plt.subplots()
     ax.axis('equal')
     ax.pie(y, radius=1.3, labels=x, colors=['gold', 'lightskyblue', 'lightcoral'],autopct='%1.1f%%' )
