@@ -1,5 +1,5 @@
-from flask import Flask, render_template, url_for, redirect
-
+from flask import Flask, render_template, url_for, redirect, jsonify, request
+import json
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
 from key import *
@@ -12,11 +12,15 @@ from SocialMediaProfiler import app, celery, insta
 def instaSearch():
     return render_template("insta-search.html")
 
-@app.route("/insta/search")
+@app.route("/insta/search/result", methods = ["POST"])
 @login_required
-def instaSearchResult(word=None):
-    profile = insta.user_search(word)
-    return render_template("insta-search.html", result=profile)
+def instaSearchResult():
+    print "danish"
+    data = json.loads(request.data)
+    profile = insta.user_search(data)
+    print profile
+    #return render_template("insta-search.html", result=profile)
+    return jsonify({'result': render_template("insta-search-result.html", result=profile)})
 
 @app.route("/insta/profile/<id>")
 @login_required
