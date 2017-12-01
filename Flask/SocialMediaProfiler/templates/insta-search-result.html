@@ -1,0 +1,14 @@
+
+{% if not result %}
+          <h3>Nothing is found</h3>
+        {% else %}
+            {% for result in result %}
+                <div class="col-lg-3 col-sm-6 text-center mb-4">
+		        <a href="{{ url_for('instaProfile', id = result.id) }}">
+                    <img class="rounded-circle img-fluid d-block mx-auto" src={{result.profile_picture}} alt="" style="width:200px; height:183px; margin-top:50px;">
+		                <h3>Username : {{ result.username }}</h3>
+                        <h3>Name : {{ result.full_name }}</h3>
+                </a>
+                </div>
+            {% endfor %}
+        {% endif %}
