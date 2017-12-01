@@ -23,7 +23,7 @@ class Twitter():
 
 
     twitter = Twitter(
-		auth = OAuth(config["access_key"], config["access_secret"], config["consumer_key"], config["consumer_secret"]))
+		auth = OAuth(config["ACCESS_KEY"], config["ACCESS_SECRET"], config["CONSUMER_KEY"], config["CONSUMER_SECRET"]))
 
     #username = raw_input("Enter username to search: @")
 

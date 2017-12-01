@@ -75,7 +75,7 @@
                 </div>
 
                 {#      <div id="box_id_topfriend">#}
-                <div id="topFriends"><img style="align-content: center ;margin:auto; height: 30px; width: 30px " src="{{ url_for('static', filename='img/loading.gif') }}"></div>
+                <div id="topFriends"><img style="align-content: center ;margin-left:auto 0  ;height: 100px"  src="{{ url_for('static', filename='img/loading.gif') }}"></div>
 
                 {#      </div>#}
             </div>
@@ -109,10 +109,11 @@
             </div>
 
         </div>
-        <a href="{{ url_for('facebookAnalysis', username=me) }}"> Analysis Page </a>
 
         <div class="col-md-3">
-
+        <div style="margin: 50px;">
+            <a href="{{ url_for('facebookAnalysis', username=me) }}"><button> Analysis Page</button></a>
+        </div>
             <!--Kotak Friends-->
             <div class="mainbox_friend">
                 <div id="box_title">
@@ -187,7 +188,6 @@
         }
 
         function topFriend(resp){
-            alert('Unexpected error');
             document.getElementById("topFriends").innerHTML = resp.LikesComments;
         }
 

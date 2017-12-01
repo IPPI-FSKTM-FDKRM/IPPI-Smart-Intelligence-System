@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-        {{sndmap.js}}
+    {{sndmap.js}}
 
 
     <title>Analysis Page</title>
@@ -34,8 +34,35 @@
 <body>
 
 <!-- Navigation -->
-{% include "header.html" %}
 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Profiling System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href={{ url_for('index') }}>Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href={{ url_for('facebookSearch') }}>Evidence Search
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Report</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="page_login.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <!-- Page Content -->
 <!-- <div class="container"> -->
 <div class="kotakbesar">
@@ -108,10 +135,10 @@
 
                 <div id="box_map">
                     <!-- MAP - LETAK MAP HANG KAT SINI -->
-     {{sndmap.html}}
-<button onclick='movingmap_markers.map(function(mk){mk.setPosition({lat: 37.44, lng:-122.135})})'>Go to next position </button>
+                    {{sndmap.html}}
+                    {#<button onclick='movingmap_markers.map(function(mk){mk.setPosition({lat: 37.44, lng:-122.135})})'>Go to next position </button>#}
 
-{#                    <img src="img/map.jpg"/ id="img_map">#}
+                    {#                    <img src="img/map.jpg"/ id="img_map">#}
                 </div>
 
             </div>
@@ -128,7 +155,9 @@
                 <div id="box_time" style="color:white">
 
                     <!-- TIME - LETAK TIME HANG KAT SINI -->
-                       {% for key, value in postHour.iteritems() %}
+                    <img src="data:image/png;base64, {{ timeGraph }}">
+
+                    {% for key, value in postHour.iteritems() %}
                         <h1>{{ key }}</h1>
                         {% for i in value %}
                             {% if 'message' in i %}
@@ -150,9 +179,21 @@
                     <p id="p_title_content"> TOPIC CATEGORY CHART</p>
                 </div>
 
-                <div id="box_topic">
+                <div id="box_topic" style="color:white">
                     <!-- TOPIC CHART- LETAK TOPIC CHART HANG KAT SINI -->
-                    <p id="p_title_content"> Inilah topic category chart</p>
+                    <img src="data:image/png;base64, {{ topicGraph }}">
+                    {% for key, value in topic.iteritems() %}
+                        <h1>{{ key }}</h1>
+                        {% for i in value %}
+                            {% if 'message' in i %}
+                                <li>{{ i['message'] }}</li>
+                            {% endif %}
+                            {% if 'story' in i %}
+                                <li>{{ i['story'] }}</li>
+                            {% endif %}
+
+                        {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
 
@@ -163,9 +204,22 @@
                     <p id="p_title_content"> POSITIVE NEGATIVE CHART</p>
                 </div>
 
-                <div id="box_posneg">
+                <div id="box_posneg" style="color:white">
                     <!-- POSNEG- LETAK POSITIVE NEGATIVE CHART HANG KAT SINI -->
-                    <p id="p_title_content"> Inilah positive negative chart</p>
+                                        <img src="data:image/png;base64, {{ posnegneuGraph }}">
+
+                    {% for key, value in posnegneu.iteritems() %}
+                        <h1>{{ key }}</h1>
+                        {% for i in value %}
+                            {% if 'message' in i %}
+                                <li>{{ i['message'] }}</li>
+                            {% endif %}
+                            {% if 'story' in i %}
+                                <li>{{ i['story'] }}</li>
+                            {% endif %}
+
+                        {% endfor %}
+                    {% endfor %}
                 </div>
             </div>
 
@@ -180,24 +234,24 @@
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <script>
 
-     var map;
-      function initMap() {
-          alert("initmap");
+    var map;
+    function initMap() {
+        alert("initmap");
 
 
-          map = new google.maps.Map(document.getElementById('box_map'), {
-              center: {lat: -34.397, lng: 150.644},
-              zoom: 8,
-          });
+        map = new google.maps.Map(document.getElementById('box_map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8,
+        });
 
-          var marker = new google.maps.Marker({
-                    position: {lat: -31.563910, lng:147.154312}
-                    map: map
-                });
-      }
-    </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeNL8cEdLSeUcniCTWVazfV71fXkXqcso&callback=initMap"
-    async defer></script>
+        var marker = new google.maps.Marker({
+            position: {lat: -31.563910, lng:147.154312}
+            map: map
+        });
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeNL8cEdLSeUcniCTWVazfV71fXkXqcso&callback=initMap"
+        async defer></script>
 
 
 

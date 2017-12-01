@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Relation Page</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/round-about_relation.css')}}" rel="stylesheet">
+  
+  <!-- Bootstrap Grid css -->
+  <link href="{{ url_for('static', filename='css/bootstrap-grid.css')}}" rel="stylesheet">
+
+  <!--Content link-->
+  <link href="{{ url_for('static', filename='css/relation.css')}}" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+  <!--************************************************************************************************* Navigation -->
+{% include "header.html" %}
+<!--************************************************************************************************* END NAVIGATION -->
+
+<!--************************************************************************************************* BUTTON: TOP SCROLL  -->
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+<script>
+  window.onscroll = function() {scrollFunction()};
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("myBtn").style.display = "block";
+    } else {
+      document.getElementById("myBtn").style.display = "none";
+    }
+  }
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+<!--************************************************************************************************* END BUTTON: TOP SCROLL -->
+
+
+<!--************************************************************************************************* BOX: MAIN CONTENT "kotakbesar"-->
+<div class="kotakbesar">
+  <!-- TITLE -->
+  <div id="title_fb">
+    <h1>RELATION FACEBOOK</h1>
+  </div>
+  <div class="row">
+
+    <!--************************************************************************************************* BOX: LEFT COLUMN: JUMP MENU "box_menuJump" -->
+    <div class="col-md-2">
+      <div id="box_menuJump">
+        <div id="btn-group">
+          <a class="button2" href="#box_dpFBa">DP Picture</a>
+          <a class="button2" href="#box_locationa">Location</a>
+          <a class="button2" href="#box_posta">Tagged Post</a>
+          <a class="button2" href="#box_postLikea">Liked Post</a>
+        </div>
+      </div>
+    </div>
+    <!--************************************************************************************************* END BOX: JUMP MENU "box_menuJump" -->
+
+
+    <!--************************************************************************************************* BOX: MIDDLE COLUMN -->  
+    <div class="col-md-5">
+      <!--************************************************************************************************* BOX: FB DP RELATION --> 
+      <a name="box_dpFBa"></a>
+      <div id="box_dpFB">
+        <div class="row">
+          <div class="col-md-6">
+            <div id="box_dpFB_kecik"> <!--FB DP BOX (EACH)-->
+              <br>{{ username }}
+              <div class="haha">
+              <img src="https://graph.facebook.com/{{ currentUserId }}/picture?type=large"/><!--PUT DP FB HERE-->
+            </div>
+           </div>
+         </div>
+         <div class="col-md-6">
+          <div id="box_dpFB_kecik">
+            <br>{{ relationName }}
+            <div class="haha">
+              <img src="https://graph.facebook.com/{{ relationUser }}/picture?type=large"/><!--PUT DP FB HERE-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--************************************************************************************************* BOX: LOCATION -->
+
+    <a name="box_locationa"></a>
+    <hr>
+    <div id="box_location">
+            <h4>Tagged Location</h4>
+        {% for i in relationLocation %}
+            {{ i["address"] }}
+{#            {{ i["lat"] }}#}
+{#            {{ i["lng"] }}#}
+        {% endfor %}
+    </div>
+    <!--************************************************************************************************* END BOX: LOCATION -->
+    <hr>
+  </div>
+  <!--************************************************************************************************* BOX: RIGHT COLUMN: POST TAGGED-->
+  <div class="col-md-5">
+    <!-- POST -->
+    <a name="box_posta"></a>
+    <div id="box_post">
+      <div id="box_eachPost">
+        <h4>Comment on Post</h4>
+             {% for item in comment %}
+        <br>{{ item["message"]}}
+    {% endfor %}
+      </div>
+    </div>
+
+    <a name="box_postLikea"></a>
+    <hr>
+
+    <!--************************************************************************************************* BOX: RIGHT COLUMN: POST LIKED -->
+    <!-- LIKED POST -->
+    <div id="box_postLike">
+      <div id="box_eachPost">
+        <h4>LIKED POST</h4>
+  {% for item in like %}
+        <br>{{ item["message"]}}
+    {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+</div>
+</div>
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/popper/popper.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

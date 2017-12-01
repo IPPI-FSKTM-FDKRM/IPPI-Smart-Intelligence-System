@@ -1,0 +1,12 @@
+
+
+    {% if result %}
+        {% for result in result %}
+            <hr>
+
+            <img src="https://graph.facebook.com/{{result['id']}}/picture?type=large">
+            <br>username : {{result['name']}}
+            <a href="{{ url_for('facebookProfile', username = result['id']) }}"> View profile :</a>
+
+        {% endfor %}
+    {% endif %}

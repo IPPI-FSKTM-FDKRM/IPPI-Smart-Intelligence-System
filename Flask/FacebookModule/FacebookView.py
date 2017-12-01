@@ -29,7 +29,7 @@ def facebookSearchResult():
     result  = fb.Find(data);
     print result
 
-    return jsonify({'result': render_template("searchResult.html", result=result['data'])})
+    return jsonify({'result': render_template("facebook_searchResult.html", result=result['data'])})
 
 @app.route("/facebook/analysis")
 def facebookAnalysis():

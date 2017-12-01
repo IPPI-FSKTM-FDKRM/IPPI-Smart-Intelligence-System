@@ -31,12 +31,14 @@ class Facebook():
     global topic
     global locationPost
     global cache
+    global locationRelation
 
     day = {}
     hour = {}
     month = {}
     topic= {"politic":[], "sports":[], "travel":[], "education":[],"technology":[], "spending":[]}
     locationPost = []
+    locationRelation = {}
     current_username = ""
 
     cache = False
@@ -56,7 +58,6 @@ class Facebook():
         print("initializing")
         global cache_comments
         global cache_likes
-        global user_id
         global location
         global amount_comment
         global amount_likes
@@ -64,6 +65,8 @@ class Facebook():
         global topic , posnegneu
         global locationPost
         global cache
+        global locationRelation
+        locationRelation = {}
 
         day = {}
         hour = {}
@@ -71,7 +74,6 @@ class Facebook():
         topic = {"politic": [], "sports": [], "travel": [], "education": [], "technology": [], "spending": []}
         posnegneu = {"positive":[], "negative":[], "neutral":[]}
         locationPost = []
-
         self.cache = False
         amount_likes = {}
         amount_comment = {}
@@ -159,15 +161,22 @@ class Facebook():
                         posnegneu[i].append(post)
 
 
-                    print topic
-                    print posnegneu
-
                 if 'place' in place:
                     tagUser = []
+                    print "place-------", place
+                    street = ""
+                    if "street" in place['place']['location']:
+                        street = place['place']['location']['street']+" , "
 
+                    locationAddress = ""+place['place']['name']+" , "+street+place['place']['location']['city']+" , "+place['place']['location']['country']
+                    print locationAddress
                     if 'message_tags' in tag:
                         for i in tag['message_tags']:
                             tagUser.append(i['id'])
+                            if i['id'] not in locationRelation:
+                                locationRelation[i['id']] = [{"address": locationAddress ,"lat": place['place']['location']['latitude'], "lng": place['place']['location']['longitude'], "post": post }]
+                            else:
+                                locationRelation[i['id']].append({"address": locationAddress ,"lat": place['place']['location']['latitude'], "lng": place['place']['location']['longitude'] , "post":post})
 
                     if 'message' in post:
                         locationPost.insert(0, [post['id'], post['message'], place['place']['location']['latitude'],
@@ -178,10 +187,10 @@ class Facebook():
 
                         if not likes['id'] in amount_likes:
                             amount_likes[likes['id']] = 1;
-                            cache_like[likes['id']] = [likes]
+                            cache_like[likes['id']] = [post]
                         else:
                             amount_likes[likes['id']] += 1;
-                            cache_like[likes['id']] = [likes]
+                            cache_like[likes['id']].append([post])
 
                 if 'comments' in comment:
                     for comments in comment['comments']['data']:
@@ -210,6 +219,7 @@ class Facebook():
         else:
             return [], [], None
 
+
     def getTimePost(self):
         return hour, month, day
 
@@ -236,8 +246,15 @@ class Facebook():
         profile = self.graph.get_object(id)
         return profile
 
+    def getProfileInstance(self, id):
+        return self.graph.get_object(id)
+
     def getLocationPost(self):
         return locationPost
+
+    def getLocationRelatioin(self):
+        return locationRelation
+
 
     #######################################################
     # Basic facebook profile data                         #

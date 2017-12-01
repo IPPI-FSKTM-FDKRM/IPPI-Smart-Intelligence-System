@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from instagram.client import InstagramAPI
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from key import *
+from config import *
 from forms import LoginForm, RegisterForm
 
 app = Flask(__name__)

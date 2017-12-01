@@ -82,6 +82,8 @@ class Facebook():
         location = []
         self.post = [];
 
+    def getUserID(self):
+        return user_id
 
     def getUsername(self):
         return self.current_username
@@ -158,7 +160,6 @@ class Facebook():
                     if 'message_tags' in tag:
                         for i in tag['message_tags']:
                             tagUser.append(i['id'])
-
                     if 'message' in post:
                         locationPost.insert(0,[post['id'],post['message'], place['place']['location']['latitude'],place['place']['location']['longitude'], tagUser])
 
@@ -180,16 +181,11 @@ class Facebook():
                 if 'comments' in comment:
                     for comments in comment['comments']['data']:
 
-                        print comments['from']['id']
-                        print comments['message']
-
                         if not comments['from']['id'] in amount_comment:
                             cache_com[comments['from']['id']] = [comments]
-                            print cache_com[comments['from']['id']]
                             amount_comment[comments['from']['id']] = 1;
                         else:
                             cache_com[comments['from']['id']].append(comments)
-                            print cache_com[comments['from']['id']]
                             amount_comment[comments['from']['id']] += 1;
 
         #get top commentator and likers

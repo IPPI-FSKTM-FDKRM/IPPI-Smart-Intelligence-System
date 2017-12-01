@@ -2,7 +2,7 @@ from flask import Flask, render_template, url_for, redirect, jsonify, request
 import json
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 
-from key import *
+from config import *
 from SocialMediaProfiler import app, celery, insta
 
 
@@ -31,4 +31,3 @@ def instaProfile(id):
         return render_template("insta-profile.html", user=profile, media=media)
     except Exception as e:
         return render_template("insta-private.html", error = e)
-
