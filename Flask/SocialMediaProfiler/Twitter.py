@@ -32,15 +32,14 @@ class Twitter():
         return user
 
     def getUserProfile(self,username):
-        user = self.twitter.users.search(q = username)
-        for user in user:
-            print "Profile image: %s" % user["profile_image_url"]
-            print "Username: @%s" % user["screen_name"]
-            print "Name: %s" % user["name"]
-            print "Twitter ID: %s" % user["id"]
-            print "Bio: %s" % user["description"]
-            print "Followers: %s " % user["followers_count"]
-            print "Account created since: %s" %  user["created_at"]
+        user = self.twitter.users.show(screen_name=username)
+        print "Profile image: %s" % user["profile_image_url"]
+        print "Username: @%s" % user["screen_name"]
+        print "Name: %s" % user["name"]
+        print "Twitter ID: %s" % user["id"]
+        print "Bio: %s" % user["description"]
+        print "Followers: %s " % user["followers_count"]
+        print "Account created since: %s" % user["created_at"]
         return user
 
     followingName = []
@@ -81,7 +80,21 @@ class Twitter():
         return self.tweet
 
     def getTweetSource(self):
-        return self.tweetSource
+        s = self.tweetSource
+        source = []
+        for tweet in s:
+            str = ''
+            tweet = tweet.replace('>', ' ')
+            tweet = tweet.replace('<', ' ')
+            tweet = tweet.split()
+            target = "Twitter"
+            for i,w in enumerate(tweet):
+                if w == target:
+                    str = tweet[i] + " "
+                    str = str + tweet[i+1] + " "
+                    str = str + tweet[i+2]
+            source.append(str)
+        return source
 
     def getTweetTime(self):
         return self.tweetTime
@@ -109,6 +122,7 @@ class Twitter():
             else:
                 continue
             self.tweetLocation.append(str)
+
 
     followerName = []
     followerImgURL = []
