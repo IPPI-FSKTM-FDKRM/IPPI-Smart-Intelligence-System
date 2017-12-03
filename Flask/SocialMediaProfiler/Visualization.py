@@ -1,10 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-
 def pieChart(dict):
-
     yv = dict.values()
     x = dict.keys()
     y = []
@@ -12,7 +9,10 @@ def pieChart(dict):
         y.append(len(a))
     fig, ax = plt.subplots()
     ax.axis('equal')
-    ax.pie(y, radius=1.3, labels=x, colors=np.random.rand(3,4),autopct='%d%%' )
+    patchers,text,autotext = ax.pie(y, radius=1.3, labels=x, colors=np.random.rand(3,4),autopct='%d%%' )
+    for i in range(0, len(text)):
+        text[i].set_color('white')
+
     return fig
 
 def lineChart(dict,stringX,stringY):
@@ -21,10 +21,10 @@ def lineChart(dict,stringX,stringY):
     y =[]
     for a in yv:
         y.append(len(a))
-    plt.plot(x,y,'k-')
+    plt.plot(x,y,'w-')
     plt.xticks(x)
-    plt.xlabel(stringX)
-    plt.ylabel(stringY)
+    plt.ylabel(stringY, {'color': 'white'})
+    plt.xlabel(stringX, {'color': 'white'})
     return plt
 
 def barChart(dict,stringX,stringY):
@@ -34,9 +34,16 @@ def barChart(dict,stringX,stringY):
     y = []
     for a in yv:
         y.append(len(a))
-    plt.bar(y_plot, y, align='center', alpha=0.5)
+    plt.bar(y_plot, y, align='center', alpha=1)
     plt.xticks(y_plot, x)
-    plt.ylabel(stringY)
-    plt.xlabel(stringX)
-    return plt
+    ax = plt.subplot()
+    plt.ylabel(stringY,{'color':'white'})
+    plt.xlabel(stringX, {'color':'white'})
 
+    for i in ax.spines:
+        ax.spines[i].set_color('white')
+    ax.xaxis.label.set_color('white')
+    ax.yaxis.label.set_color('white')
+    ax.tick_params(axis='x', colors='white')
+    ax.tick_params(axis='y', colors='white')
+    return plt

@@ -113,6 +113,8 @@
         <div class="col-md-3">
         <div style="margin: 50px;">
             <a href="{{ url_for('facebookAnalysis', username=me) }}"><button> Analysis Page</button></a>
+            <button onclick="refresh_data()"> Refresh Data </button>
+
         </div>
             <!--Kotak Friends-->
             <div class="mainbox_friend">
@@ -173,6 +175,18 @@
                 error: function() {
                 }
             });
+        }
+
+        function refresh_data(){
+             $.ajax({
+                 type: 'POST',
+                 url: '/facebook/refreshAnalysis',
+                 success: function(resp){
+                    topFriend(resp)
+
+                 }
+
+             })
         }
 
         function start_next(){

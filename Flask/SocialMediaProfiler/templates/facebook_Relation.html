@@ -83,7 +83,8 @@
             <div id="box_dpFB_kecik"> <!--FB DP BOX (EACH)-->
               <br>{{ username }}
               <div class="haha">
-              <img src="https://graph.facebook.com/{{ currentUserId }}/picture?type=large"/><!--PUT DP FB HERE-->
+                            <a href="{{ url_for('facebookProfile', username = currentUserId) }}">
+                                <img src="https://graph.facebook.com/{{ currentUserId }}/picture?type=large"/></a>
             </div>
            </div>
          </div>
@@ -91,7 +92,9 @@
           <div id="box_dpFB_kecik">
             <br>{{ relationName }}
             <div class="haha">
-              <img src="https://graph.facebook.com/{{ relationUser }}/picture?type=large"/><!--PUT DP FB HERE-->
+                                            <a href="{{ url_for('facebookProfile', username = relationUser) }}">
+
+                                                <img src="https://graph.facebook.com/{{ relationUser }}/picture?type=large"/></a><!--PUT DP FB HERE-->
             </div>
           </div>
         </div>

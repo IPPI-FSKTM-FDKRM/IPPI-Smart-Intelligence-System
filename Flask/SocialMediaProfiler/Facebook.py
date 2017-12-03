@@ -3,6 +3,8 @@ import pytz
 import requests
 import tzlocal
 import TopicSentiment
+import json
+
 
 from collections import Counter
 from datetime import datetime
@@ -10,6 +12,7 @@ from celery import Celery
 from flask import Flask
 from flask_googlemaps import GoogleMaps
 from Sentiment_Analysis import nBayesTesting
+import os
 
 
 app = Flask(__name__)
@@ -19,6 +22,8 @@ celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 
 class Facebook():
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+
     app.config['GOOGLEMAPS_KEY'] = "AIzaSyCQaXdeh30YGYlYPK6eqt9AcAJC4or5I8w"
     GoogleMaps(app)
     global cache_comments
@@ -53,6 +58,44 @@ class Facebook():
     # token = 'EAAFyPKV2cOIBAM1GJtjCW7oIftQzwo8RxujFy9ZBLeYNPrSNpMiuUbMAcpzvEkH6sJ0F2ZAf5ey0yle7toaSLJ2wd3yqZACnXJjKXotl8YHZA8KCLNWPBMHlV2ZAcdD4M4p8Y7RqiXV43sF5rfZCa7pmwOaZBWB6qsZD';
     token = 'EAAFyPKV2cOIBAGNxJZBXQxdIMZB3sZBAafeXMTS5mRyXwyuBsnZCL14P4o3EdzHZAcMbVUtOF7pfBmdYczTqcmFfNLWOpUqZCXT35aPVMueySyOd6qBhjvCtARx5UyCSb2bM3fwO1ne1OnlMtkxnUTcesZCHIyYdREZD'
     graph = facebook.GraphAPI(token);
+
+    def loadCache(self, fileName):
+
+        filePathNameWExt = self.dir_path + "/Cache/" + fileName + '.json'
+
+        if os.path.isfile(filePathNameWExt):
+            with open(filePathNameWExt) as fp:
+                print "ada? ke takde?"
+                global cache_comments
+                global cache_likes
+                global location
+                global amount_comment
+                global amount_likes
+                global hour, day, month
+                global topic, posnegneu
+                global locationPost
+                global cache
+                global locationRelation
+                d = json.load(fp)
+                day = d["day"]
+                print day
+                hour = d["hour"]
+                month = d["month"]
+                topic = d["topic"]
+                posnegneu = d["posnegneu"]
+                locationPost = d["locationPost"]
+                locationRelation = d["locationRelation"]
+                cache_likes = d["cache_likes"]
+                cache_comments = d["cache_comments"]
+                amount_comment = d["amount_comment"]
+                amount_likes = d["amount_likes"]
+                cache = True
+
+                print amount_comment
+            return True
+        else :
+            return False
+
 
     def initialize(self):
         print("initializing")
@@ -103,6 +146,10 @@ class Facebook():
     def getCacheCommentsAndLikes(self):
         return cache_comments, cache_likes
 
+    def getAmountLikesAndComments(self):
+        return amount_likes , amount_comment
+
+
     def get_picture(self, post_id):
         picture_url = self.graph.get_object(id=post_id, fields="picture")
         return picture_url
@@ -118,7 +165,7 @@ class Facebook():
 
     @celery.task(bind=True)
     def get_post_like_comment_location(self, cacheNow, graph, post):
-        print "adakah cache?", cache
+        print "adakah cache?", cacheNow
         if not cacheNow:
             print post['data']
             cache_com = {}
@@ -165,11 +212,18 @@ class Facebook():
                     tagUser = []
                     print "place-------", place
                     street = ""
+                    city = ""
+                    country = ""
                     if "street" in place['place']['location']:
                         street = place['place']['location']['street']+" , "
 
-                    locationAddress = ""+place['place']['name']+" , "+street+place['place']['location']['city']+" , "+place['place']['location']['country']
-                    print locationAddress
+                    if "city" in place['place']['location']:
+                        city   = place['place']['location']['city']+" , "
+
+                    if "country" in place['place']['location']:
+                        country = place['place']['location']['country'] + " , "
+
+                    locationAddress = ""+place['place']['name']+" , "+street+city+country
                     if 'message_tags' in tag:
                         for i in tag['message_tags']:
                             tagUser.append(i['id'])
@@ -203,6 +257,7 @@ class Facebook():
                             amount_comment[comments['from']['id']] += 1;
 
         # get top commentator and likers
+        print amount_likes
         if (amount_likes):
             if 'top' in amount_likes:
                 amount_likes.pop('top', None)
@@ -217,6 +272,8 @@ class Facebook():
             return amount_likes['top'], amount_comment['top'], location
 
         else:
+            print "got something here"
+
             return [], [], None
 
 
@@ -306,6 +363,8 @@ class Facebook():
                     self.getProfile(user)
 
         return Result
+
+
 
 
 
