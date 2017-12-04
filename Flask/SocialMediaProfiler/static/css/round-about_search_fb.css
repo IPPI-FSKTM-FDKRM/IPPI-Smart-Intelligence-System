@@ -51,7 +51,7 @@ h3{
 	}
 
     a:hover, a:active{
-        background-color: green;
+        /*background-color: green;*/
         color: white;
     }
 

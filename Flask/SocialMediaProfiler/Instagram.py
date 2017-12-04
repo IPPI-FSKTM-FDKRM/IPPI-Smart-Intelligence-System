@@ -43,7 +43,7 @@ class Instagram():
                 print "Id = " + media.id
                 print "Image = " + media.images['standard_resolution'].url
                 #print "Caption = " + media.caption.text
-                print "Time = " , media.created_time.astimezone(pytz.timezone('Asia/Kuala_Lumpur'))
+                # print "Time = " , media.created_time.astimezone(pytz.timezone('Asia/Kuala_Lumpur'))
 
         return recent_media
 

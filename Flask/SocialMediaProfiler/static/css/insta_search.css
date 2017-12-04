@@ -1,0 +1,14 @@
+
+body{
+	background-color: #262626;
+	color: white;
+}
+
+.container{/*
+	text-align: center;
+	background-color: #262626;*/
+	color: white;
+}
+#result{
+	margin-bottom:100px;
+}

@@ -1,48 +1,84 @@
-<!DOCTYPE html>
-<title>IPPI facebook profile</title>
-<h1>Search Result</h1>
-<hr>
-<link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
-{% include "header.html" %}
-    <!-- Custom styles for this template -->
-<div style="margin:100px">
+    <!DOCTYPE html>
+    <html lang="en">
 
-    <h1>Search Facebook Profile</h1>
+    <head>
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="">
+
+      <title>IPPI facebook profile</title>
+
+      
+      <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
+      <link href="{{ url_for('static',filename='css/round-about_search_fb.css') }}" rel="stylesheet">
+      <link href="{{ url_for('static',filename='css/insta_search.css') }}" rel="stylesheet">
+
+    </head>
+    {% include "header.html" %}
+
+    <body>
+
+      <!-- Custom styles for this template -->
+      <div class="container">
+
+        
+        <!-- FACEBOOK ICON -->
+        <img class="rounded-circle img-fluid d-block mx-auto" src="{{url_for('static', filename='img/facebook_icon.png') }}" alt="" style="width:200px; height:200px;">
+        <h1 class="my-4">Search Facebook Profile</h1>
+
+        <!-- FORM -->
         <form>
-		    <input type="text" id="search" placeholder="Search..">
-            <input type="button" onclick="start_search()" onkeypress="return start_search()" value="Search" >
-	    </form>
+          <input type="text" id="search" placeholder="Search..">
+          <br>
+          {#          <input type="button" class="btn btn-lg btn-primary" id="butt" onclick="start_search()" onkeypress="return start_search()" value="Search" >#}
+        </form>
 
-    <div id="result"></div>
+        <!-- RESULT -->
+        <div id="result"></div>
+
+        <script>
+
+          document.getElementById('search').onkeypress = function(e){
+            if (!e) e = window.event;
+            if (e.keyCode == '13'){
+              start_search()
+              return false;
+            }
+          }
 
 
-</div>
-{#<link type="text/css" href="{{ url_for('static', filename='css/facebook.css') }}" rel="stylesheet"/>#}
-<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
-<script src="{{ url_for('static', filename='vendor/popper/popper.min.js') }}"></script>
-<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script>
-
-     function start_search() {
+          function start_search() {
             document.getElementById("result").innerHTML = '<img  style="width:200px; margin:0 auto;" src="{{ url_for('static', filename='img/loading.gif') }}">'
             search = $('#search').val();
 
             // send ajax POST request to start background job
             $.ajax({
-                type: 'POST',
-                url: '/facebook/searchResult',
-                contentType: "application/json",
-                data:  JSON.stringify(search),
-                success: function(resp) {
+              type: 'POST',
+              url: '/facebook/searchResult',
+              contentType: "application/json",
+              data:  JSON.stringify(search),
+              success: function(resp) {
 
-                    document.getElementById("result").innerHTML = resp.result
+                document.getElementById("result").innerHTML = resp.result
 
-                },
-                error: function() {
-                }
+              },
+              error: function() {
+              }
             })}
+          </script>
+        </div>
 
 
-</script>
+        {#<link type="text/css" href="{{ url_for('static', filename='css/facebook.css') }}" rel="stylesheet"/>#}
+        <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/popper/popper.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+
+      </body>
+      </html>
