@@ -83,16 +83,18 @@ def facebookAnalysis():
         )
     return render_template("facebook_Analysis.html", posnegneuGraph=posnegneuGraph,timeGraph=timeGraph , topicGraph = topicGraph,posnegneu=posnegneu,topic=topic, postHour=postHour, postMonth=postMonth, postDay=postDay, sndmap=sndmap)
 def getPosNegNeuChart():
-    fig = Visualization.pieChart(fb.getPostNegNeu())
+    fig,fignum = Visualization.pieChart(fb.getPostNegNeu())
     img = StringIO.StringIO()
+    fig.figure(fignum)
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)
     posNegNeu_graph = base64.b64encode(img.getvalue())
     return posNegNeu_graph
 
 def getTopicChart():
-    fig = Visualization.pieChart(fb.getTopic())
+    fig,fignum = Visualization.pieChart(fb.getTopic())
     img = StringIO.StringIO()
+    fig.figure(fignum)
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)
     topic_graph = base64.b64encode(img.getvalue())
@@ -100,7 +102,8 @@ def getTopicChart():
 
 def getTimeChart():
     hour, Month, Day  = fb.getTimePost()
-    fig = Visualization.barChart(hour,"Time (Hour)","Number of post")
+    fig,fignum = Visualization.barChart(hour,"Time (Hour)","Number of post")
+    fig.figure(fignum)
     img = StringIO.StringIO()
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)
@@ -196,6 +199,3 @@ def getAnalysis():
 
     like , comment , location =fb.get_post_like_comment_location(fb.isCache(),fb.getGraph() , fb.Post())
     return jsonify({ 'LikesComments': render_template('facebook_TopFriends.html', likes=like, comments=comment)})
-
-
-
