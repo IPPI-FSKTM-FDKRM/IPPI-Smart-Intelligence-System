@@ -58,7 +58,13 @@ class Twitter():
     def getFollowingInfo(self,username):
         friends = self.twitter.friends.ids(screen_name=username)
         self.followingCount = len(friends["ids"])
-        for n in range(0, len(friends["ids"]), 100):
+        limit = len(friends["ids"])
+        print limit
+        if limit >= 2000:
+            limit = 2000
+        else:
+            limit = len(friends["ids"])
+        for n in range(0, limit, 100):
             ids = friends["ids"][n:n+100]
 
             subquery = self.twitter.users.lookup(user_id = ids)
@@ -140,7 +146,13 @@ class Twitter():
     def getFollowerInfo(self,username):
         count = self.twitter.followers.ids(screen_name=username)
         self.followerCount = len(count["ids"])
-        for n in range(0, len(count["ids"]), 100):
+        limit = len(count["ids"])
+        if limit >= 2000:
+            limit = 2000
+        else:
+            limit = len(count["ids"])
+
+        for n in range(0, limit, 100):
             ids = count["ids"][n:n + 100]
             #
             subquery = self.twitter.users.lookup(user_id=ids)
