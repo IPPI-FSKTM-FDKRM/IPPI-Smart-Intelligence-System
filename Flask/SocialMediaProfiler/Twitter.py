@@ -1,6 +1,7 @@
 
 
 from twitter import *
+from datetime import *
 from flask_bootstrap import Bootstrap
 from flask import Flask, render_template, request, jsonify, url_for
 from TwitterSearch import *
@@ -103,7 +104,17 @@ class Twitter():
         return source
 
     def getTweetTime(self):
-        return self.tweetTime
+        time = self.tweetTime
+        tTime = []
+        for i in time:
+            i = i.split()
+            str = ''
+            str = str + i[0] + ' ' + i[1]+ ' ' + i[2]+ ' ' + i[3] + ' ' + i[5]
+            #print str
+            setTime = datetime.strptime(str, '%a %b %d %H:%M:%S %Y')
+            realTime = setTime + timedelta(hours=8)
+            tTime.append(realTime)
+        return tTime
 
     def getTweetLocation(self):
         return self.tweetLocation
