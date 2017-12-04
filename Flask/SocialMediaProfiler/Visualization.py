@@ -41,7 +41,7 @@ def barChart(dict,stringX,stringY):
     y = []
     for a in yv:
         y.append(len(a))
-    bar = plt.bar(y_plot, y, align='center', alpha=0.5,)
+    bar = plt.bar(y_plot, y, align='center')
     for i in range(0,len(bar)):
         bar[i].set_color("white")
     plt.xticks(y_plot, x)
