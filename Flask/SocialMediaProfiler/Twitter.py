@@ -1,6 +1,7 @@
 
 
 from twitter import *
+from datetime import *
 from flask_bootstrap import Bootstrap
 from flask import Flask, render_template, request, jsonify, url_for
 from TwitterSearch import *
@@ -58,7 +59,13 @@ class Twitter():
     def getFollowingInfo(self,username):
         friends = self.twitter.friends.ids(screen_name=username)
         self.followingCount = len(friends["ids"])
-        for n in range(0, len(friends["ids"]), 100):
+        limit = len(friends["ids"])
+        print limit
+        if limit >= 2000:
+            limit = 2000
+        else:
+            limit = len(friends["ids"])
+        for n in range(0, limit, 100):
             ids = friends["ids"][n:n+100]
 
             subquery = self.twitter.users.lookup(user_id = ids)
@@ -97,7 +104,17 @@ class Twitter():
         return source
 
     def getTweetTime(self):
-        return self.tweetTime
+        time = self.tweetTime
+        tTime = []
+        for i in time:
+            i = i.split()
+            str = ''
+            str = str + i[0] + ' ' + i[1]+ ' ' + i[2]+ ' ' + i[3] + ' ' + i[5]
+            #print str
+            setTime = datetime.strptime(str, '%a %b %d %H:%M:%S %Y')
+            realTime = setTime + timedelta(hours=8)
+            tTime.append(realTime)
+        return tTime
 
     def getTweetLocation(self):
         return self.tweetLocation
@@ -140,7 +157,13 @@ class Twitter():
     def getFollowerInfo(self,username):
         count = self.twitter.followers.ids(screen_name=username)
         self.followerCount = len(count["ids"])
-        for n in range(0, len(count["ids"]), 100):
+        limit = len(count["ids"])
+        if limit >= 2000:
+            limit = 2000
+        else:
+            limit = len(count["ids"])
+
+        for n in range(0, limit, 100):
             ids = count["ids"][n:n + 100]
             #
             subquery = self.twitter.users.lookup(user_id=ids)
