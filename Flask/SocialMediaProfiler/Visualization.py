@@ -41,10 +41,9 @@ def barChart(dict,stringX,stringY):
     y = []
     for a in yv:
         y.append(len(a))
-<<<<<<< HEAD
-=======
+
     plt.ylim((min(y)+0.5),(max(y)+0.5))
->>>>>>> 4d68d0a1746c01c93d85df103a21c411c0aff169
+
     bar = plt.bar(y_plot, y, align='center')
     for i in range(0,len(bar)):
        bar[i].set_color("white")
