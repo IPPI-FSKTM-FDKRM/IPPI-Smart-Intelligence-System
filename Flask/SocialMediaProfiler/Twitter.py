@@ -77,7 +77,9 @@ class Twitter():
                 name = name + user["screen_name"].encode('utf-8')
                 followingName.append(name)
                 url = ''
-                url = url + user["profile_image_url"].encode('utf-8')
+                html = user["profile_image_url"].encode('utf-8')
+                html = html.replace("normal","400x400")
+                url = url + html
                 followingImgURL.append(url)
         self.followingName = followingName
         self.followingImgURL = followingImgURL
@@ -185,7 +187,9 @@ class Twitter():
                 name = name + user["screen_name"].encode('utf-8')
                 followerName.append(name)
                 url = ''
-                url = url + user["profile_image_url"].encode('utf-8')
+                html = user["profile_image_url"].encode('utf-8')
+                html = html.replace("normal", "400x400")
+                url = url + html
                 followerImgURL.append(url)
         self.followerImgURL = followerImgURL
         self.followerName = followerName
