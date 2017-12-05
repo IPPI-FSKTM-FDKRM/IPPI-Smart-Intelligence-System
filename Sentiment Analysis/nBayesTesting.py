@@ -54,6 +54,36 @@ def getListValue(linktest):
                 val.append("neutral")
     return val
 
+def getListValueString(string):
+    val = ' '
+    pV = getVal(string, dPos)
+    nV = getVal(string, dNeg)
+    neuV = getVal(string, dNeu)
+
+    if pV > nV:
+        if pV > neuV:
+            val = "positive"
+        else:
+            val = "neutral"
+    else:
+        if nV > neuV:
+            val = "negative"
+        else:
+            val = "neutral"
+    return val
+
+
+def dictSent(link):
+    val = getListValue(link)
+    dict={}
+    for s in val:
+        count = 0
+        for s2 in val:
+            if s2 == s:
+                count = count + 1
+        dict[s] = count
+    return dict
+
 '''''''''
 def getAccuracy(list,t):
     count = 0
