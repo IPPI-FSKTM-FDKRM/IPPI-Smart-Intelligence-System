@@ -36,15 +36,15 @@
     <div class="bodyn">
       <div class="row">
         <!-- KOTAK GAMBAR DP -->
-        <div class="col-md-6">
+        <!-- <div class="col-md-6"> -->
           <div id="box_profilePicture">
              <img src={{ userImg }} id="img_profpic"/>
             
           </div>
-        </div>
+        <!-- </div> -->
 
         <!-- KOTAK INFO PROFILE -->
-        <div class="col-md-6">
+        <!-- <div class="col-md-6"> -->
           <!-- STATUS -->
           <div id="box_profileStatus">
             <p id="p_username">@{{ user["screen_name"] }}</p>
@@ -52,14 +52,14 @@
           </div>
           <!-- JOINED -->
           <div id="box_join">
-            <img src="img/gfx_calendar_icon.png" id="img_smallIcon"/>
+            <!-- <img src="{{url_for('static', filename='img/gfx_calendar_icon.png') }}" id="img_smallIcon"/> -->
             <p id="p_join">Joined <br>{{ user["created_at"] }}</p>
           </div>
           <!-- ID -->
           <div id="box_ID">
             <p id="p_id">{{ user["id"] }}</p>
           </div>
-        </div>
+        <!-- </div> -->
       </div>
       <!-- NAMA DP -->
       <h3>{{ user["name"] }}</h3>
