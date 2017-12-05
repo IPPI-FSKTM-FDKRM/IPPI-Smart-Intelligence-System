@@ -1,14 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
 
-{% if not result %}
-          <h3>Nothing is found</h3>
-        {% else %}
-            {% for result in result %}
-                <div class="col-lg-3 col-sm-6 text-center mb-4">
-		        <a href="{{ url_for('instaProfile', id = result.id) }}">
-                    <img class="rounded-circle img-fluid d-block mx-auto" src={{result.profile_picture}} alt="" style="width:200px; height:183px; margin-top:50px;">
-		                <h3>Username : {{ result.username }}</h3>
-                        <h3>Name : {{ result.full_name }}</h3>
-                </a>
-                </div>
-            {% endfor %}
-        {% endif %}
+    <style>
+
+    #Name{
+        color: white; 
+        font-size: 20px; 
+        margin-top:20px;
+    }
+    #myImg{
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    #myImg:hover {
+        /*opacity: 0.7;*/
+        /*filter:brightness(125%);*/
+        /*filter:blur(2px);*/
+        filter:drop-shadow(0px 10px 20px white);
+        /*filter:grayscale(100%);*/
+        /*filter:contrast(200%);*/
+    }
+
+
+
+</style>
+
+</head>
+<body>
+
+
+    {% if not result %}
+    <h3>Nothing is found</h3>
+
+    {% else %}
+    {% for result in result %}
+    <div class="col-lg-3 col-sm-6 text-center mb-4">
+        <!-- DP PICTURE -->
+        <a href="{{ url_for('instaProfile', id = result.id) }}">
+            <img class="rounded-circle img-fluid d-block mx-auto" id="myImg" src={{result.profile_picture}} alt="" style="width:150px; height:150px; margin-top:50px;">
+        </a>
+
+        <!-- NAME -->
+        <p id="Name">{{ result.full_name }}</p>
+        <!-- <h3 style="color: gray; font-size: 15px;">Name</h3> -->
+        <!-- USERNAME -->
+        <p id="username" style="color: gray; font-size: 14px; margin-top: -10px;">@{{ result.username }}</p>
+        <!-- <h3 style="color: gray; font-size: 15px;">Username</h3> -->
+        
+        
+
+
+    </div>
+    {% endfor %}
+    {% endif %}
+
+
+
+</body>
+</html>

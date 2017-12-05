@@ -108,9 +108,7 @@
     <div id="box_location">
             <h4>Tagged Location</h4>
         {% for i in relationLocation %}
-            {{ i["address"] }}
-{#            {{ i["lat"] }}#}
-{#            {{ i["lng"] }}#}
+            <li>{{ i["address"] }}</li>
         {% endfor %}
     </div>
     <!--************************************************************************************************* END BOX: LOCATION -->
@@ -122,10 +120,11 @@
     <a name="box_posta"></a>
     <div id="box_post">
       <div id="box_eachPost">
-        <h4>Comment on Post</h4>
-             {% for item in comment %}
-        <br>{{ item["message"]}}
-    {% endfor %}
+        <h3>Comment on Post</h3>
+            <h4>No of comment on {{ username }} post : {{ comment|length }}</h4>
+          {% for item in comment %}
+            <br>{{ item["message"]}}
+        {% endfor %}
       </div>
     </div>
 
@@ -136,9 +135,16 @@
     <!-- LIKED POST -->
     <div id="box_postLike">
       <div id="box_eachPost">
-        <h4>LIKED POST</h4>
-  {% for item in like %}
-        <br>{{ item["message"]}}
+        <h3>LIKED POST</h3>
+      <h4>No of Likes on {{ username }} post : {{ like|length }}</h4>
+
+    {% for post in like %}
+         {% if 'message' in post %}
+             <li>{{ post['message'] }}</li>
+         {% elif 'story' in post %}
+             <li>{{ post['story'] }}</li>
+         {% endif %}
+
     {% endfor %}
       </div>
     </div>

@@ -125,14 +125,15 @@ if __name__ == "__main__":
     x= tahi()
     # x.tagUser()
     # x.testChart()
-    filename = "1362815530452737"
-    data = {"address_components": [
-        {
-            "long_name": "Sistem Penyuraian Trafik Kuala Lumpur Barat",
-            "short_name": "E23",
-            "types": ["route"]
-        }]}
-
-
-    if not x.readFromJSON(filename):
-        x.writeToJSONFile(filename, data)
+    x.replaceText()
+    # filename = "1362815530452737"
+    # data = {"address_components": [
+    #     {
+    #         "long_name": "Sistem Penyuraian Trafik Kuala Lumpur Barat",
+    #         "short_name": "E23",
+    #         "types": ["route"]
+    #     }]}
+    #
+    #
+    # if not x.readFromJSON(filename):
+    #     x.writeToJSONFile(filename, data)

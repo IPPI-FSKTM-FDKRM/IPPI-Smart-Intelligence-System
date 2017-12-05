@@ -1,12 +1,14 @@
 from list import *
 import re
+from collections import Counter
 
-# test = 'Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan Irfan Kamaruddin Raam Kanaisan Hafiz Redha Aida Baharun, actually this is how alzheimer brain looks like , it is good to know about all this topic Main lawn bowl bersama Raam Kanaisan Irfan Kamaruddin dan Hazim Kamaruzzaman\n\n#FYPpurposeListed on gartner trending hype'
+test = 'Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan Irfan Kamaruddin Raam Kanaisan Hafiz Redha Aida Baharun, actually this is how alzheimer brain looks like , it is good to know about all this topic Main lawn bowl bersama Raam Kanaisan Irfan Kamaruddin dan Hazim Kamaruzzaman\n\n#FYPpurposeListed on gartner trending hype'
 
 def getArrayFromList(list):
     topic = []
     for s in list:
         s = s.lower()
+        print s
         for w in politic:
             match = re.findall(w.lower(),s)
             if match:
@@ -70,7 +72,11 @@ def getArrayFromString(string):
             match = re.findall(w.lower(), s)
             if match:
                 topic.append("society")
-    return topic
+    if topic:
+        count = Counter(topic)
+        return (max(count.most_common())[0])
+    else:
+        return None
 
 
-# print getArrayFromString(test)
+

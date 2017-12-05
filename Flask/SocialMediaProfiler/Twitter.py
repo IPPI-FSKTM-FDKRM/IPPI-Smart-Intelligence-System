@@ -1,6 +1,7 @@
 
 
 from twitter import *
+from datetime import *
 from flask_bootstrap import Bootstrap
 from flask import Flask, render_template, request, jsonify, url_for
 from TwitterSearch import *
@@ -32,15 +33,14 @@ class Twitter():
         return user
 
     def getUserProfile(self,username):
-        user = self.twitter.users.search(q = username)
-        for user in user:
-            print "Profile image: %s" % user["profile_image_url"]
-            print "Username: @%s" % user["screen_name"]
-            print "Name: %s" % user["name"]
-            print "Twitter ID: %s" % user["id"]
-            print "Bio: %s" % user["description"]
-            print "Followers: %s " % user["followers_count"]
-            print "Account created since: %s" %  user["created_at"]
+        user = self.twitter.users.show(screen_name=username)
+        print "Profile image: %s" % user["profile_image_url"]
+        print "Username: @%s" % user["screen_name"]
+        print "Name: %s" % user["name"]
+        print "Twitter ID: %s" % user["id"]
+        print "Bio: %s" % user["description"]
+        print "Followers: %s " % user["followers_count"]
+        print "Account created since: %s" % user["created_at"]
         return user
 
     followingName = []
@@ -57,9 +57,17 @@ class Twitter():
         return self.followingImgURL
 
     def getFollowingInfo(self,username):
+        followingName = []
+        followingImgURL = []
         friends = self.twitter.friends.ids(screen_name=username)
         self.followingCount = len(friends["ids"])
-        for n in range(0, len(friends["ids"]), 100):
+        limit = len(friends["ids"])
+        print limit
+        if limit >= 2000:
+            limit = 2000
+        else:
+            limit = len(friends["ids"])
+        for n in range(0, limit, 100):
             ids = friends["ids"][n:n+100]
 
             subquery = self.twitter.users.lookup(user_id = ids)
@@ -67,10 +75,14 @@ class Twitter():
                 #print " [%s] %s - %s [%s]" % ("*" if user["verified"] else " ", user["screen_name"], user["location"], user["description"])
                 name = ''
                 name = name + user["screen_name"].encode('utf-8')
-                self.followingName.append(name)
+                followingName.append(name)
                 url = ''
-                url = url + user["profile_image_url"].encode('utf-8')
-                self.followingImgURL.append(url)
+                html = user["profile_image_url"].encode('utf-8')
+                html = html.replace("normal","400x400")
+                url = url + html
+                followingImgURL.append(url)
+        self.followingName = followingName
+        self.followingImgURL = followingImgURL
 
     tweet = []
     tweetSource = []
@@ -81,27 +93,54 @@ class Twitter():
         return self.tweet
 
     def getTweetSource(self):
-        return self.tweetSource
+        s = self.tweetSource
+        source = []
+        for tweet in s:
+            str = ''
+            tweet = tweet.replace('>', ' ')
+            tweet = tweet.replace('<', ' ')
+            tweet = tweet.split()
+            target = "Twitter"
+            for i,w in enumerate(tweet):
+                if w == target:
+                    str = tweet[i] + " "
+                    str = str + tweet[i+1] + " "
+                    str = str + tweet[i+2]
+            source.append(str)
+        return source
 
     def getTweetTime(self):
-        return self.tweetTime
+        time = self.tweetTime
+        tTime = []
+        for i in time:
+            i = i.split()
+            str = ''
+            str = str + i[0] + ' ' + i[1]+ ' ' + i[2]+ ' ' + i[3] + ' ' + i[5]
+            #print str
+            setTime = datetime.strptime(str, '%a %b %d %H:%M:%S %Y')
+            realTime = setTime + timedelta(hours=8)
+            tTime.append(realTime)
+        return tTime
 
     def getTweetLocation(self):
         return self.tweetLocation
 
     def getTweets(self, username):
+        tweet = []
+        tweetSource = []
+        tweetTime = []
         tw = self.twitter.statuses.user_timeline(screen_name=username, exclude_replies="false")
         # print tweet
         for tw in tw:
             t = ''
             t = t + tw["text"]
-            self.tweet.append(t)
+            tweet.append(t)
             source = ''
             source = source + tw["source"].encode('utf-8')
-            self.tweetSource.append(source)
+            tweetSource.append(source)
             time = ''
             time = time + tw["created_at"].encode('utf-8')
-            self.tweetTime.append(time)
+            tweetTime.append(time)
             coordinates = tw["coordinates"]
             str = {}
             if coordinates != None:
@@ -109,6 +148,10 @@ class Twitter():
             else:
                 continue
             self.tweetLocation.append(str)
+        self.tweet = tweet
+        self.tweetSource = tweetSource
+        self.tweetTime = tweetTime
+
 
     followerName = []
     followerImgURL = []
@@ -124,9 +167,17 @@ class Twitter():
         return self.followerCount
 
     def getFollowerInfo(self,username):
+        followerName = []
+        followerImgURL = []
         count = self.twitter.followers.ids(screen_name=username)
         self.followerCount = len(count["ids"])
-        for n in range(0, len(count["ids"]), 100):
+        limit = len(count["ids"])
+        if limit >= 2000:
+            limit = 2000
+        else:
+            limit = len(count["ids"])
+
+        for n in range(0, limit, 100):
             ids = count["ids"][n:n + 100]
             #
             subquery = self.twitter.users.lookup(user_id=ids)
@@ -134,8 +185,11 @@ class Twitter():
                 # print " [%s] %s - %s [%s]" % ("*" if user["verified"] else " ", user["screen_name"], user["location"], user["description"])
                 name = ''
                 name = name + user["screen_name"].encode('utf-8')
-                self.followerName.append(name)
+                followerName.append(name)
                 url = ''
-                url = url + user["profile_image_url"].encode('utf-8')
-                self.followerImgURL.append(url)
-
+                html = user["profile_image_url"].encode('utf-8')
+                html = html.replace("normal", "400x400")
+                url = url + html
+                followerImgURL.append(url)
+        self.followerImgURL = followerImgURL
+        self.followerName = followerName

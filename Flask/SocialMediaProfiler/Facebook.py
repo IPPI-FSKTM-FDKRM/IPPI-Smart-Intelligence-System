@@ -37,10 +37,12 @@ class Facebook():
     global locationPost
     global cache
     global locationRelation
+    global address
 
-    day = {}
+    address = {1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[],10:[],11:[],12:[]}
+    day = {0:[],1:[],2:[],3:[],4:[],5:[],6:[]}
     hour = {}
-    month = {}
+    month = {1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[],10:[],11:[],12:[]}
     topic= {"politic":[], "sports":[], "travel":[], "education":[],"technology":[], "spending":[]}
     locationPost = []
     locationRelation = {}
@@ -76,6 +78,8 @@ class Facebook():
                 global locationPost
                 global cache
                 global locationRelation
+                global address
+
                 d = json.load(fp)
                 day = d["day"]
                 print day
@@ -89,6 +93,7 @@ class Facebook():
                 cache_comments = d["cache_comments"]
                 amount_comment = d["amount_comment"]
                 amount_likes = d["amount_likes"]
+                address = d["address"]
                 cache = True
 
                 print amount_comment
@@ -200,9 +205,11 @@ class Facebook():
 
                 if 'message' in post:
                     print post['message']
-                    for i in TopicSentiment.getArrayFromString(post['message']):
-                        if post not in topic[i]:
-                            topic[i].append(post)
+                    postTopic = TopicSentiment.getArrayFromString(post['message'])
+
+                    if postTopic:
+                        if post not in topic[postTopic]:
+                            topic[postTopic].append(post)
 
                     for i in nBayesTesting.getListValue([post['message']]):
                         posnegneu[i].append(post)
@@ -210,7 +217,6 @@ class Facebook():
 
                 if 'place' in place:
                     tagUser = []
-                    print "place-------", place
                     street = ""
                     city = ""
                     country = ""
@@ -223,7 +229,10 @@ class Facebook():
                     if "country" in place['place']['location']:
                         country = place['place']['location']['country'] + " , "
 
+
                     locationAddress = ""+place['place']['name']+" , "+street+city+country
+                    address[date.month].append(locationAddress)
+
                     if 'message_tags' in tag:
                         for i in tag['message_tags']:
                             tagUser.append(i['id'])
@@ -244,7 +253,7 @@ class Facebook():
                             cache_like[likes['id']] = [post]
                         else:
                             amount_likes[likes['id']] += 1;
-                            cache_like[likes['id']].append([post])
+                            cache_like[likes['id']].append(post)
 
                 if 'comments' in comment:
                     for comments in comment['comments']['data']:
@@ -276,6 +285,8 @@ class Facebook():
 
             return [], [], None
 
+    def getLocationAddress(self):
+        return address
 
     def getTimePost(self):
         return hour, month, day

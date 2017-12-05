@@ -47,6 +47,7 @@ def facebookAnalysis():
     topicGraph = getTopicChart()
     timeGraph = getTimeChart()
     posnegneuGraph = getPosNegNeuChart()
+    address = fb.getLocationAddress()
 
     saveCache(fb.getUsername())
 
@@ -86,7 +87,16 @@ def facebookAnalysis():
             # fit_markers_to_bounds=True
 
         )
-    return render_template("facebook_Analysis.html", posnegneuGraph=posnegneuGraph,timeGraph=timeGraph , topicGraph = topicGraph,posnegneu=posnegneu,topic=topic, postHour=postHour, postMonth=postMonth, postDay=postDay, sndmap=sndmap)
+    return render_template("facebook_Analysis.html", address=address,
+                           posnegneuGraph=posnegneuGraph,
+                           timeGraph=timeGraph ,
+                           topicGraph = topicGraph,
+                           posnegneu=posnegneu,
+                           topic=topic,
+                           postHour=postHour,
+                           postMonth=postMonth,
+                           postDay=postDay,
+                           sndmap=sndmap)
 
 def getPosNegNeuChart():
     fig = Visualization.pieChart(fb.getPostNegNeu())
@@ -188,8 +198,8 @@ def getNextAnalysis():
         reqData = requests.get(post['paging']['next'])
         postData = reqData.json()
         like , comment , location =fb.get_post_like_comment_location(fb.loadCache(fb.getUsername()),fb.getGraph() ,postData)
-        print fb.getCacheCommentsAndLikes()
-        print fb.getUsername()
+
+        saveCache(fb.getUsername())
 
         return jsonify({'LikesComments': render_template('facebook_TopFriends.html', currentId=fb.getUsername(),
                                                          likes=like, comments=comment)})
@@ -204,7 +214,9 @@ def getAnalysis():
     print fb.getUsername()
 
     like , comment , location =fb.get_post_like_comment_location(fb.loadCache(fb.getUsername()),fb.getGraph() , fb.Post())
-    return jsonify({ 'LikesComments': render_template('facebook_TopFriends.html', currentId=fb.getUsername(), likes=like, comments=comment)})
+    address = fb.getLocationAddress()
+    saveCache(fb.getUsername())
+    return jsonify({ 'LikesComments': render_template('facebook_TopFriends.html', address=address, currentId=fb.getUsername(), likes=like, comments=comment)})
 
 @app.route('/facebook/refreshAnalysis', methods=['POST'])
 @login_required
@@ -223,11 +235,12 @@ def saveCache(id):
     locationPost = fb.getLocationPost()
     topic = fb.getTopic()
     amount_likes , amount_comment = fb.getAmountLikesAndComments()
+    address = fb.getLocationAddress()
 
 
     data = {"day":day, "hour":hour, "month":month, "topic":topic, "posnegneu":posnegneu, "locationPost": locationPost, "amount_likes":amount_likes,
             "amount_comment":amount_comment, "cache_likes":cache_likes,"cache_comments":cache_comments,
-            "locationPost":locationPost, "locationRelation":locationRelation}
+            "locationPost":locationPost, "locationRelation":locationRelation, "address":address}
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
     filePathNameWExt = dir_path + "/Cache/" + id + '.json'

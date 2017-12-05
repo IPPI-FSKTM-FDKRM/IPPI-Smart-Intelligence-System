@@ -1,12 +1,10 @@
 <div id="box_id_topfriend">
-    {{ currentId }}
      {% for dict_item in comments %}
           <a href="{{ url_for('facebookRelation', currentId = currentId,id = dict_item) }}">
               <img src="https://graph.facebook.com/{{dict_item}}/picture?type=large" id="img_topfriends_profpic"></a>
      {% endfor %}
 
     {% for dict_item in likes %}
-            {{ currentId }}
 
           <a href="{{ url_for('facebookRelation', currentId = currentId,id = dict_item) }}">
               <img src="https://graph.facebook.com/{{dict_item}}/picture?type=large" id="img_topfriends_profpic"></a>

@@ -25,8 +25,9 @@ app.config['GOOGLEMAPS_KEY'] = GOOGLEKEY
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/kayd/Project/IPPI-Smart-Intelligence-System/Flask/SocialMediaProfiler/database.db' #linux
 
 GoogleMaps(app)
-
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\User\\PycharmProjects\\untitled1\\database.db' #windows
+# "C:\Users\user\Project\IPPI-Smart-Intelligence-System\Flask\SocialMediaProfiler\database.db"
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\nurfirdaus\\Documents\\GitHub\\IPPI-Smart-Intelligence-System\\Flask\\SocialMediaProfiler\\database.db' #windows
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\user\\Project\\IPPI-Smart-Intelligence-System\\Flask\\SocialMediaProfiler\\database.db' #windows
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
 login_manager = LoginManager()

@@ -13,7 +13,7 @@ from forms import LoginForm, RegisterForm
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 #------------------Database location-----------------
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mnt/c/Users/User/PycharmProjects/untitled1/database.db' #linux
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mnt/c/Users/User/PycharmProjects/untitled1/database.db' #linux
 
 
 
@@ -43,7 +43,7 @@ class Instagram():
                 print "Id = " + media.id
                 print "Image = " + media.images['standard_resolution'].url
                 #print "Caption = " + media.caption.text
-                print "Time = " , media.created_time.astimezone(pytz.timezone('Asia/Kuala_Lumpur'))
+                # print "Time = " , media.created_time.astimezone(pytz.timezone('Asia/Kuala_Lumpur'))
 
         return recent_media
 
