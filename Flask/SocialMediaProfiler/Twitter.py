@@ -57,6 +57,8 @@ class Twitter():
         return self.followingImgURL
 
     def getFollowingInfo(self,username):
+        followingName = []
+        followingImgURL = []
         friends = self.twitter.friends.ids(screen_name=username)
         self.followingCount = len(friends["ids"])
         limit = len(friends["ids"])
@@ -73,10 +75,12 @@ class Twitter():
                 #print " [%s] %s - %s [%s]" % ("*" if user["verified"] else " ", user["screen_name"], user["location"], user["description"])
                 name = ''
                 name = name + user["screen_name"].encode('utf-8')
-                self.followingName.append(name)
+                followingName.append(name)
                 url = ''
                 url = url + user["profile_image_url"].encode('utf-8')
-                self.followingImgURL.append(url)
+                followingImgURL.append(url)
+        self.followingName = followingName
+        self.followingImgURL = followingImgURL
 
     tweet = []
     tweetSource = []
@@ -120,18 +124,21 @@ class Twitter():
         return self.tweetLocation
 
     def getTweets(self, username):
+        tweet = []
+        tweetSource = []
+        tweetTime = []
         tw = self.twitter.statuses.user_timeline(screen_name=username, exclude_replies="false")
         # print tweet
         for tw in tw:
             t = ''
             t = t + tw["text"]
-            self.tweet.append(t)
+            tweet.append(t)
             source = ''
             source = source + tw["source"].encode('utf-8')
-            self.tweetSource.append(source)
+            tweetSource.append(source)
             time = ''
             time = time + tw["created_at"].encode('utf-8')
-            self.tweetTime.append(time)
+            tweetTime.append(time)
             coordinates = tw["coordinates"]
             str = {}
             if coordinates != None:
@@ -139,6 +146,9 @@ class Twitter():
             else:
                 continue
             self.tweetLocation.append(str)
+        self.tweet = tweet
+        self.tweetSource = tweetSource
+        self.tweetTime = tweetTime
 
 
     followerName = []
@@ -155,6 +165,8 @@ class Twitter():
         return self.followerCount
 
     def getFollowerInfo(self,username):
+        followerName = []
+        followerImgURL = []
         count = self.twitter.followers.ids(screen_name=username)
         self.followerCount = len(count["ids"])
         limit = len(count["ids"])
@@ -171,8 +183,9 @@ class Twitter():
                 # print " [%s] %s - %s [%s]" % ("*" if user["verified"] else " ", user["screen_name"], user["location"], user["description"])
                 name = ''
                 name = name + user["screen_name"].encode('utf-8')
-                self.followerName.append(name)
+                followerName.append(name)
                 url = ''
                 url = url + user["profile_image_url"].encode('utf-8')
-                self.followerImgURL.append(url)
-
+                followerImgURL.append(url)
+        self.followerImgURL = followerImgURL
+        self.followerName = followerName
