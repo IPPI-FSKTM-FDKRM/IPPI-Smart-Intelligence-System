@@ -38,7 +38,7 @@
         <!-- KOTAK GAMBAR DP -->
         <div class="col-md-6">
           <div id="box_profilePicture">
-            <img src={{ user["profile_image_url"] }} id="img_profpic"/>
+             <img src={{ userImg }} id="img_profpic"/>
             
           </div>
         </div>
@@ -67,6 +67,7 @@
 
     <!-- KOTAK FOLLOWER & FOLLOWING -->
         <!-- FOLLOWING -->
+        <div class="box_ff">
           <div id="box_title">
             <p id="p_ff">Following <br> {{followingCount}}</p>
           </div>
@@ -91,6 +92,7 @@
               </div>
               {% endfor %}
             </div>
+          </div>
           </div> <!-- CLOSING col-md-3 -->
 
           <div class="col-md-6">
@@ -102,18 +104,20 @@
               </div>
               {% for x in range (0,(getTweetList|length)) %}
               <div id="box_post_white">
+                <br>{{getTweetSource[x]}}
                 Post: {{getTweetTime[x]}}
                 <br>{{getTweetList[x]}}
-                <br>{{getTweetSource[x]}}
+                <hr>
 
               </div>
+              
               {% endfor %}
             </div>
           </div> <!--close col-md-6 -->
 
           <div class="col-md-3">
             <!--Kotak Friends-->
-            <div class="mainbox_friend">
+            <div class="mainbox_media">
               <div id="box_title">
                 <p id="p_title">Media</p>
               </div>
