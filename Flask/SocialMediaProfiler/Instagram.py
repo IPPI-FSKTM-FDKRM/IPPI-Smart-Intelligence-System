@@ -13,7 +13,7 @@ from forms import LoginForm, RegisterForm
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 #------------------Database location-----------------
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mnt/c/Users/User/PycharmProjects/untitled1/database.db' #linux
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mnt/c/Users/User/PycharmProjects/untitled1/database.db' #linux
 
 
 

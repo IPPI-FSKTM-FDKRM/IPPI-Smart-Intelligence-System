@@ -133,13 +133,38 @@
                     <p id="p_title_content"> MAP</p>
                 </div>
 
-                <div id="box_map">
+                <div id="box_map" style="color:white">
                     <!-- MAP - LETAK MAP HANG KAT SINI -->
                     {{sndmap.html}}
                     {#<button onclick='movingmap_markers.map(function(mk){mk.setPosition({lat: 37.44, lng:-122.135})})'>Go to next position </button>#}
 
                     {#                    <img src="img/map.jpg"/ id="img_map">#}
+
+
+
+                    <h2>Recent location</h2>
+                    <select id='locationMonth' >
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                    </select>
+
+                    <div id="locationReport"></div>
+
                 </div>
+
+
+
+
 
             </div>
 
@@ -150,26 +175,113 @@
                     <p id="p_title_content"> TIME</p>
 
 
+
                 </div>
+
+                <button id="postHourBtn" onclick="postHour()">Post By Hour</button>
+                <button id="postMonthBtn" onclick="postMonth()">Post By Month</button>
+                <button id="postDayBtn" onclick="postDay()">Post By Day</button>
+
 
                 <div id="box_time" style="color:white">
 
                     <!-- TIME - LETAK TIME HANG KAT SINI -->
                     <img src="data:image/png;base64, {{ timeGraph }}">
+                        <div id="postDay" style="display: none">
 
-                    {% for key, value in postHour.iteritems() %}
-                        <h1>{{ key }}</h1>
-                        {% for i in value %}
-                            {% if 'message' in i %}
-                                <li>{{ i['message'] }}</li>
-                            {% endif %}
-                            {% if 'story' in i %}
-                                <li>{{ i['story'] }}</li>
-                            {% endif %}
+                            <h2>Post By Day</h2>
+                            {% for key, value in postDay.iteritems()|sort %}
+                                {% if key == "0" %}<h1> Monday </h1>{% endif %}
+                                {% if key == "1" %}<h1> Tuesday </h1>{% endif %}
+                                {% if key == "2" %}<h1> Wednesday </h1>{% endif %}
+                                {% if key == "3" %}<h1> Thursday </h1>{% endif %}
+                                {% if key == "4" %}<h1> Friday </h1>{% endif %}
+                                 {% if key == "5" %}<h1> Saturday </h1>{% endif %}
+                                {% if key == "6" %}<h1> Sunday </h1>{% endif %}
 
-                        {% endfor %}
-                    {% endfor %}
+                                {% for i in value %}
+                                    {% if 'message' in i %}
+                                        <li>{{ i['message'] }}</li>
+                                    {% endif %}
+                                    {% if 'story' in i %}
+                                        <li>{{ i['story'] }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+
+                        </div>
+
+                    <div id="postHour" style="display: block">
+                    <h2>Post By Hour</h2>
+                            {% for key, value in postHour.iteritems()|sort %}
+                                <h1>{{ key }}</h1>
+                                {% for i in value %}
+                                    {% if 'message' in i %}
+                                        <li>{{ i['message'] }}</li>
+                                    {% endif %}
+                                    {% if 'story' in i %}
+                                        <li>{{ i['story'] }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+
+                        </div>
+
+                    <div id="postMonth" style="display: none">
+                    <h2>Post By Month</h2>
+                            {% for key, value in postMonth.iteritems()|sort %}
+                                {% if key == "1" %}<h1> January </h1>{% endif %}
+                                {% if key == "2" %}<h1> February </h1>{% endif %}
+                                {% if key == "3" %}<h1> March </h1>{% endif %}
+                                {% if key == "4" %}<h1> April </h1>{% endif %}
+                                {% if key == "5" %}<h1> May </h1>{% endif %}
+                                {% if key == "6" %}<h1> June </h1>{% endif %}
+                                {% if key == "7" %}<h1> July </h1>{% endif %}
+                                {% if key == "8" %}<h1> August </h1>{% endif %}
+                                {% if key == "9" %}<h1> September </h1>{% endif %}
+                                {% if key == "10" %}<h1> October </h1>{% endif %}
+                                {% if key == "11" %}<h1> November </h1>{% endif %}
+                                {% if key == "12" %}<h1> December </h1>{% endif %}
+
+
+
+
+
+                                {% for i in value %}
+                                    {% if 'message' in i %}
+                                        <li>{{ i['message'] }}</li>
+                                    {% endif %}
+                                    {% if 'story' in i %}
+                                        <li>{{ i['story'] }}</li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+
+                        </div>
+
                 </div>
+                <script>
+
+                function postDay(){
+                            document.getElementById("postMonth").style.display = "none";
+                            document.getElementById("postDay").style.display = "block";
+                            document.getElementById("postHour").style.display = "none";
+
+                }
+
+                function postHour(){
+                         document.getElementById("postMonth").style.display = "none";
+                            document.getElementById("postHour").style.display = "block";
+                            document.getElementById("postDay").style.display = "none";
+                }
+                function postMonth(){
+                            document.getElementById("postDay").style.display = "none";
+                            document.getElementById("postMonth").style.display = "block";
+                            document.getElementById("postHour").style.display = "none";      }
+
+            </script>
+
+
             </div>
 
             <!-- TOPIC CHART PORTION CONTENT -->
@@ -228,30 +340,68 @@
 
 </div>
 
-<!-- Bootstrap core JavaScript -->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/popper/popper.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
 <script>
 
-    var map;
-    function initMap() {
-        alert("initmap");
-
-
-        map = new google.maps.Map(document.getElementById('box_map'), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8,
-        });
-
-        var marker = new google.maps.Marker({
-            position: {lat: -31.563910, lng:147.154312}
-            map: map
-        });
-    }
+   $(document).ready(function(){
+    $('#locationMonth').on('change', function() {
+      if ( this.value == "1")
+      {
+        document.getElementById("locationReport").innerHTML = "<h2>January</h2>{% for i in address['1'] %} <li>{{ i }}</li>{% endfor %}"
+      }
+      if ( this.value == "2")
+      {
+        document.getElementById("locationReport").innerHTML = "<h2>February</h2>{% for i in address['2'] %} <li>{{ i }}</li>{% endfor %}"
+      }
+      if ( this.value == "3")
+      {
+        document.getElementById("locationReport").innerHTML = "<h2>March</h2>{% for i in address['3'] %} <li>{{ i }}</li>{% endfor %}"
+      }
+      if ( this.value == "4")
+      {
+        document.getElementById("locationReport").innerHTML = "<h2>April</h2>{% for i in address['4'] %} <li>{{ i }}</li>{% endfor %}"
+      }
+      if ( this.value == "5")
+      {
+        document.getElementById("locationReport").innerHTML = "<h2>May</h2>{% for i in address['5'] %} <li>{{ i }}</li>{% endfor %}"
+      }
+      if ( this.value == "6")
+      {
+        document.getElementById("locationReport").innerHTML = "<h2>June</h2>{% for i in address['6'] %} <li>{{ i }}</li>{% endfor %}"
+      }
+      if ( this.value == "7")
+      {
+        document.getElementById("locationReport").innerHTML = "<h2>July</h2>{% for i in address['7'] %} <li>{{ i }}</li>{% endfor %}"
+      }
+      if ( this.value == '8')
+      {
+        document.getElementById("locationReport").innerHTML = "<h2>August</h2>{% for i in address['8'] %} <li>{{ i }}</li>{% endfor %}"
+      }
+      if ( this.value == '9')
+      {
+        document.getElementById("locationReport").innerHTML = "<h2>September</h2>{% for i in address['9'] %} <li>{{ i }}</li>{% endfor %}"
+      }
+      if ( this.value == '10')
+      {
+        document.getElementById("locationReport").innerHTML = "<h2>October</h2>{% for i in address['10'] %} <li>{{ i }}</li>{% endfor %}"
+      }
+      if ( this.value == '11')
+      {
+        document.getElementById("locationReport").innerHTML = "<h2>November</h2>{% for i in address['11'] %} <li>{{ i }}</li>{% endfor %}"
+      }
+      if ( this.value == '12')
+      {
+          alert("arbasa decem")
+        document.getElementById("locationReport").innerHTML = "<h2>December</h2>{% for i in address['12'] %} <li>{{ i }}</li>{% endfor %}"
+      }
+    });
+   });
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAeNL8cEdLSeUcniCTWVazfV71fXkXqcso&callback=initMap"
-        async defer></script>
+
+
 
 
 

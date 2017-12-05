@@ -32,6 +32,8 @@ class Twitter():
         user = self.twitter.users.search(q = username)
         return user
 
+    userCreatedAt = []
+
     def getUserProfile(self,username):
         user = self.twitter.users.show(screen_name=username)
         print "Profile image: %s" % user["profile_image_url"]
@@ -41,7 +43,15 @@ class Twitter():
         print "Bio: %s" % user["description"]
         print "Followers: %s " % user["followers_count"]
         print "Account created since: %s" % user["created_at"]
+        str = user["created_at"].encode('utf-8')
+        str = str.split()
+        str = str[0] + str[1] + str[2] + str[3] + str[5]
+        str = datetime.strptime(str, '%a%b%d%H:%M:%S%Y')
+        self.userCreatedAt = str
         return user
+
+    def getUserCreate(self):
+        return self.userCreatedAt
 
     followingName = []
     followingImgURL = []

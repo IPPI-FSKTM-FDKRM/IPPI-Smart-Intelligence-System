@@ -26,6 +26,7 @@ def twitterSearchResult():
 @app.route("/profile/<username>")
 def twitterProfile(username):
     user = twitter.getUserProfile(username)
+    getCreateTime = twitter.getUserCreate()
     twitter.getFollowingInfo(username)
     userImg = user["profile_image_url"]
     userImg = userImg.replace("normal", "400x400")
@@ -44,6 +45,7 @@ def twitterProfile(username):
     getTweetTime = twitter.getTweetTime()
     getTweetLocation = twitter.getTweetLocation()
 
-    return render_template("Twitter2.html", user=user, userImg=userImg, followingCount=followingCount, followingName=followingName, followingImgURL=followingImgURL,
+    return render_template("Twitter2.html", user=user, getCreateTime=getCreateTime, userImg=userImg, followingCount=followingCount,
+                           followingName=followingName, followingImgURL=followingImgURL,
                            followerCount=followerCount, followerName=followerName, followerImgURL=followerImgURL,
                            getTweetList=getTweetList, getTweetSource=getTweetSource, getTweetTime=getTweetTime, getTweetLocation=getTweetLocation)

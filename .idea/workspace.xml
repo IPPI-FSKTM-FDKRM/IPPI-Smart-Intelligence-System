@@ -2,42 +2,77 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9702891-12ba-4598-a7e1-72f2094596a6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/img/gfx_people_icon.JPG" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/img/map.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/css/relation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/css/round-about_relation.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Relation.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/key.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Analysis.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Map.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/analysis.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/searchTest.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/test.html" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/searchResult.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_searchResult.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/img/loading.gif" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/img/loading.gif" />
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/tt.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/css/insta_search.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/css/round-about_home.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/css/twitter2.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Twitter2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/header_searchGeneral.html" />
+<<<<<<< Updated upstream
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/.idea/workspace.xml" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/.idea/workspace.xml" />
+=======
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/img/error.jpg" />
+>>>>>>> Stashed changes
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Cache/.Rhistory" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Cache/10152551226092804.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Cache/10205402259882114.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Cache/1362815530452737.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Cache/1653085138256398.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Cache/310717802447017.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Cache/660339080700389.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Cache/724644107651824.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Cache/738114819544426.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Cache/796810563705438.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Cache/942150685862822.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Cache/964515913577536.json" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/FacebookModule/Facebook.py" afterPath="$PROJECT_DIR$/Flask/FacebookModule/Facebook.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/FacebookModule/FacebookView.py" afterPath="$PROJECT_DIR$/Flask/FacebookModule/FacebookView.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/InstagramModule/ippi.py" afterPath="$PROJECT_DIR$/Flask/InstagramModule/ippi.py" />
+<<<<<<< Updated upstream
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/.idea/workspace.xml" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/.idea/workspace.xml" />
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Facebook.py" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Facebook.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/FacebookView.py" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/FacebookView.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Instagram.py" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Instagram.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/InstagramView.py" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/InstagramView.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/SocialMediaProfiler.py" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/SocialMediaProfiler.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/TopicSentiment.py" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/TopicSentiment.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Twitter.py" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Twitter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/config.py" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/vendor/bootstrap/js/bootstrap.js" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/vendor/bootstrap/js/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/vendor/jquery/jquery.js" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/vendor/jquery/jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/TwitterView.py" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/TwitterView.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Visualization.py" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/Visualization.py" />
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/css/round-about_search_fb.css" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/css/round-about_search_fb.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/css/round-about_search_instagram.css" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/css/round-about_search_instagram.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/css/round-about_twitter.css" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/css/round-about_twitter.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Home.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Home.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Twitter_search.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Twitter_search.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_search.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_search.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_searchResult.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_searchResult.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/header.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/header.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/insta-search-result.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/insta-search-result.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/insta-search.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/insta-search.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/searchGeneral.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/searchGeneral.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/searchResultTwitter.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/searchResultTwitter.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Sentiment Analysis/nBayesTesting.py" afterPath="$PROJECT_DIR$/Sentiment Analysis/nBayesTesting.py" />
+<<<<<<< Updated upstream
+=======
+=======
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Facebook.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Facebook.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Analysis.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Analysis.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Relation.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Relation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_TopFriends.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_TopFriends.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_search.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_search.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/__init__.py" afterPath="$PROJECT_DIR$/Flask/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/Home/gulpfile.js" afterPath="$PROJECT_DIR$/UI/Home/gulpfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/Home/vendor/bootstrap/js/bootstrap.js" afterPath="$PROJECT_DIR$/UI/Home/vendor/bootstrap/js/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/Home/vendor/jquery/jquery.js" afterPath="$PROJECT_DIR$/UI/Home/vendor/jquery/jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/Search/gulpfile.js" afterPath="$PROJECT_DIR$/UI/Search/gulpfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/Search/vendor/bootstrap/js/bootstrap.js" afterPath="$PROJECT_DIR$/UI/Search/vendor/bootstrap/js/bootstrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UI/Search/vendor/jquery/jquery.js" afterPath="$PROJECT_DIR$/UI/Search/vendor/jquery/jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_searchResult.html" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_searchResult.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Flask/SocialMediaProfiler/test.py" afterPath="$PROJECT_DIR$/Flask/SocialMediaProfiler/test.py" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,120 +82,235 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/IPPI_Smart_Intelligence_System$test.coverage" NAME="test Coverage Results" MODIFIED="1512039093726" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask/FacebookModule" />
+    <SUITE FILE_PATH="coverage/IPPI_Smart_Intelligence_System$test.coverage" NAME="test Coverage Results" MODIFIED="1512478606932" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask/FacebookModule" />
     <SUITE FILE_PATH="coverage/IPPI_Smart_Intelligence_System$ippi.coverage" NAME="ippi Coverage Results" MODIFIED="1511878465906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask/SocialMediaProfiler" />
     <SUITE FILE_PATH="coverage/IPPI_Smart_Intelligence_System$Facebook.coverage" NAME="Facebook Coverage Results" MODIFIED="1512025933707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask/SocialMediaProfiler" />
     <SUITE FILE_PATH="coverage/IPPI_Smart_Intelligence_System$ippi__1_.coverage" NAME="ippi (1) Coverage Results" MODIFIED="1511960066976" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask/InstagramModule" />
     <SUITE FILE_PATH="coverage/IPPI_Smart_Intelligence_System$Unittests_in_libraryTesting_py.coverage" NAME="Unittests in libraryTesting.py Coverage Results" MODIFIED="1507803967174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/IPPI_Smart_Intelligence_System$__init__.coverage" NAME="__init__ Coverage Results" MODIFIED="1511862648634" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask" />
-    <SUITE FILE_PATH="coverage/IPPI_Smart_Intelligence_System$SocialMediaProfiler__1_.coverage" NAME="SocialMediaProfiler (1) Coverage Results" MODIFIED="1512141355278" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask/SocialMediaProfiler" />
+<<<<<<< Updated upstream
+    <SUITE FILE_PATH="coverage/IPPI_Smart_Intelligence_System$SocialMediaProfiler__1_.coverage" NAME="SocialMediaProfiler (1) Coverage Results" MODIFIED="1512483547662" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask/SocialMediaProfiler" />
+=======
+<<<<<<< Updated upstream
+    <SUITE FILE_PATH="coverage/IPPI_Smart_Intelligence_System$SocialMediaProfiler__1_.coverage" NAME="SocialMediaProfiler (1) Coverage Results" MODIFIED="1512481184773" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask/SocialMediaProfiler" />
+=======
+    <SUITE FILE_PATH="coverage/IPPI_Smart_Intelligence_System$SocialMediaProfiler__1_.coverage" NAME="SocialMediaProfiler (1) Coverage Results" MODIFIED="1512471160348" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask/SocialMediaProfiler" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     <SUITE FILE_PATH="coverage/IPPI_Smart_Intelligence_System$SocialMediaProfiler.coverage" NAME="SocialMediaProfiler Coverage Results" MODIFIED="1511960206889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Flask" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FacebookView.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/FacebookView.py">
+      <file leaf-file-name="Facebook.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Facebook.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="117" column="48" lean-forward="false" selection-start-line="117" selection-start-column="48" selection-end-line="117" selection-end-column="48" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ippi.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Flask/InstagramModule/ippi.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+<<<<<<< Updated upstream
+            <state relative-caret-position="276">
+              <caret line="210" column="55" lean-forward="false" selection-start-line="210" selection-start-column="55" selection-end-line="210" selection-end-column="55" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InstagramView.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TopicSentiment.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/TopicSentiment.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="866">
+              <caret line="74" column="12" lean-forward="false" selection-start-line="74" selection-start-column="12" selection-end-line="74" selection-end-column="12" />
+=======
+<<<<<<< Updated upstream
+            <state relative-caret-position="180">
+              <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+=======
+            <state relative-caret-position="0">
+              <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="facebook_searchResult.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_searchResult.html">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
+            <state relative-caret-position="232">
+              <caret line="45" column="33" lean-forward="true" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+=======
+<<<<<<< Updated upstream
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#31#0" expanded="true" />
+              </folding>
+=======
+            <state relative-caret-position="108">
+              <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+              <folding />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< Updated upstream
+      <file leaf-file-name="facebook_TopFriends.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_TopFriends.html">
+=======
+      <file leaf-file-name="Visualization.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Visualization.py">
+>>>>>>> Stashed changes
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="936">
+              <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< Updated upstream
+      <file leaf-file-name="InstagramView.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/InstagramView.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state relative-caret-position="576">
+              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding>
                 <element signature="e#0#77#0" expanded="true" />
               </folding>
+=======
+<<<<<<< Updated upstream
+      <file leaf-file-name="Facebook.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Facebook.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="120" column="36" lean-forward="true" selection-start-line="120" selection-start-column="36" selection-end-line="120" selection-end-column="36" />
+=======
+      <file leaf-file-name="facebook_Analysis.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Analysis.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="232" column="76" lean-forward="false" selection-start-line="232" selection-start-column="76" selection-end-line="232" selection-end-column="76" />
+>>>>>>> Stashed changes
+              <folding />
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< Updated upstream
       <file leaf-file-name="Instagram.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Instagram.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Facebook.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Facebook.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1820">
-              <caret line="178" column="94" lean-forward="false" selection-start-line="178" selection-start-column="94" selection-end-line="178" selection-end-column="94" />
+            <state relative-caret-position="36">
+              <caret line="15" column="38" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding>
-                <element signature="e#2586#2912#0" expanded="false" />
+                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="SocialMediaProfiler.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/SocialMediaProfiler.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="29" column="61" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+=======
+<<<<<<< Updated upstream
+      <file leaf-file-name="InstagramView.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/InstagramView.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="486">
+              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#77#0" expanded="true" />
+              </folding>
+=======
       <file leaf-file-name="facebook_search.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="450">
+              <caret line="25" column="59" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+>>>>>>> Stashed changes
               <folding />
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="facebook_Analysis.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Analysis.html">
+<<<<<<< Updated upstream
+      <file leaf-file-name="facebook_search.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="159" column="11" lean-forward="false" selection-start-line="159" selection-start-column="11" selection-end-line="159" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Flask/FacebookModule/templates/test.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="29" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="6" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TopFriends.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Flask/FacebookModule/templates/TopFriends.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
+            <state relative-caret-position="684">
+              <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+=======
+<<<<<<< Updated upstream
       <file leaf-file-name="facebook_Relation.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Relation.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="2" selection-end-line="109" selection-end-column="28" />
+            <state relative-caret-position="1692">
+              <caret line="94" column="106" lean-forward="false" selection-start-line="94" selection-start-column="106" selection-end-line="94" selection-end-column="106" />
+=======
+      <file leaf-file-name="Facebook.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Facebook.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2808">
+              <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+>>>>>>> Stashed changes
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
+            <state relative-caret-position="1692">
+              <caret line="94" column="106" lean-forward="false" selection-start-line="94" selection-start-column="106" selection-end-line="94" selection-end-column="106" />
+=======
+            <state relative-caret-position="108">
+              <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FacebookView.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/FacebookView.py">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
+            <state relative-caret-position="78">
+              <caret line="215" column="0" lean-forward="false" selection-start-line="215" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
+=======
+<<<<<<< Updated upstream
+            <state relative-caret-position="74">
+              <caret line="179" column="12" lean-forward="true" selection-start-line="179" selection-start-column="12" selection-end-line="179" selection-end-column="12" />
+=======
+            <state relative-caret-position="1530">
+              <caret line="97" column="42" lean-forward="false" selection-start-line="97" selection-start-column="42" selection-end-line="97" selection-end-column="42" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -170,17 +320,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>username</find>
-      <find>amount</find>
-      <find>paging</find>
-      <find>cac</find>
       <find>cache</find>
       <find>date</find>
       <find>graph</find>
@@ -207,6 +353,10 @@
       <find>top</find>
       <find>iter</find>
       <find>searc</find>
+      <find>b</find>
+      <find>busine</find>
+      <find>busines</find>
+      <find>business</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -215,13 +365,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Flask/FacebookModule/Facebook2.py" />
-        <option value="$PROJECT_DIR$/Flask/templates/search.html" />
-        <option value="$PROJECT_DIR$/Flask/FacebookModule/templates/Home.html" />
         <option value="$PROJECT_DIR$/Flask/FacebookModule/templates/search.html" />
         <option value="$PROJECT_DIR$/Flask/FacebookModule/templates/searchResult.html" />
         <option value="$PROJECT_DIR$/Flask/FacebookModule/templates/Facebook.html" />
-        <option value="$PROJECT_DIR$/Flask/FacebookModule/templates/TopFriends.html" />
         <option value="$PROJECT_DIR$/Flask/FacebookModule/templates/Analysis.html" />
         <option value="$PROJECT_DIR$/Flask/FacebookModule/SocialMediaProfiler.py" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler.py" />
@@ -236,36 +382,55 @@
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/insta-profile.html" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Instagram.html" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/insta-search.html" />
-        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/TopicSentiment.py" />
         <option value="$PROJECT_DIR$/Flask/FacebookModule/TopicSentiment.py" />
         <option value="$PROJECT_DIR$/Flask/FacebookModule/list.py" />
         <option value="$PROJECT_DIR$/Flask/FacebookModule/test.py" />
         <option value="$PROJECT_DIR$/Flask/AnalysisModule/Analysis.html" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/Sentiment_Analysis/nBayesTesting.py" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/visualisation .py" />
-        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/test.py" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/header.html" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/test.html" />
-        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/Visualization.py" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/TwitterView.py" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/searchGeneral.html" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Analysis.html" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Map.html" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/key.py" />
-        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/Instagram.py" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/config.py" />
-        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/SocialMediaProfiler.py" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/Twitter.py" />
         <option value="$PROJECT_DIR$/Flask/__init__.py" />
-        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Analysis.html" />
-        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_search.html" />
-        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Facebook.html" />
-        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/Facebook.py" />
         <option value="$PROJECT_DIR$/Flask/FacebookModule/Facebook.py" />
-        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Relation.html" />
-        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/FacebookView.py" />
         <option value="$PROJECT_DIR$/Flask/InstagramModule/ippi.py" />
         <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/InstagramView.py" />
+        <option value="$PROJECT_DIR$/Flask/FacebookModule/templates/TopFriends.html" />
+        <option value="$PROJECT_DIR$/TestCuya.html" />
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_TopFriends.html" />
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Relation.html" />
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_search.html" />
+<<<<<<< Updated upstream
+        <option value="$PROJECT_DIR$/TestCuya.html" />
+=======
+<<<<<<< Updated upstream
+        <option value="$PROJECT_DIR$/TestCuya.html" />
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/Visualization.py" />
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/Facebook.py" />
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/FacebookView.py" />
+=======
+>>>>>>> Stashed changes
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/Visualization.py" />
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Facebook.html" />
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/FacebookView.py" />
+<<<<<<< Updated upstream
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/Instagram.py" />
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/SocialMediaProfiler.py" />
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/TopicSentiment.py" />
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/Facebook.py" />
+=======
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Analysis.html" />
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/Facebook.py" />
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_searchResult.html" />
+        <option value="$PROJECT_DIR$/Flask/SocialMediaProfiler/test.py" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
       </list>
     </option>
   </component>
@@ -276,10 +441,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="-4" />
-    <option name="width" value="1295" />
-    <option name="height" value="772" />
+    <option name="x" value="64" />
+    <option name="y" value="-11" />
+    <option name="width" value="1297" />
+    <option name="height" value="780" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -296,6 +461,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
@@ -388,6 +554,79 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IPPI-Smart-Intelligence-System" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IPPI-Smart-Intelligence-System" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Flask" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SocialMediaProfiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+<<<<<<< Updated upstream
+=======
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IPPI-Smart-Intelligence-System" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IPPI-Smart-Intelligence-System" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Flask" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SocialMediaProfiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IPPI-Smart-Intelligence-System" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="IPPI-Smart-Intelligence-System" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Flask" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SocialMediaProfiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+>>>>>>> Stashed changes
         </subPane>
       </pane>
     </panes>
@@ -400,19 +639,19 @@
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Flask/SocialMediaProfiler" />
-      <recent name="$PROJECT_DIR$/Flask/SocialMediaProfiler/Sentiment Analysis/Sentiment_Analysis" />
-      <recent name="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates" />
-      <recent name="$PROJECT_DIR$/Flask" />
-      <recent name="$PROJECT_DIR$/Flask/FacebookModule" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Flask/SocialMediaProfiler/static/img" />
       <recent name="$PROJECT_DIR$/Flask/SocialMediaProfiler" />
       <recent name="$PROJECT_DIR$/Flask/FacebookModule" />
       <recent name="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates" />
       <recent name="$PROJECT_DIR$/Flask/InstagramModule" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Flask/SocialMediaProfiler" />
+      <recent name="$PROJECT_DIR$/Flask/SocialMediaProfiler/Sentiment Analysis/Sentiment_Analysis" />
+      <recent name="$PROJECT_DIR$/Flask/SocialMediaProfiler/templates" />
+      <recent name="$PROJECT_DIR$/Flask" />
+      <recent name="$PROJECT_DIR$/Flask/FacebookModule" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -427,26 +666,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.SocialMediaProfiler (1)">
-    <configuration default="false" name="SocialMediaProfiler" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Flask" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="IPPI-Smart-Intelligence-System" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Flask/SocialMediaProfiler.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.test">
     <configuration default="false" name="SocialMediaProfiler (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -461,25 +681,6 @@
       <module name="IPPI-Smart-Intelligence-System" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Flask/SocialMediaProfiler/SocialMediaProfiler.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="ippi (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Flask/InstagramModule" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="IPPI-Smart-Intelligence-System" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Flask/InstagramModule/ippi.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -521,6 +722,12 @@
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="TestCuya.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/IPPI-Smart-Intelligence-System/TestCuya.html">
+      <method />
+    </configuration>
+    <configuration default="false" name="facebook_Relation.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/IPPI-Smart-Intelligence-System/Flask/SocialMediaProfiler/templates/facebook_Relation.html">
       <method />
     </configuration>
     <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
@@ -676,19 +883,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.Facebook2.html" />
-      <item index="1" class="java.lang.String" itemvalue="Python.SocialMediaProfiler" />
-      <item index="2" class="java.lang.String" itemvalue="Python.SocialMediaProfiler (1)" />
-      <item index="3" class="java.lang.String" itemvalue="Python.ippi (1)" />
-      <item index="4" class="java.lang.String" itemvalue="Python.test" />
-      <item index="5" class="java.lang.String" itemvalue="Python.Facebook" />
+      <item index="1" class="java.lang.String" itemvalue="Python.SocialMediaProfiler (1)" />
+      <item index="2" class="java.lang.String" itemvalue="Python.test" />
+      <item index="3" class="java.lang.String" itemvalue="Python.Facebook" />
+      <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.TestCuya.html" />
+      <item index="5" class="java.lang.String" itemvalue="JavaScript Debug.facebook_Relation.html" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.SocialMediaProfiler (1)" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Facebook" />
-        <item index="3" class="java.lang.String" itemvalue="Python.SocialMediaProfiler" />
-        <item index="4" class="java.lang.String" itemvalue="Python.ippi (1)" />
+        <item index="0" class="java.lang.String" itemvalue="Python.test" />
+        <item index="1" class="java.lang.String" itemvalue="Python.SocialMediaProfiler (1)" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.facebook_Relation.html" />
+        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.TestCuya.html" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Facebook" />
       </list>
     </recent_temporary>
   </component>
@@ -723,22 +930,35 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1295" height="772" extended-state="6" />
+    <frame x="64" y="-11" width="1297" height="780" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60960335" sideWeight="0.13985628" order="6" side_tool="true" content_ui="tabs" />
+<<<<<<< Updated upstream
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.55417955" sideWeight="0.8601437" order="5" side_tool="false" content_ui="tabs" />
+=======
+<<<<<<< Updated upstream
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.55417955" sideWeight="0.8601437" order="5" side_tool="false" content_ui="tabs" />
+>>>>>>> Stashed changes
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32817337" sideWeight="0.49721116" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60835916" sideWeight="0.8601437" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43795037" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45316252" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34365326" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32817337" sideWeight="0.49721116" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36842105" sideWeight="0.8601437" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45316252" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34365326" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+>>>>>>> Stashed changes
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24979983" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39874738" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298639" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -747,8 +967,32 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32776618" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32817337" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60960335" sideWeight="0.13985628" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32817337" sideWeight="0.49721116" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36842105" sideWeight="0.8601437" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972136" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45316252" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34365326" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32776618" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24979983" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32817337" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39874738" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298639" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -763,33 +1007,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Sentiment_Analysis/negDictionary.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/analysis.html" />
-    <entry file="file://$PROJECT_DIR$/Flask/TopicSentiment/TopicSentiment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1368">
-          <caret line="77" column="30" lean-forward="false" selection-start-line="77" selection-start-column="30" selection-end-line="77" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Sentiment_Analysis/nBayesTesting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="12" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#31#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/visualisation .py" />
     <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/header.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
@@ -797,36 +1014,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/TopicSentiment.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Flask/TopicSentiment/list.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/visualisation - mus.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="36" column="20" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Visualization.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#31#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -835,9 +1026,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="14" column="12" lean-forward="false" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#13#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -868,7 +1056,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
           <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -884,7 +1071,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -899,20 +1085,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" column="24" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
+=======
     <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/SocialMediaProfiler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
           <caret line="23" column="40" lean-forward="false" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#25#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
+>>>>>>> Stashed changes
     <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Twitter.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-110">
@@ -925,15 +1110,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="30" column="41" lean-forward="false" selection-start-line="30" selection-start-column="41" selection-end-line="30" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -976,7 +1152,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-141">
           <caret line="1050" column="0" lean-forward="false" selection-start-line="1050" selection-start-column="0" selection-end-line="1050" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -984,7 +1159,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -992,7 +1166,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" column="29" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="6" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1000,33 +1173,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_TopFriends.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="84" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Facebook.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-777">
-          <caret line="26" column="21" lean-forward="true" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Analysis.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="159" column="11" lean-forward="false" selection-start-line="159" selection-start-column="11" selection-end-line="159" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1034,77 +1180,274 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1602">
           <caret line="182" column="24" lean-forward="false" selection-start-line="182" selection-start-column="24" selection-end-line="182" selection-end-column="24" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< Updated upstream
+=======
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Instagram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> Stashed changes
+    <entry file="file://$PROJECT_DIR$/Flask/InstagramModule/ippi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-200">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Flask/FacebookModule/templates/TopFriends.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="54">
+          <caret line="3" column="63" lean-forward="false" selection-start-line="3" selection-start-column="63" selection-end-line="3" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Flask/FacebookModule/templates/Facebook.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-864">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Facebook.py">
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/visualisation - mus.py" />
+    <entry file="file://$PROJECT_DIR$/TestCuya.html" />
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_TopFriends.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1820">
-          <caret line="178" column="94" lean-forward="false" selection-start-line="178" selection-start-column="94" selection-end-line="178" selection-end-column="94" />
-          <folding>
-            <element signature="e#2586#2912#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_search.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+<<<<<<< Updated upstream
+        <state relative-caret-position="594">
+          <caret line="33" column="61" lean-forward="true" selection-start-line="33" selection-start-column="61" selection-end-line="33" selection-end-column="61" />
           <folding />
+=======
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Relation.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="2" selection-end-line="109" selection-end-column="28" />
+        <state relative-caret-position="480">
+          <caret line="110" column="39" lean-forward="false" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redis-stable/src/rax.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="23" column="67" lean-forward="false" selection-start-line="23" selection-start-column="67" selection-end-line="23" selection-end-column="67" />
+>>>>>>> Stashed changes
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/insta-search.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
+=======
+        <state relative-caret-position="232">
+          <caret line="36" column="8" lean-forward="false" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/InstagramView.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+        <state relative-caret-position="684">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+=======
+        <state relative-caret-position="466">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< Updated upstream
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/visualisation - mus.py" />
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Relation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1692">
+          <caret line="94" column="106" lean-forward="false" selection-start-line="94" selection-start-column="106" selection-end-line="94" selection-end-column="106" />
+=======
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Facebook.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2808">
+          <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< Updated upstream
+    <entry file="file://$PROJECT_DIR$/TestCuya.html" />
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Visualization.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="45" column="33" lean-forward="true" selection-start-line="45" selection-start-column="33" selection-end-line="45" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+=======
+<<<<<<< Updated upstream
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/visualisation - mus.py" />
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/InstagramView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#77#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_search.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="25" column="59" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/FacebookView.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1530">
+          <caret line="97" column="42" lean-forward="false" selection-start-line="97" selection-start-column="42" selection-end-line="97" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< Updated upstream
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/InstagramView.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#77#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Instagram.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="15" column="38" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/SocialMediaProfiler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="29" column="61" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_searchResult.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
+        <state relative-caret-position="1692">
+          <caret line="94" column="106" lean-forward="false" selection-start-line="94" selection-start-column="106" selection-end-line="94" selection-end-column="106" />
+=======
         <state relative-caret-position="108">
-          <caret line="117" column="48" lean-forward="false" selection-start-line="117" selection-start-column="48" selection-end-line="117" selection-end-column="48" />
+          <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+>>>>>>> Stashed changes
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< Updated upstream
+    <entry file="file://$PROJECT_DIR$/TestCuya.html" />
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Facebook.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="66" column="0" lean-forward="true" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Facebook.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+>>>>>>> Stashed changes
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< Updated upstream
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Visualization.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+>>>>>>> Stashed changes
+          <folding />
+>>>>>>> Stashed changes
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Visualization.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
+        <state relative-caret-position="78">
+          <caret line="215" column="0" lean-forward="false" selection-start-line="215" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
+=======
+<<<<<<< Updated upstream
+        <state relative-caret-position="74">
+          <caret line="179" column="12" lean-forward="true" selection-start-line="179" selection-start-column="12" selection-end-line="179" selection-end-column="12" />
+>>>>>>> Stashed changes
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/InstagramModule/ippi.py">
+<<<<<<< Updated upstream
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/TopicSentiment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state relative-caret-position="866">
+          <caret line="74" column="12" lean-forward="false" selection-start-line="74" selection-start-column="12" selection-end-line="74" selection-end-column="12" />
+=======
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/Facebook.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="120" column="36" lean-forward="true" selection-start-line="120" selection-start-column="36" selection-end-line="120" selection-end-column="36" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Instagram.py">
+<<<<<<< Updated upstream
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/Facebook.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="20" lean-forward="false" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        <state relative-caret-position="276">
+          <caret line="210" column="55" lean-forward="false" selection-start-line="210" selection-start-column="55" selection-end-line="210" selection-end-column="55" />
+=======
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_TopFriends.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+=======
+        <state relative-caret-position="936">
+          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/InstagramView.py">
+    <entry file="file://$PROJECT_DIR$/Flask/SocialMediaProfiler/templates/facebook_Analysis.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#77#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="36">
+          <caret line="232" column="76" lean-forward="false" selection-start-line="232" selection-start-column="76" selection-end-line="232" selection-end-column="76" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+          <folding />
         </state>
       </provider>
     </entry>

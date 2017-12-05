@@ -72,8 +72,11 @@ def getArrayFromString(string):
             match = re.findall(w.lower(), s)
             if match:
                 topic.append("society")
-    count = Counter(topic)
-    return max(count.most_common())[0]
+    if topic:
+        count = Counter(topic)
+        return (max(count.most_common())[0])
+    else:
+        return None
 
 
 
