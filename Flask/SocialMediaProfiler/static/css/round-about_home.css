@@ -33,6 +33,10 @@ h3{
 	 /*filter:contrast(200%);*/
 }
 
+a:hover, a.selected {
+  color: white;
+}
+
 @media (min-width: 992px) {
     body {
         padding-top: 197px;

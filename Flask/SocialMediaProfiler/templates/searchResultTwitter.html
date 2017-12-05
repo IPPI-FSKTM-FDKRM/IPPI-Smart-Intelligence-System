@@ -1,6 +1,69 @@
-{% for i in result %}
+<!DOCTYPE html>
+<html>
+<head>
+
+
+	<style>
+
+	#Name{
+		color: white; 
+		font-size: 20px; 
+		margin-top:20px;
+	}
+    #myImg{
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    #myImg:hover {
+        /*opacity: 0.7;*/
+        /*filter:brightness(125%);*/
+        /*filter:blur(2px);*/
+        filter:drop-shadow(0px 10px 20px white);
+        /*filter:grayscale(100%);*/
+        /*filter:contrast(200%);*/
+    }
+
+
+
+</style>
+
+</head>
+<body>
+
+<!-- {% for i in result %}
     <p id="p_username">@{{ i["screen_name"] }}</p>
     <p id="p_username">{{ i["name"] }}</p>
     <a href="{{ url_for('twitterProfile', username = i["screen_name"]) }}">    <img src={{ i["profile_image_url"] }} id="img_profpic"/></a>
 
-{% endfor %}
+    {% endfor %} -->
+
+
+    {% if not result %}
+    <h3>Nothing is found</h3>
+
+    {% else %}
+    {% for i in result %}
+    <div class="col-lg-3 col-sm-6 text-center mb-4">
+    	<!-- DP PICTURE -->
+
+    	<a href="{{ url_for('twitterProfile', username = i["screen_name"]) }}">    
+    		<img class="rounded-circle img-fluid d-block mx-auto" id="myImg" src={{ i["profile_image_url"] }} style="width:150px; height:150px; margin-top:50px;"/>
+    	</a>
+
+    	<!-- NAME -->
+    	<p id="Name">{{ i["name"] }}</p>
+    	<!-- <h3 style="color: gray; font-size: 15px;">Name</h3> -->
+    	<!-- USERNAME -->
+    	<p id="username" style="color: gray; font-size: 14px; margin-top: -10px;">@{{ i["screen_name"] }}</p>
+    	<!-- <h3 style="color: gray; font-size: 15px;">Username</h3> -->
+
+
+
+
+    </div>
+    {% endfor %}
+    {% endif %}
+
+</body>
+</html>
