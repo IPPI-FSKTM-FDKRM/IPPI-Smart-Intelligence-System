@@ -176,6 +176,7 @@ def facebookProfile(username):
     userID      = profile['id']
     fb.object    = userID
     post        = fb.Post()
+    relationshipStatus = fb.getRelationShipStatus()
     name        = profile['name']
     family      = fb.Family()
     post = post['data']
@@ -186,6 +187,7 @@ def facebookProfile(username):
                            , friends=friends
                            , userID = userID
                            , name = name
+                           , relationshipStatus = relationshipStatus
                            , post=post)
 
 @app.route('/facebook/nextAnalysis', methods = ['POST'])

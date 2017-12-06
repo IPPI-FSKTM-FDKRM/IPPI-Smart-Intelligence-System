@@ -58,7 +58,8 @@ class Facebook():
 
     # original app token
     # token = 'EAAFyPKV2cOIBAM1GJtjCW7oIftQzwo8RxujFy9ZBLeYNPrSNpMiuUbMAcpzvEkH6sJ0F2ZAf5ey0yle7toaSLJ2wd3yqZACnXJjKXotl8YHZA8KCLNWPBMHlV2ZAcdD4M4p8Y7RqiXV43sF5rfZCa7pmwOaZBWB6qsZD';
-    token = 'EAAFyPKV2cOIBAGNxJZBXQxdIMZB3sZBAafeXMTS5mRyXwyuBsnZCL14P4o3EdzHZAcMbVUtOF7pfBmdYczTqcmFfNLWOpUqZCXT35aPVMueySyOd6qBhjvCtARx5UyCSb2bM3fwO1ne1OnlMtkxnUTcesZCHIyYdREZD'
+    token = 'EAAFyPKV2cOIBADfar33ktp4UZCPKSZBv6waYUad5GQPimSIc31nrkgjuLDwFIEjU6YgZCdGFHOHq5ZA8cLsDPF0DwJnwS4xJBvhLUvZCxCn8ztRKrMtJNpcQ01PS6AFCaykVPZBhFQoNXKsbilqjdPd1lpw0o1DNj6nMzL9NjhcAZDZD'
+    token = 'EAACEdEose0cBAJnfIsSVHkqBpWArg048ByeoyfGiWbr4upiHg9Bn94NK7hNSCabjI4CZBZBJArUCDLCj2DKHvhDpkIbwuUTRD5k7bU9IosIMHc7c0DXSyFBflmK4ZBgDWNIYNcQSU9HZBDyzUEa6RtFe8Vj11mVbWnRZAO6p0ojcY9tZBfHRz20K95c3zgL8SHJuqYXzqn2QZDZD'
     graph = facebook.GraphAPI(token);
 
     def loadCache(self, fileName):
@@ -82,7 +83,6 @@ class Facebook():
 
                 d = json.load(fp)
                 day = d["day"]
-                print day
                 hour = d["hour"]
                 month = d["month"]
                 topic = d["topic"]
@@ -96,7 +96,6 @@ class Facebook():
                 address = d["address"]
                 cache = True
 
-                print amount_comment
             return True
         else :
             return False
@@ -172,13 +171,11 @@ class Facebook():
     def get_post_like_comment_location(self, cacheNow, graph, post):
         print "adakah cache?", cacheNow
         if not cacheNow:
-            print post['data']
             cache_com = {}
             cache_like = {}
             cache_com, cache_like = cache_comments, cache_likes
             local_timezone = tzlocal.get_localzone()  # get pytz tzinfo
 
-            print cache_com, cache_like
             for post in post['data']:
                 utc = datetime.strptime(post['created_time'][0:16], '%Y-%m-%dT%H:%M')
                 date = utc.replace(tzinfo=pytz.utc).astimezone(local_timezone)
@@ -266,7 +263,6 @@ class Facebook():
                             amount_comment[comments['from']['id']] += 1;
 
         # get top commentator and likers
-        print amount_likes
         if (amount_likes):
             if 'top' in amount_likes:
                 amount_likes.pop('top', None)
@@ -329,11 +325,22 @@ class Facebook():
     #######################################################
 
     def Family(self):
-        family = self.graph.get_connections(self.object, 'family');
+        family = self.graph.get_connections(self.object, 'family')
         return family['data']
+
+    def getRelationShipStatus(self):
+        relationship = self.graph.get_object(self.object, fields='relationship_status')
+        # print self.graph.get_object(self.object, fields='email')
+        # print self.graph.get_object(self.object, fields='education')
+        # print self.graph.get_object(self.object, fields='work')
+
+
+        return relationship
+
 
     def Friends(self):
         friends = self.graph.get_connections(self.object, 'friends');
+        print friends
         return friends['data']
 
     def Post(self):
@@ -354,7 +361,6 @@ class Facebook():
     def Find(self, search):
         word = '/search/?q=' + search + '&type=user&access_token=' + self.token
         Result = self.graph.request(word)
-        print Result
         if not Result:
             print "user not found"
         else:

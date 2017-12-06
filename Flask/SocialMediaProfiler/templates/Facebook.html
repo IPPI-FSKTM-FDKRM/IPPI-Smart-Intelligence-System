@@ -35,13 +35,14 @@
                     <h3>  {{ name }}</h3>
                 </div>
 
-                <!--Kotak Relationship-->
-                <div id="box_relationship" class="bodyn">
-                    <img src="img/gfx_love_icon.png" id="img_small_icon"/>
-                    <p id="p_relationship">
-                        Married to <span id="p_relationship_name">Edward Smith</span>
-                    </p>
-                </div>
+            <!--Kotak Relationship-->{% if relationshipStatus %}
+            <div id="box_relationship" class="bodyn">
+                <img src="img/gfx_love_icon.png" id="img_small_icon"/>
+                <p id="p_relationship">
+                    {{ relationshipStatus['relationship_status'] }}
+                </p>
+            </div>
+        {% endif %}
 
                 <!--Kotak Relatives-->
                 <div id="box_relative" class="bodyn">
@@ -54,9 +55,11 @@
                     <a href="{{ url_for('facebookProfile', username = family['id']) }}"><img
                         src="https://graph.facebook.com/{{ family['id'] }}/picture?type=large"></a>
                         <br>
+
                         <p id="p_relative">
-                        {{ family['name'] }}</p>
-                        <br>
+
+                            {{ family['name'] }}</p>
+                        <p>{{ family['relationship'] }}</p><br>
                         {% endfor %}
                         {% endif %}
 
@@ -132,8 +135,9 @@
                         {% for friends in friends %}
                         <div id="box_friend_profpic">
                             <a href="{{ url_for('facebookProfile', username = friends['id']) }}">
-                                <img src="https://graph.facebook.com/{{ friends['id'] }}/picture?type=album"
-                                id="img_friend_profpic"/>
+
+                                <img src="https://graph.facebook.com/{{ friends['id'] }}/picture?type=large"
+                                     id="img_friend_profpic"/>
                             </a>
                             <p id="p_friend_name">{{ friends['name'] }}</p>
                         </div>
