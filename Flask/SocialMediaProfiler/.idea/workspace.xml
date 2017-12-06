@@ -11,10 +11,47 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/SocialMediaProfiler$SocialMediaProfiler.coverage" NAME="SocialMediaProfiler Coverage Results" MODIFIED="1512022403087" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+<<<<<<< HEAD
     <SUITE FILE_PATH="coverage/SocialMediaProfiler$SocialMediaProfiler__1_.coverage" NAME="SocialMediaProfiler (1) Coverage Results" MODIFIED="1512493618902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
     <leaf />
+=======
+<<<<<<< Updated upstream
+    <SUITE FILE_PATH="coverage/SocialMediaProfiler$SocialMediaProfiler__1_.coverage" NAME="SocialMediaProfiler (1) Coverage Results" MODIFIED="1512480345335" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+=======
+    <SUITE FILE_PATH="coverage/SocialMediaProfiler$SocialMediaProfiler__1_.coverage" NAME="SocialMediaProfiler (1) Coverage Results" MODIFIED="1512474376882" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+>>>>>>> Stashed changes
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="SocialMediaProfiler.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SocialMediaProfiler.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Twitter.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Twitter.py">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
+            <state relative-caret-position="71">
+              <caret line="31" column="54" lean-forward="true" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
+=======
+            <state relative-caret-position="-269">
+              <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+>>>>>>> Stashed changes
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+>>>>>>> 5ebda237964cea085c4af2031fd128eadf4c4618
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -456,8 +493,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SocialMediaProfiler.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="94">
           <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+=======
+<<<<<<< Updated upstream
+        <state relative-caret-position="71">
+          <caret line="31" column="54" lean-forward="true" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
+=======
+        <state relative-caret-position="-269">
+          <caret line="11" column="37" lean-forward="false" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+>>>>>>> Stashed changes
+>>>>>>> 5ebda237964cea085c4af2031fd128eadf4c4618
           <folding />
         </state>
       </provider>
