@@ -76,7 +76,7 @@ def getArrayFromString(string):
         count = Counter(topic)
         return (max(count.most_common())[0])
     else:
-        return None
+        return "Others"
 
 
 
