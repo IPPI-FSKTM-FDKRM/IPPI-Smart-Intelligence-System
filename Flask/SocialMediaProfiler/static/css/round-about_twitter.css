@@ -18,11 +18,7 @@ h3{
 @media (min-width: 992px) {
     body {
         padding-top: 100px;
-<<<<<<< Updated upstream
         width:97%;
-=======
-        width:70%;
->>>>>>> Stashed changes
         margin: auto;
     }
     

@@ -1,6 +1,5 @@
 
 /*BOX-------------------------------------------------------*/
-<<<<<<< Updated upstream
 body{
 	background-color: #262626;
 	color:white;
@@ -11,15 +10,6 @@ body{
 	font-family:verdana;
 	min-height:0px;
 	background-color:  #262626;
-=======
-
-.bodyn{
-    width:100%;
-    left:30px;
-    font-family:verdana;
-    min-height:0px;
-    background-color:  #262626;
->>>>>>> Stashed changes
 }
 
 .kotakbesar{
@@ -28,14 +18,8 @@ body{
 
 #box_profilePicture{
 	width:100%;
-<<<<<<< Updated upstream
 	filter:drop-shadow(0px 20px 20px black);
-<<<<<<< HEAD
 	text-align: center;
-=======
-=======
->>>>>>> Stashed changes
->>>>>>> 5ebda237964cea085c4af2031fd128eadf4c4618
 }
 #box_profileStatus{
 	width:100%;
@@ -43,7 +27,6 @@ body{
 #box_join{
 	width:100%;
 }
-<<<<<<< Updated upstream
 .box_ff{
 	filter:drop-shadow(0px 20px 20px black);
 }
@@ -54,31 +37,11 @@ body{
 	padding: 10px;
 	width:100%;
 	display: flex;
-=======
-
-.box_ff{
-	box-shadow: 10px 10px grey;
-    border-top-right-radius: 6px;
-    border-top-left-radius: 6px;
-    width:100%;
-    height:565px;
-    font-family:verdana;
-}
-
-#box_following,#box_follower{
-    min-height:0px;
-    font-family:verdana;
-    background-color: #5D9BD4;
-    padding: 10px;
-    width:100%;
-    display: flex;
->>>>>>> Stashed changes
 	justify-content: center;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	justify-content: space-around;
 }
-<<<<<<< Updated upstream
 #box_title{
 	background-color: #174469;
 	min-height: 0px;
@@ -92,37 +55,10 @@ body{
 	margin-bottom: 47px;
 	padding-bottom: 35px;
 	filter:drop-shadow(0px 20px 20px black);
-=======
-.mainbox_topfriend{
-	top:119px;
-	left:386px;
-	position: absolute;
-	width:545px;
-	min-height:0px;
-	background-color: #8497B0;
-}
-#box_title{
-	background-color: #2977B9;
-	min-height: 0px;
-	padding: 5px;
-}
-#box_id_topfriend{
-	margin:20px;
-	min-height: 250px;
-}
-.mainbox_post{
-	width:90%;
-	min-height:0px;
-	background-color: #5999D6;	
-	margin: auto;
-	margin-bottom: 47px;
-	padding-bottom: 35px;
->>>>>>> Stashed changes
 }
 #box_post_white{
 	height:150px;
 	margin:35px;
-<<<<<<< Updated upstream
 	background-color: #1a1a1a;
 }
 
@@ -135,19 +71,6 @@ body{
 	margin-bottom: 47px;
 	padding-bottom: 35px;
 	filter:drop-shadow(0px 20px 20px black);
-=======
-	background-color: white;
-}
-
-.mainbox_friend{
-width:100%;
-min-height:0px;
-background:  #5999D6;
-border-radius:3px/3px;
-margin:auto;
-margin-bottom: 47px;
-padding-bottom: 35px;
->>>>>>> Stashed changes
 }
 #box_friend_profpic{
 	width:42.4px;
@@ -161,27 +84,6 @@ padding-bottom: 35px;
 #box_join,#box_ID{
 	text-align: center;
 }
-<<<<<<< Updated upstream
-=======
-#box_friend_name{
-	text-align: center;
-}
-.mainbox_map{
-	top:109px;
-	left:987px;
-	width:322px;
-	height:322px;
-	background:  #8497B0;
-	border-radius:3px/3px;
-	margin:10px;
-	position:absolute;
-}
-#map{
-	width:322px;
-	height: 322px;
-	background: yellow;
-}
->>>>>>> Stashed changes
 
 /*FONT-------------------------------------------------------*/
 h3{
@@ -220,87 +122,24 @@ h3{
 	color: white;
 	font-family: calibri;
 }
-<<<<<<< Updated upstream
-=======
-#p_relationship_name{
-	text-align: absolute;
-	font-size: 14px;
-	color: #ccd9ff;
-	font-weight: bold;
-	font-family: calibri;	
-}
-#p_relative{
-	font-size: 13px;
-	color: #1F4E79;
-	font-weight: bold;
-	padding: 4px;
-	padding-left: 60px;
-	font-family: calibri;
-}
-#p_relative_relation{
-	font-size: 11px;
-	font-weight: normal;
-	color: white;
-	padding: 10px;
-	padding-left: 0px;
-	font-family: calibri;
-}
->>>>>>> Stashed changes
 #p_title{
 	text-align: center;
 	font-size: 15px;
 	font-family: calibri;
 	color: white;
 	margin:auto;
-<<<<<<< Updated upstream
 }
-=======
-	}
->>>>>>> Stashed changes
 #p_friend_name{
 	font-size: 7px;
 	color: white;
 }
 
-
-<<<<<<< Updated upstream
 /*GAMBAR-------------------------------------------------------*/
 
 #img_profpic{
 	height:164px;
 	margin: 0 auto;
 }
-
-
-=======
-
-
-
-/*GAMBAR-------------------------------------------------------*/
-
-#img_profpic{
-height:164px;
-margin-left: 0px;
-margin-top: 30px;
-}
-
-#img_small_icon{
-	height: 20px;
-	float: left;
-	padding-right: 10px;
-}
-
-#img_relative_profpic{
-	height: 50px;
-	float: left;
-}
-
-#img_topfriends_profpic{
-	margin:10px;
-	height:80px;
-	float: left;
-}
->>>>>>> Stashed changes
 
 #img_friend_profpic{
 	height: 53px;
