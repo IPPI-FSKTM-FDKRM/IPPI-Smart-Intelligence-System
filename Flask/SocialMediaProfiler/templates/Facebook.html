@@ -12,151 +12,156 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
-    <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='css/round-about_facebook.css') }}" rel="stylesheet"/>
-    <!--Content link-->
-    <!--Content link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
 <body>
 
-<!-- Navigation -->
-{#{% include "header.html" %}#}
+    <!-- Navigation -->
+    {% include "header.html" %}
 
-<!-- Page Content -->
+    <!-- Page Content -->
 
-<div class="kotakbesar">
-    <div class="row">
+    <div class="kotakbesar">
+        <div class="row">
 
-        <div class="col-md-3">
+            <div class="col-md-3">
 
-            <!--Kotak Profile-->
-            <div id="box_dp">
-                <img src="https://graph.facebook.com/{{ userID }}/picture?type=large" id="img_profpic">
-                <h3>  {{ name }}</h3>
-            </div>
+                <!--Kotak Profile-->
+                <div id="box_dp">
+                    <img src="https://graph.facebook.com/{{ userID }}/picture?type=large" id="img_profpic">
+                    <h3>  {{ name }}</h3>
+                </div>
 
-            <!--Kotak Relationship-->
-            <div id="box_relationship" class="bodyn">
-                <img src="img/gfx_love_icon.png" id="img_small_icon"/>
-                <p id="p_relationship">
-                    Married to <span id="p_relationship_name">Edward Smith</span>
-                </p>
-            </div>
+                <!--Kotak Relationship-->
+                <div id="box_relationship" class="bodyn">
+                    <img src="img/gfx_love_icon.png" id="img_small_icon"/>
+                    <p id="p_relationship">
+                        Married to <span id="p_relationship_name">Edward Smith</span>
+                    </p>
+                </div>
 
-            <!--Kotak Relatives-->
-            <div id="box_relative" class="bodyn">
-                {% if not family %}
+                <!--Kotak Relatives-->
+                <div id="box_relative" class="bodyn">
+                    {% if not family %}
                     cant fetch family data members
-                {% else %}
+                    {% else %}
 
                     {% for family in family %}
-                        <br>
-                        <a href="{{ url_for('facebookProfile', username = family['id']) }}"><img
-                                src="https://graph.facebook.com/{{ family['id'] }}/picture?type=large"></a>
+                    <br>
+                    <a href="{{ url_for('facebookProfile', username = family['id']) }}"><img
+                        src="https://graph.facebook.com/{{ family['id'] }}/picture?type=large"></a>
                         <br>
                         <p id="p_relative">
-                            {{ family['name'] }}</p>
+                        {{ family['name'] }}</p>
                         <br>
-                    {% endfor %}
-                {% endif %}
+                        {% endfor %}
+                        {% endif %}
 
-            </div>
+                    </div>
 
-        </div>
-
-        <div class="col-md-6">
-            <!--Kotak Top Friends-->
-
-            <div class="mainbox_topfriend">
-                <div id="box_title">
-                    <p id="p_title">Top Friends</p>
                 </div>
 
-                {#      <div id="box_id_topfriend">#}
-                <div id="topFriends"><img style="align-content: center ;margin-left:auto 0  ;height: 100px"  src="{{ url_for('static', filename='img/loading.gif') }}"></div>
+                <div class="col-md-6">
+                    <!--Kotak Top Friends-->
 
-                {#      </div>#}
-            </div>
+                    <div class="mainbox_topfriend">
+                        <div id="box_title">
+                            <p id="p_title">Top Friends</p>
+                        </div>
 
-            <!--Kotak Post-->
+                        <!-- <div id="box_id_topfriend"> -->
+                            <div id="topFriends"><img style="align-content: center ;margin:auto; display:block; ;height: 100px"  src="{{ url_for('static', filename='img/loading.gif') }}"></div>
 
-            <div class="mainbox_post">
-                <div id="box_title">
-                    <p id="p_title">Top Self Post / Mention Post</p>
-                </div>
-                {% if not post %}
-                    Cant fetch post data from user
-                {% else %}
-                    {% for post in post %}
-                        <a href="https://facebook.com/{{ post['id'] }}">
+                        <!-- </div> -->
+                    </div>
+
+                    <!--Kotak Post-->
+
+                    <div class="mainbox_post">
+                        <div id="box_title">
+                            <p id="p_title">Top Self Post / Mention Post</p>
+                        </div>
+                        {% if not post %}
+                        Cant fetch post data from user
+                        {% else %}
+                        {% for post in post %}
+                        <a href="https://facebook.com/{{ post['id'] }}" id="link_post" style="color:white; text-decoration: initial;">
                             <div id="box_post_white">
-                                Posted on {{ post['created_time']|format_date }} <br>
-
-                                <img src="https://graph.facebook.com/{{ post['id'] }}/picture?type=album">
+                               
+                                <i class="fa fa-comment-o"></i>
+                                <!-- <img src="https://graph.facebook.com/{{ post['id'] }}/picture?type=album"> -->
 
                                 {% if 'message' in post %}
-                                    {{ post['message'] }}
+                                {{ post['message'] }}
                                 {% elif 'story' in post %}
-                                    {{ post['story'] }}
+                                {{ post['story'] }}
                                 {% endif %}
+                                <br><br>
+
+                                <div style="text-align: right; font-size: 12px;">
+                                 Posted on {{ post['created_time']|format_date }} 
+                             </div>
 
                             </div>
                         </a>
-                    {% endfor %}
-                {% endif %}
-            </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
 
-        </div>
-
-        <div class="col-md-3">
-        <div style="margin: 50px;">
-            <a href="{{ url_for('facebookAnalysis', username=me) }}" disabled="True"><button> Analysis Page</button></a>
-            <button onclick="refresh_data()"> Refresh Data </button>
-
-        </div>
-            <!--Kotak Friends-->
-            <div class="mainbox_friend">
-                <div id="box_title">
-                    <p id="p_title">Friends</p>
                 </div>
 
+                <div class="col-md-3">
+                    <div style="margin: 50px;">
+                        <a href="{{ url_for('facebookAnalysis', username=me) }}" disabled="True"><button> Analysis Page</button></a>
+                        <button onclick="refresh_data()"> Refresh Data </button>
 
-                {% if not friends %}
-                    cant fetch friends data
-                {% else %}
-                    {% for friends in friends %}
+                    </div>
+                    <!--Kotak Friends-->
+                    <div class="mainbox_friend">
+                        <div id="box_title" style="margin-bottom: 20px;">
+                            <p id="p_title">Friends</p>
+                        </div>
+
+                        <div id="box_flex_friend">
+                        {% if not friends %}
+                        cant fetch friends data
+                        {% else %}
+                        {% for friends in friends %}
                         <div id="box_friend_profpic">
                             <a href="{{ url_for('facebookProfile', username = friends['id']) }}">
                                 <img src="https://graph.facebook.com/{{ friends['id'] }}/picture?type=album"
-                                     id="img_friend_profpic"/>
+                                id="img_friend_profpic"/>
                             </a>
                             <p id="p_friend_name">{{ friends['name'] }}</p>
                         </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
 
+                    </div>
+
+                </div>
+
+            </div>
         </div>
 
-    </div>
-</div>
-
-<!-- Bootstrap core JavaScript -->
-<link type="text/css" href="{{ url_for('static', filename='css/facebook.css') }}" rel="stylesheet"/>
-<script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
-<script src="{{ url_for('static', filename='vendor/popper/popper.min.js') }}"></script>
-<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+        <!-- Bootstrap core JavaScript -->
+        <link type="text/css" href="{{ url_for('static', filename='css/facebook.css') }}" rel="stylesheet"/>
+        <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/popper/popper.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
 
-      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-    <script>
-                window.onload = start_long_task();
+        <script>
+            window.onload = start_long_task();
 
 
-         function start_long_task() {
+            function start_long_task() {
 
             // send ajax POST request to start background job
             $.ajax({
@@ -175,32 +180,32 @@
         }
 
         function refresh_data(){
-             $.ajax({
-                 type: 'POST',
-                 url: '/facebook/refreshAnalysis',
-                 success: function(resp){
-                    topFriend(resp)
+           $.ajax({
+               type: 'POST',
+               url: '/facebook/refreshAnalysis',
+               success: function(resp){
+                topFriend(resp)
 
-                 }
+            }
 
-             })
-        }
+        })
+       }
 
-        function start_next(){
-             $.ajax({
-                 type: 'POST',
-                 url: '/facebook/nextAnalysis',
-                 success: function(resp){
-                    topFriend(resp)
+       function start_next(){
+           $.ajax({
+               type: 'POST',
+               url: '/facebook/nextAnalysis',
+               success: function(resp){
+                topFriend(resp)
 
-                 }
+            }
 
-             })
-        }
+        })
+       }
 
-        function topFriend(resp){
-            document.getElementById("topFriends").innerHTML = resp.LikesComments;
-        }
+       function topFriend(resp){
+        document.getElementById("topFriends").innerHTML = resp.LikesComments;
+    }
 
 </script>
 </body>
