@@ -39,6 +39,7 @@ body{
   margin-bottom: 47px;
   filter:drop-shadow(0px 20px 20px black);
   color: white;
+  text-align: center;
 }
 
 .mainbox_topfriend{
@@ -53,12 +54,16 @@ body{
   background-color: #336699;
   min-height: 0px;
   padding: 5px;
+  filter:drop-shadow(0px 20px 20px black);
 }
 #box_id_topfriend{
   padding-bottom: 20px;
   /*margin:20px;*/
   min-height: 0px;
-  margin:auto;
+  margin:20px;
+  display:flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .mainbox_post{
   margin-top: 20px;
@@ -118,6 +123,51 @@ body{
     flex-wrap: wrap;
 }
 
+/*BUTTON*/
+.float{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  background-color:#4b4b4b;
+  color:white;
+  border-radius:15px;
+  text-align:center;
+  filter:drop-shadow(0px 20px 20px black);
+}
+
+.float2{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:111px;
+  background-color:#4b4b4b;
+  color:white;
+  border-radius:15px;
+  text-align:center;
+  filter:drop-shadow(0px 20px 20px black);
+}
+
+.float3{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:182px;
+  background-color:#4b4b4b;
+  color:white;
+  border-radius:15px;
+  text-align:center;
+  filter:drop-shadow(0px 20px 20px black);
+}
+.my-float{
+  margin-top:22px;
+  filter:drop-shadow(0px 20px 20px black);
+}
+
+
 
 /*FONT-------------------------------------------------------*/
 h3{
@@ -144,7 +194,6 @@ h3{
   color: white;
   font-weight: bold;
   padding: 4px;
-  padding-left: 60px;
   font-family: calibri;
 }
 #p_relative_relation{
@@ -177,24 +226,28 @@ h3{
   height:164px;
   display:block;
   margin:auto;
+  border-radius:6px;
 }
 
 #img_small_icon{
   height: 20px;
   float: left;
-  padding-right: 10px;
+  padding-right: 6px;
 }
 
 #img_relative_profpic{
-  height: 50px;
-  float: left;
+  min-width: 0px;
+  max-height: 80%;
+  border-radius:6px;
 }
 
 #img_topfriends_profpic{
   margin:10px;
   height:80px;
+  border-radius:6px;
 }
 
 #img_friend_profpic{
   height: 70px;
+  border-radius:6px;
 }

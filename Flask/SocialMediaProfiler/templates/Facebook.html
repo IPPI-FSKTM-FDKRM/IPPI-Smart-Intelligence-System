@@ -52,7 +52,7 @@
 
                     {% for family in family %}
                     <br>
-                    <a href="{{ url_for('facebookProfile', username = family['id']) }}"><img
+                    <a href="{{ url_for('facebookProfile', username = family['id']) }}"><img id="img_relative_profpic"
                         src="https://graph.facebook.com/{{ family['id'] }}/picture?type=large"></a>
                         <br>
 
@@ -94,7 +94,7 @@
                         <a href="https://facebook.com/{{ post['id'] }}" id="link_post" style="color:white; text-decoration: initial;">
                             <div id="box_post_white">
                                
-                                <i class="fa fa-comment-o"></i>
+                                <i class="fa fa-comment"></i>
                                 <!-- <img src="https://graph.facebook.com/{{ post['id'] }}/picture?type=album"> -->
 
                                 {% if 'message' in post %}
@@ -117,11 +117,11 @@
                 </div>
 
                 <div class="col-md-3">
-                    <div style="margin: 50px;">
+                    <!-- <div style="margin: 50px;">
                         <a href="{{ url_for('facebookAnalysis', username=me) }}" disabled="True"><button> Analysis Page</button></a>
                         <button onclick="refresh_data()"> Refresh Data </button>
-
-                    </div>
+                    </div> -->
+                    
                     <!--Kotak Friends-->
                     <div class="mainbox_friend">
                         <div id="box_title" style="margin-bottom: 20px;">
@@ -212,6 +212,36 @@
     }
 
 </script>
+
+
+<!-- FLOATINGBUTTON -->
+<a href="#" onclick="myFunction()" class="float">
+<i class="fa fa-arrow-up my-float"></i>
+</a>
+
+<script>
+  window.onscroll = function() {scrollFunction()};
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("myBtn").style.display = "block";
+    } else {
+      document.getElementById("myBtn").style.display = "none";
+    }
+  }
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+
+<a href="{{ url_for('facebookAnalysis', username=me) }}" disabled="True" class="float2">
+<i class="fa fa-file my-float"></i>
+</a>
+
+<a href="#" onclick="refresh_data()" class="float3">
+<i class="fa fa-refresh my-float"></i>
+</a>
+
 </body>
 
 </html>
