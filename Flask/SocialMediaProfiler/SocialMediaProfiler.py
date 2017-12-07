@@ -22,7 +22,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 app.config['GOOGLEMAPS_KEY'] = GOOGLEKEY
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/kayd/Project/IPPI-Smart-Intelligence-System/Flask/SocialMediaProfiler/database.db' #linux
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/kayd/Project/IPPI-Smart-Intelligence-System/Flask/SocialMediaProfiler/database.db' #linux
 
 GoogleMaps(app)
 # "C:\Users\user\Project\IPPI-Smart-Intelligence-System\Flask\SocialMediaProfiler\database.db"
@@ -30,7 +30,7 @@ GoogleMaps(app)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\user\\Project\\IPPI-Smart-Intelligence-System\\Flask\\SocialMediaProfiler\\database.db' #windows
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\User\\PycharmProjects\\untitled1\\database.db' #windows #raam
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\User\\PycharmProjects\\untitled1\\database.db' #windows #raam
 
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)

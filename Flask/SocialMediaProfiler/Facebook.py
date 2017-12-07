@@ -38,12 +38,14 @@ class Facebook():
     global cache
     global locationRelation
     global address
+    global posnegneu
 
+    posnegneu = {}
     address = {1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[],10:[],11:[],12:[]}
     day = {0:[],1:[],2:[],3:[],4:[],5:[],6:[]}
     hour = {}
     month = {1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[],10:[],11:[],12:[]}
-    topic= {"politic":[], "sports":[], "travel":[], "education":[],"technology":[], "spending":[]}
+    topic= {}
     locationPost = []
     locationRelation = {}
     current_username = ""
@@ -59,7 +61,7 @@ class Facebook():
     # original app token
     # token = 'EAAFyPKV2cOIBAM1GJtjCW7oIftQzwo8RxujFy9ZBLeYNPrSNpMiuUbMAcpzvEkH6sJ0F2ZAf5ey0yle7toaSLJ2wd3yqZACnXJjKXotl8YHZA8KCLNWPBMHlV2ZAcdD4M4p8Y7RqiXV43sF5rfZCa7pmwOaZBWB6qsZD';
     token = 'EAAFyPKV2cOIBADfar33ktp4UZCPKSZBv6waYUad5GQPimSIc31nrkgjuLDwFIEjU6YgZCdGFHOHq5ZA8cLsDPF0DwJnwS4xJBvhLUvZCxCn8ztRKrMtJNpcQ01PS6AFCaykVPZBhFQoNXKsbilqjdPd1lpw0o1DNj6nMzL9NjhcAZDZD'
-    token = 'EAACEdEose0cBAJnfIsSVHkqBpWArg048ByeoyfGiWbr4upiHg9Bn94NK7hNSCabjI4CZBZBJArUCDLCj2DKHvhDpkIbwuUTRD5k7bU9IosIMHc7c0DXSyFBflmK4ZBgDWNIYNcQSU9HZBDyzUEa6RtFe8Vj11mVbWnRZAO6p0ojcY9tZBfHRz20K95c3zgL8SHJuqYXzqn2QZDZD'
+    token = 'EAACEdEose0cBANaujfBxsUM5d9a5oSplOnLVsTZC05DtUoXcXgbiiI5049CU97TQ235MZCqU2gZAmIBsLGxa6Xt3E0drA0njr5SiGk7FIsKvHmtscNBtnZB3pw2wi1cFuIU7Q4LrPFFeE2Gkk4BGqFinN8sDXVPZB8sXWnEcVGfQZAwxizLghZA2k1nFHO9ZBpsj0ANZBf61uTwZDZD'
     graph = facebook.GraphAPI(token);
 
     def loadCache(self, fileName):
@@ -68,7 +70,6 @@ class Facebook():
 
         if os.path.isfile(filePathNameWExt):
             with open(filePathNameWExt) as fp:
-                print "ada? ke takde?"
                 global cache_comments
                 global cache_likes
                 global location
@@ -114,12 +115,12 @@ class Facebook():
         global cache
         global locationRelation
         locationRelation = {}
-
-        day = {}
+        address = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 12: []}
+        day = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: []}
         hour = {}
-        month = {}
-        topic = {"politic": [], "sports": [], "travel": [], "education": [], "technology": [], "spending": []}
-        posnegneu = {"positive":[], "negative":[], "neutral":[]}
+        month = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 12: []}
+        topic = {}
+        posnegneu = {}
         locationPost = []
         self.cache = False
         amount_likes = {}
@@ -169,7 +170,6 @@ class Facebook():
 
     @celery.task(bind=True)
     def get_post_like_comment_location(self, cacheNow, graph, post):
-        print "adakah cache?", cacheNow
         if not cacheNow:
             cache_com = {}
             cache_like = {}
@@ -177,6 +177,7 @@ class Facebook():
             local_timezone = tzlocal.get_localzone()  # get pytz tzinfo
 
             for post in post['data']:
+
                 utc = datetime.strptime(post['created_time'][0:16], '%Y-%m-%dT%H:%M')
                 date = utc.replace(tzinfo=pytz.utc).astimezone(local_timezone)
 
@@ -204,13 +205,19 @@ class Facebook():
                     print post['message']
                     postTopic = TopicSentiment.getArrayFromString(post['message'])
 
-                    if postTopic:
+                    print topic
+
+                    if postTopic not in topic:
+                        topic[postTopic] = [post]
+                    else:
                         if post not in topic[postTopic]:
                             topic[postTopic].append(post)
 
                     for i in nBayesTesting.getListValue([post['message']]):
-                        posnegneu[i].append(post)
-
+                        if i not in posnegneu:
+                            posnegneu[i] = [post]
+                        else:
+                            posnegneu[i].append(post)
 
                 if 'place' in place:
                     tagUser = []
@@ -228,7 +235,11 @@ class Facebook():
 
 
                     locationAddress = ""+place['place']['name']+" , "+street+city+country
-                    address[date.month].append(locationAddress)
+
+                    if date.month not in address:
+                        address[date.month] = [locationAddress]
+                    else:
+                        address[date.month].append(locationAddress)
 
                     if 'message_tags' in tag:
                         for i in tag['message_tags']:
@@ -277,8 +288,6 @@ class Facebook():
             return amount_likes['top'], amount_comment['top'], location
 
         else:
-            print "got something here"
-
             return [], [], None
 
     def getLocationAddress(self):
@@ -345,6 +354,9 @@ class Facebook():
 
     def Post(self):
         self.post = self.graph.get_connections(self.object, 'posts')
+        return self.post
+
+    def getPost(self):
         return self.post
 
     def taggedPost(self):

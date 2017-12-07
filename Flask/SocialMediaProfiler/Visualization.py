@@ -52,6 +52,7 @@ def lineChartTime(dict,stringX,stringY,color):
     return plt
 def lineChart(dict,stringX,stringY,color):
     x = dict.keys()
+
     yv = dict.values()
     y =[]
     for a in yv:
@@ -70,16 +71,17 @@ def lineChart(dict,stringX,stringY,color):
     ax.tick_params(axis='y', colors=color)
     return plt
 
-def barChartTime(dict,stringX,stringY,color):
+def barChartTime(dict,stringX,stringY,color,paramS,paramE):
     newdict = {}
     for key in dict.keys():
         nkey = int(key.encode('utf=8'))
         newdict[nkey] = len(dict.get(key))
-    for time in range(0, 24):
+    for time in range(paramS, paramE):
         if newdict.get(time) == None:
             newdict[time] = 0
     x = newdict.keys()
     y = newdict.values()
+    print "value x;",x
     plt.figure()
     y_plot = np.arange(len(x))
     plt.ylim((min(y)+0.5),(max(y)+0.5))
@@ -107,7 +109,7 @@ def barChart(dict,stringX,stringY,color):
     y = []
     for a in yv:
         y.append(len(a))
-    plt.ylim((min(y)+0.5),(max(y)+0.5))
+    # plt.ylim((min(y)+0.5),(max(y)+0.5))
     bar = plt.bar(y_plot, y, align='center')
     for i in range(0,len(bar)):
        bar[i].set_color(color)

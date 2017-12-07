@@ -75,8 +75,6 @@ class tahi():
             for i in self.tag['message_tags']:
                 print i['name']
 
-
-
     def decHour(self):
 
         print self.graph.search(type='user',q='Mark Zuckerberg')

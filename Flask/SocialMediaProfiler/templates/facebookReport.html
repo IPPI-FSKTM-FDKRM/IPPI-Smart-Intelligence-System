@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Report Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/round-about_report.css') }}" rel="stylesheet"/>
+
+    <!-- Bootstrap Grid css -->
+    <link href="{{ url_for('static', filename='css/bootstrap-grid.css') }}" rel="stylesheet"/>
+
+    <!--Content link-->
+    <link href="{{ url_for('static', filename='css/report.css') }}" rel="stylesheet"/>
+
+    <!-- Print only, on bottom -->
+    <link href="{{ url_for('static', filename='css/print.css') }}" rel="stylesheet"/>
+
+
+</head>
+
+<body>
+
+<!--************************************************************************************************* Navigation -->
+{% include "header.html" %}
+<!--************************************************************************************************* END NAVIGATION -->
+
+<!--************************************************************************************************* BUTTON: TOP SCROLL  -->
+<button onclick="topFunction()" id="myBtn" title="Go to top" class="hide">Top</button>
+
+<script>
+    window.onscroll = function () {
+        scrollFunction()
+    };
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("myBtn").style.display = "block";
+        } else {
+            document.getElementById("myBtn").style.display = "none";
+        }
+    }
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<!--************************************************************************************************* END BUTTON: TOP SCROLL -->
+
+
+<!--************************************************************************************************* BOX: MAIN CONTENT "kotakbesar"-->
+<div class="kotakbesar">
+    <!-- TITLE -->
+    <div id="title_fb" class="hide">
+        <h4>REPORT FACEBOOK</h4>
+    </div>
+    <div class="row">
+        <!--************************************************************************************************* BOX: MIDDLE COLUMN -->
+        <div class="col-md-9">
+            <!--************************************************************************************************* BOX: FB DP RELATION -->
+
+            <div id="box_dpFB">
+                <div class="row">
+                    <div id="box_dpFB_kecik"> <!--FB DP BOX (EACH)-->
+                        <div class="haha">
+                            <img src="https://graph.facebook.com/{{ userID }}/picture?type=large">
+                        </div>
+                    </div>
+                    <div id="box_biodata">
+                        {{ name }}
+                        {{ }}
+                    </div>
+                </div>
+            </div>
+
+            <!--************************************************************************************************* BOX: LOCATION -->
+
+            <a name="box_locationa"></a>
+            <hr>
+            <div id="box_location">
+                <h4>LOCATION</h4>
+                {% for key, value in address.iteritems() %}
+                    {% if value %}
+                    {% if key == "1" %}<h2>January</h2>
+                    {% elif key == "2" %}<h2>February</h2>
+                    {% elif key =="3" %}<h2>March</h2>
+                    {% elif key =="4" %}<h2> April</h2>
+                    {% elif key == "5" %}<h2>May</h2>
+                    {% elif key =="6" %}<h2>June</h2>
+                    {% elif key == "7" %}<h2>July</h2>
+                    {% elif key =="8" %}<h2>August</h2>
+                    {% elif key =="9" %}<h2>September</h2>
+                    {% elif key == "10" %}<h2>October</h2>
+                    {% elif key =="11" %}<h2>November</h2>
+                    {% elif key =="12" %}<h2>December</h2>
+
+
+                        {% for i in value %}
+                            <li>{{ i }}</li>
+
+                        {% endfor %}
+                    {% endif %}
+
+                {% endfor %}
+            </div>
+            <!--************************************************************************************************* END BOX: LOCATION -->
+            <hr>
+        </div>
+        <!--************************************************************************************************* BOX: RIGHT COLUMN: POST-->
+        <!-- POST -->
+        <div id="box_post">
+            <div id="box_eachPost">
+                <h4>POST</h4>
+                {% for i in post %}
+                    {% if 'message' in i %}
+                        <li>{{ i['message'] }}</li>
+                    {% else %}
+                        <li>{{ i['story'] }}</li>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <hr>
+
+        <!--************************************************************************************************* BOX: RIGHT COLUMN: CHART -->
+        <!-- CHART 1 -->
+        <hr>
+        <div id="box_chart">
+            Positivity
+            <img src="data:image/png;base64, {{ posnegGraph }}">
+            <!--PUT DP FB HERE-->
+        </div>
+
+        <hr>
+
+        <div id="box_chart">
+            Topic
+            <img src="data:image/png;base64, {{ topicGraph }}">
+        </div>
+
+        <hr>
+
+        <div id="box_chart">
+            time active
+            <img src="data:image/png;base64, {{ timeGraph }}">
+        </div>
+
+    </div>
+
+
+</div>
+</div>
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/popper/popper.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
