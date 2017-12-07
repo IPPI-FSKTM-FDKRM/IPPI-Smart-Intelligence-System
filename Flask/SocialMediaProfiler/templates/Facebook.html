@@ -37,7 +37,7 @@
 
             <!--Kotak Relationship-->{% if relationshipStatus %}
             <div id="box_relationship" class="bodyn">
-                <img src="img/gfx_love_icon.png" id="img_small_icon"/>
+                <i class="fa fa-heart" style="float:left;padding-right:6px;padding-top: 1px;padding-right: 12px;"></i>
                 <p id="p_relationship">
                     {{ relationshipStatus['relationship_status'] }}
                 </p>
@@ -59,7 +59,7 @@
                         <p id="p_relative">
 
                             {{ family['name'] }}</p>
-                        <p>{{ family['relationship'] }}</p><br>
+                        <p id="p_relative_relation">{{ family['relationship'] }}</p><br>
                         {% endfor %}
                         {% endif %}
 

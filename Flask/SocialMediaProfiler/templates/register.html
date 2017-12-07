@@ -1,51 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <title>Register</title>
+    <title>Register</title>
 
-        <!-- Bootstrap core CSS -->
-        <link href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
-        <!--Content link-->
-	    <link rel="stylesheet" type = "text/css" href="{{ url_for('static',filename='css/login.css') }}"/>
+    <!--Content link-->
+    <link rel="stylesheet" type = "text/css" href="{{ url_for('static',filename='css/register.css') }}"/>
 
-    </head>
+</head>
 
-<body>
-    <h1>Register</h1>
+<body background="{{ url_for('static',filename='img/kk.gif')}}">
+    <div class="kotakbesar">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="logobox">
+                <div class="imgcontainer">
+                    <img src="{{ url_for('static',filename='img/logo.png')}}" alt="Avatar" class="avatar">
+                </div>
+
+                <div id="title">
+                    <h1>Register</h1>
+                </div>
+            </div>
+        </div>
 
 
+        <div class="col-md-6">
+            
 
-    <form action="/register" method="POST">
-        {{ form.hidden_tag() }}
+            <form action="/register" method="POST">
+                {{ form.hidden_tag() }}
 
-  <div class="container">
-      Email:
-        {{ form.email }}
-      Username:
-        {{ form.username }}
-      Password:
-        {{ form.password }}
+                <div class="container">
+                  Email:
+                  {{ form.email }}
+                  Username:
+                  {{ form.username }}
+                  Password:
+                  {{ form.password }}
 
 
-    <button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
+                  <button type="submit">Register</button>
+
+              </div>
+
+          </form>
+
+      </div> <!-- END COLUMN -->
+
 
   </div>
-
-</form>
+</div>
 
 
 <!-- Bootstrap core JavaScript -->
-    <script src="{{ url_for('static',filename='vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='vendor/popper/popper.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename='vendor/popper/popper.min.js') }}"></script>
+<script src="{{ url_for('static',filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
 </body>
 

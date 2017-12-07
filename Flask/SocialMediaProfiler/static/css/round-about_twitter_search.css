@@ -6,22 +6,22 @@
 
  body {
     padding-top: 100px;
+    background-color:  #262626;
+        color: white;
+
 }
 h3{
-	padding:17px;
+    padding-top: 30px;
 }
 
 
 @media (min-width: 992px) {
     body {
         padding-top: 100px;
-        width:70%;
+        width:97%;
         margin: auto;
     }
-    
-    h3{
-      padding:30px;
-  }
+   
 
   h3:hover{
     colour: orangered;
@@ -43,7 +43,7 @@ input[type=text] {
 }
 input[type=text]:focus {
     width: 100%;
-}	
+}   
 
 
 row{

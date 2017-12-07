@@ -23,6 +23,7 @@ body{
 }
 #box_profileStatus{
 	width:100%;
+	margin-bottom: 20px;
 }
 #box_join{
 	width:100%;
@@ -45,7 +46,8 @@ body{
 #box_title{
 	background-color: #174469;
 	min-height: 0px;
-	padding: 5px;
+	padding: 1px;
+	filter:drop-shadow(0px 20px 20px black);
 }
 .mainbox_post{
 	width:90%;
@@ -57,9 +59,13 @@ body{
 	filter:drop-shadow(0px 20px 20px black);
 }
 #box_post_white{
-	height:150px;
+	filter:drop-shadow(0px 20px 20px black);
+	min-height:0px;
 	margin:35px;
-	background-color: #1a1a1a;
+	background-color: #262626;
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
+	padding:30px;
 }
 
 .mainbox_media{
@@ -73,7 +79,7 @@ body{
 	filter:drop-shadow(0px 20px 20px black);
 }
 #box_friend_profpic{
-	width:42.4px;
+	width:56px;
 	height:65px;
 	margin: 4px;
 	text-align: center;
@@ -87,16 +93,13 @@ body{
 
 /*FONT-------------------------------------------------------*/
 h3{
-	text-align: left;
-	padding: 15px;
+	text-align: left;S
 	font-family: calibri;
 }
 #p_username{
 	font-size: 20px;
 	font-family: calibri;
 	font-weight: bold;
-	padding-top: 24px;
-	padding-bottom: 0px;
 	text-align: center;
 }
 #p_status{
@@ -106,8 +109,6 @@ h3{
 }
 #p_join{
 	font-size: 9px;
-	padding-left: 15px;
-	float:right;
 	text-align: center;
 }
 #p_id{
@@ -128,6 +129,7 @@ h3{
 	font-family: calibri;
 	color: white;
 	margin:auto;
+	padding:3px;
 }
 #p_friend_name{
 	font-size: 7px;
@@ -142,9 +144,53 @@ h3{
 }
 
 #img_friend_profpic{
-	height: 53px;
+	width: 100%;
 }
 
 #img_smallIcon{
 	height:40px;
+}
+
+/*BUTTON*/
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#4b4b4b;
+	color:white;
+	border-radius:15px;
+	text-align:center;
+	filter:drop-shadow(0px 20px 20px black);
+}
+
+.float2{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:111px;
+	background-color:#4b4b4b;
+	color:white;
+	border-radius:15px;
+	text-align:center;
+	filter:drop-shadow(0px 20px 20px black);
+}
+
+.float3{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:182px;
+	background-color:#4b4b4b;
+	color:white;
+	border-radius:15px;
+	text-align:center;
+	filter:drop-shadow(0px 20px 20px black);
+}
+.my-float{
+	margin-top:22px;
+	filter:drop-shadow(0px 20px 20px black);
 }

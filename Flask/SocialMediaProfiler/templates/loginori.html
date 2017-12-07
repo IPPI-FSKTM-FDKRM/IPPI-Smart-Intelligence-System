@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <!-- Bootstrap core CSS -->
+        <link href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!--Content link-->
+	    <link rel="stylesheet" type = "text/css" href="{{ url_for('static',filename='css/login.css') }}"/>
+
+	    <title>Login</title>
+</head>
+
+<body background="{{ url_for('static',filename='img/kk.gif')}}">
+	<!-- <img src="{{ url_for('static',filename='img/kk.gif')}}" id="img_location_icon"/> -->
+	<div class="title">
+<h1>Login</h1>
+</div>
+<div class="imgcontainer">
+    <img src="{{ url_for('static',filename='img/logo.png')}}" alt="Avatar" class="avatar">
+  </div>
+
+
+  <!-- FORM -->
+<form action="/login" method="POST">
+{{ form.hidden_tag() }}
+  
+
+  <div class="container">
+      Username:
+        {{ form.username }}
+      Password:
+        {{ form.password }}
+
+      {{ form.remember }} Remember me
+
+    <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+      <p style="color:red;">{{ error }}</p>
+  </div>
+
+  <div class="container" >
+    <span class="psw">Forgot <a href="#">password?</a></span>
+  </div>
+</form>
+
+
+
+</body>
+
+</html>

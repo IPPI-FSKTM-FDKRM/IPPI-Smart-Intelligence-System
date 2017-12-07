@@ -22,7 +22,7 @@ body{
   font-family:verdana;
   background-color: #1a1a1a;
   padding: 20px;
-  padding-left: 30px;
+  padding-left: 42px;
   padding-top: 30px;
   margin-top: 30px;
   filter:drop-shadow(0px 20px 20px black);
@@ -190,19 +190,20 @@ h3{
   font-family: calibri;
 }
 #p_relative{
-  font-size: 13px;
+  font-size: 18px;
   color: white;
   font-weight: bold;
-  padding: 4px;
+  padding-top: 4px;
   font-family: calibri;
 }
 #p_relative_relation{
-  font-size: 11px;
+  font-size: 15px;
   font-weight: normal;
-  color: white;
+  color: gray;
   padding: 10px;
   padding-left: 0px;
   font-family: calibri;
+  margin-bottom: -1rem;
 }
 #p_title{
   text-align: center;
@@ -232,7 +233,7 @@ h3{
 #img_small_icon{
   height: 20px;
   float: left;
-  padding-right: 6px;
+  padding-right: 10px;
 }
 
 #img_relative_profpic{

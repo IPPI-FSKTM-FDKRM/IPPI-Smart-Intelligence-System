@@ -1,5 +1,10 @@
 
 /*BOX-------------------------------------------------------*/
+body{
+  background-color: #262626;
+  color:white;
+}
+
 .bodyn{
     top:101px;
     left:30px;
@@ -14,13 +19,13 @@
 }
 
 #box_fullname{
-	box-shadow: 10px 10px grey;
+	/*box-shadow: 10px 10px grey;*/
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
     width:95%;
     height:84px;
     font-family:verdana;
-    background-color: #d5d5c3;
+    background-color: #1a1a1a;
     padding: 20px;
     padding-left: 30px;
     padding-top: 30px;
@@ -28,10 +33,10 @@
     }
 
 #box_status,#box_website,#box_totalPost,#box_totalFollowers,#box_totalFollowing{
-	box-shadow: 10px 10px grey;
+	/*box-shadow: 10px 10px grey;*/
     width:95%;
     font-family:verdana;
-    background-color: #d5d5c3;
+    background-color: #1a1a1a;
     padding: 10px;
     padding-left: 30px;
     min-height: 10px;
@@ -41,14 +46,16 @@
 	margin-top:30px;
 	width:95%;
 	min-height:0px;
-	background-color: #d5d5c3;
+	background-color: #1a1a1a;
 	padding-bottom:28px;
 	margin: auto;
+	filter:drop-shadow(0px 20px 20px black);
 }
 #box_title{
-	background-color: #808080;
+	background-color: #514125;
 	min-height: 0px;
 	padding: 5px;
+	filter:drop-shadow(0px 20px 10px black);
 }
 #box_id_post{
 	margin:20px;
@@ -63,8 +70,11 @@
 	margin:20px;
 	margin-bottom: 50px;
 	width:322px;
-	background-color: white;
-
+	background-color: #262626;
+	filter:drop-shadow(0px 20px 20px black);
+	border-radius:5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 /*.mainbox_bigPost{
 top:490px;
@@ -103,6 +113,12 @@ position:absolute;
 	width:322px;
 	height: 322px;
 	background: yellow;
+}
+.mainbox_info{
+	background-color: #1a1a1a;
+	width:100%;
+	filter:drop-shadow(0px 20px 20px black);
+	margin-left;
 }
 
 
@@ -157,13 +173,15 @@ h3{
 	text-align: left;
 	margin-top:15px;
 	margin-left: 36px;
+	margin-right: 36px;
+	font-family: calibri;
 }
 #p_hashtag{
-	font-size: 18px;
+	font-size: 14px;
 	text-align: left;
 	margin-top:15px;
 	margin-left: 36px;
-	color: blue;
+	color: gray;
 }
 #p_bigPost_location{
 	font-size: 15px;
@@ -214,4 +232,48 @@ margin:auto;
 	display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+/*BUTTON*/
+.float{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:40px;
+  background-color:#4b4b4b;
+  color:white;
+  border-radius:15px;
+  text-align:center;
+  filter:drop-shadow(0px 20px 20px black);
+}
+
+.float2{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:111px;
+  background-color:#4b4b4b;
+  color:white;
+  border-radius:15px;
+  text-align:center;
+  filter:drop-shadow(0px 20px 20px black);
+}
+
+.float3{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:40px;
+  right:182px;
+  background-color:#4b4b4b;
+  color:white;
+  border-radius:15px;
+  text-align:center;
+  filter:drop-shadow(0px 20px 20px black);
+}
+.my-float{
+  margin-top:22px;
+  filter:drop-shadow(0px 20px 20px black);
 }

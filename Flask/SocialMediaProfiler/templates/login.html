@@ -2,43 +2,63 @@
 
 <html>
 <head>
-    <!-- Bootstrap core CSS -->
-        <link href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <!--Content link-->
-	    <link rel="stylesheet" type = "text/css" href="{{ url_for('static',filename='css/login.css') }}"/>
+  <!--Content link-->
+  <link rel="stylesheet" type = "text/css" href="{{ url_for('static',filename='css/login.css') }}"/>
 
-	    <title>Login</title>
+  <title>Login</title>
 </head>
-
-<body>
-<h1>Login</h1>
-
-<form action="/login" method="POST">
-{{ form.hidden_tag() }}
-  <div class="imgcontainer">
-    <img src="{{ url_for('static',filename='img/logo.png')}}" alt="Avatar" class="avatar">
-  </div>
-
-  <div class="container">
-      Username:
-        {{ form.username }}
-      Password:
-        {{ form.password }}
-
-      {{ form.remember }} Remember me
-
-    <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
-      <p style="color:red;">{{ error }}</p>
-  </div>
-
-  <div class="container" >
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
-</form>
+<body background="{{ url_for('static',filename='img/kk.gif')}}">
+	
+  <div class="kotakbesar">
+    <div class="kotakshade">
+    <div id="title">
+      <h1>Intelligent Profilling System</h1>
+    </div>
 
 
+    <div class="row">
+      <div class="col-md-12">
 
-</body>
+        
+        <!-- FORM -->
+        <form action="/login" method="POST">
+          {{ form.hidden_tag() }}
 
-</html>
+          <div class="imgcontainer">
+            <img src="{{ url_for('static',filename='img/logo.png')}}" alt="Avatar" class="avatar">
+          </div>
+
+
+          <div class="container">
+            <!-- <label><b>Username</b></label> -->
+            <!-- <input type="text" placeholder="Enter Username" name="uname" required> -->
+            Username:
+            {{ form.username }}
+            <!-- <label><b>Password</b></label> -->
+            <!-- <input type="password" placeholder="Enter Password" name="psw" required> -->
+            Password:
+            {{ form.password }}
+
+
+            <button type="submit">Login</button>
+            <p style="color:red;">{{ error }}</p>
+            <!-- <input type="checkbox" checked="checked"> --> 
+            <!-- </div> -->
+
+            <!-- <div class="container"> -->
+              <!-- <button type="button" class="cancelbtn">Cancel</button> -->
+              {{ form.remember }} Remember me
+              <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
+            </div>
+          </form>
+        </div>
+        </div> <!-- col-md-12 -->
+      </div>
+
+    </div>
+  </body>
+
+  </html>

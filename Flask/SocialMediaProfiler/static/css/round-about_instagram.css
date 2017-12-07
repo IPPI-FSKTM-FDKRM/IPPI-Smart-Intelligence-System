@@ -4,7 +4,7 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-round-about/blob/master/LICENSE)
  */
 
-body {
+ body {
     padding-top: 100px;
 }
 h3{
@@ -14,16 +14,16 @@ h3{
 @media (min-width: 992px) {
     body {
         padding-top: 100px;
-		width:60%;
-		margin: auto;
-		
+        width:97%;
+        margin: auto;
+        
     }
-	
-	h3{
-		padding:30px;
-	}
-	
-	input[type=text] {
+    
+    h3{
+      padding:30px;
+  }
+  
+  input[type=text] {
     width: 400px;
     box-sizing: border-box;
     border: 2px solid #ccc;
@@ -37,19 +37,19 @@ h3{
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 }
-    input[type=text]:focus {
+input[type=text]:focus {
     width: 100%;
 }	
 
-	
-	row{
-		padding-top:100px;
-	}
 
-    a:hover, a:active{
-        background-color: green;
-        color: white;
-    }
+row{
+  padding-top:100px;
+}
+
+a:hover, a:active{
+    filter:drop-shadow(0px 0px 15px white);
+    color: white;
+}
 
 
 }
