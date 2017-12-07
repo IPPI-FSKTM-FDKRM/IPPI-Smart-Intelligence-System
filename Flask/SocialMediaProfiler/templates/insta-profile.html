@@ -59,18 +59,20 @@
           </p>
         </div>
 
-        <!--Kotak WEBSITE-->
-        <div id="box_website" class="bodyn">
-          <p id="p_status">
-            <strong>Website : </strong>
-            {% if user.website %}
-            <br>
-            {{ user.website }}
-            {% else %}
-            N/A
-            {% endif %}
-          </p>
-        </div>
+
+    <!--Kotak WEBSITE-->
+    <div id="box_website" class="bodyn">
+      <p id="p_status">
+        <strong>Website : </strong>
+          {% if user.website %}
+              <br>
+              <a href="{{ user.website }}">{{ user.website }}</a>
+          {% else %}
+                N/A
+          {% endif %}
+      </p>
+    </div>
+
 
 
         <!--Kotak Total Post-->
@@ -96,6 +98,11 @@
       </div>
 
     </div>
+
+      <a href="{{ url_for('analysis', id = user.id) }}" disabled="True"><button> Analysis Page</button></a>
+
+  </div>
+
 
     <!--Kotak Post-->
     <div class="col-md-9">
@@ -130,6 +137,7 @@
                 {% else %}
                 <strong>{{ user.username }}</strong><br>
                 {% endif %}
+
                 <p id="p_hashtag">
                   {% if media.tags %}
                   {{ media.tags }}
@@ -142,6 +150,11 @@
           {% endfor %}
 
         </div>
+
+
+
+            {% endfor %}
+
       </div>
     </div>
 

@@ -3,31 +3,31 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <title>Relation Page</title>
+    <title>Relation Page</title>
 
-  <!-- Bootstrap core CSS -->
-  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
-  <link href="{{ url_for('static', filename='css/round-about_relation.css')}}" rel="stylesheet">
-  
-  <!-- Bootstrap Grid css -->
-  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap-grid.css')}}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/round-about_relation.css') }}" rel="stylesheet">
 
-  <!--Content link-->
-  <link href="{{ url_for('static', filename='css/relation.css')}}" rel="stylesheet">
+    <!-- Bootstrap Grid css -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap-grid.css') }}" rel="stylesheet">
+
+    <!--Content link-->
+    <link href="{{ url_for('static', filename='css/relation.css') }}" rel="stylesheet">
 
 
 </head>
 
 <body>
 
-  <!--************************************************************************************************* Navigation -->
+<!--************************************************************************************************* Navigation -->
 {% include "header.html" %}
 <!--************************************************************************************************* END NAVIGATION -->
 
@@ -35,126 +35,129 @@
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
 <script>
-  window.onscroll = function() {scrollFunction()};
-  function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      document.getElementById("myBtn").style.display = "block";
-    } else {
-      document.getElementById("myBtn").style.display = "none";
+    window.onscroll = function () {
+        scrollFunction()
+    };
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("myBtn").style.display = "block";
+        } else {
+            document.getElementById("myBtn").style.display = "none";
+        }
     }
-  }
-  function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  }
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
 </script>
 <!--************************************************************************************************* END BUTTON: TOP SCROLL -->
 
 
 <!--************************************************************************************************* BOX: MAIN CONTENT "kotakbesar"-->
 <div class="kotakbesar">
-  <!-- TITLE -->
-  <div id="title_fb">
-    <h1>RELATION FACEBOOK</h1>
-  </div>
-  <div class="row">
-
-    <!--************************************************************************************************* BOX: LEFT COLUMN: JUMP MENU "box_menuJump" -->
-    <div class="col-md-2">
-      <div id="box_menuJump">
-        <div id="btn-group">
-          <a class="button2" href="#box_dpFBa">DP Picture</a>
-          <a class="button2" href="#box_locationa">Location</a>
-          <a class="button2" href="#box_posta">Tagged Post</a>
-          <a class="button2" href="#box_postLikea">Liked Post</a>
-        </div>
-      </div>
+    <!-- TITLE -->
+    <div id="title_fb">
+        <h1>RELATION FACEBOOK</h1>
     </div>
-    <!--************************************************************************************************* END BOX: JUMP MENU "box_menuJump" -->
+    <div class="row">
 
-
-    <!--************************************************************************************************* BOX: MIDDLE COLUMN -->  
-    <div class="col-md-5">
-      <!--************************************************************************************************* BOX: FB DP RELATION --> 
-      <a name="box_dpFBa"></a>
-      <div id="box_dpFB">
-        <div class="row">
-          <div class="col-md-6">
-            <div id="box_dpFB_kecik"> <!--FB DP BOX (EACH)-->
-              <br>{{ username }}
-              <div class="haha">
-                            <a href="{{ url_for('facebookProfile', username = currentUserId) }}">
-                                <img src="https://graph.facebook.com/{{ currentUserId }}/picture?type=large"/></a>
+        <!--************************************************************************************************* BOX: LEFT COLUMN: JUMP MENU "box_menuJump" -->
+        <div class="col-md-2">
+            <div id="box_menuJump">
+                <div id="btn-group">
+                    <a class="button2" href="#box_dpFBa">DP Picture</a>
+                    <a class="button2" href="#box_locationa">Location</a>
+                    <a class="button2" href="#box_posta">Tagged Post</a>
+                    <a class="button2" href="#box_postLikea">Liked Post</a>
+                </div>
             </div>
-           </div>
-         </div>
-         <div class="col-md-6">
-          <div id="box_dpFB_kecik">
-            <br>{{ relationName }}
-            <div class="haha">
-                                            <a href="{{ url_for('facebookProfile', username = relationUser) }}">
-
-                                                <img src="https://graph.facebook.com/{{ relationUser }}/picture?type=large"/></a><!--PUT DP FB HERE-->
-            </div>
-          </div>
         </div>
-      </div>
+        <!--************************************************************************************************* END BOX: JUMP MENU "box_menuJump" -->
+
+
+        <!--************************************************************************************************* BOX: MIDDLE COLUMN -->
+        <div class="col-md-9">
+            <!--************************************************************************************************* BOX: FB DP RELATION -->
+            <a name="box_dpFBa"></a>
+            <div id="box_dpFB">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div id="box_dpFB_kecik"> <!--FB DP BOX (EACH)-->
+                            <br>{{ username }}
+                            <div class="haha">
+                                <a href="{{ url_for('facebookProfile', username = currentUserId) }}">
+                                    <img src="https://graph.facebook.com/{{ currentUserId }}/picture?type=large"/></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="box_dpFB_kecik">
+                            <br>{{ relationName }}
+                            <div class="haha">
+                                <a href="{{ url_for('facebookProfile', username = relationUser) }}">
+
+                                    <img src="https://graph.facebook.com/{{ relationUser }}/picture?type=large"/></a>
+                                <!--PUT DP FB HERE-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--************************************************************************************************* BOX: LOCATION -->
+
+            <a name="box_locationa"></a>
+            <hr>
+            <div id="box_location">
+                <h4>Tagged Location</h4>
+                {% for i in relationLocation %}
+                    <li>{{ i["address"] }}</li>
+                {% endfor %}
+            </div>
+            <!--************************************************************************************************* END BOX: LOCATION -->
+            <hr>
+            <!--************************************************************************************************* BOX: RIGHT COLUMN: POST TAGGED-->
+            <div class="col-md-9">
+                <!-- POST -->
+                <a name="box_posta"></a>
+                <div id="box_post">
+                    <div id="box_eachPost">
+                        <h4>Comment on Post</h4>
+            <img src="data:image/png;base64, {{ posGraph }}">
+                        <h5>No of comment on {{ username }} post : {{ comment|length }}</h5>
+                        {% for item in comment %}
+                            <br>{{ item["message"] }}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <a name="box_postLikea"></a>
+                <hr>
+
+                <!--************************************************************************************************* BOX: RIGHT COLUMN: POST LIKED -->
+                <!-- LIKED POST -->
+                <div id="box_postLike">
+                    <div id="box_eachPost">
+                        <h4>LIKED POST</h4>
+                        <h5>No of Likes on {{ username }} post : {{ like|length }}</h5>
+
+                        {% for post in like %}
+                            {% if 'message' in post %}
+                                <li>{{ post['message'] }}</li>
+                            {% elif 'story' in post %}
+                                <li>{{ post['story'] }}</li>
+                            {% endif %}
+
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
     </div>
-
-    <!--************************************************************************************************* BOX: LOCATION -->
-
-    <a name="box_locationa"></a>
-    <hr>
-    <div id="box_location">
-            <h4>Tagged Location</h4>
-        {% for i in relationLocation %}
-            <li>{{ i["address"] }}</li>
-        {% endfor %}
-    </div>
-    <!--************************************************************************************************* END BOX: LOCATION -->
-    <hr>
-  </div>
-  <!--************************************************************************************************* BOX: RIGHT COLUMN: POST TAGGED-->
-  <div class="col-md-5">
-    <!-- POST -->
-    <a name="box_posta"></a>
-    <div id="box_post">
-      <div id="box_eachPost">
-        <h3>Comment on Post</h3>
-            <h4>No of comment on {{ username }} post : {{ comment|length }}</h4>
-          {% for item in comment %}
-            <br>{{ item["message"]}}
-        {% endfor %}
-      </div>
-    </div>
-
-    <a name="box_postLikea"></a>
-    <hr>
-
-    <!--************************************************************************************************* BOX: RIGHT COLUMN: POST LIKED -->
-    <!-- LIKED POST -->
-    <div id="box_postLike">
-      <div id="box_eachPost">
-        <h3>LIKED POST</h3>
-      <h4>No of Likes on {{ username }} post : {{ like|length }}</h4>
-
-    {% for post in like %}
-         {% if 'message' in post %}
-             <li>{{ post['message'] }}</li>
-         {% elif 'story' in post %}
-             <li>{{ post['story'] }}</li>
-         {% endif %}
-
-    {% endfor %}
-      </div>
-    </div>
-
-  </div>
-
-
-
-
-</div>
 </div>
 
 

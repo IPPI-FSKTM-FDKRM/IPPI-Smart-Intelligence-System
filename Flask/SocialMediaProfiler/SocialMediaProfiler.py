@@ -2,7 +2,7 @@ from celery import Celery
 import Facebook , Instagram, Twitter
 import os
 import pytz
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect, flash
 from flask_bootstrap import Bootstrap
 from flask_googlemaps import GoogleMaps
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -11,7 +11,7 @@ from instagram.client import InstagramAPI
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from config import *
-from forms import LoginForm, RegisterForm
+from forms import *
 
 from flask import render_template, jsonify, request
 __location__ = os.path.realpath(
@@ -28,6 +28,13 @@ GoogleMaps(app)
 # "C:\Users\user\Project\IPPI-Smart-Intelligence-System\Flask\SocialMediaProfiler\database.db"
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\nurfirdaus\\Documents\\GitHub\\IPPI-Smart-Intelligence-System\\Flask\\SocialMediaProfiler\\database.db' #windows
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\user\\Project\\IPPI-Smart-Intelligence-System\\Flask\\SocialMediaProfiler\\database.db' #windows
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\user\\Project\\IPPI-Smart-Intelligence-System\\Flask\\SocialMediaProfiler\\database.db' #windows
+
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mnt/c/Users/User/Documents/GitHub/IPPI-Smart-Intelligence-System/Flask/SocialMediaProfiler/database.db' #linux raam
+
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\User\\PycharmProjects\\untitled1\\database.db' #windows #raam
+
+
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
 login_manager = LoginManager()
@@ -53,6 +60,8 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(15), unique=True)
     email = db.Column(db.String(50), unique=True)
     password = db.Column(db.String(80))
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(50))
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -61,8 +70,11 @@ def load_user(user_id):
 @app.route("/")
 @login_required
 def index():
-    user = current_user.username
-    return render_template("Home.html", user = user)
+    first = current_user.first_name
+    last = current_user.last_name
+    email = current_user.email
+    username = current_user.username
+    return render_template("Home.html", first = first, last = last, email = email, username = username)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -84,17 +96,34 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 @login_required
 def register():
-    form = RegisterForm()
+    error = ''
+    if User.query.filter_by(username='admin').first():
 
-    if form.validate_on_submit():
-        hash_password = generate_password_hash(form.password.data, method='sha256')
-        new_user = User(username=form.username.data, email=form.email.data, password=hash_password)
-        db.session.add(new_user)
-        db.session.commit()
+        form = RegisterForm()
 
-        return '<h1> New User has been created!</h1>'
+        if form.validate_on_submit():
+            hash_password = generate_password_hash(form.password.data, method='sha256')
+            if User.query.filter_by(username=form.username.data).first():
+                error = 'Username has been taken'
+                return render_template("register.html", form=form, error=error)
+            elif User.query.filter_by(email=form.email.data).first():
+                error = 'Email has been used'
+                return render_template("register.html", form=form, error=error)
+            else:
+                new_user = User(username=form.username.data, email=form.email.data, password=hash_password, first_name=form.first_name.data, last_name=form.last_name.data)
+                db.session.add(new_user)
+                db.session.commit()
 
-    return render_template("register.html", form = form)
+                message = 'New User has been created!'
+                return render_template("success_register.html", message = message)
+
+
+        return render_template("register.html", form = form)
+
+    else:
+
+        return render_template("404.html")
+
 
 @app.route('/logout')
 @login_required
@@ -106,3 +135,30 @@ def logout():
 @login_required
 def searchGeneral():
     return render_template("searchGeneral.html")
+
+@app.route('/userProfile')
+@login_required
+def userProfile():
+    first = current_user.first_name
+    last = current_user.last_name
+    email = current_user.email
+    username = current_user.username
+
+    return render_template("userProfile.html", first=first, last=last, email=email, username=username)
+
+@app.route('/changePassword', methods=['GET', 'POST'])
+@login_required
+def changePassword():
+    form = ChangePassword()
+
+    if form.validate_on_submit():
+        hash_password = generate_password_hash(form.password1.data, method='sha256')
+        user = current_user
+        user = current_user
+        user.password = hash_password
+        db.session.add(user)
+        db.session.commit()
+        flash('Password has been updated!', 'success')
+        return redirect(url_for('userProfile'))
+
+    return render_template('password_change.html', form=form)

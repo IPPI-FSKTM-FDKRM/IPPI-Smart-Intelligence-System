@@ -24,6 +24,8 @@
 
     <!-- Page Content -->
 
+
+    <a href="{{ url_for('report', id=userID) }}"><button>Report</button></a>
     <div class="kotakbesar">
         <div class="row">
 
@@ -188,6 +190,7 @@
                type: 'POST',
                url: '/facebook/refreshAnalysis',
                success: function(resp){
+
                 topFriend(resp)
 
             }
@@ -200,16 +203,15 @@
                type: 'POST',
                url: '/facebook/nextAnalysis',
                success: function(resp){
+
                 topFriend(resp)
-
             }
-
         })
        }
 
        function topFriend(resp){
         document.getElementById("topFriends").innerHTML = resp.LikesComments;
-    }
+        }
 
 </script>
 

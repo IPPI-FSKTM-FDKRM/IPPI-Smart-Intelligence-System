@@ -7,6 +7,7 @@ import StringIO
 import requests
 
 from datetime import datetime
+from Sentiment_Analysis import nBayesTesting
 from flask_login import  login_required
 from flask import render_template, jsonify, request
 from flask_googlemaps import Map
@@ -44,9 +45,11 @@ def facebookAnalysis():
     location = fb.getLocationPost()
     topic = fb.getTopic()
     posnegneu = fb.getPostNegNeu()
-    topicGraph = getTopicChart()
-    timeGraph = getTimeChart()
-    posnegneuGraph = getPosNegNeuChart()
+    topicGraph = getTopicChart("white")
+    hourGraph = getHourChart(postHour)
+    monthGraph = getMonthChart(postMonth, "white")
+    dayGraph = getDayChart(postDay)
+    posnegneuGraph = getPosNegNeuChart(fb.getPostNegNeu(),"white")
     address = fb.getLocationAddress()
 
     saveCache(fb.getUsername())
@@ -64,10 +67,10 @@ def facebookAnalysis():
                 tagUser = tagUser+"<img src = 'https://graph.facebook.com/"+tag+"/picture?type=small' style = 'width:30px; height:30px' >"
             str = loc[1]+"<a href='https://facebook.com/"+loc[0]+"'><br><div al>"+tagUser+"</div></a>"
             print str
-            markers.insert(0, {             'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-                                            'lat': loc[2],
-                                            'lng': loc[3],
-                                            'infobox': str })
+            markers.insert(0, {'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                                'lat': loc[2],
+                                'lng': loc[3],
+                                'infobox': str })
         sndmap = Map(
             style="height:480px;width:950px;margin:0;",
             identifier="cluster-map",
@@ -89,7 +92,9 @@ def facebookAnalysis():
         )
     return render_template("facebook_Analysis.html", address=address,
                            posnegneuGraph=posnegneuGraph,
-                           timeGraph=timeGraph ,
+                           dayGraph=dayGraph,
+                           monthGraph=monthGraph,
+                           hourGraph=hourGraph,
                            topicGraph = topicGraph,
                            posnegneu=posnegneu,
                            topic=topic,
@@ -98,27 +103,46 @@ def facebookAnalysis():
                            postDay=postDay,
                            sndmap=sndmap)
 
-def getPosNegNeuChart():
-    fig = Visualization.pieChart(fb.getPostNegNeu())
+def getPosNegNeuChart(dict , color):
+    fig = Visualization.pieChartSentiment(dict, color)
     img = StringIO.StringIO()
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)
     posNegNeu_graph = base64.b64encode(img.getvalue())
     return posNegNeu_graph
 
-def getTopicChart():
-    fig = Visualization.pieChart(fb.getTopic())
+def getTopicChart(color):
+    fig = Visualization.pieChart(fb.getTopic(), color)
     img = StringIO.StringIO()
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)
     topic_graph = base64.b64encode(img.getvalue())
     return topic_graph
 
-def getTimeChart():
-    hour, Month, Day  = fb.getTimePost()
-    fig = Visualization.barChart(hour,"time(Hour)","Number of post")
+def getMonthChart(Month,color):
+    figMonth = Visualization.barChartTime(Month, "time(month)", "Number of post", color, 1,12)
     img = StringIO.StringIO()
-    fig.savefig(img, format='png', transparent=True)
+    figMonth.savefig(img, format='png', transparent= True)
+    img.seek(0)
+    time_graph = base64.b64encode(img.getvalue())
+    return time_graph
+
+
+
+def getDayChart(Day):
+    figDay = Visualization.barChartTime(Day,"time(Day)", "Number of Post", "white",0,6)
+    img = StringIO.StringIO()
+    figDay.savefig(img, format='png', transparent=True)
+    img.seek(0)
+    time_graph = base64.b64encode(img.getvalue())
+    return time_graph
+
+def getHourChart(hour):
+    figHour = Visualization.barChartTime(hour,"time(Hour)","Number of post","white",1,24)
+    img = StringIO.StringIO()
+
+
+    figHour.savefig(img, format='png', transparent=True)
     img.seek(0)
     time_graph = base64.b64encode(img.getvalue())
     return time_graph
@@ -132,6 +156,7 @@ def facebookRelation(id,currentId):
     relationProfile = fb.getProfileInstance(id)
     name = fb.getProfile(currentId)['name']
     relationLocation = fb.getLocationRelatioin()
+    posGraph = getRelationChart(id)
 
     # relationLocation = {u'1661021870583831': [{'lat': 3.13983145, 'lng': 101.64764368333, 'post': {u'created_time': u'2017-11-08T11:27:17+0000', u'message': u'Main lawn bowl bersama Raam Kanaisan Irfan Kamaruddin dan Hazim Kamaruzzaman\n\n#FYPpurpose', u'story': u'Khairul Albertado Danial is with Raam Kanaisan and 2 others at Malaysian Lawn Bowls Federation.', u'id': u'1362815530452737_1539814052752883'}}], u'1898030863542173': [{'lat': 3.120446, 'lng': 101.654622, 'post': {u'created_time': u'2017-11-24T15:47:36+0000', u'message': u'Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan', u'story': u'Khairul Albertado Danial is at Kolej Kediaman Kelapan,Universiti Malaya.', u'id': u'1362815530452737_1554897484577873'}}], u'10208163758610976': [{'lat': 3.120446, 'lng': 101.654622, 'post': {u'created_time': u'2017-11-24T15:47:36+0000', u'message': u'Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan', u'story': u'Khairul Albertado Danial is at Kolej Kediaman Kelapan,Universiti Malaya.', u'id': u'1362815530452737_1554897484577873'}}], u'10214804744656245': [{'lat': 3.120446, 'lng': 101.654622, 'post': {u'created_time': u'2017-11-24T15:47:36+0000', u'message': u'Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan', u'story': u'Khairul Albertado Danial is at Kolej Kediaman Kelapan,Universiti Malaya.', u'id': u'1362815530452737_1554897484577873'}}, {'lat': 3.13983145, 'lng': 101.64764368333, 'post': {u'created_time': u'2017-11-08T11:27:17+0000', u'message': u'Main lawn bowl bersama Raam Kanaisan Irfan Kamaruddin dan Hazim Kamaruzzaman\n\n#FYPpurpose', u'story': u'Khairul Albertado Danial is with Raam Kanaisan and 2 others at Malaysian Lawn Bowls Federation.', u'id': u'1362815530452737_1539814052752883'}}], u'1501641643217956': [{'lat': 3.120446, 'lng': 101.654622, 'post': {u'created_time': u'2017-11-24T15:47:36+0000', u'message': u'Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan', u'story': u'Khairul Albertado Danial is at Kolej Kediaman Kelapan,Universiti Malaya.', u'id': u'1362815530452737_1554897484577873'}}], u'1306146266088657': [{'lat': 3.13983145, 'lng': 101.64764368333, 'post': {u'created_time': u'2017-11-08T11:27:17+0000', u'message': u'Main lawn bowl bersama Raam Kanaisan Irfan Kamaruddin dan Hazim Kamaruzzaman\n\n#FYPpurpose', u'story': u'Khairul Albertado Danial is with Raam Kanaisan and 2 others at Malaysian Lawn Bowls Federation.', u'id': u'1362815530452737_1539814052752883'}}]}
     # cache_like = [{u'created_time': u'2017-10-16T12:44:58+0000', u'message': u'Hazim Kamaruzzaman Yeah manager', u'story': u"Khairul Albertado Danial shared Jawatankuasa Pelajar Luar Kampus Universiti Malaya's post.", u'id': u'1362815530452737_1519290884805200'}]
@@ -148,6 +173,7 @@ def facebookRelation(id,currentId):
     return render_template("facebook_Relation.html",
                            currentUserId = currentId,
                            username = name,
+                           posGraph = posGraph,
                            relationUser =id,
                            relationName = relationProfile['name'],
                            relationLocation = relationLocation,
@@ -189,6 +215,29 @@ def facebookProfile(username):
                            , name = name
                            , relationshipStatus = relationshipStatus
                            , post=post)
+@app.route('/facebook/report/<id>')
+@login_required
+@celery.task
+def report(id):
+
+        profile = fb.getProfile(id)
+        name= profile['name']
+        address = fb.getLocationAddress()
+        post = fb.getPost()
+        hour, month,day = fb.getTimePost()
+        timeGraph = getMonthChart(month,"black")
+        topicGraph = getTopicChart("black")
+        posnegGraph = getPosNegNeuChart("black")
+
+        
+        return render_template('facebookReport.html',
+                               timeGraph=timeGraph,
+                               topicGraph=topicGraph,
+                               posnegGraph = posnegGraph,
+                               address=address,
+                               post = post['data'],
+                               userID = id,
+                               name=name)
 
 @app.route('/facebook/nextAnalysis', methods = ['POST'])
 @login_required
@@ -199,10 +248,8 @@ def getNextAnalysis():
     if "paging" in post :
         reqData = requests.get(post['paging']['next'])
         postData = reqData.json()
-        like , comment , location =fb.get_post_like_comment_location(fb.loadCache(fb.getUsername()),fb.getGraph() ,postData)
-
+        like , comment , location =fb.get_post_like_comment_location(True,fb.getGraph() ,postData)
         saveCache(fb.getUsername())
-
         return jsonify({'LikesComments': render_template('facebook_TopFriends.html', currentId=fb.getUsername(),
                                                          likes=like, comments=comment)})
 
@@ -224,8 +271,7 @@ def getAnalysis():
 @login_required
 @celery.task
 def refreshAnalysis():
-    like, comment, location = fb.get_post_like_comment_location(False, fb.getGraph(),
-                                                                fb.Post())
+    like, comment, location = fb.get_post_like_comment_location(False, fb.getGraph(),fb.Post())
     return jsonify({'LikesComments': render_template('facebook_TopFriends.html', likes=like, comments=comment)})
 
 def saveCache(id):
@@ -249,3 +295,22 @@ def saveCache(id):
     print filePathNameWExt
     with open(filePathNameWExt, 'w') as fp:
         json.dump(data, fp)
+
+
+
+def getRelationChart(id):
+    tempPosNeg = {}
+    cacheComments , cacheLikes = fb.getCacheCommentsAndLikes()
+
+    if id in cacheComments:
+        for i in cacheComments[id]:
+            temp = nBayesTesting.getListValueString(i['message'])
+            if temp not in tempPosNeg:
+                tempPosNeg[temp] = [i]
+            else:
+                tempPosNeg[temp].append(i)
+
+    return getPosNegNeuChart(tempPosNeg,"white")
+
+
+

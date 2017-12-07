@@ -38,12 +38,14 @@ class Facebook():
     global cache
     global locationRelation
     global address
+    global posnegneu
 
+    posnegneu = {}
     address = {1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[],10:[],11:[],12:[]}
     day = {0:[],1:[],2:[],3:[],4:[],5:[],6:[]}
     hour = {}
     month = {1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[],10:[],11:[],12:[]}
-    topic= {"politic":[], "sports":[], "travel":[], "education":[],"technology":[], "spending":[]}
+    topic= {}
     locationPost = []
     locationRelation = {}
     current_username = ""
@@ -67,7 +69,6 @@ class Facebook():
 
         if os.path.isfile(filePathNameWExt):
             with open(filePathNameWExt) as fp:
-                print "ada? ke takde?"
                 global cache_comments
                 global cache_likes
                 global location
@@ -113,12 +114,12 @@ class Facebook():
         global cache
         global locationRelation
         locationRelation = {}
-
-        day = {}
+        address = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 12: []}
+        day = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: []}
         hour = {}
-        month = {}
-        topic = {"politic": [], "sports": [], "travel": [], "education": [], "technology": [], "spending": []}
-        posnegneu = {"positive":[], "negative":[], "neutral":[]}
+        month = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 12: []}
+        topic = {}
+        posnegneu = {}
         locationPost = []
         self.cache = False
         amount_likes = {}
@@ -168,7 +169,6 @@ class Facebook():
 
     @celery.task(bind=True)
     def get_post_like_comment_location(self, cacheNow, graph, post):
-        print "adakah cache?", cacheNow
         if not cacheNow:
             cache_com = {}
             cache_like = {}
@@ -176,6 +176,7 @@ class Facebook():
             local_timezone = tzlocal.get_localzone()  # get pytz tzinfo
 
             for post in post['data']:
+
                 utc = datetime.strptime(post['created_time'][0:16], '%Y-%m-%dT%H:%M')
                 date = utc.replace(tzinfo=pytz.utc).astimezone(local_timezone)
 
@@ -203,13 +204,19 @@ class Facebook():
                     print post['message']
                     postTopic = TopicSentiment.getArrayFromString(post['message'])
 
-                    if postTopic:
+                    print topic
+
+                    if postTopic not in topic:
+                        topic[postTopic] = [post]
+                    else:
                         if post not in topic[postTopic]:
                             topic[postTopic].append(post)
 
                     for i in nBayesTesting.getListValue([post['message']]):
-                        posnegneu[i].append(post)
-
+                        if i not in posnegneu:
+                            posnegneu[i] = [post]
+                        else:
+                            posnegneu[i].append(post)
 
                 if 'place' in place:
                     tagUser = []
@@ -227,7 +234,11 @@ class Facebook():
 
 
                     locationAddress = ""+place['place']['name']+" , "+street+city+country
-                    address[date.month].append(locationAddress)
+
+                    if date.month not in address:
+                        address[date.month] = [locationAddress]
+                    else:
+                        address[date.month].append(locationAddress)
 
                     if 'message_tags' in tag:
                         for i in tag['message_tags']:
@@ -276,8 +287,6 @@ class Facebook():
             return amount_likes['top'], amount_comment['top'], location
 
         else:
-            print "got something here"
-
             return [], [], None
 
     def getLocationAddress(self):
@@ -344,6 +353,9 @@ class Facebook():
 
     def Post(self):
         self.post = self.graph.get_connections(self.object, 'posts')
+        return self.post
+
+    def getPost(self):
         return self.post
 
     def taggedPost(self):

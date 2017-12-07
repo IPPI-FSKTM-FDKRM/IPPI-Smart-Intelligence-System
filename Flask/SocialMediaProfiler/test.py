@@ -4,7 +4,7 @@ import facebook
 import Visualization
 from Sentiment_Analysis import nBayesTesting
 from datetime import datetime
-import Flask.FacebookModule.TopicSentiment
+import TopicSentiment
 import pytz    # $ pip install pytz
 import tzlocal # $ pip install tzlocal
 import json
@@ -12,10 +12,12 @@ import io, os
 
 
 class tahi():
+
     dir_path = os.path.dirname(os.path.realpath(__file__))
 
     token = 'EAAFyPKV2cOIBANz6EDcSV0CJAoKPt1YCeYGaWF5Tl6FLEmbELopL4XLUp5GZCS2OmwI1zNaa60D5MngsUGW4SZByLZB7w86wyZAZCR50ZAuGZC3dXZAZCLLZCAn5BDzj2UxkP1nlhZCvSmx9LAeZA3fHETSmAJIFZBZCSmooUZD'
     graph =  facebook.GraphAPI(access_token=token,version="2.10")
+
 
     tag = {u'id': u'1362815530452737_1551861968214758', u'message_tags': [
         {u'length': 16, u'offset': 0, u'type': u'user', u'id': u'1661021870583831', u'name': u'Irfan Kamaruddin'},
@@ -61,7 +63,7 @@ class tahi():
         print Visualization.pieChart(data)
 
     def testPosNeg(self):
-        string = ['Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan']
+        string = ['Fighting till the end. #finalWeek']
         print nBayesTesting.getListValue(string)
 
     def testTopic(self):
@@ -72,8 +74,6 @@ class tahi():
         if 'message_tags' in self.tag:
             for i in self.tag['message_tags']:
                 print i['name']
-
-
 
     def decHour(self):
 
@@ -124,6 +124,7 @@ class tahi():
 if __name__ == "__main__":
     x= tahi()
     # x.tagUser()
+
     # x.testChart()
     x.replaceText()
     # filename = "1362815530452737"
@@ -137,3 +138,4 @@ if __name__ == "__main__":
     #
     # if not x.readFromJSON(filename):
     #     x.writeToJSONFile(filename, data)
+

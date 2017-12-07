@@ -37,19 +37,30 @@
         <div class="col-md-6">
             
 
+
             <form action="/register" method="POST">
                 {{ form.hidden_tag() }}
 
-                <div class="container">
-                  Email:
-                  {{ form.email }}
-                  Username:
-                  {{ form.username }}
-                  Password:
-                  {{ form.password }}
+  <div class="container">
+      First Name:
+        {{ form.first_name }}
+      Last Name:
+        {{ form.last_name }}
+      Email:
+        {{ form.email }}
+      Username:
+        {{ form.username }}
+      Password:
+        {{ form.password }}
 
 
-                  <button type="submit">Register</button>
+
+
+    <button type="submit" class="btn btn-lg btn-primary btn-block">Register</button>
+      <p style="color:red;">{{ error }}</p>
+
+
+
 
               </div>
 
