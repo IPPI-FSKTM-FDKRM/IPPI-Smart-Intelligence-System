@@ -99,6 +99,10 @@ position:absolute;
 #box_friend_name{
 	text-align: center;
 }
+
+#box_dp{
+	filter:drop-shadow(0px 20px 20px black);
+}
 .mainbox_map{
 	top:109px;
 	left:987px;

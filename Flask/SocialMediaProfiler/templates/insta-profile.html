@@ -98,10 +98,7 @@
       </div>
 
     </div>
-
-      <a href="{{ url_for('analysis', id = user.id) }}" disabled="True"><button> Analysis Page</button></a>
-
-  </div>
+  
 
 
     <!--Kotak Post-->
@@ -151,13 +148,9 @@
 
         </div>
 
-
-
-            {% endfor %}
-
       </div>
     </div>
-
+</div>
 
   </div>
 </div>
@@ -189,12 +182,12 @@
   }
 </script>
 
-<a href="{{ url_for('facebookAnalysis', username=me) }}" disabled="True" class="float2">
-<i class="fa fa-file my-float"></i>
+<a href="{{ url_for('analysis') }}" disabled="True" class="float2">
+<i class="fa fa-bar-chart my-float"></i>
 </a>
 
 <a href="#" onclick="refresh_data()" class="float3">
-<i class="fa fa-refresh my-float"></i>
+<i class="fa fa-file my-float"></i>
 </a>
 
 </body>

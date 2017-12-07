@@ -25,7 +25,7 @@
     <!-- Page Content -->
 
 
-    <a href="{{ url_for('report', id=userID) }}"><button>Report</button></a>
+    <!-- <a href="{{ url_for('report', id=userID) }}"><button>Report</button></a> -->
     <div class="kotakbesar">
         <div class="row">
 
@@ -237,11 +237,11 @@
 </script>
 
 <a href="{{ url_for('facebookAnalysis', username=me) }}" disabled="True" class="float2">
-<i class="fa fa-file my-float"></i>
+<i class="fa fa-bar-chart my-float"></i>
 </a>
 
-<a href="#" onclick="refresh_data()" class="float3">
-<i class="fa fa-refresh my-float"></i>
+<a href="{{ url_for('report', id=userID) }}" onclick="refresh_data()" class="float3">
+<i class="fa fa-file my-float"></i>
 </a>
 
 </body>

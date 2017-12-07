@@ -19,52 +19,45 @@
 	<!--Content link-->
 	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename = 'css/twitter2.css') }}" />
 	<link rel="stylesheet" href="../static/css/twitter2.css">
-	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 {% include "header.html" %}
 
 <body>
 
-<!-- Page Content -->
+  <!-- Page Content -->
 
-<div class="kotakbesar">
- <div class="row">
-  <div class="col-md-3">
+  <div class="kotakbesar">
+   <div class="row">
+    <div class="col-md-3">
 
-    <!--Kotak Profile-->
-    <div class="bodyn">
-      <div class="row">
-        <!-- KOTAK GAMBAR DP -->
-        <!-- <div class="col-md-6"> -->
-          <div id="box_profilePicture">
+      <!--Kotak Profile-->
+      <div class="bodyn">
+        <div class="row">
+          <!-- KOTAK GAMBAR DP -->
+          <!-- <div class="col-md-6"> -->
+            <div id="box_profilePicture">
              <img src={{ userImg }} id="img_profpic"/>
 
-            
-          </div>
-        <!-- </div> -->
 
-        <!-- KOTAK INFO PROFILE -->
-        <!-- <div class="col-md-6"> -->
-          <!-- STATUS -->
-          <div id="box_profileStatus">
-            <p id="p_username">@{{ user["screen_name"] }}</p>
-            <p id="p_status">{{ user["description"] }}</p>
-          </div>
-          <!-- JOINED -->
-          <div id="box_join">
-            <!-- <img src="{{url_for('static', filename='img/gfx_calendar_icon.png') }}" id="img_smallIcon"/> -->
-            <p id="p_join">Joined <br>{{ getCreateTime }}</p>
-          </div>
-          <!-- ID -->
-          <div id="box_ID">
+           </div>
+           <!-- </div> -->
 
-            <p id="p_id">{{ user["id"] }}</p>
-        </div> -->
-        <!-- </div> -->
-    </div>
+           <!-- KOTAK INFO PROFILE -->
+           <!-- <div class="col-md-6"> -->
+            <!-- STATUS -->
+            <div id="box_profileStatus">
+              <br>
+              <p id="p_id">{{ user["name"] }}</p>
+              <p id="p_username">@{{ user["screen_name"] }}</p>
+              <p id="p_status">{{ user["description"] }}</p>
+              <p id="p_join">Joined <br>{{ getCreateTime }}</p>
+            </div>
+          </div>
+        </div>
 
-    <!-- KOTAK FOLLOWER & FOLLOWING -->
+        <!-- KOTAK FOLLOWER & FOLLOWING -->
         <!-- FOLLOWING -->
         <div class="box_ff">
 
@@ -74,69 +67,100 @@
           <div id="box_following">
             {% for x in range(0,15) %}
             <div id="box_friend_profpic">
-                <a href="{{ url_for('twitterProfile', username = followingName[x]) }}"> <img src={{ followingImgURL[x] }} id="img_friend_profpic"/> </a>
+              <a href="{{ url_for('twitterProfile', username = followingName[x]) }}"> <img src={{ followingImgURL[x] }} id="img_friend_profpic"/> </a>
               <p id="p_friend_name">@{{ followingName[x] }}</p>
             </div>
             {% endfor %}
           </div>
 
           <!-- FOLLOWER -->
-            <div id="box_title">
-              <p id="p_ff">Followers <br> {{followerCount}}</p>
+          <div id="box_title">
+            <p id="p_ff">Followers <br> {{followerCount}}</p>
+          </div>
+          <div id="box_follower">
+            {% for x in range(0,15) %}
+            <div id="box_friend_profpic">
+              <a href="{{ url_for('twitterProfile', username = followerName[x]) }}"><img src={{ followerImgURL[x] }} id="img_friend_profpic"/> </a>
+              <p id="p_friend_name">@{{followerName[x]}}</p>
             </div>
-            <div id="box_follower">
-              {% for x in range(0,15) %}
-              <div id="box_friend_profpic">
-                  <a href="{{ url_for('twitterProfile', username = followerName[x]) }}"><img src={{ followerImgURL[x] }} id="img_friend_profpic"/> </a>
-                <p id="p_friend_name">@{{followerName[x]}}</p>
-              </div>
-              {% endfor %}
-            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+      </div> <!-- CLOSING col-md-3 -->
+
+      <div class="col-md-6">
+
+        <!--Kotak Recent Tweet-->
+        <div class="mainbox_post">
+          <div id="box_title">
+            <p id="p_title">Recent Tweets</p>
+          </div>
+          {% for x in range (0,(getTweetList|length)) %}
+          <div id="box_post_white">
+            {{getTweetList[x]}}
+            <br><br>
+            <p style="font-size: 12px; float:left;">{{getTweetSource[x]}}</p>
+            <p style="font-size: 12px; float:right;">Post: {{getTweetTime[x]}}</p>
+
+
+
           </div>
 
-          </div> <!-- CLOSING col-md-3 -->
 
-          <div class="col-md-6">
+          {% endfor %}
+        </div>
+      </div> <!--close col-md-6 -->
 
-            <!--Kotak Recent Tweet-->
-            <div class="mainbox_post">
-              <div id="box_title">
-                <p id="p_title">Recent Tweets</p>
-              </div>
-              {% for x in range (0,(getTweetList|length)) %}
-              <div id="box_post_white">
-                <br>{{getTweetSource[x]}}
-                <br>Post: {{getTweetTime[x]}}
-                <br>{{getTweetList[x]}}
-                <hr>
+      <div class="col-md-3">
+        <!--Kotak Friends-->
+        <div class="mainbox_media">
 
-              </div>
-              
+          <div id="box_title">
+            <p id="p_title">Media</p>
+          </div>
+        </div>
+      </div><!--close col-md-3 -->
 
-              {% endfor %}
-            </div>
-          </div> <!--close col-md-6 -->
+    </div> <!-- CLOSING row -->
 
-          <div class="col-md-3">
-            <!--Kotak Friends-->
-            <div class="mainbox_media">
+  </div> <!-- CLOSING kotak_besar -->
 
-              <div id="box_title">
-                <p id="p_title">Media</p>
-              </div>
-            </div>
-          </div><!--close col-md-3 -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/popper/popper.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-        </div> <!-- CLOSING row -->
 
-      </div> <!-- CLOSING kotak_besar -->
+  <!-- FLOATINGBUTTON -->
+  <a href="#" onclick="myFunction()" class="float">
+    <i class="fa fa-arrow-up my-float"></i>
+  </a>
 
-      <!-- Bootstrap core JavaScript -->
-      <script src="vendor/jquery/jquery.min.js"></script>
-      <script src="vendor/popper/popper.min.js"></script>
-      <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script>
+    window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myBtn").style.display = "block";
+      } else {
+        document.getElementById("myBtn").style.display = "none";
+      }
+    }
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
 
-    </body>
+  <a href="{{ url_for('facebookAnalysis', username=me) }}" disabled="True" class="float2">
+    <i class="fa fa-bar-chart my-float"></i>
+  </a>
 
-    </html>
+  <a href="#" onclick="refresh_data()" class="float3">
+    <i class="fa fa-file my-float"></i>
+  </a>
+
+</body>
+
+</html>
 
