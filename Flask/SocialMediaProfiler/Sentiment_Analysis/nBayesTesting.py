@@ -41,6 +41,7 @@ def getVal(text,dict):
 
 
 def getListValue(linktest):
+
     val = []
     for line in linktest:
         pV = getVal(line, dPos)
@@ -57,6 +58,25 @@ def getListValue(linktest):
                 val.append("negative")
             else:
                 val.append("neutral")
+
+    return val
+
+def getListValueString(string):
+    val = ''
+    pV = getVal(string, dPos)
+    nV = getVal(string, dNeg)
+    neuV = getVal(string, dNeu)
+
+    if pV > nV:
+        if pV > neuV:
+            val = "positive"
+        else:
+            val = "neutral"
+    else:
+        if nV > neuV:
+            val = "negative"
+        else:
+            val = "neutral"
     return val
 
 

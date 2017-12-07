@@ -1,22 +1,16 @@
-import pytz
+import pytz, datetime, time
+import TopicSentiment
 from flask import Flask, render_template, url_for, redirect
-from flask_bootstrap import Bootstrap
+from Sentiment_Analysis import nBayesTesting
 from flask_googlemaps import GoogleMaps
-from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
-from flask_sqlalchemy import SQLAlchemy
 from instagram.client import InstagramAPI
-from werkzeug.security import generate_password_hash, check_password_hash
-
 from config import *
-from forms import LoginForm, RegisterForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
+
 #------------------Database location-----------------
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mnt/c/Users/User/PycharmProjects/untitled1/database.db' #linux
-
-
-
 
 
 class Instagram():
@@ -35,15 +29,14 @@ class Instagram():
 
     #display user's profile
     def user_media(self, userID):
-        recent_media , nextt = self.api.user_recent_media(user_id=userID, count=20)
+        recent_media , nextt = self.api.user_recent_media(user_id=userID, count=30)
+
         if not recent_media:
             print "Can't retrieve user media"
         else:
-            for media in recent_media:
-                print "Id = " + media.id
-                print "Image = " + media.images['standard_resolution'].url
-                #print "Caption = " + media.caption.text
-                # print "Time = " , media.created_time.astimezone(pytz.timezone('Asia/Kuala_Lumpur'))
+                for media in recent_media:
+                    print "Id = " + media.id
+                    print "Image = " + media.images['standard_resolution'].url
 
         return recent_media
 
@@ -65,13 +58,102 @@ class Instagram():
 
     #display location
     def location(self, userID):
-        recent_media, nextt = self.api.user_recent_media(user_id=userID, count=10)
+
+        global locationInstaPost
+        locationInstaPost = []
+
+
+        recent_media, nextt = self.api.user_recent_media(user_id=userID, count=30)
 
         if not recent_media:
             print "Can't retrieve user media"
         else:
             for media in recent_media:
-                print "Latitude = " , media.location.latitude
-                print "Longitude = " , media.location.longitude
-                print "Location = " + media.location.name
-                print
+                try:
+                    if media.location.name not in locationInstaPost:
+                        locationInstaPost.insert(0,[media.location.name, media.location.point.latitude, media.location.point.longitude, media.images['low_resolution'].url ])
+                except Exception as e:
+                    print e
+
+    #get time post
+    def get_created_post(self, userID):
+
+        global Instatopic, Instaposnegneu
+        global day, hour, month
+
+        day = {}
+        hour = {}
+        month = {}
+        Instatopic = {"politic": [], "sports": [], "travel": [], "education": [], "technology": [], "spending": [],
+                      "Others": []}
+        Instaposnegneu = {"positive": [], "negative": [], "neutral": []}
+
+        recent_media, nextt = self.api.user_recent_media(user_id=userID, count=20)
+
+        if not recent_media:
+            print "Can't retrieve user media"
+        else:
+            for media in recent_media:
+
+                if media.caption:
+                    print media.caption.text
+                    postTopic = TopicSentiment.getArrayFromString(media.caption.text)
+
+                    if postTopic:
+                        if media.caption.text not in Instatopic[postTopic]:
+                            Instatopic[postTopic].append(media.caption.text)
+
+                    Instaposnegneu[nBayesTesting.getListValueString(media.caption.text)].append(media.caption.text)
+
+
+                time = str(media.created_time.astimezone(pytz.timezone('Asia/Kuala_Lumpur')))
+                print time
+                test = datetime.datetime.strptime(time[0:19], "%Y-%m-%d %H:%M:%S")
+                print test.year
+                print test.month
+                print test.day
+                print test.hour
+                print test.minute
+                print test.second
+                print test.weekday()
+
+                if media.caption:
+                    if test.hour not in hour:
+                        hour[test.hour] = [media.caption.text]
+                    else:
+                        hour[test.hour].append(media.caption.text)
+
+                    if test.month not in month:
+                        month[test.month] = [media.caption.text]
+                    else:
+                        month[test.month].append(media.caption.text)
+
+                    if test.weekday() not in day:
+                        day[test.weekday()] = [media.caption.text]
+                    else:
+                        day[test.weekday()].append(media.caption.text)
+
+        print Instaposnegneu
+        print "-----------------------------"
+        print Instatopic
+        print hour
+        print day
+        print month
+
+    def getLocationInstaPost(self):
+        return locationInstaPost
+
+    def getTopic(self):
+        return Instatopic
+
+    def getPostNegNeu(self):
+        return Instaposnegneu
+
+    def getInstaHour(self):
+        return hour
+
+    def getInstaMonth(self):
+        return month
+
+    def getInstaDay(self):
+        return day

@@ -60,7 +60,7 @@
       <p id="p_status">
         <strong>Website : </strong>
           {% if user.website %}
-                {{ user.website }}
+              <a href="{{ user.website }}">{{ user.website }}</a>
           {% else %}
                 -
           {% endif %}
@@ -88,6 +88,8 @@
           <strong>Follows :</strong> {{ user.counts['follows'] }}
       </p>
     </div>
+      <a href="{{ url_for('analysis', id = user.id) }}" disabled="True"><button> Analysis Page</button></a>
+
   </div>
 
   <!--Kotak Post-->
@@ -132,6 +134,8 @@
           </div>
 
         </div>
+
+
             {% endfor %}
 
       </div>

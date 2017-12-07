@@ -1,7 +1,9 @@
+
 import matplotlib.pyplot as plt
 import numpy as np
 
 def pieChart(dict):
+    plt.figure()
     yv = dict.values()
     x = dict.keys()
     y = []
@@ -16,6 +18,7 @@ def pieChart(dict):
     return plt
 
 def pieChartSentiment(dict):
+
     yv = dict.values()
     x = dict.keys()
     y = []
@@ -24,10 +27,11 @@ def pieChartSentiment(dict):
     plt.figure()
     fig, ax = plt.subplots()
     ax.axis('equal')
-    patches,text, autotext = ax.pie(y, radius=1.3, labels=x, colors=['lightskyblue','gold','lightcoral'],autopct='%d%%')
+    patches,text, autotext = ax.pie(y, radius=1.3, labels=x, colors=['lightgreen','gold','lightcoral'],autopct='%d%%')
     for i in range(0,len(text)):
         text[i].set_color('white')
     return plt
+
 
 def lineChartTime(dict,stringX,stringY):
     newdict = {}
@@ -52,7 +56,11 @@ def lineChartTime(dict,stringX,stringY):
     ax.tick_params(axis='x', colors='white')
     ax.tick_params(axis='y', colors='white')
     return plt
+
 def lineChart(dict,stringX,stringY):
+    a = sorted(dict.iterkeys())
+    for key in a:
+        dict[key] = dict.get(key)
     x = dict.keys()
     yv = dict.values()
     y =[]
@@ -104,6 +112,7 @@ def barChartTime(dict,stringX,stringY):
 def barChart(dict,stringX,stringY):
     plt.figure()
     x = dict.keys()
+    plt.figure()
     y_plot = np.arange(len(x))
     yv = dict.values()
     y = []
@@ -114,6 +123,7 @@ def barChart(dict,stringX,stringY):
     for i in range(0,len(bar)):
        bar[i].set_color("white")
     plt.xticks(y_plot, x)
+    plt.ylim(min(y),max(y))
     ax = plt.subplot()
     plt.ylabel(stringY,{'color':'white'})
     plt.xlabel(stringX,{'color':'white'})
