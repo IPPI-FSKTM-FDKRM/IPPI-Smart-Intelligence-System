@@ -44,6 +44,11 @@ def twitterProfile(username):
     getTweetSource = twitter.getTweetSource()
     getTweetTime = twitter.getTweetTime()
     getTweetLocation = twitter.getTweetLocation()
+    getSentimentTopic = twitter.getSentimentTopic()
+    getPolarity = twitter.getPolarity()
+    getHourlyTweet = twitter.getHourlyTweet()
+    getDailyTweet = twitter.getDailyTweet()
+    getMonthlyTweet = twitter.getMonthlyTweet()
 
     return render_template("Twitter2.html", user=user, getCreateTime=getCreateTime, userImg=userImg, followingCount=followingCount,
                            followingName=followingName, followingImgURL=followingImgURL,

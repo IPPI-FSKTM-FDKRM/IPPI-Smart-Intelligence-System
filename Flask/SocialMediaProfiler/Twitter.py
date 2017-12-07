@@ -6,7 +6,8 @@ from flask_bootstrap import Bootstrap
 from flask import Flask, render_template, request, jsonify, url_for
 from TwitterSearch import *
 from collections import *
-
+from Sentiment_Analysis import nBayesTesting
+import TopicSentiment
 
 app = Flask(__name__)
 broker_url = 'amqp://guest@localhost'
@@ -120,48 +121,126 @@ class Twitter():
         return source
 
     def getTweetTime(self):
-        time = self.tweetTime
-        tTime = []
-        for i in time:
-            i = i.split()
-            str = ''
-            str = str + i[0] + ' ' + i[1]+ ' ' + i[2]+ ' ' + i[3] + ' ' + i[5]
-            #print str
-            setTime = datetime.strptime(str, '%a %b %d %H:%M:%S %Y')
-            realTime = setTime + timedelta(hours=8)
-            tTime.append(realTime)
-        return tTime
+        return self.tweetTime
 
     def getTweetLocation(self):
+        print self.tweetLocation
         return self.tweetLocation
+
+    topic = {"politic":[], "sports":[], "travel":[], "education":[],"technology":[], "spending":[]}
+    posnegneu = {"positive":[], "negative":[], "neutral":[]}
+
+    def getSentimentTopic(self):
+        print self.topic
+        return self.topic
+
+    def getPolarity(self):
+        print self.posnegneu
+        return self.posnegneu
+
+    hour = {}
+    month = {}
+    day = {}
+
+    def getHourlyTweet(self):
+        print "Hourly Tweet:"
+        print self.hour
+        return self.hour
+
+    def getMonthlyTweet(self):
+        print "Monthly Tweet:"
+        print self.month
+        return self.month
+
+    def getDailyTweet(self):
+        print "Daily Tweet:"
+        print self.day
+        return self.day
 
     def getTweets(self, username):
         tweet = []
         tweetSource = []
-        tweetTime = []
-        tw = self.twitter.statuses.user_timeline(screen_name=username, exclude_replies="false")
-        # print tweet
+        tTime = []
+        topic = {}
+        posnegneu = {"positive":[], "negative":[], "neutral":[]}
+        hour = {}
+        month = {}
+        day = {}
+
+        tw = self.twitter.statuses.user_timeline(screen_name=username, count=50, exclude_replies="false")
+
+
+
         for tw in tw:
             t = ''
-            t = t + tw["text"]
+            twString = tw["text"]
+            t = t + twString
+            print twString
             tweet.append(t)
+            getTopic = TopicSentiment.getArrayFromString(twString)
+            print getTopic
+            if getTopic not in topic:
+                topic[getTopic] = [twString]
+            else:
+                if twString not in topic[getTopic]:
+                    topic[getTopic].append(twString)
+
+            getPosNegNeu = nBayesTesting.getListValue([twString])
+            print getPosNegNeu
+            if getPosNegNeu[0] == 'positive':
+                posnegneu['positive'].append(twString)
+            elif getPosNegNeu[0] == 'negative':
+                posnegneu['negative'].append(twString)
+            elif getPosNegNeu[0] == 'neutral':
+                posnegneu['neutral'].append(twString)
+
             source = ''
             source = source + tw["source"].encode('utf-8')
             tweetSource.append(source)
+
+
             time = ''
             time = time + tw["created_at"].encode('utf-8')
-            tweetTime.append(time)
+            time = time.split()
+            str = ''
+            str = str + time[0] + ' ' + time[1] + ' ' + time[2] + ' ' + time[3] + ' ' + time[5]
+            setTime = datetime.strptime(str, '%a %b %d %H:%M:%S %Y')
+            realTime = setTime + timedelta(hours=8)
+            tTime.append(realTime)
+
+            if realTime.hour not in hour:
+                hour[realTime.hour] = [twString]
+            else:
+                hour[realTime.hour].append(twString)
+
+            if realTime.month not in month:
+                month[realTime.month] = [twString]
+            else:
+                month[realTime.month].append(twString)
+
+            if realTime.weekday() not in day:
+                day[realTime.weekday()] = [twString]
+            else:
+                day[realTime.weekday()].append(twString)
+
             coordinates = tw["coordinates"]
-            str = {}
+            location = {}
             if coordinates != None:
-                str = tw["coordinates"]
+                point = tw["coordinates"]
+
             else:
                 continue
-            self.tweetLocation.append(str)
+            self.tweetLocation.append(point)
+
+
         self.tweet = tweet
         self.tweetSource = tweetSource
-        self.tweetTime = tweetTime
-
+        self.tweetTime = tTime
+        self.topic = topic
+        self.posnegneu = posnegneu
+        self.hour = hour
+        self.month = month
+        self.day = day
 
     followerName = []
     followerImgURL = []
