@@ -75,7 +75,7 @@ class Twitter():
         limit = len(friends["ids"])
         print limit
         if limit >= 2000:
-            limit = 2000
+            limit = 1999
         else:
             limit = len(friends["ids"])
         for n in range(0, limit, 100):
@@ -99,26 +99,13 @@ class Twitter():
     tweetSource = []
     tweetTime = []
     tweetLocation = []
+    gMap = []
 
     def getTweetList(self):
         return self.tweet
 
     def getTweetSource(self):
-        s = self.tweetSource
-        source = []
-        for tweet in s:
-            str = ''
-            tweet = tweet.replace('>', ' ')
-            tweet = tweet.replace('<', ' ')
-            tweet = tweet.split()
-            target = "Twitter"
-            for i,w in enumerate(tweet):
-                if w == target:
-                    str = tweet[i] + " "
-                    str = str + tweet[i+1] + " "
-                    str = str + tweet[i+2]
-            source.append(str)
-        return source
+        return self.tweetSource
 
     def getTweetTime(self):
         return self.tweetTime
@@ -161,6 +148,7 @@ class Twitter():
         tweet = []
         tweetSource = []
         tTime = []
+        tweetLocation = []
         topic = {}
         posnegneu = {"positive":[], "negative":[], "neutral":[]}
         hour = {}
@@ -196,7 +184,18 @@ class Twitter():
 
             source = ''
             source = source + tw["source"].encode('utf-8')
-            tweetSource.append(source)
+            source = source.replace('<',' ')
+            source = source.replace('>', ' ')
+            source = source.split()
+            str = ''
+            target = "Twitter"
+            for i,w in enumerate(source):
+                if w == target:
+                    str = source[i] + " "
+                    str = str + source[i + 1] + " "
+                    str = str + source[i + 2]
+            tweetSource.append(str)
+            source = str
 
 
             time = ''
@@ -224,18 +223,18 @@ class Twitter():
                 day[realTime.weekday()].append(twString)
 
             coordinates = tw["coordinates"]
-            location = {}
             if coordinates != None:
-                point = tw["coordinates"]
-
+                point = tw["coordinates"]["coordinates"]
+                gmap = [point[1],point[0],twString,realTime,source]
             else:
                 continue
-            self.tweetLocation.append(point)
+            tweetLocation.append(gmap)
 
 
         self.tweet = tweet
         self.tweetSource = tweetSource
         self.tweetTime = tTime
+        self.tweetLocation = tweetLocation
         self.topic = topic
         self.posnegneu = posnegneu
         self.hour = hour
@@ -262,7 +261,7 @@ class Twitter():
         self.followerCount = len(count["ids"])
         limit = len(count["ids"])
         if limit >= 2000:
-            limit = 2000
+            limit = 1999
         else:
             limit = len(count["ids"])
 

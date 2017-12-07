@@ -37,6 +37,9 @@ class Instagram():
                 for media in recent_media:
                     print "Id = " + media.id
                     print "Image = " + media.images['standard_resolution'].url
+                    print "user"
+                    if media.users_in_photo:
+                        print media.users_in_photo
 
         return recent_media
 
@@ -70,7 +73,8 @@ class Instagram():
         else:
             for media in recent_media:
                 try:
-                    if media.location.name not in locationInstaPost:
+                    if media.location.name not in locationInstaPost[1]:
+                        print media.location
                         locationInstaPost.insert(0,[media.location.name, media.location.point.latitude, media.location.point.longitude, media.images['low_resolution'].url ])
                 except Exception as e:
                     print e
