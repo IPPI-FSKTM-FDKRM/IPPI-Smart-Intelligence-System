@@ -76,7 +76,7 @@
           <div id="box_following">
             {% for x in range(0,15) %}
             <div id="box_friend_profpic">
-              <img src={{ followingImgURL[x] }} id="img_friend_profpic"/>
+              <a href="{{ url_for('twitterProfile', username = followingName[x]) }}"> <img src={{ followingImgURL[x] }} id="img_friend_profpic"/>
               <p id="p_friend_name">@{{ followingName[x] }}</p>
             </div>
             {% endfor %}
@@ -89,7 +89,7 @@
             <div id="box_follower">
               {% for x in range(0,15) %}
               <div id="box_friend_profpic">
-                <img src={{ followerImgURL[x] }} id="img_friend_profpic"/>
+                <a href="{{ url_for('twitterProfile', username = followerName[x]) }}"><img src={{ followerImgURL[x] }} id="img_friend_profpic"/>
                 <p id="p_friend_name">@{{followerName[x]}}</p>
               </div>
               {% endfor %}
@@ -108,7 +108,7 @@
               {% for x in range (0,(getTweetList|length)) %}
               <div id="box_post_white">
                 <br>{{getTweetSource[x]}}
-                Post: {{getTweetTime[x]}}
+                <br>Post: {{getTweetTime[x]}}
                 <br>{{getTweetList[x]}}
                 <hr>
 

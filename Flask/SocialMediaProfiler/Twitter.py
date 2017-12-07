@@ -167,7 +167,7 @@ class Twitter():
         month = {}
         day = {}
 
-        tw = self.twitter.statuses.user_timeline(screen_name=username, count=50, exclude_replies="false")
+        tw = self.twitter.statuses.user_timeline(screen_name=username, count=30, exclude_replies="false")
 
 
 
