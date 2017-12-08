@@ -87,7 +87,7 @@ def twitterAnalysis():
                            getDayChart=getDayChart, getHourChart=getHourChart, getMonthChart=getMonthChart, sndmap=sndmap)
 
 def getPolarityChart():
-    fig = Visualization.pieChart(twitter.getPolarity())
+    fig = Visualization.pieChartSentiment(twitter.getPolarity(),"black")
     img = StringIO.StringIO()
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)
@@ -95,7 +95,7 @@ def getPolarityChart():
     return polarity_graph
 
 def getSentimentTopicChart():
-    fig = Visualization.pieChart(twitter.getSentimentTopic())
+    fig = Visualization.pieChart(twitter.getSentimentTopic(),"white")
     img = StringIO.StringIO()
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)
@@ -103,7 +103,7 @@ def getSentimentTopicChart():
     return sentiment_graph
 
 def getDailyChart():
-    fig = Visualization.barChart(twitter.getDailyTweet(), 'Day', 'Frequency')
+    fig = Visualization.barChart(twitter.getDailyTweet(), 'Day', 'Frequency',"white")
     img = StringIO.StringIO()
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)
@@ -111,7 +111,7 @@ def getDailyChart():
     return daily_graph
 
 def getMonthlyChart():
-    fig = Visualization.barChart(twitter.getMonthlyTweet(), 'Month', 'Frequency')
+    fig = Visualization.barChart(twitter.getMonthlyTweet(), 'Month', 'Frequency',"white")
     img = StringIO.StringIO()
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)
@@ -119,7 +119,7 @@ def getMonthlyChart():
     return monthly_graph
 
 def getHourlyChart():
-    fig = Visualization.barChart(twitter.getHourlyTweet(), 'Hour', 'Frequency')
+    fig = Visualization.barChart(twitter.getHourlyTweet(), 'Hour', 'Frequency',"white")
     img = StringIO.StringIO()
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)
