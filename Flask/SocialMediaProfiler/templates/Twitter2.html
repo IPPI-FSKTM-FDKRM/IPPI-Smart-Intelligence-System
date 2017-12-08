@@ -65,7 +65,7 @@
             <p id="p_ff">Following <br> {{followingCount}}</p>
           </div>
           <div id="box_following">
-            {% for x in range(0,15) %}
+            {% for x in range(0,16) %}
             <div id="box_friend_profpic">
               <a href="{{ url_for('twitterProfile', username = followingName[x]) }}"> <img src={{ followingImgURL[x] }} id="img_friend_profpic"/> </a>
               <p id="p_friend_name">@{{ followingName[x] }}</p>
@@ -78,7 +78,8 @@
             <p id="p_ff">Followers <br> {{followerCount}}</p>
           </div>
           <div id="box_follower">
-            {% for x in range(0,15) %}
+
+            {% for x in range(0,16) %}
             <div id="box_friend_profpic">
               <a href="{{ url_for('twitterProfile', username = followerName[x]) }}"><img src={{ followerImgURL[x] }} id="img_friend_profpic"/> </a>
               <p id="p_friend_name">@{{followerName[x]}}</p>
@@ -103,8 +104,6 @@
             <p style="font-size: 12px; float:left;">{{getTweetSource[x]}}</p>
             <p style="font-size: 12px; float:right;">Post: {{getTweetTime[x]}}</p>
 
-
-
           </div>
 
 
@@ -115,7 +114,6 @@
       <div class="col-md-3">
         <!--Kotak Friends-->
         <div class="mainbox_media">
-
           <div id="box_title">
             <p id="p_title">Media</p>
           </div>
@@ -152,7 +150,7 @@
     }
   </script>
 
-  <a href="{{ url_for('facebookAnalysis', username=me) }}" disabled="True" class="float2">
+  <a href="{{ url_for('twitterAnalysis') }}" disabled="True" class="float2">
     <i class="fa fa-bar-chart my-float"></i>
   </a>
 
@@ -163,4 +161,3 @@
 </body>
 
 </html>
-
