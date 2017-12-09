@@ -39,16 +39,23 @@ def twitterProfile(username):
     followerName = twitter.getFollowerName()
     followerImgURL = twitter.getFollowerImgURL()
 
+
+
+    return render_template("Twitter.html", user=user, getCreateTime=getCreateTime, userImg=userImg, followingCount=followingCount,
+                           followingName=followingName, followingImgURL=followingImgURL,
+                           followerCount=followerCount, followerName=followerName, followerImgURL=followerImgURL
+                          )
+
+@app.route("/twitter/gettweet/<username>", methods = ['POST'])
+@celery.task
+def twitterGetTweet(username):
+    print "starting"
     twitter.getTweets(username)
     getTweetList = twitter.getTweetList()
     getTweetSource = twitter.getTweetSource()
     getTweetTime = twitter.getTweetTime()
 
-
-    return render_template("Twitter2.html", user=user, getCreateTime=getCreateTime, userImg=userImg, followingCount=followingCount,
-                           followingName=followingName, followingImgURL=followingImgURL,
-                           followerCount=followerCount, followerName=followerName, followerImgURL=followerImgURL,
-                           getTweetList=getTweetList, getTweetSource=getTweetSource, getTweetTime=getTweetTime)
+    return jsonify({'result': render_template("tweetTwitter.html", getTweetList=getTweetList, getTweetSource=getTweetSource, getTweetTime=getTweetTime)})
 
 @app.route("/twitter/analysis")
 def twitterAnalysis():

@@ -1,0 +1,13 @@
+</div>
+          {% for x in range (0,(getTweetList|length)) %}
+          <div id="box_post_white">
+            {{getTweetList[x]}}
+            <br><br>
+            <p style="font-size: 12px; float:left;">{{getTweetSource[x]}}</p>
+            <p style="font-size: 12px; float:right;">Post: {{getTweetTime[x]}}</p>
+
+          </div>
+
+
+          {% endfor %}
+        </div>
