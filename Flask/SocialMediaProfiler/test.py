@@ -15,7 +15,7 @@ class tahi():
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
 
-    token = 'EAAFyPKV2cOIBANz6EDcSV0CJAoKPt1YCeYGaWF5Tl6FLEmbELopL4XLUp5GZCS2OmwI1zNaa60D5MngsUGW4SZByLZB7w86wyZAZCR50ZAuGZC3dXZAZCLLZCAn5BDzj2UxkP1nlhZCvSmx9LAeZA3fHETSmAJIFZBZCSmooUZD'
+    token = 'EAACEdEose0cBAGoZCEXjxX0w52E4LGMKxLcfiZCEL50Bx2ZAIcBB5f1dMzgVEzZANda4Nmu5BnNKXvunMspExlq0fjNXxcUeEdMuFRG9aBtMo5BWvh0WScpHxWQVUbqrEW1qASDa2y2CeZBcjbPeOvh0KQXKUZAYsK9l5GAq7yZCXeddE5AZAfRgKCjqWFCwIAAZD'
     graph =  facebook.GraphAPI(access_token=token,version="2.10")
 
 
@@ -31,6 +31,10 @@ class tahi():
 
     Hour = {}
     Day = {}
+
+    def picture(self):
+        post = self.graph.get_connections('me', 'posts', fields="created_time,full_picture, story,message",limit=50)
+        print post['data']
 
     def writeToJSONFile(self, fileName, data):
         filePathNameWExt = self.dir_path+"/Cache/"+ fileName + '.json'
@@ -124,9 +128,8 @@ class tahi():
 if __name__ == "__main__":
     x= tahi()
     # x.tagUser()
-
+    x.picture()
     # x.testChart()
-    x.replaceText()
     # filename = "1362815530452737"
     # data = {"address_components": [
     #     {

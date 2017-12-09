@@ -76,7 +76,6 @@
                     </div>
                     <div id="box_biodata">
                         {{ name }}
-                        {{ }}
                     </div>
                 </div>
             </div>
@@ -89,25 +88,26 @@
                 <h4>LOCATION</h4>
                 {% for key, value in address.iteritems() %}
                     {% if value %}
-                    {% if key == "1" %}<h2>January</h2>
-                    {% elif key == "2" %}<h2>February</h2>
-                    {% elif key =="3" %}<h2>March</h2>
-                    {% elif key =="4" %}<h2> April</h2>
-                    {% elif key == "5" %}<h2>May</h2>
-                    {% elif key =="6" %}<h2>June</h2>
-                    {% elif key == "7" %}<h2>July</h2>
-                    {% elif key =="8" %}<h2>August</h2>
-                    {% elif key =="9" %}<h2>September</h2>
-                    {% elif key == "10" %}<h2>October</h2>
-                    {% elif key =="11" %}<h2>November</h2>
-                    {% elif key =="12" %}<h2>December</h2>
+                        {% if key == "1" %}<h2>January</h2>
+                        {% elif key == "2" %}<h2>February</h2>
+                        {% elif key =="3" %}<h2>March</h2>
+                        {% elif key =="4" %}<h2> April</h2>
+                        {% elif key == "5" %}<h2>May</h2>
+                        {% elif key =="6" %}<h2>June</h2>
+                        {% elif key == "7" %}<h2>July</h2>
+                        {% elif key =="8" %}<h2>August</h2>
+                        {% elif key =="9" %}<h2>September</h2>
+                        {% elif key == "10" %}<h2>October</h2>
+                        {% elif key =="11" %}<h2>November</h2>
+                        {% elif key =="12" %}<h2>December</h2>
+                        {% endif %}
 
 
                         {% for i in value %}
                             <li>{{ i }}</li>
-
                         {% endfor %}
                     {% endif %}
+
 
                 {% endfor %}
             </div>

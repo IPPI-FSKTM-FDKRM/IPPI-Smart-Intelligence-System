@@ -33,10 +33,10 @@ def facebookSearch():
 @login_required
 def facebookSearchResult():
     data = json.loads(request.data)
-    result  = fb.Find(data);
-    print result
+    resultUser  = fb.FindUser(data)
+    resultPage  = fb.FindPage(data)
 
-    return jsonify({'result': render_template("facebook_searchResult.html", result=result['data'])})
+    return jsonify({'result': render_template("facebook_searchResult.html", resultUser=resultUser['data'], resultPage=resultPage['data'])})
 
 @app.route("/facebook/analysis")
 @login_required
@@ -205,16 +205,45 @@ def facebookProfile(username):
     relationshipStatus = fb.getRelationShipStatus()
     name        = profile['name']
     family      = fb.Family()
-    post = post['data']
     friends = fb.Friends()
 
-    return render_template("Facebook.html"
+    return render_template("FacebookProfile.html"
                            ,family=family
                            , friends=friends
                            , userID = userID
                            , name = name
                            , relationshipStatus = relationshipStatus
-                           , post=post)
+                           , post=post['data'])
+
+@app.route("/facebook/pageProfile/<username>")
+@login_required
+def facebookPageProfile(username):
+
+    print "username adalah ", fb.getUsername()
+
+
+    if username == fb.getUsername():
+        print fb.getUsername()
+        print username
+        fb.setCache(True)
+    else:
+        print "new user not cach"
+        fb.initialize()
+        fb.setUsername(username)
+        fb.setCache(False)
+        print "sekarang username adalah ", fb.getUsername()
+
+    profile     = fb.getProfile(username)
+    userID      = profile['id']
+    fb.object    = userID
+    post        = fb.Post()
+    name        = profile['name']
+
+    return render_template("FacebookPageProfile.html"
+                           , userID = userID
+                           , name = name
+                           , post=post['data'])
+
 @app.route('/facebook/report/<id>')
 @login_required
 @celery.task
@@ -227,7 +256,7 @@ def report(id):
         hour, month,day = fb.getTimePost()
         timeGraph = getMonthChart(month,"black")
         topicGraph = getTopicChart("black")
-        posnegGraph = getPosNegNeuChart("black")
+        posnegGraph = getPosNegNeuChart(fb.getPostNegNeu(),"black")
 
         
         return render_template('facebookReport.html',
@@ -235,7 +264,7 @@ def report(id):
                                topicGraph=topicGraph,
                                posnegGraph = posnegGraph,
                                address=address,
-                               post = post['data'],
+                               post = post,
                                userID = id,
                                name=name)
 

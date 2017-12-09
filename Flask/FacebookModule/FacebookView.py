@@ -91,7 +91,7 @@ def facebookProfile(username):
     post = post['data']
     friends = fb.Friends()
 
-    return render_template("Facebook.html"
+    return render_template("FacebookProfile.html"
                            ,family=family
                            , friends=friends
                            , userID = userID

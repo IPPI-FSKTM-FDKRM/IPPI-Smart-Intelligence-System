@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -32,21 +33,38 @@
 <body>
 
 
-	{% if result %}
-	{% for result in result %}
-
-	<div class="col-lg-3 col-sm-6 text-center mb-4">
+	{% if resultUser %}
+        <button>+</button>  User search result  <hr>
+	{% for result in resultUser %}
+ 	<div class="col-lg-3 col-sm-6 text-center mb-4 ">
 		<a href="{{ url_for('facebookProfile', username = result['id']) }}">
-			<img class="rounded-circle img-fluid d-block mx-auto" id="myImg" src="https://graph.facebook.com/{{result['id']}}/picture?type=large" style="width:150px; height:150px; margin-top:50px;>
+			<img class="rounded-circle img-fluid d-block mx-auto" id="myImg" src="https://graph.facebook.com/{{result['id']}}/picture?type=large" style="width:150px; height:150px; margin-top:50px">
 		</a>
 
-		<p id="Name">{{result['name']}}</p>
-        </a><!-- <a href="{{ url_for('facebookProfile', username = result['id']) }}"> View profile :</a> -->
-
-
-	</div>
+		<p id="Name"><p>{{result['name']}}</p>
+        </a>
+        	</div>
 
 	{% endfor %}
-	{% endif %}
+    {% endif %}
+        {% if resultPage %}
+                    <button>+</button>  Page search result  <hr>
+
+        {% for result in resultPage %}
+ 	<div class="col-lg-3 col-sm-6 text-center mb-4 ">
+		<a href="{{ url_for('facebookPageProfile', username = result['id']) }}">
+			<img class="rounded-circle img-fluid d-block mx-auto" id="myImg" src="https://graph.facebook.com/{{result['id']}}/picture?type=large" style="width:150px; height:150px; margin-top:50px">
+		</a>
+
+		<p id="Name"><p>{{result['name']}}</p>
+        </a>
+        	</div>
+
+	{% endfor %}
+
+
+        {% endif %}
+
 </body>
+</html>
 

@@ -61,6 +61,7 @@ class Facebook():
     # original app token
     # token = 'EAAFyPKV2cOIBAM1GJtjCW7oIftQzwo8RxujFy9ZBLeYNPrSNpMiuUbMAcpzvEkH6sJ0F2ZAf5ey0yle7toaSLJ2wd3yqZACnXJjKXotl8YHZA8KCLNWPBMHlV2ZAcdD4M4p8Y7RqiXV43sF5rfZCa7pmwOaZBWB6qsZD';
     token = 'EAAFyPKV2cOIBADfar33ktp4UZCPKSZBv6waYUad5GQPimSIc31nrkgjuLDwFIEjU6YgZCdGFHOHq5ZA8cLsDPF0DwJnwS4xJBvhLUvZCxCn8ztRKrMtJNpcQ01PS6AFCaykVPZBhFQoNXKsbilqjdPd1lpw0o1DNj6nMzL9NjhcAZDZD'
+    # token = 'EAACEdEose0cBAAUIMQRAwIEWQ5x9CoiiVdnDDYfzQJKI4ZAvrZBUuAg63vFkN94dwe6gikAMmrRCNdVC9ZCZBelfaHcljC2zoSD6i9NPztrX0crfEVsOM2SUJYiTG42twmJJjK3KihpxLmJaaNm9pLLe7sDP2VRoADghhZBEt0NtDhA8opJX7M3oKSGRXmfQZD'
     graph = facebook.GraphAPI(token);
 
     def loadCache(self, fileName):
@@ -174,8 +175,8 @@ class Facebook():
             cache_like = {}
             cache_com, cache_like = cache_comments, cache_likes
             local_timezone = tzlocal.get_localzone()  # get pytz tzinfo
-
-            for post in post['data']:
+            print post
+            for post in post['data'] :
 
                 utc = datetime.strptime(post['created_time'][0:16], '%Y-%m-%dT%H:%M')
                 date = utc.replace(tzinfo=pytz.utc).astimezone(local_timezone)
@@ -352,7 +353,8 @@ class Facebook():
         return friends['data']
 
     def Post(self):
-        self.post = self.graph.get_connections(self.object, 'posts')
+        self.post = self.graph.get_connections(self.object, 'posts', fields="created_time,full_picture, story,message",limit=50)
+
         return self.post
 
     def getPost(self):
@@ -369,28 +371,49 @@ class Facebook():
             for post_ids in post_ids:
                 post_temp = self.graph.get_object(post_ids);
 
-    def Find(self, search):
+    def FindUser(self, search):
         word = '/search/?q=' + search + '&type=user&access_token=' + self.token
         Result = self.graph.request(word)
-        if not Result:
-            print "user not found"
-        else:
-            temp1 = Result['data'];
-            user1 = [temp1['id'] for temp1 in temp1]
-            for user in user1:
+
+        temp1 = Result['data'];
+        user1 = [temp1['id'] for temp1 in temp1]
+        for user in user1:
+            self.getProfile(user)
+
+        if 'next' in Result:
+            Json = requests.get(Result['paging']['next'])
+
+            print "------------------------------------------------------------"
+            temp2 = Json.json()['data']
+            user = [temp2['id'] for temp2 in temp2];
+
+            for user in user:
                 self.getProfile(user)
 
-            if 'next' in Result:
-                Json = requests.get(Result['paging']['next'])
+        return Result
 
-                print "------------------------------------------------------------"
-                temp2 = Json.json()['data']
-                user = [temp2['id'] for temp2 in temp2];
+    def FindPage(self, search):
+        word = '/search/?q=' + search + '&type=page&access_token=' + self.token
+        Result = self.graph.request(word)
 
-                for user in user:
-                    self.getProfile(user)
+        temp1 = Result['data'];
+        user1 = [temp1['id'] for temp1 in temp1]
+        for user in user1:
+            self.getProfile(user)
+            print self.getProfile(user)
+
+        if 'next' in Result:
+            Json = requests.get(Result['paging']['next'])
+
+            print "------------------------------------------------------------"
+            temp2 = Json.json()['data']
+            user = [temp2['id'] for temp2 in temp2];
+
+            for user in user:
+                self.getProfile(user)
 
         return Result
+
 
 
 
