@@ -10,20 +10,19 @@
 
       <title>IPPI facebook profile</title>
 
-      
       <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
       <link href="{{ url_for('static',filename='css/round-about_search_fb.css') }}" rel="stylesheet">
       <link href="{{ url_for('static',filename='css/insta_search.css') }}" rel="stylesheet">
 
     </head>
+    <!-- HEADER -->
     {% include "header.html" %}
 
     <body>
 
-      <!-- Custom styles for this template -->
+      <!-- DIV CONTAINER -->
       <div class="container">
 
-        
         <!-- FACEBOOK ICON -->
         <img class="rounded-circle img-fluid d-block mx-auto" src="{{url_for('static', filename='img/facebook_icon.png') }}" alt="" style="width:200px; height:200px;">
         <h1 class="my-4">Search Facebook Profile</h1>
@@ -38,7 +37,6 @@
         <div id="result" class="row"></div>
 
         <script>
-
           document.getElementById('search').onkeypress = function(e){
             if (!e) e = window.event;
             if (e.keyCode == '13'){
@@ -46,7 +44,6 @@
               return false;
             }
           }
-
 
           function start_search() {
             document.getElementById("result").innerHTML = '<img  style="width:200px; margin:0 auto;" src="{{ url_for('static', filename='img/loading.gif') }}">'
@@ -69,7 +66,9 @@
 
             })}
           </script>
+
         </div>
+        <!-- END DIV CONTAINER -->
 
 
         {#<link type="text/css" href="{{ url_for('static', filename='css/facebook.css') }}" rel="stylesheet"/>#}
