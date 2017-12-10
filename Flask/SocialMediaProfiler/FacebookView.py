@@ -1,6 +1,7 @@
 import base64
 import json
 import os
+from flask_weasyprint import HTML, render_pdf
 
 import Visualization
 import StringIO
@@ -9,7 +10,7 @@ import requests
 from datetime import datetime
 from Sentiment_Analysis import nBayesTesting
 from flask_login import  login_required
-from flask import render_template, jsonify, request
+from flask import render_template, jsonify, request, url_for
 from flask_googlemaps import Map
 from SocialMediaProfiler import app, celery, fb
 
@@ -46,9 +47,9 @@ def facebookAnalysis():
     topic = fb.getTopic()
     posnegneu = fb.getPostNegNeu()
     topicGraph = getTopicChart("white")
-    hourGraph = getHourChart(postHour)
+    hourGraph = getHourChart(postHour,"white")
     monthGraph = getMonthChart(postMonth, "white")
-    dayGraph = getDayChart(postDay)
+    dayGraph = getDayChart(postDay,"white")
     posnegneuGraph = getPosNegNeuChart(fb.getPostNegNeu(),"white")
     address = fb.getLocationAddress()
 
@@ -127,18 +128,16 @@ def getMonthChart(Month,color):
     time_graph = base64.b64encode(img.getvalue())
     return time_graph
 
-
-
-def getDayChart(Day):
-    figDay = Visualization.barChartTime(Day,"time(Day)", "Number of Post", "white",0,6)
+def getDayChart(Day, color):
+    figDay = Visualization.barChartTime(Day,"time(Day)", "Number of Post", color,0,6)
     img = StringIO.StringIO()
     figDay.savefig(img, format='png', transparent=True)
     img.seek(0)
     time_graph = base64.b64encode(img.getvalue())
     return time_graph
 
-def getHourChart(hour):
-    figHour = Visualization.barChartTime(hour,"time(Hour)","Number of post","white",1,24)
+def getHourChart(hour,color):
+    figHour = Visualization.barChartTime(hour,"time(Hour)","Number of post",color,1,24)
     img = StringIO.StringIO()
 
 
@@ -238,35 +237,60 @@ def facebookPageProfile(username):
     fb.object    = userID
     post        = fb.Post()
     name        = profile['name']
+    details     = fb.getPageDetails(username)
+
+    print details
 
     return render_template("FacebookPageProfile.html"
                            , userID = userID
                            , name = name
-                           , post=post['data'])
+                           , post=post['data']
+                           ,details=details)
 
 @app.route('/facebook/report/<id>')
-@login_required
 @celery.task
-def report(id):
+def facebookReport(id):
 
         profile = fb.getProfile(id)
         name= profile['name']
         address = fb.getLocationAddress()
         post = fb.getPost()
         hour, month,day = fb.getTimePost()
-        timeGraph = getMonthChart(month,"black")
+        monthGraph = getMonthChart(month,"black")
+        dayGraph = getDayChart(day,"black")
+        hourGraph = getHourChart(hour,"black")
+
         topicGraph = getTopicChart("black")
         posnegGraph = getPosNegNeuChart(fb.getPostNegNeu(),"black")
-
-        
+        family = fb.Family()
+        friends = fb.Friends()
         return render_template('facebookReport.html',
-                               timeGraph=timeGraph,
-                               topicGraph=topicGraph,
-                               posnegGraph = posnegGraph,
-                               address=address,
-                               post = post,
-                               userID = id,
-                               name=name)
+                              monthGraph=monthGraph,
+                               dayGraph = dayGraph,
+                               hourGraph = hourGraph,
+                              topicGraph=topicGraph,
+                              posnegGraph=posnegGraph,
+                              address=address,
+                              post=post,
+                              userID=id,
+                              family=family,
+                              friends=friends,
+                              name=name)
+
+@app.route('/facebook/report_<id>.pdf')
+def facebookPrintReport(id):
+    profile = fb.getProfile(id)
+    name = profile['name']
+    address = fb.getLocationAddress()
+    post = fb.getPost()
+    hour, month, day = fb.getTimePost()
+    timeGraph = getMonthChart(month, "black")
+    topicGraph = getTopicChart("black")
+    posnegGraph = getPosNegNeuChart(fb.getPostNegNeu(), "black")
+    family = fb.Family()
+    friends = fb.Friends()
+    return render_pdf(url_for('facebookReport',id=id))
+
 
 @app.route('/facebook/nextAnalysis', methods = ['POST'])
 @login_required
@@ -281,7 +305,6 @@ def getNextAnalysis():
         saveCache(fb.getUsername())
         return jsonify({'LikesComments': render_template('facebook_TopFriends.html', currentId=fb.getUsername(),
                                                          likes=like, comments=comment)})
-
     return jsonify()
 
 
@@ -290,7 +313,6 @@ def getNextAnalysis():
 @celery.task
 def getAnalysis():
     print fb.getUsername()
-
     like , comment , location =fb.get_post_like_comment_location(fb.loadCache(fb.getUsername()),fb.getGraph() , fb.Post())
     address = fb.getLocationAddress()
     saveCache(fb.getUsername())
@@ -304,7 +326,6 @@ def refreshAnalysis():
     return jsonify({'LikesComments': render_template('facebook_TopFriends.html', likes=like, comments=comment)})
 
 def saveCache(id):
-
     locationRelation = fb.getLocationRelatioin()
     posnegneu = fb.getPostNegNeu()
     hour, month,day = fb.getTimePost()

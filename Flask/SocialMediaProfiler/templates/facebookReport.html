@@ -31,7 +31,7 @@
 <body>
 
 <!--************************************************************************************************* Navigation -->
-{% include "header.html" %}
+{#{% include "header.html" %}#}
 <!--************************************************************************************************* END NAVIGATION -->
 
 <!--************************************************************************************************* BUTTON: TOP SCROLL  -->
@@ -60,46 +60,55 @@
 <div class="kotakbesar">
     <!-- TITLE -->
     <div id="title_fb" class="hide">
-        <h4>REPORT FACEBOOK</h4>
     </div>
     <div class="row">
         <!--************************************************************************************************* BOX: MIDDLE COLUMN -->
-        <div class="col-md-9">
             <!--************************************************************************************************* BOX: FB DP RELATION -->
-
+        <div class="col-md-12">
+        <h3>Facebook Profiling Report </h3>
+        <hr>
+        <br>
             <div id="box_dpFB">
                 <div class="row">
                     <div id="box_dpFB_kecik"> <!--FB DP BOX (EACH)-->
                         <div class="haha">
                             <img src="https://graph.facebook.com/{{ userID }}/picture?type=large">
                         </div>
-                    </div>
                     <div id="box_biodata">
-                        {{ name }}
+                        <h2> {{ name }} </h2>
+                    </div>
                     </div>
                 </div>
             </div>
 
             <!--************************************************************************************************* BOX: LOCATION -->
-
-            <a name="box_locationa"></a>
             <hr>
             <div id="box_location">
-                <h4>LOCATION</h4>
+                <h2>Family Members</h2>
+                {% for i in family %}
+                    <li>{{ i['relationship'] }} : {{ i['name'] }}</li>
+                {% endfor %}
+            </div>
+            <hr>
+
+
+
+            <div id="box_location">
+                <h3>Recent Location</h3>
                 {% for key, value in address.iteritems() %}
                     {% if value %}
-                        {% if key == "1" %}<h2>January</h2>
-                        {% elif key == "2" %}<h2>February</h2>
-                        {% elif key =="3" %}<h2>March</h2>
-                        {% elif key =="4" %}<h2> April</h2>
-                        {% elif key == "5" %}<h2>May</h2>
-                        {% elif key =="6" %}<h2>June</h2>
-                        {% elif key == "7" %}<h2>July</h2>
-                        {% elif key =="8" %}<h2>August</h2>
-                        {% elif key =="9" %}<h2>September</h2>
-                        {% elif key == "10" %}<h2>October</h2>
-                        {% elif key =="11" %}<h2>November</h2>
-                        {% elif key =="12" %}<h2>December</h2>
+                        {% if key == "1" %}<h4>January</h4>
+                        {% elif key == "2" %}<h4>February</h4>
+                        {% elif key =="3" %}<h4>March</h4>
+                        {% elif key =="4" %}<h4> April</h4>
+                        {% elif key == "5" %}<h4>May</h4>
+                        {% elif key =="6" %}<h4>June</h4>
+                        {% elif key == "7" %}<h4>July</h4>
+                        {% elif key =="8" %}<h4>August</h4>
+                        {% elif key =="9" %}<h4>September</h4>
+                        {% elif key == "10" %}<h4>October</h4>
+                        {% elif key =="11" %}<h4>November</h4>
+                        {% elif key =="12" %}<h4>December</h4>
                         {% endif %}
 
 
@@ -113,20 +122,23 @@
             </div>
             <!--************************************************************************************************* END BOX: LOCATION -->
             <hr>
-        </div>
+
         <!--************************************************************************************************* BOX: RIGHT COLUMN: POST-->
         <!-- POST -->
         <div id="box_post">
-            <div id="box_eachPost">
                 <h4>POST</h4>
-                {% for i in post %}
+                {% for i in post['data'] %}
+
+                    <div id="box_eachPost">
+
                     {% if 'message' in i %}
                         <li>{{ i['message'] }}</li>
-                    {% else %}
+                    {% elif 'story' in i%}
                         <li>{{ i['story'] }}</li>
                     {% endif %}
+                                </div>
+
                 {% endfor %}
-            </div>
         </div>
 
         <hr>
@@ -136,7 +148,8 @@
         <hr>
         <div id="box_chart">
             Positivity
-            <img src="data:image/png;base64, {{ posnegGraph }}">
+            <hr>
+            <img style="height: 400px" src="data:image/png;base64, {{ posnegGraph }}">
             <!--PUT DP FB HERE-->
         </div>
 
@@ -144,19 +157,25 @@
 
         <div id="box_chart">
             Topic
-            <img src="data:image/png;base64, {{ topicGraph }}">
+            <hr>
+            <img style="height: 400px" src="data:image/png;base64, {{ topicGraph }}">
         </div>
 
         <hr>
 
         <div id="box_chart">
-            time active
-            <img src="data:image/png;base64, {{ timeGraph }}">
+            Time Active
+            <hr>
+            <img style="height: 400px" src="data:image/png;base64, {{ monthGraph }}">
+            <img style="height: 400px" src="data:image/png;base64, {{ dayGraph }}">
+            <img style="height: 400px" src="data:image/png;base64, {{ hourGraph }}">
+
         </div>
 
     </div>
 
 
+</div>
 </div>
 </div>
 

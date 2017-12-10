@@ -25,7 +25,6 @@
     <!-- Page Content -->
 
 
-    <!-- <a href="{{ url_for('report', id=userID) }}"><button>Report</button></a> -->
     <div class="kotakbesar">
         <div class="row">
 
@@ -34,7 +33,17 @@
                 <!--Kotak Profile-->
                 <div id="box_dp">
                     <img src="https://graph.facebook.com/{{ userID }}/picture?type=large" id="img_profpic">
-                    <h3>  {{ name }}</h3>
+                    <h3>  {{ name}}</h3>
+
+                </div>
+
+
+
+                <div id="box_relative" class="bodyn">
+                    <b><p>{{ details['category'] }}</p></b>
+                    <p>{{ details['about'] }}</p>
+                    <br>
+                    <p>No of fans : {{ details['fan_count'] }}</p>
                 </div>
 
 
@@ -185,9 +194,6 @@
 <i class="fa fa-bar-chart my-float"></i>
 </a>
 
-<a href="{{ url_for('report', id=userID) }}" onclick="refresh_data()" class="float3">
-<i class="fa fa-file my-float"></i>
-</a>
 
 </body>
 

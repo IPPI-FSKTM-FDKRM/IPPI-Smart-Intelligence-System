@@ -56,8 +56,8 @@ class Facebook():
     cache_likes = {}
     cache_comments = {}
     location = []
-    post = [];
-
+    post = []
+    tagpost = []
     # original app token
     # token = 'EAAFyPKV2cOIBAM1GJtjCW7oIftQzwo8RxujFy9ZBLeYNPrSNpMiuUbMAcpzvEkH6sJ0F2ZAf5ey0yle7toaSLJ2wd3yqZACnXJjKXotl8YHZA8KCLNWPBMHlV2ZAcdD4M4p8Y7RqiXV43sF5rfZCa7pmwOaZBWB6qsZD';
     token = 'EAAFyPKV2cOIBADfar33ktp4UZCPKSZBv6waYUad5GQPimSIc31nrkgjuLDwFIEjU6YgZCdGFHOHq5ZA8cLsDPF0DwJnwS4xJBvhLUvZCxCn8ztRKrMtJNpcQ01PS6AFCaykVPZBhFQoNXKsbilqjdPd1lpw0o1DNj6nMzL9NjhcAZDZD'
@@ -181,6 +181,7 @@ class Facebook():
                 utc = datetime.strptime(post['created_time'][0:16], '%Y-%m-%dT%H:%M')
                 date = utc.replace(tzinfo=pytz.utc).astimezone(local_timezone)
 
+
                 if date.hour not in hour:
                     hour[date.hour] = [post]
                 else:
@@ -233,9 +234,11 @@ class Facebook():
                     if "country" in place['place']['location']:
                         country = place['place']['location']['country'] + " , "
 
+                    print str(utc)
 
-                    locationAddress = ""+place['place']['name']+" , "+street+city+country
+                    locationAddress = str(date)+" : "+place['place']['name']+" , "+street+city+country
 
+                    print locationAddress
                     if date.month not in address:
                         address[date.month] = [locationAddress]
                     else:
@@ -245,7 +248,7 @@ class Facebook():
                         for i in tag['message_tags']:
                             tagUser.append(i['id'])
                             if i['id'] not in locationRelation:
-                                locationRelation[i['id']] = [{"address": locationAddress ,"lat": place['place']['location']['latitude'], "lng": place['place']['location']['longitude'], "post": post }]
+                                locationRelation[i['id']] = [{"address":locationAddress ,"lat": place['place']['location']['latitude'], "lng": place['place']['location']['longitude'], "post": post }]
                             else:
                                 locationRelation[i['id']].append({"address": locationAddress ,"lat": place['place']['location']['latitude'], "lng": place['place']['location']['longitude'] , "post":post})
 
@@ -319,6 +322,9 @@ class Facebook():
         profile = self.graph.get_object(id)
         return profile
 
+    def getAbout(self,id):
+        return
+
     def getProfileInstance(self, id):
         return self.graph.get_object(id)
 
@@ -360,16 +366,14 @@ class Facebook():
     def getPost(self):
         return self.post
 
-    def taggedPost(self):
-        post = self.graph.get_connections(self.object, 'tagged')
-        post_ids = [post['id'] for post in post['data']]
+    def getPageDetails(self,id):
+        pagedetails=  self.graph.get_object(self.object, fields="about,category,birthday,fan_count")
+        print pagedetails
+        return pagedetails
 
-        print post
-        if not post:
-            print "Cant retrieve user tagged data"
-        else:
-            for post_ids in post_ids:
-                post_temp = self.graph.get_object(post_ids);
+    def taggedPost(self):
+        self.tagpost = self.graph.get_connections(self.object, 'tagged')
+        return self.tagpost
 
     def FindUser(self, search):
         word = '/search/?q=' + search + '&type=user&access_token=' + self.token

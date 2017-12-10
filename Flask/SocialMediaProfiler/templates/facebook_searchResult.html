@@ -28,21 +28,41 @@
 	</style>
 	<!-- END CSS -->
 </head>
+<script>
+    function toggleUser() {
+    var x = document.getElementById("resultUser");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+    }
 
+    function togglePage(){
+            var x = document.getElementById("resultPage");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+
+    }
+
+</script>
 <body>
 
 	<!-- BUTTON -->
 	{% if resultUser %}
 	<div class="col-lg-12 col-sm-12 text-center mb-12 ">
 		<div id="buttonUser" style="margin:auto;margin-top:40px;margin-bottom: 20px;">
-			<button style="width:40px; height:40px;float:left">+</button>  <p style="float: left;margin-top:7px;margin-left: 6px;">User search result</p><br>
+			<button style="width:40px; height:40px;float:left" onclick="toggleUser()">+</button>  <p style="float: left;margin-top:7px;margin-left: 6px;">User search result</p><br>
 		</div>
 	</div>
 
 
 	<!-- FB RESULT -->
 	{% for result in resultUser %}
-	<div class="col-lg-3 col-sm-6 text-center mb-4 ">
+	<div class="col-lg-3 col-sm-6 text-center mb-4 " id="resultUser">
 		<a href="{{ url_for('facebookProfile', username = result['id']) }}">
 			<img class="rounded-circle img-fluid d-block mx-auto" id="myImg" src="https://graph.facebook.com/{{result['id']}}/picture?type=large" style="width:150px; height:150px; margin-top:50px">
 			<p id="Name">{{result['name']}}</p>
@@ -58,23 +78,26 @@
 	{% if resultPage %}
 	<div class="col-lg-12 col-sm-12 text-center mb-12 ">
 		<div id="buttonUser" style="margin:auto;margin-top:40px;margin-bottom: 20px;">
-			<button style="width:40px; height:40px;float:left">+</button>   <p style="float: left;margin-top:7px;margin-left: 6px;">Page search result</p><br>
+			<button style="width:40px; height:40px;float:left" onclick="togglePage()">+</button>   <p style="float: left;margin-top:7px;margin-left: 6px;">Page search result</p><br>
 		</div>
 	</div>
 
 
 	<!-- FB RESULT -->
 	{% for result in resultPage %}
-	<div class="col-lg-3 col-sm-6 text-center mb-4 ">
+	<div class="col-lg-3 col-sm-6 text-center mb-4 " id="resultPage">
 		<a href="{{ url_for('facebookPageProfile', username = result['id']) }}">
 			<img class="rounded-circle img-fluid d-block mx-auto" id="myImg" src="https://graph.facebook.com/{{result['id']}}/picture?type=large" style="width:150px; height:150px; margin-top:50px">
 			<p id="Name">{{result['name']}}</p>
 		</a>
 	</div>
-	
+
+
 
 	{% endfor %}
 	{% endif %}
+
+
 
 </body>
 </html>
