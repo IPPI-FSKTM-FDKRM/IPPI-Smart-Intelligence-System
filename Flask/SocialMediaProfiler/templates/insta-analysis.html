@@ -31,34 +31,7 @@
 
 <body>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Profiling System</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href={{ url_for('index') }}>Home
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="page_search.html">Evidence Search
-             <span class="sr-only">(current)</span>
-           </a>
-         </li>
-         <li class="nav-item">
-          <a class="nav-link" href="#">Report</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+  {% include "header.html" %}
 
 <!-- Page Content -->
 <!-- <div class="container"> -->
@@ -140,7 +113,7 @@
        <p id="p_title_content"> TIME</p>
      </div>
 
-     <button id="postHourBtn" onclick="postHour()">Post By Hour</button>
+                <button id="postHourBtn" onclick="postHour()">Post By Hour</button>
                 <button id="postMonthBtn" onclick="postMonth()">Post By Month</button>
                 <button id="postDayBtn" onclick="postDay()">Post By Day</button>
 

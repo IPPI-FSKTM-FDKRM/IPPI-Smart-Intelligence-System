@@ -63,8 +63,9 @@ class Instagram():
     def location(self, userID):
 
         global locationInstaPost
+        global monthloc
         locationInstaPost = []
-
+        monthloc = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 12: []}
 
         recent_media, nextt = self.api.user_recent_media(user_id=userID, count=30)
 
@@ -73,11 +74,23 @@ class Instagram():
         else:
             for media in recent_media:
                 try:
-                    if media.location.name not in locationInstaPost[1]:
+                    if media.location.name not in locationInstaPost:
                         print media.location
+                        Malaysia = pytz.timezone('Asia/Kuala_Lumpur')
+                        time = str(media.created_time.astimezone(Malaysia))
+
+                        test = datetime.datetime.strptime(time[0:19], "%Y-%m-%d %H:%M:%S")
                         locationInstaPost.insert(0,[media.location.name, media.location.point.latitude, media.location.point.longitude, media.images['low_resolution'].url ])
+
+                        if test.month not in monthloc:
+                             monthloc[test.month] = [media.location.name]
+                        else:
+                             monthloc[test.month].append(media.location.name)
                 except Exception as e:
                     print e
+        print locationInstaPost
+        print "+++++++"
+        print monthloc
 
     #get time post
     def get_created_post(self, userID):
@@ -85,11 +98,10 @@ class Instagram():
         global Instatopic, Instaposnegneu
         global day, hour, month
 
-        day = {}
+        day = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: []}
         hour = {}
-        month = {}
-        Instatopic = {"politic": [], "sports": [], "travel": [], "education": [], "technology": [], "spending": [],
-                      "Others": []}
+        month = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 12: []}
+        Instatopic = {}
         Instaposnegneu = {"positive": [], "negative": [], "neutral": []}
 
         recent_media, nextt = self.api.user_recent_media(user_id=userID, count=20)
@@ -101,16 +113,35 @@ class Instagram():
 
                 if media.caption:
                     print media.caption.text
+                    # postTopic = TopicSentiment.getArrayFromString()
+                    #
+                    # if postTopic:
+                    #     if media.caption.text not in Instatopic[postTopic]:
+                    #         Instatopic[postTopic].append(media.caption.text)
+
                     postTopic = TopicSentiment.getArrayFromString(media.caption.text)
 
-                    if postTopic:
+                    if postTopic not in Instatopic:
+                        Instatopic[postTopic] = [media.caption.text]
+                    else:
                         if media.caption.text not in Instatopic[postTopic]:
                             Instatopic[postTopic].append(media.caption.text)
 
                     Instaposnegneu[nBayesTesting.getListValueString(media.caption.text)].append(media.caption.text)
 
 
-                time = str(media.created_time.astimezone(pytz.timezone('Asia/Kuala_Lumpur')))
+                # print media.created_time
+                Malaysia = pytz.timezone('Asia/Kuala_Lumpur')
+                #
+                # ori = media.created_time.astimezone(Malaysia)
+                # print str(ori)
+                # mas = datetime.datetime.strptime(ori[0:19], "%Y-%m-%d %H:%M:%S")
+                # print mas
+                # new = mas.astimezone(Malaysia)
+                # print new
+
+
+                time = str(media.created_time.astimezone(Malaysia))
                 print time
                 test = datetime.datetime.strptime(time[0:19], "%Y-%m-%d %H:%M:%S")
                 print test.year
@@ -161,3 +192,6 @@ class Instagram():
 
     def getInstaDay(self):
         return day
+
+    def getMonthLoc(self):
+        return monthloc

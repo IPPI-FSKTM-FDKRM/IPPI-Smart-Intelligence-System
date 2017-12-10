@@ -22,7 +22,7 @@ def pieChartSentiment(dict,color):
         y.append(len(a))
     fig, ax = plt.subplots()
     ax.axis('equal')
-    patches,text, autotext = ax.pie(y, radius=1.3, labels=x, colors=['lightskyblue','gold','lightcoral'],autopct='%d%%')
+    patches,text, autotext = ax.pie(y, radius=1.3, labels=x, colors=['lightgreen','gold','lightcoral'],autopct='%d%%')
     for i in range(0,len(text)):
         text[i].set_color(color)
     return plt
@@ -50,6 +50,7 @@ def lineChartTime(dict,stringX,stringY,color):
     ax.tick_params(axis='x', colors=color)
     ax.tick_params(axis='y', colors=color)
     return plt
+
 def lineChart(dict,stringX,stringY,color):
     x = dict.keys()
 
@@ -145,6 +146,36 @@ def barChart(dict,stringX,stringY,color):
        bar[i].set_color(color)
     plt.xticks(y_plot, x)
     ax = plt.subplot()
+    plt.ylabel(stringY,{'color':color})
+    plt.xlabel(stringX,{'color':color})
+    for i in ax.spines:
+        ax.spines[i].set_color(color)
+    ax.xaxis.label.set_color(color)
+    ax.yaxis.label.set_color(color)
+    ax.tick_params(axis='x', colors=color)
+    ax.tick_params(axis='y', colors=color)
+    return plt
+
+def barChartTimeNew(dict,stringX,stringY,color,paramS,paramE):
+    newdict = {}
+    for key in dict.keys():
+        #nkey = int(key.encode('utf=8'))
+        newdict[key] = len(dict.get(key))
+    for time in range(paramS, paramE):
+        if newdict.get(time) == None:
+            newdict[time] = 0
+    x = newdict.keys()
+    y = newdict.values()
+    print "value x;",x
+    plt.figure()
+    y_plot = np.arange(len(x))
+    plt.ylim((min(y)+0.5),(max(y)+0.5))
+    bar = plt.bar(y_plot, y, align='center')
+    for i in range(0,len(bar)):
+       bar[i].set_color(color)
+    plt.xticks(y_plot, x)
+    ax = plt.subplot()
+    ax.set_ylim(ymin=0)
     plt.ylabel(stringY,{'color':color})
     plt.xlabel(stringX,{'color':color})
     for i in ax.spines:

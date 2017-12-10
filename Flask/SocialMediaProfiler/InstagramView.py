@@ -43,11 +43,11 @@ def analysis():
     locate = insta.getLocationInstaPost()
     topic = insta.getTopic()
     posnegneu = insta.getPostNegNeu()
-    topicGraph = getTopicChart()
-    dayGraph = getDayChart()
-    monthGraph = getMonthChart()
-    hourGraph = getHourChart()
-    posnegneuGraph = getPosNegNeuChart()
+    topicGraph = getTopicChart("white")
+    dayGraph = getDayChart("white")
+    monthGraph = getMonthChart("white")
+    hourGraph = getHourChart("white")
+    posnegneuGraph = getPosNegNeuChart("white")
     day = insta.getInstaDay()
     month = insta.getInstaMonth()
     hour = insta.getInstaHour()
@@ -57,11 +57,8 @@ def analysis():
     print posnegneu
     print "----"
     print locate
-    print "no sorted"
     print month
-    print "sorted"
-    aaaa = sorted(month)
-    print aaaa
+
     markers = []
     if locate:
         for loc in locate:
@@ -95,43 +92,62 @@ def analysis():
 
         )
     return render_template("insta-analysis.html", sndmap=sndmap,posnegneu=posnegneu,topic=topic,posnegneuGraph=posnegneuGraph,
-                           topicGraph = topicGraph, day=day, month=month, hour=hour, dayGraph = dayGraph, hourGraph = hourGraph, monthGraph = monthGraph)
+                           topicGraph = topicGraph, day=day, month=month, hour=hour, dayGraph = dayGraph, hourGraph = hourGraph,
+                           monthGraph = monthGraph)
+
+@app.route("/insta/report/<id>")
+@login_required
+def instareport(id):
+    profile = insta.user_profile(id)
+    media = insta.user_media(id)
+    monthloc = insta.getMonthLoc()
+    topic = insta.getTopic()
+    posnegneu = insta.getPostNegNeu()
+    topicGraph = getTopicChart("black")
+    dayGraph = getDayChart("black")
+    monthGraph = getMonthChart("black")
+    hourGraph = getHourChart("black")
+    posnegneuGraph = getPosNegNeuChart("black")
+
+    return render_template("insta-report.html",posnegneuGraph=posnegneuGraph,
+                           topicGraph = topicGraph, monthloc=monthloc, dayGraph = dayGraph,
+                           hourGraph = hourGraph, monthGraph = monthGraph, user=profile, media=media)
 
 
-def getPosNegNeuChart():
-    fig = Visualization.pieChartSentiment(insta.getPostNegNeu())
+def getPosNegNeuChart(color):
+    fig = Visualization.pieChartSentiment(insta.getPostNegNeu(), color)
     img = StringIO.StringIO()
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)
     posNegNeu_graph = base64.b64encode(img.getvalue())
     return posNegNeu_graph
 
-def getTopicChart():
-    fig = Visualization.barChart(insta.getTopic(),"Topic", "Frequency")
+def getTopicChart(color):
+    fig = Visualization.pieChart(insta.getTopic(), color)
     img2 = StringIO.StringIO()
     fig.savefig(img2, format='png', transparent=True)
     img2.seek(0)
     topic_graph = base64.b64encode(img2.getvalue())
     return topic_graph
 
-def getHourChart():
-    fig = Visualization.lineChart(insta.getInstaHour(), "Hour", "Frequency")
+def getHourChart(color):
+    fig = Visualization.barChartTimeNew(insta.getInstaHour(), "Hour", "Frequency", color, 1, 24)
     img = StringIO.StringIO()
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)
     time_graph = base64.b64encode(img.getvalue())
     return time_graph
 
-def getMonthChart():
-    fig = Visualization.lineChart(insta.getInstaMonth(), "Month", "Frequency")
+def getMonthChart(color):
+    fig = Visualization.barChartTimeNew(insta.getInstaMonth(), "Month", "Frequency" ,color, 1, 12)
     img = StringIO.StringIO()
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)
     time_graph = base64.b64encode(img.getvalue())
     return time_graph
 
-def getDayChart():
-    fig = Visualization.lineChart(insta.getInstaDay(), "Day", "Frequency")
+def getDayChart(color):
+    fig = Visualization.barChartTimeNew(insta.getInstaDay(), "Day", "Frequency", color, 0, 6)
     img = StringIO.StringIO()
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)
