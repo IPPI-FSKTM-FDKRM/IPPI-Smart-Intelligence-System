@@ -48,7 +48,7 @@
     	<!-- DP PICTURE -->
 
     	<a href="{{ url_for('twitterProfile', username = i["screen_name"]) }}">    
-    		<img class="rounded-circle img-fluid d-block mx-auto" id="myImg" src={{ i["profile_image_url"] }} style="width:150px; height:150px; margin-top:50px;"/>
+    		<img class="rounded-circle img-fluid d-block mx-auto" id="myImg" src={{ i["profile_image_url"] | replace("normal", "400x400") }} style="width:150px; height:150px; margin-top:50px;"/>
     	</a>
 
     	<!-- NAME -->
