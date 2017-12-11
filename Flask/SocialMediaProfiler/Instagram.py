@@ -130,6 +130,7 @@ class Instagram():
                     Instaposnegneu[nBayesTesting.getListValueString(media.caption.text)].append(media.caption.text)
 
 
+
                 # print media.created_time
                 Malaysia = pytz.timezone('Asia/Kuala_Lumpur')
                 #
@@ -142,6 +143,7 @@ class Instagram():
 
 
                 time = str(media.created_time.astimezone(Malaysia))
+
                 print time
                 test = datetime.datetime.strptime(time[0:19], "%Y-%m-%d %H:%M:%S")
                 print test.year
@@ -195,3 +197,4 @@ class Instagram():
 
     def getMonthLoc(self):
         return monthloc
+

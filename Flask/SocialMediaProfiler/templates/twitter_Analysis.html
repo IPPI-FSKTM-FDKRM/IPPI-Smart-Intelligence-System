@@ -9,22 +9,22 @@
   <meta name="author" content="">
 
   <title>Analysis Page</title>
-    {{sndmap.js}}
-    <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
-    <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='css/round-about_analysis.css') }}" rel="stylesheet"/>
+  {{sndmap.js}}
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/round-about_analysis.css') }}" rel="stylesheet"/>
 
-    <!-- Bootstrap Grid css -->
-    <link href="{{ url_for('static', filename='css/bootstrap-grid.css') }}" rel="stylesheet"/>
+  <!-- Bootstrap Grid css -->
+  <link href="{{ url_for('static', filename='css/bootstrap-grid.css') }}" rel="stylesheet"/>
 
-    <!--Content link-->
-    <link href="{{ url_for('static', filename='css/analysis.css') }}" rel="stylesheet"/>
-    <!-- Icon Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!--Content link-->
+  <link href="{{ url_for('static', filename='css/analysis.css') }}" rel="stylesheet"/>
+  <!-- Icon Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- Icon Google -->
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Icon Google -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
 </head>
@@ -32,246 +32,280 @@
 <body>
 
   <!-- Navigation -->
-{% include 'header.html' %}
-<!-- Page Content -->
-<!-- <div class="container"> -->
-  <div class="kotakbesar">
-   <div class="row">
-    <div class="col-md-3">
-      <!-- KOTAK NAVIGATION KIRI -->
-      <div id="box_sideNavigation">
-        <div class="btn-group2">
-          <button class="button2" onclick="myFunctionMap()"><i class="fa fa-map-pin"></i>&ensp; Map</button>
+  {% include 'header.html' %}
+  <!-- Page Content -->
+  <!-- <div class="container"> -->
+    <div class="kotakbesar">
+     <div class="row">
+      <div class="col-md-3">
+        <!-- KOTAK NAVIGATION KIRI -->
+        <div id="box_sideNavigation">
+          <div class="btn-group2">
+            <button class="button2" onclick="myFunctionMap()"><i class="fa fa-map-pin"></i>&ensp; Map</button>
 
-          <script>
-            function myFunctionMap(){
-              document.getElementById("box_main_timeContent").style.display = "none";
-              document.getElementById("box_main_mapContent").style.display = "block";
-              document.getElementById("box_main_topicContent").style.display = "none";
-              document.getElementById("box_main_posnegContent").style.display = "none";
-            }
-          </script>
-
-          <button class="button2" onclick="myFunctionTime()"><i class="fa fa-history"></i>&ensp; Time Log</button>
-
-          <script>
-            function myFunctionTime(){
-              document.getElementById("box_main_mapContent").style.display = "none";
-              document.getElementById("box_main_timeContent").style.display = "block";
-              document.getElementById("box_main_topicContent").style.display = "none";
-              document.getElementById("box_main_posnegContent").style.display = "none";
-            }
-          </script>
-
-          <button class="button2" onclick="myFunctionTopic()"><i class="fa fa-bar-chart"></i>&ensp; Topic Category Chart</button>
-
-          <script>
-            function myFunctionTopic(){
-              document.getElementById("box_main_mapContent").style.display = "none";
-              document.getElementById("box_main_timeContent").style.display = "none";
-              document.getElementById("box_main_topicContent").style.display = "block";
-              document.getElementById("box_main_posnegContent").style.display = "none";
-            }
-          </script>
-
-          <button class="button2" onclick="myFunctionPosNeg()"><i class="fa fa-pie-chart"></i>&ensp; Positive/Negative Chart</button>
-
-          <script>
-            function myFunctionPosNeg(){
-              document.getElementById("box_main_mapContent").style.display = "none";
-              document.getElementById("box_main_timeContent").style.display = "none";
-              document.getElementById("box_main_topicContent").style.display = "none";
-              document.getElementById("box_main_posnegContent").style.display = "block";
-            }
-          </script>
-
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="col-md-9">
-      <!-- MAP PORTION CONTENT -->
-      <div id="box_main_mapContent">
-        <!-- MAP TITLE -->
-        <div id="box_maptitle">
-         <p id="p_title_content"> MAP</p>
-       </div>
-
-       <div id="box_map">
-        <!-- MAP - LETAK MAP HANG KAT SINI -->
-           {{sndmap.html}}
-      </div>
-
-    </div>
-
-    <!-- TIME PORTION CONTENT -->
-    <div id="box_main_timeContent">
-      <!-- TIME TITLE -->
-      <div id="box_timetitle">
-       <p id="p_title_content"> TIME</p>
-     </div>
-
-     <button id="postHourBtn" onclick="postHour()">Post By Hour</button>
-                <button id="postMonthBtn" onclick="postMonth()">Post By Month</button>
-                <button id="postDayBtn" onclick="postDay()">Post By Day</button>
-
-
-                <div id="box_time" style="color:white">
-
-                    <!-- TIME - LETAK TIME HANG KAT SINI -->
-
-
-                        <div id="postDay" style="display: none">
-                            <img src="data:image/png;base64, {{ getDayChart }}">
-                            <h2>Post By Day</h2>
-                            {% for key, value in getDailyTweet.iteritems()|sort %}
-                                {% if key == 0 %}<h1> Monday </h1>{% endif %}
-                                {% if key == 1 %}<h1> Tuesday </h1>{% endif %}
-                                {% if key == 2 %}<h1> Wednesday </h1>{% endif %}
-                                {% if key == 3 %}<h1> Thursday </h1>{% endif %}
-                                {% if key == 4 %}<h1> Friday </h1>{% endif %}
-                                {% if key == 5 %}<h1> Saturday </h1>{% endif %}
-                                {% if key == 6 %}<h1> Sunday </h1>{% endif %}
-
-                                <ul>
-                                {% for val in value %}
-                                    <li>{{ val }}</li>
-
-                                {% endfor %}
-                                </ul>
-                            {% endfor %}
-
-                        </div>
-
-                    <div id="postHour" style="display: block">
-                    <img src="data:image/png;base64, {{ getHourChart }}">
-                    <h2>Post By Hour</h2>
-                        {% for key, value in getHourlyTweet.iteritems() %}
-                        <h1>{{ key }}</h1>
-                        <ul>
-                        {% for val in value %}
-                            <li>{{ val }}</li>
-
-                        {% endfor %}
-                        </ul>
-                    {% endfor %}
-
-                        </div>
-
-                    <div id="postMonth" style="display: none">
-                    <img src="data:image/png;base64, {{ getMonthChart }}">
-                    <h2>Post By Month</h2>
-                            {% for key, value in getMonthlyTweet.iteritems()|sort %}
-                                {% if key == 1 %}<h1> January </h1>{% endif %}
-                                {% if key == 2 %}<h1> February </h1>{% endif %}
-                                {% if key == 3 %}<h1> March </h1>{% endif %}
-                                {% if key == 4 %}<h1> April </h1>{% endif %}
-                                {% if key == 5 %}<h1> May </h1>{% endif %}
-                                {% if key == 6 %}<h1> June </h1>{% endif %}
-                                {% if key == 7 %}<h1> July </h1>{% endif %}
-                                {% if key == 8 %}<h1> August </h1>{% endif %}
-                                {% if key == 9 %}<h1> September </h1>{% endif %}
-                                {% if key == 10 %}<h1> October </h1>{% endif %}
-                                {% if key == 11 %}<h1> November </h1>{% endif %}
-                                {% if key == 12 %}<h1> December </h1>{% endif %}
-
-
-                                <ul>
-                                    {% for val in value %}
-                                        <li>{{ val }}</li>
-
-                                    {% endfor %}
-                                </ul>
-                            {% endfor %}
-
-                        </div>
-                </div>
-                <script>
-                function postDay(){
-                            document.getElementById("postMonth").style.display = "none";
-                            document.getElementById("postDay").style.display = "block";
-                            document.getElementById("postHour").style.display = "none";
-                }
-                function postHour(){
-                         document.getElementById("postMonth").style.display = "none";
-                            document.getElementById("postHour").style.display = "block";
-                            document.getElementById("postDay").style.display = "none";
-                }
-                function postMonth(){
-                            document.getElementById("postDay").style.display = "none";
-                            document.getElementById("postMonth").style.display = "block";
-                            document.getElementById("postHour").style.display = "none";      }
+            <script>
+              function myFunctionMap(){
+                document.getElementById("box_main_timeContent").style.display = "none";
+                document.getElementById("box_main_mapContent").style.display = "block";
+                document.getElementById("box_map").style.display = "block";
+                document.getElementById("box_main_mapContent").scrollIntoView();
+                document.getElementById("box_main_topicContent").style.display = "none";
+                document.getElementById("box_main_posnegContent").style.display = "none";
+                document.getElementById("box_main_recentLocation").style.display = "none";
+              }
             </script>
 
+            <button class="button2" onclick="myFunctionTime()"><i class="fa fa-history"></i>&ensp; Time Log</button>
 
-    </div>
-    <!-- TOPIC CHART PORTION CONTENT -->
-    <div id="box_main_topicContent">
-      <!-- TOPIC CHART TITLE -->
-      <div id="box_topictitle" >
-       <p id="p_title_content"> TOPIC CATEGORY CHART</p>
-     </div>
+            <script>
+              function myFunctionTime(){
+                document.getElementById("box_main_mapContent").style.display = "none";
+                document.getElementById("box_main_timeContent").style.display = "block";
+                document.getElementById("box_main_timeContent").scrollIntoView();
+                document.getElementById("box_main_topicContent").style.display = "none";
+                document.getElementById("box_main_posnegContent").style.display = "none";
+                document.getElementById("box_main_recentLocation").style.display = "none";
+              }
+            </script>
 
-     <div id="box_topic" style="color:white">
-      <!-- TOPIC CHART- LETAK TOPIC CHART HANG KAT SINI -->
+            <button class="button2" onclick="myFunctionTopic()"><i class="fa fa-bar-chart"></i>&ensp; Topic Category Chart</button>
 
-     <img src="data:image/png;base64, {{ getSentimentGraph }}">
+            <script>
+              function myFunctionTopic(){
+                document.getElementById("box_main_mapContent").style.display = "none";
+                document.getElementById("box_main_timeContent").style.display = "none";
+                document.getElementById("box_main_topicContent").style.display = "block";
+                document.getElementById("box_main_topicContent").scrollIntoView();
+                document.getElementById("box_main_posnegContent").style.display = "none";
+                document.getElementById("box_main_recentLocation").style.display = "none";
+              }
+            </script>
 
-      <p id="p_title_content">
-                    {% for key, value in getSentimentTopic.iteritems() %}
-                        <h1>{{ key }}</h1>
-                        <ul>
-                        {% for val in value %}
-                                <li>{{ val }}</li>
-                        {% endfor %}
-                        </ul>
-                    {% endfor %}
-    </div>
-  </div>
+            <button class="button2" onclick="myFunctionPosNeg()"><i class="fa fa-pie-chart"></i>&ensp; Positive/Negative Chart</button>
 
-  <!-- POSNEG PORTION CONTENT -->
-    <div id="box_main_posnegContent">
-      <!-- POSNEG TITLE -->
-      <div id="box_posnegtitle" >
-       <p id="p_title_content"> POSITIVE NEGATIVE CHART</p>
-     </div>
+            <script>
+              function myFunctionPosNeg(){
+                document.getElementById("box_main_mapContent").style.display = "none";
+                document.getElementById("box_main_timeContent").style.display = "none";
+                document.getElementById("box_main_topicContent").style.display = "none";
+                document.getElementById("box_main_posnegContent").style.display = "block";
+                document.getElementById("box_main_posnegContent").scrollIntoView();
+                document.getElementById("box_main_recentLocation").style.display = "none";
+              }
+            </script>
 
-     <div id="box_posneg" style="color:white">
-      <!-- POSNEG- LETAK POSITIVE NEGATIVE CHART HANG KAT SINI -->
+          </div>
+        </div>
+      </div>
 
-     <img src="data:image/png;base64, {{ getPolarityGraph }}">
+
+
+      <div class="col-md-9">
+        <!-- MAP PORTION CONTENT -->
+        <div id="box_main_mapContent">
+          <!-- MAP TITLE -->
+          <div id="box_maptitle">
+            <!-- <p id="p_title_content"> MAP</p> -->
+            <div style="width: 100%;">
+              <div class="btn-group3">
+                <button class="button3" onclick="myFunctionMap2()">MAP</button>
+                <script>
+                  function myFunctionMap2() {
+                    document.getElementById("box_main_timeContent").style.display = "none";
+                    document.getElementById("box_main_mapContent").style.display = "block";
+                    document.getElementById("box_main_topicContent").style.display = "none";
+                    document.getElementById("box_main_posnegContent").style.display = "none";
+                    document.getElementById("box_main_recentLocation").style.display = "none";
+                    document.getElementById("box_map").style.display = "block";
+                  }
+                </script>
+                <button class="button3" onclick="myFunctionRecentLocation()">Recent Location</button>
+                <script>
+                  function myFunctionRecentLocation() {
+                    document.getElementById("box_main_timeContent").style.display = "none";
+                    document.getElementById("box_map").style.display = "none";
+                    document.getElementById("box_main_topicContent").style.display = "none";
+                    document.getElementById("box_main_posnegContent").style.display = "none";
+                    document.getElementById("box_main_recentLocation").style.display = "block";
+                  }
+                </script>
+              </div>
+            </div>
+          </div>
+
+          <div id="box_map" style="color:white">
+            <!-- MAP - LETAK MAP HANG KAT SINI -->
+            {{sndmap.html}}
+          </div>
+
+        </div>
+
+        <!-- TIME PORTION CONTENT -->
+        <div id="box_main_timeContent">
+          <!-- TIME TITLE -->
+          <div id="box_timetitle">
+           <p id="p_title_content"> TIME</p>
+         </div>
+
+         <button id="postHourBtn" onclick="postHour()">Post By Hour</button>
+         <button id="postMonthBtn" onclick="postMonth()">Post By Month</button>
+         <button id="postDayBtn" onclick="postDay()">Post By Day</button>
+
+
+         <div id="box_time" style="color:white">
+
+          <!-- TIME - LETAK TIME HANG KAT SINI -->
+
+
+          <div id="postDay" style="display: none">
+            <img src="data:image/png;base64, {{ getDayChart }}">
+            <h2>Post By Day</h2>
+            {% for key, value in getDailyTweet.iteritems()|sort %}
+            {% if key == 0 %}<h1> Monday </h1>{% endif %}
+            {% if key == 1 %}<h1> Tuesday </h1>{% endif %}
+            {% if key == 2 %}<h1> Wednesday </h1>{% endif %}
+            {% if key == 3 %}<h1> Thursday </h1>{% endif %}
+            {% if key == 4 %}<h1> Friday </h1>{% endif %}
+            {% if key == 5 %}<h1> Saturday </h1>{% endif %}
+            {% if key == 6 %}<h1> Sunday </h1>{% endif %}
+
+            <ul>
+              {% for val in value %}
+              <li>{{ val }}</li>
+
+              {% endfor %}
+            </ul>
+            {% endfor %}
+
+          </div>
+
+          <div id="postHour" style="display: block">
+            <img src="data:image/png;base64, {{ getHourChart }}">
+            <h2>Post By Hour</h2>
+            {% for key, value in getHourlyTweet.iteritems() %}
+            <h1>{{ key }}</h1>
+            <ul>
+              {% for val in value %}
+              <li>{{ val }}</li>
+
+              {% endfor %}
+            </ul>
+            {% endfor %}
+
+          </div>
+
+          <div id="postMonth" style="display: none">
+            <img src="data:image/png;base64, {{ getMonthChart }}">
+            <h2>Post By Month</h2>
+            {% for key, value in getMonthlyTweet.iteritems()|sort %}
+            {% if key == 1 %}<h1> January </h1>{% endif %}
+            {% if key == 2 %}<h1> February </h1>{% endif %}
+            {% if key == 3 %}<h1> March </h1>{% endif %}
+            {% if key == 4 %}<h1> April </h1>{% endif %}
+            {% if key == 5 %}<h1> May </h1>{% endif %}
+            {% if key == 6 %}<h1> June </h1>{% endif %}
+            {% if key == 7 %}<h1> July </h1>{% endif %}
+            {% if key == 8 %}<h1> August </h1>{% endif %}
+            {% if key == 9 %}<h1> September </h1>{% endif %}
+            {% if key == 10 %}<h1> October </h1>{% endif %}
+            {% if key == 11 %}<h1> November </h1>{% endif %}
+            {% if key == 12 %}<h1> December </h1>{% endif %}
+
+
+            <ul>
+              {% for val in value %}
+              <li>{{ val }}</li>
+
+              {% endfor %}
+            </ul>
+            {% endfor %}
+
+          </div>
+        </div>
+        <script>
+          function postDay(){
+            document.getElementById("postMonth").style.display = "none";
+            document.getElementById("postDay").style.display = "block";
+            document.getElementById("postHour").style.display = "none";
+          }
+          function postHour(){
+           document.getElementById("postMonth").style.display = "none";
+           document.getElementById("postHour").style.display = "block";
+           document.getElementById("postDay").style.display = "none";
+         }
+         function postMonth(){
+          document.getElementById("postDay").style.display = "none";
+          document.getElementById("postMonth").style.display = "block";
+          document.getElementById("postHour").style.display = "none";      }
+        </script>
+
+
+      </div>
+      <!-- TOPIC CHART PORTION CONTENT -->
+      <div id="box_main_topicContent">
+        <!-- TOPIC CHART TITLE -->
+        <div id="box_topictitle" >
+         <p id="p_title_content"> TOPIC CATEGORY CHART</p>
+       </div>
+
+       <div id="box_topic" style="color:white">
+        <!-- TOPIC CHART- LETAK TOPIC CHART HANG KAT SINI -->
+
+        <img src="data:image/png;base64, {{ getSentimentGraph }}">
+
+        <p id="p_title_content">
+          {% for key, value in getSentimentTopic.iteritems() %}
+          <h1>{{ key }}</h1>
+          <ul>
+            {% for val in value %}
+            <li>{{ val }}</li>
+            {% endfor %}
+          </ul>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- POSNEG PORTION CONTENT -->
+      <div id="box_main_posnegContent">
+        <!-- POSNEG TITLE -->
+        <div id="box_posnegtitle" >
+         <p id="p_title_content"> POSITIVE NEGATIVE CHART</p>
+       </div>
+
+       <div id="box_posneg" style="color:white">
+        <!-- POSNEG- LETAK POSITIVE NEGATIVE CHART HANG KAT SINI -->
+
+        <img src="data:image/png;base64, {{ getPolarityGraph }}">
 
 
         {% for key, value in getPolarity.iteritems() %}
-                        <h1>{{ key }}</h1>
-            <ul>
-                        {% for val in value %}
-                                <li>{{ val }}</li>
-                        {% endfor %}
-            </ul>
-                    {% endfor %}
+        <h1>{{ key }}</h1>
+        <ul>
+          {% for val in value %}
+          <li>{{ val }}</li>
+          {% endfor %}
+        </ul>
+        {% endfor %}
 
 
+      </div>
     </div>
-  </div>
 
-</div>
-</div>
   </div>
+</div>
+</div>
 
 
 
 
 <!-- Bootstrap core JavaScript -->
-    <script src="{{ url_for('static',filename='vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='vendor/popper/popper.min.js') }}"></script>
-    <script src="{{ url_for('static',filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static',filename='vendor/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static',filename='vendor/popper/popper.min.js') }}"></script>
+<script src="{{ url_for('static',filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
 <!-- FLOATINGBUTTON -->
 <a href="#" onclick="myFunction()" class="float">
-<i class="fa fa-arrow-up my-float"></i>
+  <i class="fa fa-arrow-up my-float"></i>
 </a>
 
 <script>
