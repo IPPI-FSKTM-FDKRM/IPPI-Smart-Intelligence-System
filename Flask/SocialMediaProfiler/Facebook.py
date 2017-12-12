@@ -65,7 +65,9 @@ class Facebook():
     # token = 'EAAFyPKV2cOIBAM1GJtjCW7oIftQzwo8RxujFy9ZBLeYNPrSNpMiuUbMAcpzvEkH6sJ0F2ZAf5ey0yle7toaSLJ2wd3yqZACnXJjKXotl8YHZA8KCLNWPBMHlV2ZAcdD4M4p8Y7RqiXV43sF5rfZCa7pmwOaZBWB6qsZD';
     token = 'EAAFyPKV2cOIBADfar33ktp4UZCPKSZBv6waYUad5GQPimSIc31nrkgjuLDwFIEjU6YgZCdGFHOHq5ZA8cLsDPF0DwJnwS4xJBvhLUvZCxCn8ztRKrMtJNpcQ01PS6AFCaykVPZBhFQoNXKsbilqjdPd1lpw0o1DNj6nMzL9NjhcAZDZD'
     token = 'EAACEdEose0cBAFakBqDUIQuIde7I88MS0rgB53zOYm2cS2Q2tsrcav8Izc9of3nMroZBgBR74l4GFZAq1WWPsoKZBHaYFGldhTuqKvYdCqxZBpOMyJc5iUYsNlNIwghVF2QG67BpZCgyVVS2DtsZBB0gT6xnn3gKMBk4cLYOL6kIZBGfYwbJZC6o1jeJIU0FeLADW1nCfPlftgZDZD'
+
     graph = facebook.GraphAPI(token, version='2.10');
+
 
 
     def loadCache(self, fileName):

@@ -137,8 +137,17 @@
             <!-- MAP - LETAK MAP HANG KAT SINI -->
             {{sndmap.html}}
           </div>
-
+            <div id="box_main_recentLocation" style="color:white">
+                {% for x in getTweetLocationString %}
+                    <br>Time: {{ x[2] }}      Location: {{x[0]}}  <br>
+                    Tweet: {{x[1]}}<br>
+                    Source: {{ x[3] }}<br><br>
+                {% endfor %}
+            </div>
         </div>
+
+
+
 
         <!-- TIME PORTION CONTENT -->
         <div id="box_main_timeContent">
@@ -322,7 +331,7 @@
     document.documentElement.scrollTop = 0;
   }
 </script>
-<a href="{{ url_for('facebookPrintReport', id=userID) }}" disabled="True" class="float2">
+<a href="{{ url_for('twitterReport') }}" disabled="True" class="float2">
     <i class="fa fa-file my-float"></i>
 </a>
 <!-- END FLOAT BUTTON -->

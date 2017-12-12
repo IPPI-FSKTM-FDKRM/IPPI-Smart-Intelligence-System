@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Report Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/round-about_report.css') }}" rel="stylesheet"/>
+
+    <!-- Bootstrap Grid css -->
+    <link href="{{ url_for('static', filename='css/bootstrap-grid.css') }}" rel="stylesheet"/>
+
+    <!--Content link-->
+    <link href="{{ url_for('static', filename='css/report.css') }}" rel="stylesheet"/>
+
+    <!-- Print only, on bottom -->
+    <link href="{{ url_for('static', filename='css/print.css') }}" rel="stylesheet"/>
+
+
+</head>
+
+<body>
+
+<!--************************************************************************************************* Navigation -->
+{#{% include "header.html" %}#}
+<!--************************************************************************************************* END NAVIGATION -->
+
+<!--************************************************************************************************* BUTTON: TOP SCROLL  -->
+<button onclick="topFunction()" id="myBtn" title="Go to top" class="hide">Top</button>
+
+<script>
+    window.onscroll = function () {
+        scrollFunction()
+    };
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("myBtn").style.display = "block";
+        } else {
+            document.getElementById("myBtn").style.display = "none";
+        }
+    }
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<!--************************************************************************************************* END BUTTON: TOP SCROLL -->
+
+
+<!--************************************************************************************************* BOX: MAIN CONTENT "kotakbesar"-->
+<div class="kotakbesar">
+    <!-- TITLE -->
+    <div id="title_fb" class="hide">
+    </div>
+    <div class="row">
+        <!--************************************************************************************************* BOX: MIDDLE COLUMN -->
+            <!--************************************************************************************************* BOX: FB DP RELATION -->
+        <div class="col-md-12">
+        <h3>Twitter Profiling Report </h3>
+        <hr>
+        <br>
+            <div id="box_dpFB">
+                <div class="row">
+                    <div id="box_dpFB_kecik"> <!--FB DP BOX (EACH)-->
+                        <div class="haha">
+                            <img src={{ userImg }}>
+                        </div>
+                    <div id="box_biodata">
+                        <h4> Username: @{{ userNameAlias }} </h4>
+                        <br><h5>Name: {{ userName }}</h5>
+                        <br>Description: {{userDescription}}
+                        <br>Join: {{userCreatedAt}}
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--************************************************************************************************* BOX: LOCATION -->
+
+            <hr>
+
+
+
+            <div id="box_location">
+                <h4>Recent Location</h4>
+                    <h6>Location</h6>
+                {% for x in getTweetLocationString %}
+                    <br>Location: {{ x[0] }} Time: {{ x[2] }}
+                {% endfor %}
+                <br>
+                <h6>Coordinates</h6>
+                {% for x in getTweetLocation %}
+                    Coordinates: {{x[0]}},{{x[1]}} Time: {{x[3]}}
+                    Source: {{x[4]}}<br>
+                {% endfor %}
+                <br>
+            </div>
+            <!--************************************************************************************************* END BOX: LOCATION -->
+
+        <!--************************************************************************************************* BOX: RIGHT COLUMN: POST-->
+
+
+        <!--************************************************************************************************* BOX: RIGHT COLUMN: CHART -->
+        <!-- CHART 1 -->
+        <hr>
+        <div id="box_chart">
+            Sentiment Analysis
+            <hr>
+            <img style="height: 400px" src="data:image/png;base64, {{ getPolarityGraph }}">
+            <!--PUT DP FB HERE-->
+        </div>
+
+        <hr>
+
+        <div id="box_chart">
+            Topic
+            <hr>
+            <img style="height: 400px" src="data:image/png;base64, {{ getSentimentGraph }}">
+        </div>
+
+        <hr>
+
+        <div id="box_chart">
+            Active Time
+            <hr>
+            <img style="height: 400px" src="data:image/png;base64, {{ getHourChart }}">
+            <img style="height: 400px" src="data:image/png;base64, {{ getDayChart }}">
+            <img style="height: 400px" src="data:image/png;base64, {{ getMonthChart }}">
+
+        </div>
+
+    </div>
+
+
+</div>
+</div>
+
+
+
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/popper/popper.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

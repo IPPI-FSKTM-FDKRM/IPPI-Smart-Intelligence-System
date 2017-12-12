@@ -59,9 +59,8 @@ body{
 #box_id_topfriend{
   padding-left: 20px;
   padding-right: 20px;
-  margin-top:10px;
-  margin-bottom: 20px;
-  /*margin:20px;*/
+  padding-bottom: 20px;
+  padding-top: 10px;
   min-height: 0px;
   margin:20px;
   display:flex;
