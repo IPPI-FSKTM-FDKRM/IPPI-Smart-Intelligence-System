@@ -197,7 +197,7 @@
 
                             <h2>Post By Day</h2>
                             {% for key, value in postDay.iteritems()|sort %}
-                                {% if value %}
+                            {% if value %}
                             {% if key == 0 %}<h1> Monday </h1>{% endif %}
                             {% if key == 1 %}<h1> Tuesday </h1>{% endif %}
                             {% if key == 2 %}<h1> Wednesday </h1>{% endif %}
@@ -205,7 +205,7 @@
                             {% if key == 4 %}<h1> Friday </h1>{% endif %}
                             {% if key == 5 %}<h1> Saturday </h1>{% endif %}
                             {% if key == 6 %}<h1> Sunday </h1>{% endif %}
-                                {% endif %}
+                            {% endif %}
                             {% for i in value %}
                             {% if 'message' in i %}
                             <li>{{ i['message'] }}</li>
@@ -223,15 +223,15 @@
                             <img src="data:image/png;base64, {{ hourGraph }}">
 
                             {% for key, value in postHour.iteritems()|sort %}
-                                {% if value %}<h1>{{ key }}</h1>
-                                    {% for i in value %}
-                                    {% if 'message' in i %}
-                                    <li>{{ i['message'] }}</li>
-                                    {% endif %}
-                                    {% if 'story' in i %}
-                                    <li>{{ i['story'] }}</li>
-                                    {% endif %}
-                                    {% endfor %}
+                            {% if value %}<h1>{{ key }}</h1>
+                            {% for i in value %}
+                            {% if 'message' in i %}
+                            <li>{{ i['message'] }}</li>
+                            {% endif %}
+                            {% if 'story' in i %}
+                            <li>{{ i['story'] }}</li>
+                            {% endif %}
+                            {% endfor %}
 
                             {% endif %}
                             {% endfor %}
@@ -243,7 +243,7 @@
                             <img src="data:image/png;base64, {{ monthGraph }}">
 
                             {% for key, value in postMonth.iteritems()|sort %}
-                                {% if value %}
+                            {% if value %}
                             {% if key == 1 %}<h2> January </h2>{% endif %}
                             {% if key == 2 %}<h2> February </h2>{% endif %}
                             {% if key == 3 %}<h2> March </h2>{% endif %}
@@ -256,7 +256,7 @@
                             {% if key == 10 %}<h2> October </h2>{% endif %}
                             {% if key == 11 %}<h2> November </h2>{% endif %}
                             {% if key == 12 %}<h2> December </h2>{% endif %}
-                                {% endif %}
+                            {% endif %}
 
 
 
@@ -283,11 +283,11 @@
                         }
 
                         function postHour(){
-                           document.getElementById("postMonth").style.display = "none";
-                           document.getElementById("postHour").style.display = "block";
-                           document.getElementById("postDay").style.display = "none";
-                       }
-                       function postMonth(){
+                         document.getElementById("postMonth").style.display = "none";
+                         document.getElementById("postHour").style.display = "block";
+                         document.getElementById("postDay").style.display = "none";
+                     }
+                     function postMonth(){
                         document.getElementById("postDay").style.display = "none";
                         document.getElementById("postMonth").style.display = "block";
                         document.getElementById("postHour").style.display = "none";      }
@@ -361,7 +361,7 @@
 
 <script>
 
- $(document).ready(function(){
+   $(document).ready(function(){
     $('#locationMonth').on('change', function() {
       if ( this.value == "1")
       {
