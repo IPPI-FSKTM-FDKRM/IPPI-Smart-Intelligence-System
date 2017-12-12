@@ -9,7 +9,7 @@ def pieChart(dict,color):
         y.append(len(a))
     fig, ax = plt.subplots()
     ax.axis('equal')
-    patches,text, autotext = ax.pie(y, radius=1.3, labels=x, colors=np.random.rand(5,3),autopct='%d%%')
+    patches,text, autotext = ax.pie(y, radius=1.3, labels=x, colors=np.random.rand(8,3),autopct='%d%%')
     for i in range(0,len(text)):
         text[i].set_color(color)
     return plt

@@ -137,7 +137,13 @@
             <!-- MAP - LETAK MAP HANG KAT SINI -->
             {{sndmap.html}}
           </div>
-
+            <div id="box_main_recentLocation" style="color:white">
+                {% for x in getTweetLocationString %}
+                    <br>Time: {{ x[2] }}      Location: {{x[0]}}  <br>
+                    Tweet: {{x[1]}}<br>
+                    Source: {{ x[3] }}<br><br>
+                {% endfor %}
+            </div>
         </div>
 
         <!-- RECENT LOCATION -->

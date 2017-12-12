@@ -30,6 +30,9 @@
 
 <body>
 
+<!--************************************************************************************************* Navigation -->
+{#{% include "header.html" %}#}
+<!--************************************************************************************************* END NAVIGATION -->
 
 <!--************************************************************************************************* BUTTON: TOP SCROLL  -->
 <button onclick="topFunction()" id="myBtn" title="Go to top" class="hide">Top</button>
@@ -56,67 +59,50 @@
 <!--************************************************************************************************* BOX: MAIN CONTENT "kotakbesar"-->
 <div class="kotakbesar">
     <!-- TITLE -->
-    <div id="title_fb">
-
+    <div id="title_fb" class="hide">
     </div>
     <div class="row">
         <!--************************************************************************************************* BOX: MIDDLE COLUMN -->
-        <div class="col-md-12">
             <!--************************************************************************************************* BOX: FB DP RELATION -->
-            <h4>INSTAGRAM PROFILING REPORT</h4>
+        <div class="col-md-12">
+        <h3>Twitter Profiling Report </h3>
         <hr>
         <br>
             <div id="box_dpFB">
                 <div class="row">
                     <div id="box_dpFB_kecik"> <!--FB DP BOX (EACH)-->
                         <div class="haha">
-                            <img src={{ user.profile_picture }}>
+                            <img src={{ userImg }}>
                         </div>
-                    </div>
                     <div id="box_biodata">
-                        <h2>{{ user.full_name }}</h2>
-                        <br>
-                        <h2>{{ user.username }}</h2>
+                        <h2> @{{ userNameAlias }} </h2>
+                        <br><h3> {{ userName }}</h3>
+                        <br><h4>Description: {{userDescription}}</h4>
+                        <br><h4>Join: {{userCreatedAt}}</h4>
 
+                    </div>
                     </div>
                 </div>
             </div>
 
             <!--************************************************************************************************* BOX: LOCATION -->
 
-            <a name="box_locationa"></a>
             <hr>
+
+
+
             <div id="box_location">
-                <h4>RECENT LOCATION</h4>
-                {% for key, value in monthloc.iteritems() %}
-                    {% if value %}
+                <h3>Recent Location</h3>
 
-                        {% if key == 1 %}<h1> January </h1>{% endif %}
-                        {% if key == 2 %}<h1> February </h1>{% endif %}
-                        {% if key == 3 %}<h1> March </h1>{% endif %}
-                        {% if key == 4 %}<h1> April </h1>{% endif %}
-                        {% if key == 5 %}<h1> May </h1>{% endif %}
-                        {% if key == 6 %}<h1> June </h1>{% endif %}
-                        {% if key == 7 %}<h1> July </h1>{% endif %}
-                        {% if key == 8 %}<h1> August </h1>{% endif %}
-                        {% if key == 9 %}<h1> September </h1>{% endif %}
-                        {% if key == 10 %}<h1> October </h1>{% endif %}
-                        {% if key == 11 %}<h1> November </h1>{% endif %}
-                        {% if key == 12 %}<h1> December </h1>{% endif %}
-
-                    {% endif %}
-
-                        {% for val in value %}
-                            <li>{{ val }}</li>
-                        {% endfor %}
+                {% for x in getTweetLocationString %}
+                    <h4>Location: {{ x[0] }} Time: {{ x[2] }}</h4>
 
                 {% endfor %}
             </div>
             <!--************************************************************************************************* END BOX: LOCATION -->
             <hr>
-        </div>
-        <!--************************************************************************************************* BOX: RIGHT COLUMN: POST-->
 
+        <!--************************************************************************************************* BOX: RIGHT COLUMN: POST-->
 
         <hr>
 
@@ -124,28 +110,29 @@
         <!-- CHART 1 -->
         <hr>
         <div id="box_chart">
-            Positive/Negative Chart
-            <img src="data:image/png;base64, {{ posnegneuGraph }}">
+            Positivity
+            <hr>
+            <img style="height: 400px" src="data:image/png;base64, {{ getPolarityChart }}">
             <!--PUT DP FB HERE-->
         </div>
 
         <hr>
 
         <div id="box_chart">
-            Topic Chart
-            <img src="data:image/png;base64, {{ topicGraph }}">
+            Topic
+            <hr>
+            <img style="height: 400px" src="data:image/png;base64, {{ getSentimentGraph }}">
         </div>
 
         <hr>
 
         <div id="box_chart">
-            <h2>Time Active</h2>
+            Time Active
+            <hr>
+            <img style="height: 400px" src="data:image/png;base64, {{ getMonthlyChart }}">
+            <img style="height: 400px" src="data:image/png;base64, {{ getDailyChart }}">
+            <img style="height: 400px" src="data:image/png;base64, {{ getHourlyChart }}">
 
-            <img src="data:image/png;base64, {{ hourGraph }}">
-
-            <img src="data:image/png;base64, {{ dayGraph }}">
-
-            <img src="data:image/png;base64, {{ monthGraph }}">
         </div>
 
     </div>
@@ -153,6 +140,7 @@
 
 </div>
 </div>
+
 
 
 <!-- Bootstrap core JavaScript -->

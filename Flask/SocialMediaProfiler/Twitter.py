@@ -33,15 +33,26 @@ class Twitter():
         user = self.twitter.users.search(q = username)
         return user
 
+
     userCreatedAt = []
+    userImg = []
+    userName = []
+    userNameAlias = []
+    userDescription = []
 
     def getUserProfile(self,username):
         user = self.twitter.users.show(screen_name=username)
         print "Profile image: %s" % user["profile_image_url"]
+        userImg = user["profile_image_url"]
+        userImg = userImg.replace("normal", "400x400")
+        self.userImg = userImg
         print "Username: @%s" % user["screen_name"]
+        self.userNameAlias = user["screen_name"]
         print "Name: %s" % user["name"]
+        self.userName = user["name"]
         print "Twitter ID: %s" % user["id"]
         print "Bio: %s" % user["description"]
+        self.userDescription = user["description"]
         print "Followers: %s " % user["followers_count"]
         print "Account created since: %s" % user["created_at"]
         str = user["created_at"].encode('utf-8')
@@ -50,6 +61,18 @@ class Twitter():
         str = datetime.strptime(str, '%a%b%d%H:%M:%S%Y')
         self.userCreatedAt = str
         return user
+
+    def getUserImg(self):
+        return self.userImg
+
+    def getUserNameAlias(self):
+        return self.userNameAlias
+
+    def getUserName(self):
+        return self.userName
+
+    def getUserDescription(self):
+        return self.userDescription
 
     def getUserCreate(self):
         return self.userCreatedAt
@@ -99,6 +122,7 @@ class Twitter():
     tweetSource = []
     tweetTime = []
     tweetLocation = []
+    tweetLocationString = []
     gMap = []
 
     def getTweetList(self):
@@ -113,6 +137,10 @@ class Twitter():
     def getTweetLocation(self):
         print self.tweetLocation
         return self.tweetLocation
+
+    def getTweetLocationString(self):
+        print self.tweetLocationString
+        return self.tweetLocationString
 
     topic = {"politic":[], "sports":[], "travel":[], "education":[],"technology":[], "spending":[]}
     posnegneu = {"positive":[], "negative":[], "neutral":[]}
@@ -149,6 +177,7 @@ class Twitter():
         tweetSource = []
         tTime = []
         tweetLocation = []
+        tweetLocationString = []
         topic = {}
         posnegneu = {"positive":[], "negative":[], "neutral":[]}
         hour = {}
@@ -226,15 +255,21 @@ class Twitter():
             if coordinates != None:
                 point = tw["coordinates"]["coordinates"]
                 gmap = [point[1],point[0],twString,realTime,source]
+                tweetLocation.append(gmap)
+            elif tw["place"] != None:
+                place = tw["place"]["full_name"]
+                location = [place,twString,realTime,source]
+                tweetLocationString.append(location)
             else:
                 continue
-            tweetLocation.append(gmap)
+
 
 
         self.tweet = tweet
         self.tweetSource = tweetSource
         self.tweetTime = tTime
         self.tweetLocation = tweetLocation
+        self.tweetLocationString = tweetLocationString
         self.topic = topic
         self.posnegneu = posnegneu
         self.hour = hour
