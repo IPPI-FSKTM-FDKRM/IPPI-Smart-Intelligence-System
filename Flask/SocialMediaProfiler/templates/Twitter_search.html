@@ -60,7 +60,6 @@ document.getElementById('search').onkeypress = function(e){
                 contentType: "application/json",
                 data:  JSON.stringify(search),
                 success: function(resp) {
-                    alert(search);
                     document.getElementById("result").innerHTML = resp.result
                 },
                 error: function() {
