@@ -68,8 +68,6 @@ class Facebook():
 
     graph = facebook.GraphAPI(token, version='2.10');
 
-
-
     def loadCache(self, fileName):
 
         filePathNameWExt = self.dir_path + "/Cache/" + fileName + '.json'
