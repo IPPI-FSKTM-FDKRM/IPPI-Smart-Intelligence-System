@@ -57,12 +57,15 @@ body{
   filter:drop-shadow(0px 20px 20px black);
 }
 #box_id_topfriend{
-  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top:10px;
+  margin-bottom: 20px;
   /*margin:20px;*/
   min-height: 0px;
   margin:20px;
   display:flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 .mainbox_post{

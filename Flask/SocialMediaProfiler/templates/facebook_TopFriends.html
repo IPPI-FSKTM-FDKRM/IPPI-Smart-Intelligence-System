@@ -1,15 +1,21 @@
 <div id="box_id_topfriend">
 
+<!-- MOST COMMENT -->
+<div style="width:100%; margin-bottom: 8px;">
 <h5>Most Comment</h5>
-<hr>
+</div>
 <div class="row">
      {% for dict_item in comments %}
           <a href="{{ url_for('facebookRelation', currentId = currentId,id = dict_item) }}">
               <img src="https://graph.facebook.com/{{dict_item}}/picture?type=large" id="img_topfriends_profpic"></a>
      {% endfor %}
 </div>
+
+<!-- MOST LIKE -->
+<div style="width:100%; margin-top:15px;margin-bottom: 8px;">
 <h5>Most Like</h5>
-<hr>
+</div>
+
 <div class="row">
 
     {% for dict_item in likes %}
@@ -18,8 +24,12 @@
               <img src="https://graph.facebook.com/{{dict_item}}/picture?type=large" id="img_topfriends_profpic"></a>
      {% endfor %}
 </div>
+
+<!-- MOST TAG -->
+<div style="width:100%; margin-top:15px;margin-bottom: 8px;">
 <h5>Most Tag</h5>
-<hr>
+</div>
+
 <div class="row">
 
     {% for dict_item in tags %}

@@ -41,7 +41,15 @@
                 <h3>  {{ name }}</h3>
             </div>
 
-            <!--Kotak Relationship-->{% if relationshipStatus %}
+            <!--Kotak Relationship-->
+            {% if not relationshipStatus %}
+            <div id="box_relationship" class="bodyn">
+                <i class="fa fa-heart" style="float:left;padding-right:6px;padding-top: 1px;padding-right: 12px;"></i>
+                <p id="p_relationship">
+                   N/A
+                </p>
+            </div>
+        {% else %}
             <div id="box_relationship" class="bodyn">
                 <i class="fa fa-heart" style="float:left;padding-right:6px;padding-top: 1px;padding-right: 12px;"></i>
                 <p id="p_relationship">
@@ -49,6 +57,7 @@
                 </p>
             </div>
         {% endif %}
+
 
             <!--Kotak Relatives-->
             <div id="box_relative" class="bodyn">
