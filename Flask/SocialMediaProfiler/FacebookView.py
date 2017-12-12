@@ -298,7 +298,7 @@ def getNextAnalysis():
     if "paging" in post :
         reqData = requests.get(post['paging']['next'])
         postData = reqData.json()
-        like , comment , tags ,location =fb.get_post_like_comment_location(True,fb.getGraph() ,postData)
+        like , comment , tags ,location =fb.get_post_like_comment_location(fb.getUsername(),True,fb.getGraph() ,postData)
         saveCache(fb.getUsername())
         return jsonify({'LikesComments': render_template('facebook_TopFriends.html', currentId=fb.getUsername(),
                                                          tags=tags,likes=like, comments=comment)})
@@ -310,7 +310,7 @@ def getNextAnalysis():
 @celery.task
 def getAnalysis():
     print fb.getUsername()
-    like , comment ,tags, location =fb.get_post_like_comment_location(fb.loadCache(fb.getUsername()),fb.getGraph() , fb.Post())
+    like , comment ,tags, location =fb.get_post_like_comment_location(fb.getUsername(),fb.loadCache(fb.getUsername()),fb.getGraph() , fb.Post())
     address = fb.getLocationAddress()
     saveCache(fb.getUsername())
     return jsonify({ 'LikesComments': render_template('facebook_TopFriends.html', address=address, currentId=fb.getUsername(), likes=like, comments=comment)})
@@ -319,7 +319,7 @@ def getAnalysis():
 @login_required
 @celery.task
 def refreshAnalysis():
-    like, comment, location = fb.get_post_like_comment_location(False, fb.getGraph(),fb.Post())
+    like, comment, location = fb.get_post_like_comment_location(fb.getUsername(),False, fb.getGraph(),fb.Post())
     return jsonify({'LikesComments': render_template('facebook_TopFriends.html', likes=like, comments=comment)})
 
 def saveCache(id):

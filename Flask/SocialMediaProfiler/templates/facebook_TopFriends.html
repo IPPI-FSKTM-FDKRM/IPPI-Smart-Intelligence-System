@@ -2,6 +2,8 @@
 
 <!-- MOST COMMENT -->
 <div style="width:100%; margin-bottom: 8px;">
+    {% if comments %}
+
 <h5>Most Comment</h5>
 </div>
 <div class="row">
@@ -9,34 +11,42 @@
           <a href="{{ url_for('facebookRelation', currentId = currentId,id = dict_item) }}">
               <img src="https://graph.facebook.com/{{dict_item}}/picture?type=large" id="img_topfriends_profpic"></a>
      {% endfor %}
+{% endif %}
 </div>
 
 <!-- MOST LIKE -->
+{% if likes %}
+
 <div style="width:100%; margin-top:15px;margin-bottom: 8px;">
 <h5>Most Like</h5>
 </div>
 
 <div class="row">
-
     {% for dict_item in likes %}
 
           <a href="{{ url_for('facebookRelation', currentId = currentId,id = dict_item) }}">
               <img src="https://graph.facebook.com/{{dict_item}}/picture?type=large" id="img_topfriends_profpic"></a>
      {% endfor %}
+{% endif %}
 </div>
 
 <!-- MOST TAG -->
+{% if tags %}
+
 <div style="width:100%; margin-top:15px;margin-bottom: 8px;">
 <h5>Most Tag</h5>
 </div>
 
 <div class="row">
 
+
+<div class="row">
     {% for dict_item in tags %}
 
           <a href="{{ url_for('facebookRelation', currentId = currentId,id = dict_item) }}">
               <img src="https://graph.facebook.com/{{dict_item}}/picture?type=large" id="img_topfriends_profpic"></a>
      {% endfor %}
+{% endif %}
 
 </div>
       </div>

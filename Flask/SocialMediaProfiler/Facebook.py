@@ -64,8 +64,8 @@ class Facebook():
     # original app token
     # token = 'EAAFyPKV2cOIBAM1GJtjCW7oIftQzwo8RxujFy9ZBLeYNPrSNpMiuUbMAcpzvEkH6sJ0F2ZAf5ey0yle7toaSLJ2wd3yqZACnXJjKXotl8YHZA8KCLNWPBMHlV2ZAcdD4M4p8Y7RqiXV43sF5rfZCa7pmwOaZBWB6qsZD';
     token = 'EAAFyPKV2cOIBADfar33ktp4UZCPKSZBv6waYUad5GQPimSIc31nrkgjuLDwFIEjU6YgZCdGFHOHq5ZA8cLsDPF0DwJnwS4xJBvhLUvZCxCn8ztRKrMtJNpcQ01PS6AFCaykVPZBhFQoNXKsbilqjdPd1lpw0o1DNj6nMzL9NjhcAZDZD'
-    token = 'EAACEdEose0cBAOYQuy5i0vwLpC5B6SleCxgmw0oJHllt9DZBSB0v7EkOthZA2hihqmphHOKobiIH8KRZAZAiseoFYPiGNKSyHYvkZAzSUeDwwmBzviqCzKiTuOdzMBhyxpDzA3YHFBJZAn96EEpdlEA75T2WD9KArxR3tmGW2Xcc3GfRokKUE1syCsfkp5BF4ZD'
-    graph = facebook.GraphAPI(token, version=2.10);
+    token = 'EAACEdEose0cBAFakBqDUIQuIde7I88MS0rgB53zOYm2cS2Q2tsrcav8Izc9of3nMroZBgBR74l4GFZAq1WWPsoKZBHaYFGldhTuqKvYdCqxZBpOMyJc5iUYsNlNIwghVF2QG67BpZCgyVVS2DtsZBB0gT6xnn3gKMBk4cLYOL6kIZBGfYwbJZC6o1jeJIU0FeLADW1nCfPlftgZDZD'
+    graph = facebook.GraphAPI(token, version='2.10');
 
     def loadCache(self, fileName):
 
@@ -201,16 +201,14 @@ class Facebook():
         return self.sameUser
 
     @celery.task(bind=True)
-    def get_post_like_comment_location(self, cacheNow, graph, post):
+    def get_post_like_comment_location(self,id, cacheNow, graph, post):
         if not cacheNow:
             cache_com = {}
             cache_like = {}
             cache_tag = {}
             cache_com, cache_like, cache_tag = cache_comments, cache_likes, cache_tags
             local_timezone = tzlocal.get_localzone()  # get pytz tzinfo
-            print post
             for post in post['data'] :
-
                 utc = datetime.strptime(post['created_time'][0:16], '%Y-%m-%dT%H:%M')
                 date = utc.replace(tzinfo=pytz.utc).astimezone(local_timezone)
 
@@ -236,10 +234,7 @@ class Facebook():
                 tag = graph.get_object(id=post['id'], fields='message_tags')
 
                 if 'message' in post:
-                    print post['message']
                     postTopic = TopicSentiment.getArrayFromString(post['message'])
-
-                    print topic
 
                     if postTopic not in topic:
                         topic[postTopic] = [post]
@@ -267,11 +262,8 @@ class Facebook():
                     if "country" in place['place']['location']:
                         country = place['place']['location']['country'] + " , "
 
-                    print str(utc)
-
                     locationAddress = str(date)+" : "+place['place']['name']+" , "+street+city+country
 
-                    print locationAddress
                     if date.month not in address:
                         address[date.month] = [locationAddress]
                     else:
@@ -293,35 +285,37 @@ class Facebook():
 
                 if 'message_tags' in tag:
                     for i in tag['message_tags']:
-                        if i['id'] not in amount_tags:
-                            amount_tags[i['id']] = 1;
-                            cache_tag[i['id']] = [post]
+                        if id != i['id']:
+                            if i['id'] not in amount_tags:
+                                amount_tags[i['id']] = 1;
+                                cache_tag[i['id']] = [post]
 
-                        else:
-                            amount_tags[i['id']] += 1;
-                            cache_tag[i['id']].append(post)
+                            else:
+                                amount_tags[i['id']] += 1;
+                                cache_tag[i['id']].append(post)
 
                 if 'likes' in likes:
                     for likes in likes['likes']['data']:
-
-                        if not likes['id'] in amount_likes:
-                            amount_likes[likes['id']] = 1;
-                            cache_like[likes['id']] = [post]
-                        else:
-                            amount_likes[likes['id']] += 1;
-                            cache_like[likes['id']].append(post)
+                        if id != likes['id']:
+                            if not likes['id'] in amount_likes:
+                                amount_likes[likes['id']] = 1;
+                                cache_like[likes['id']] = [post]
+                            else:
+                                amount_likes[likes['id']] += 1;
+                                cache_like[likes['id']].append(post)
 
                 if 'comments' in comment:
                     for comments in comment['comments']['data']:
-
-                        if not comments['from']['id'] in amount_comment:
-                            cache_com[comments['from']['id']] = [comments]
-                            amount_comment[comments['from']['id']] = 1;
-                        else:
-                            cache_com[comments['from']['id']].append(comments)
-                            amount_comment[comments['from']['id']] += 1;
+                        if id != comments['id']:
+                            if not comments['from']['id'] in amount_comment:
+                                cache_com[comments['from']['id']] = [comments]
+                                amount_comment[comments['from']['id']] = 1;
+                            else:
+                                cache_com[comments['from']['id']].append(comments)
+                                amount_comment[comments['from']['id']] += 1;
 
         # get top commentator and likers
+
         if (amount_tags):
             if 'top' in amount_tags:
                 amount_tags.pop('top', None)
@@ -343,6 +337,12 @@ class Facebook():
         elif amount_likes and amount_comment :
             return amount_likes['top'], amount_comment['top'], [], location
 
+        elif amount_likes :
+            return amount_likes['top'], [], [], location
+
+        elif amount_comment :
+            return [], amount_comment['top'], [], location
+
         else:
             return [], [], [], None
 
@@ -360,8 +360,6 @@ class Facebook():
 
     def get_relation_post(self, id):
         cache_com, cache_loc, cache_tag = self.getCacheCommentsAndLikes()
-        print "sini tag"
-        print cache_tag
         if id in cache_com:
             cache_com = cache_com[id]
         else:
@@ -428,7 +426,6 @@ class Facebook():
 
     def getPageDetails(self,id):
         pagedetails=  self.graph.get_object(self.object, fields="about,category,birthday,fan_count")
-        print pagedetails
         return pagedetails
 
     def taggedPost(self):
