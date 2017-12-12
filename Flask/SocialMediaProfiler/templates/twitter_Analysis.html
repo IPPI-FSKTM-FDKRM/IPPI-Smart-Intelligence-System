@@ -146,29 +146,7 @@
             </div>
         </div>
 
-        <!-- RECENT LOCATION -->
-                <div id="box_main_recentLocation">
-                    <div id="box_recentLocation">
 
-                        <select id='locationMonth' >
-                            <option value="1">January</option>
-                            <option value="2">February</option>
-                            <option value="3">March</option>
-                            <option value="4">April</option>
-                            <option value="5">May</option>
-                            <option value="6">June</option>
-                            <option value="7">July</option>
-                            <option value="8">August</option>
-                            <option value="9">September</option>
-                            <option value="10">October</option>
-                            <option value="11">November</option>
-                            <option value="12">December</option>
-                        </select>
-
-                        <div id="locationReport" style="color: white"></div>
-
-                    </div> <!-- END box_recentLocation -->
-                </div> <!-- END box_main_recentLocation -->
 
 
         <!-- TIME PORTION CONTENT -->
@@ -353,7 +331,7 @@
     document.documentElement.scrollTop = 0;
   }
 </script>
-<a href="{{ url_for('facebookPrintReport', id=userID) }}" disabled="True" class="float2">
+<a href="{{ url_for('twitterReport') }}" disabled="True" class="float2">
     <i class="fa fa-file my-float"></i>
 </a>
 <!-- END FLOAT BUTTON -->

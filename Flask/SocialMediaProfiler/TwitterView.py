@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import requests
-from flask import render_template, jsonify, request, send_file, make_response
+from flask import render_template, jsonify, request, send_file, url_for
 from flask_googlemaps import Map
 from flask_weasyprint import HTML, render_pdf
 import Visualization
@@ -81,8 +81,11 @@ def twitterAnalysis():
                                'lat' : location[0], 'lng' : location[1], 'infobox' : str})
             print str
         sndmap = Map(style="height:480px;width:950px;margin:0;", identifier="cluster-map",
-                     lat=getTweetLocation[0][0],lng=getTweetLocation[0][1],markers=markers,
-                     fit_markers_to_bounds=True)
+                     lat=getTweetLocation[0][0],lng=getTweetLocation[0][1],cluster=True,cluster_gridsize=10,markers=markers,
+                     cluster_imagepath='https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+                     zoom=2,
+                     # fit_markers_to_bounds=True
+                     )
     else:
         sndmap = Map(
             style="height:480px;width:950px;margin:0;",
@@ -98,7 +101,6 @@ def twitterAnalysis():
 
 @app.route("/twitter/report")
 def twitterReport():
-    print "messi pungkok"
     userNameAlias = twitter.getUserNameAlias()
     userName = twitter.getUserName()
     userImg = twitter.getUserImg()
@@ -119,6 +121,10 @@ def twitterReport():
                     getDayChart=getDayChart, getHourChart=getHourChart, getMonthChart=getMonthChart, getTweetLocation=getTweetLocation,
                     getTweetLocationString=getTweetLocationString)
 
+@app.route("/twitter/twitterReport.pdf")
+def twitterToPDF():
+    return render_pdf(url_for("twitterReport"))
+
 
 def getPolarityChart(color):
     fig = Visualization.pieChartSentiment(twitter.getPolarity(),color)
@@ -129,7 +135,7 @@ def getPolarityChart(color):
     return polarity_graph
 
 def getSentimentTopicChart(color):
-    fig = Visualization.pieChart(twitter.getSentimentTopic(),"white")
+    fig = Visualization.pieChart(twitter.getSentimentTopic(),color)
     img = StringIO.StringIO()
     fig.savefig(img, format='png', transparent=True)
     img.seek(0)

@@ -75,10 +75,10 @@
                             <img src={{ userImg }}>
                         </div>
                     <div id="box_biodata">
-                        <h2> @{{ userNameAlias }} </h2>
-                        <br><h3> {{ userName }}</h3>
-                        <br><h4>Description: {{userDescription}}</h4>
-                        <br><h4>Join: {{userCreatedAt}}</h4>
+                        <h4> Username: @{{ userNameAlias }} </h4>
+                        <br><h5>Name: {{ userName }}</h5>
+                        <br>Description: {{userDescription}}
+                        <br>Join: {{userCreatedAt}}
 
                     </div>
                     </div>
@@ -92,27 +92,31 @@
 
 
             <div id="box_location">
-                <h3>Recent Location</h3>
-
+                <h4>Recent Location</h4>
+                    <h6>Location</h6>
                 {% for x in getTweetLocationString %}
-                    <h4>Location: {{ x[0] }} Time: {{ x[2] }}</h4>
-
+                    <br>Location: {{ x[0] }} Time: {{ x[2] }}
                 {% endfor %}
+                <br>
+                <h6>Coordinates</h6>
+                {% for x in getTweetLocation %}
+                    Coordinates: {{x[0]}},{{x[1]}} Time: {{x[3]}}
+                    Source: {{x[4]}}<br>
+                {% endfor %}
+                <br>
             </div>
             <!--************************************************************************************************* END BOX: LOCATION -->
-            <hr>
 
         <!--************************************************************************************************* BOX: RIGHT COLUMN: POST-->
 
-        <hr>
 
         <!--************************************************************************************************* BOX: RIGHT COLUMN: CHART -->
         <!-- CHART 1 -->
         <hr>
         <div id="box_chart">
-            Positivity
+            Sentiment Analysis
             <hr>
-            <img style="height: 400px" src="data:image/png;base64, {{ getPolarityChart }}">
+            <img style="height: 400px" src="data:image/png;base64, {{ getPolarityGraph }}">
             <!--PUT DP FB HERE-->
         </div>
 
@@ -127,11 +131,11 @@
         <hr>
 
         <div id="box_chart">
-            Time Active
+            Active Time
             <hr>
-            <img style="height: 400px" src="data:image/png;base64, {{ getMonthlyChart }}">
-            <img style="height: 400px" src="data:image/png;base64, {{ getDailyChart }}">
-            <img style="height: 400px" src="data:image/png;base64, {{ getHourlyChart }}">
+            <img style="height: 400px" src="data:image/png;base64, {{ getHourChart }}">
+            <img style="height: 400px" src="data:image/png;base64, {{ getDayChart }}">
+            <img style="height: 400px" src="data:image/png;base64, {{ getMonthChart }}">
 
         </div>
 
