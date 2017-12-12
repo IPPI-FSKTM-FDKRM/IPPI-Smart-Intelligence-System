@@ -96,9 +96,13 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 @login_required
 def register():
-    error = ''
-    if User.query.filter_by(username='admin').first():
+    print current_user.username
+    nama = current_user.username
+    hey = str(nama)
 
+    error = ''
+    #if User.query.filter_by(username='admin').first():
+    if hey == 'admin':
         form = RegisterForm()
 
         if form.validate_on_submit():
@@ -120,9 +124,7 @@ def register():
 
         return render_template("register.html", form = form)
 
-    else:
-
-        return render_template("404.html")
+    return render_template("404.html")
 
 
 @app.route('/logout')

@@ -82,10 +82,18 @@ class Instagram():
                         test = datetime.datetime.strptime(time[0:19], "%Y-%m-%d %H:%M:%S")
                         locationInstaPost.insert(0,[media.location.name, media.location.point.latitude, media.location.point.longitude, media.images['low_resolution'].url ])
 
+                        Malaysia = pytz.timezone('Asia/Kuala_Lumpur')
+                        time = str(media.created_time.astimezone(Malaysia))
+                        print time
+                        test = datetime.datetime.strptime(time[0:19], "%Y-%m-%d %H:%M:%S")
+
+                        monthaddress = str(test) + " " + media.location.name
+                        print monthaddress
+
                         if test.month not in monthloc:
-                             monthloc[test.month] = [media.location.name]
+                             monthloc[test.month] = [monthaddress]
                         else:
-                             monthloc[test.month].append(media.location.name)
+                             monthloc[test.month].append(monthaddress)
                 except Exception as e:
                     print e
         print locationInstaPost
@@ -133,26 +141,10 @@ class Instagram():
 
                 # print media.created_time
                 Malaysia = pytz.timezone('Asia/Kuala_Lumpur')
-                #
-                # ori = media.created_time.astimezone(Malaysia)
-                # print str(ori)
-                # mas = datetime.datetime.strptime(ori[0:19], "%Y-%m-%d %H:%M:%S")
-                # print mas
-                # new = mas.astimezone(Malaysia)
-                # print new
-
-
                 time = str(media.created_time.astimezone(Malaysia))
 
                 print time
                 test = datetime.datetime.strptime(time[0:19], "%Y-%m-%d %H:%M:%S")
-                print test.year
-                print test.month
-                print test.day
-                print test.hour
-                print test.minute
-                print test.second
-                print test.weekday()
 
                 if media.caption:
                     if test.hour not in hour:

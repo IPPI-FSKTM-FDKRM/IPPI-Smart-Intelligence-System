@@ -109,23 +109,16 @@
             <div style="width: 100%;">
               <div class="btn-group3">
                 <button class="button3" onclick="myFunctionMap2()">MAP</button>
-                <script>
+                  <button class="button3" onclick="myFunctionRecentLocation()">Recent Location</button>
+
+                  <script>
                   function myFunctionMap2() {
-                    document.getElementById("box_main_timeContent").style.display = "none";
-                    document.getElementById("box_main_mapContent").style.display = "block";
-                    document.getElementById("box_main_topicContent").style.display = "none";
-                    document.getElementById("box_main_posnegContent").style.display = "none";
-                    document.getElementById("box_main_recentLocation").style.display = "none";
                     document.getElementById("box_map").style.display = "block";
+                    document.getElementById("box_main_recentLocation").style.display = "none";
                   }
-                </script>
-                <button class="button3" onclick="myFunctionRecentLocation()">Recent Location</button>
-                <script>
+
                   function myFunctionRecentLocation() {
-                    document.getElementById("box_main_timeContent").style.display = "none";
                     document.getElementById("box_map").style.display = "none";
-                    document.getElementById("box_main_topicContent").style.display = "none";
-                    document.getElementById("box_main_posnegContent").style.display = "none";
                     document.getElementById("box_main_recentLocation").style.display = "block";
                   }
                 </script>
@@ -137,7 +130,40 @@
             {{sndmap.html}}
           </div>
 
+            <div id="box_main_recentLocation" style="color:white">
+
+                        {% for key, value in monthloc.iteritems() %}
+                        {% if value %}
+
+                            {% if key == 1 %}<h1> January </h1>{% endif %}
+                            {% if key == 2 %}<h1> February </h1>{% endif %}
+                            {% if key == 3 %}<h1> March </h1>{% endif %}
+                            {% if key == 4 %}<h1> April </h1>{% endif %}
+                            {% if key == 5 %}<h1> May </h1>{% endif %}
+                            {% if key == 6 %}<h1> June </h1>{% endif %}
+                            {% if key == 7 %}<h1> July </h1>{% endif %}
+                            {% if key == 8 %}<h1> August </h1>{% endif %}
+                            {% if key == 9 %}<h1> September </h1>{% endif %}
+                            {% if key == 10 %}<h1> October </h1>{% endif %}
+                            {% if key == 11 %}<h1> November </h1>{% endif %}
+                            {% if key == 12 %}<h1> December </h1>{% endif %}
+
+                        {% endif %}
+
+
+                            {% for val in value %}
+                                <li>{{ val }}</li>
+                            {% endfor %}
+
+
+
+                        {% endfor %}
+
+                        <div id="locationReport" style="color: white"></div>
+
+                </div>
         </div>
+
 
         <!-- TIME PORTION CONTENT -->
         <div id="box_main_timeContent">
