@@ -43,7 +43,6 @@ input[type=text], input[type=password] {
     display: inline-block;
     border-radius: 5px;
     /*box-sizing: border-box;*/
-    /*background-image: url('searchicon.png');*/
     background-color: white;
     opacity: 0.7;
     border:none;

@@ -197,14 +197,15 @@
 
                             <h2>Post By Day</h2>
                             {% for key, value in postDay.iteritems()|sort %}
-                            {% if key == "0" %}<h1> Monday </h1>{% endif %}
-                            {% if key == "1" %}<h1> Tuesday </h1>{% endif %}
-                            {% if key == "2" %}<h1> Wednesday </h1>{% endif %}
-                            {% if key == "3" %}<h1> Thursday </h1>{% endif %}
-                            {% if key == "4" %}<h1> Friday </h1>{% endif %}
-                            {% if key == "5" %}<h1> Saturday </h1>{% endif %}
-                            {% if key == "6" %}<h1> Sunday </h1>{% endif %}
-
+                                {% if value %}
+                            {% if key == 0 %}<h1> Monday </h1>{% endif %}
+                            {% if key == 1 %}<h1> Tuesday </h1>{% endif %}
+                            {% if key == 2 %}<h1> Wednesday </h1>{% endif %}
+                            {% if key == 3 %}<h1> Thursday </h1>{% endif %}
+                            {% if key == 4 %}<h1> Friday </h1>{% endif %}
+                            {% if key == 5 %}<h1> Saturday </h1>{% endif %}
+                            {% if key == 6 %}<h1> Sunday </h1>{% endif %}
+                                {% endif %}
                             {% for i in value %}
                             {% if 'message' in i %}
                             <li>{{ i['message'] }}</li>
@@ -222,15 +223,17 @@
                             <img src="data:image/png;base64, {{ hourGraph }}">
 
                             {% for key, value in postHour.iteritems()|sort %}
-                            <h1>{{ key }}</h1>
-                            {% for i in value %}
-                            {% if 'message' in i %}
-                            <li>{{ i['message'] }}</li>
+                                {% if value %}<h1>{{ key }}</h1>
+                                    {% for i in value %}
+                                    {% if 'message' in i %}
+                                    <li>{{ i['message'] }}</li>
+                                    {% endif %}
+                                    {% if 'story' in i %}
+                                    <li>{{ i['story'] }}</li>
+                                    {% endif %}
+                                    {% endfor %}
+
                             {% endif %}
-                            {% if 'story' in i %}
-                            <li>{{ i['story'] }}</li>
-                            {% endif %}
-                            {% endfor %}
                             {% endfor %}
 
                         </div>
@@ -240,20 +243,20 @@
                             <img src="data:image/png;base64, {{ monthGraph }}">
 
                             {% for key, value in postMonth.iteritems()|sort %}
-                            {% if key == "1" %}<h1> January </h1>{% endif %}
-                            {% if key == "2" %}<h1> February </h1>{% endif %}
-                            {% if key == "3" %}<h1> March </h1>{% endif %}
-                            {% if key == "4" %}<h1> April </h1>{% endif %}
-                            {% if key == "5" %}<h1> May </h1>{% endif %}
-                            {% if key == "6" %}<h1> June </h1>{% endif %}
-                            {% if key == "7" %}<h1> July </h1>{% endif %}
-                            {% if key == "8" %}<h1> August </h1>{% endif %}
-                            {% if key == "9" %}<h1> September </h1>{% endif %}
-                            {% if key == "10" %}<h1> October </h1>{% endif %}
-                            {% if key == "11" %}<h1> November </h1>{% endif %}
-                            {% if key == "12" %}<h1> December </h1>{% endif %}
-
-
+                                {% if value %}
+                            {% if key == 1 %}<h2> January </h2>{% endif %}
+                            {% if key == 2 %}<h2> February </h2>{% endif %}
+                            {% if key == 3 %}<h2> March </h2>{% endif %}
+                            {% if key == 4 %}<h2> April </h2>{% endif %}
+                            {% if key == 5 %}<h2> May </h2>{% endif %}
+                            {% if key == 6 %}<h2> June </h2>{% endif %}
+                            {% if key == 7 %}<h2> July </h2>{% endif %}
+                            {% if key == 8 %}<h2> August </h2>{% endif %}
+                            {% if key == 9 %}<h2> September </h2>{% endif %}
+                            {% if key == 10 %}<h2> October </h2>{% endif %}
+                            {% if key == 11 %}<h2> November </h2>{% endif %}
+                            {% if key == 12 %}<h2> December </h2>{% endif %}
+                                {% endif %}
 
 
 

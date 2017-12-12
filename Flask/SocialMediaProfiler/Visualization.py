@@ -159,11 +159,13 @@ def barChart(dict,stringX,stringY,color):
 def barChartTimeNew(dict,stringX,stringY,color,paramS,paramE):
     newdict = {}
     for key in dict.keys():
-        #nkey = int(key.encode('utf=8'))
         newdict[key] = len(dict.get(key))
+    print "sekarang",newdict
     for time in range(paramS, paramE):
         if newdict.get(time) == None:
             newdict[time] = 0
+    print "sekarang", newdict
+
     x = newdict.keys()
     y = newdict.values()
     print "value x;",x

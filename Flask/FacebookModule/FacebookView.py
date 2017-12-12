@@ -106,10 +106,10 @@ def getNextAnalysis():
     if "paging" in post :
         reqData = requests.get(post['paging']['next'])
         postData = reqData.json()
-        like , comment , location =fb.get_post_like_comment_location(fb.isCache(),fb.getGraph() ,postData)
+        like , comment ,tags, location =fb.get_post_like_comment_location(fb.isCache(),fb.getGraph() ,postData)
         print fb.getCacheCommentsAndLikes()
 
-        return jsonify({ 'LikesComments': render_template('TopFriends.html', likes=like, comments=comment)})
+        return jsonify({ 'LikesComments': render_template('TopFriends.html', tags=tags,likes=like, comments=comment)})
 
     return jsonify()
 
@@ -118,8 +118,8 @@ def getNextAnalysis():
 @celery.task
 def getAnalysis():
 
-    like , comment , location =fb.get_post_like_comment_location(fb.isCache(),fb.getGraph() , fb.Post())
-    return jsonify({ 'LikesComments': render_template('TopFriends.html', likes=like, comments=comment)})
+    like , comment , tags ,location =fb.get_post_like_comment_location(fb.isCache(),fb.getGraph() , fb.Post())
+    return jsonify({ 'LikesComments': render_template('TopFriends.html',tags=tags, likes=like, comments=comment)})
 
 
 

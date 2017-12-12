@@ -88,8 +88,6 @@ def analysis():
             identifier="cluster-map",
             lat=0,
             lng=0
-            # fit_markers_to_bounds=True
-
         )
     return render_template("insta-analysis.html", sndmap=sndmap,posnegneu=posnegneu,topic=topic,posnegneuGraph=posnegneuGraph,
                            topicGraph = topicGraph, day=day, month=month, hour=hour, dayGraph = dayGraph, hourGraph = hourGraph,

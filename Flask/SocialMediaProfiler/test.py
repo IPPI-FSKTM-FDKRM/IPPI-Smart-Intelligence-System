@@ -12,6 +12,11 @@ import io, os
 
 
 class tahi():
+    address = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 12: []}
+    day = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: []}
+    hour = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 12: [], 13: [], 14: [],
+            15: [], 16: [], 17: [], 18: [], 19: [], 20: [], 21: [], 22: [], 23: [], 24: []}
+    month = {1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: [], 11: [], 12: []}
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -123,12 +128,15 @@ class tahi():
 
         print local_time
 
+    def printTime(self):
+        print self.hour
+
 
 
 if __name__ == "__main__":
     x= tahi()
     # x.tagUser()
-    x.picture()
+    x.printTime()
     # x.testChart()
     # filename = "1362815530452737"
     # data = {"address_components": [

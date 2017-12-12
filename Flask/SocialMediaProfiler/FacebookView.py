@@ -2,7 +2,6 @@ import base64
 import json
 import os
 from flask_weasyprint import HTML, render_pdf
-
 import Visualization
 import StringIO
 import requests
@@ -66,8 +65,8 @@ def facebookAnalysis():
             tagUser = ""
             for tag in loc[4]:
                 tagUser = tagUser+"<img src = 'https://graph.facebook.com/"+tag+"/picture?type=small' style = 'width:30px; height:30px' >"
-            str = loc[1]+"<a href='https://facebook.com/"+loc[0]+"'><br><div al>"+tagUser+"</div></a>"
-            print str
+            str = "<a href='https://facebook.com/"+loc[0]+"'>"+loc[1]+"<br><div al>"+tagUser+"</div></a>"
+
             markers.insert(0, {'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
                                 'lat': loc[2],
                                 'lng': loc[3],
@@ -78,6 +77,9 @@ def facebookAnalysis():
             lat=location[0][2],
             lng=location[0][3],
             markers=markers,
+            cluster=True,
+            cluster_gridsize=10,
+            cluster_imagepath='https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
             fit_markers_to_bounds = True
 
         )
@@ -88,8 +90,6 @@ def facebookAnalysis():
             identifier="cluster-map",
             lat=0,
             lng=0
-            # fit_markers_to_bounds=True
-
         )
     return render_template("facebook_Analysis.html", address=address,
                            posnegneuGraph=posnegneuGraph,
@@ -121,7 +121,7 @@ def getTopicChart(color):
     return topic_graph
 
 def getMonthChart(Month,color):
-    figMonth = Visualization.barChartTime(Month, "time(month)", "Number of post", color, 1,12)
+    figMonth = Visualization.barChartTimeNew(Month, "time(month)", "Number of post", color, 1,12)
     img = StringIO.StringIO()
     figMonth.savefig(img, format='png', transparent= True)
     img.seek(0)
@@ -129,7 +129,7 @@ def getMonthChart(Month,color):
     return time_graph
 
 def getDayChart(Day, color):
-    figDay = Visualization.barChartTime(Day,"time(Day)", "Number of Post", color,0,6)
+    figDay = Visualization.barChartTimeNew(Day,"time(Day)", "Number of Post", color,0,6)
     img = StringIO.StringIO()
     figDay.savefig(img, format='png', transparent=True)
     img.seek(0)
@@ -137,7 +137,7 @@ def getDayChart(Day, color):
     return time_graph
 
 def getHourChart(hour,color):
-    figHour = Visualization.barChartTime(hour,"time(Hour)","Number of post",color,1,24)
+    figHour = Visualization.barChartTimeNew(hour,"time(Hour)","Number of post",color,1,24)
     img = StringIO.StringIO()
 
 
@@ -151,24 +151,20 @@ def getHourChart(hour,color):
 def facebookRelation(id,currentId):
     print "relation"
     print currentId
-    cache_comment, cache_like = fb.get_relation_post(id)
+    cache_comment, cache_like , cache_tag= fb.get_relation_post(id)
+
     relationProfile = fb.getProfileInstance(id)
     name = fb.getProfile(currentId)['name']
     relationLocation = fb.getLocationRelatioin()
     posGraph = getRelationChart(id)
 
-    # relationLocation = {u'1661021870583831': [{'lat': 3.13983145, 'lng': 101.64764368333, 'post': {u'created_time': u'2017-11-08T11:27:17+0000', u'message': u'Main lawn bowl bersama Raam Kanaisan Irfan Kamaruddin dan Hazim Kamaruzzaman\n\n#FYPpurpose', u'story': u'Khairul Albertado Danial is with Raam Kanaisan and 2 others at Malaysian Lawn Bowls Federation.', u'id': u'1362815530452737_1539814052752883'}}], u'1898030863542173': [{'lat': 3.120446, 'lng': 101.654622, 'post': {u'created_time': u'2017-11-24T15:47:36+0000', u'message': u'Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan', u'story': u'Khairul Albertado Danial is at Kolej Kediaman Kelapan,Universiti Malaya.', u'id': u'1362815530452737_1554897484577873'}}], u'10208163758610976': [{'lat': 3.120446, 'lng': 101.654622, 'post': {u'created_time': u'2017-11-24T15:47:36+0000', u'message': u'Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan', u'story': u'Khairul Albertado Danial is at Kolej Kediaman Kelapan,Universiti Malaya.', u'id': u'1362815530452737_1554897484577873'}}], u'10214804744656245': [{'lat': 3.120446, 'lng': 101.654622, 'post': {u'created_time': u'2017-11-24T15:47:36+0000', u'message': u'Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan', u'story': u'Khairul Albertado Danial is at Kolej Kediaman Kelapan,Universiti Malaya.', u'id': u'1362815530452737_1554897484577873'}}, {'lat': 3.13983145, 'lng': 101.64764368333, 'post': {u'created_time': u'2017-11-08T11:27:17+0000', u'message': u'Main lawn bowl bersama Raam Kanaisan Irfan Kamaruddin dan Hazim Kamaruzzaman\n\n#FYPpurpose', u'story': u'Khairul Albertado Danial is with Raam Kanaisan and 2 others at Malaysian Lawn Bowls Federation.', u'id': u'1362815530452737_1539814052752883'}}], u'1501641643217956': [{'lat': 3.120446, 'lng': 101.654622, 'post': {u'created_time': u'2017-11-24T15:47:36+0000', u'message': u'Maybe we should change to iphone. Hafiz Redha Raam Kanaisan Aizat Rafee Amzar Mayfleet Chan', u'story': u'Khairul Albertado Danial is at Kolej Kediaman Kelapan,Universiti Malaya.', u'id': u'1362815530452737_1554897484577873'}}], u'1306146266088657': [{'lat': 3.13983145, 'lng': 101.64764368333, 'post': {u'created_time': u'2017-11-08T11:27:17+0000', u'message': u'Main lawn bowl bersama Raam Kanaisan Irfan Kamaruddin dan Hazim Kamaruzzaman\n\n#FYPpurpose', u'story': u'Khairul Albertado Danial is with Raam Kanaisan and 2 others at Malaysian Lawn Bowls Federation.', u'id': u'1362815530452737_1539814052752883'}}]}
-    # cache_like = [{u'created_time': u'2017-10-16T12:44:58+0000', u'message': u'Hazim Kamaruzzaman Yeah manager', u'story': u"Khairul Albertado Danial shared Jawatankuasa Pelajar Luar Kampus Universiti Malaya's post.", u'id': u'1362815530452737_1519290884805200'}]
-    # cache_comment = [{u'created_time': u'2017-11-24T10:26:00+0000', u'message': u'Mcm contradict je caption dgn emotions', u'from': {u'name': u'Irfan Kamaruddin', u'id': u'1661021870583831'}, u'id': u'1554649987935956_1554675254600096'}, {u'created_time': u'2017-11-21T08:00:41+0000', u'message': u'Agreed', u'from': {u'name': u'Irfan Kamaruddin', u'id': u'1661021870583831'}, u'id': u'1551861968214758_1551862704881351'}, {u'created_time': u'2017-11-19T17:55:02+0000', u'message': u'Terbaek', u'from': {u'name': u'Irfan Kamaruddin', u'id': u'1661021870583831'}, u'id': u'1549934008407554_1550434125024209'}, {u'created_time': u'2017-11-08T11:28:21+0000', u'message': u'Dah dah focus warm up cepat skit coach tgh tgu giloq', u'from': {u'name': u'Irfan Kamaruddin', u'id': u'1661021870583831'}, u'id': u'1539814052752883_1539814652752823'}, {u'created_time': u'2017-10-28T22:30:46+0000', u'message': u'Cringe at first but vida tu style pulak', u'from': {u'name': u'Irfan Kamaruddin', u'id': u'1661021870583831'}, u'id': u'1530158793718409_1530438467023775'}, {u'created_time': u'2017-10-27T20:26:13+0000', u'message': u'Tak habis habis', u'from': {u'name': u'Irfan Kamaruddin', u'id': u'1661021870583831'}, u'id': u'1526977137369908_1529464707121151'}]
-
-
+    print cache_tag
 
     if id in relationLocation:
         relationLocation = relationLocation[id]
     else:
         relationLocation = []
 
-    print relationLocation
     return render_template("facebook_Relation.html",
                            currentUserId = currentId,
                            username = name,
@@ -177,7 +173,8 @@ def facebookRelation(id,currentId):
                            relationName = relationProfile['name'],
                            relationLocation = relationLocation,
                            comment = cache_comment,
-                           like = cache_like)
+                           like = cache_like,
+                           tags = cache_tag)
 
 @app.route("/facebook/profile/<username>")
 @login_required
@@ -301,10 +298,10 @@ def getNextAnalysis():
     if "paging" in post :
         reqData = requests.get(post['paging']['next'])
         postData = reqData.json()
-        like , comment , location =fb.get_post_like_comment_location(True,fb.getGraph() ,postData)
+        like , comment , tags ,location =fb.get_post_like_comment_location(True,fb.getGraph() ,postData)
         saveCache(fb.getUsername())
         return jsonify({'LikesComments': render_template('facebook_TopFriends.html', currentId=fb.getUsername(),
-                                                         likes=like, comments=comment)})
+                                                         tags=tags,likes=like, comments=comment)})
     return jsonify()
 
 
@@ -313,7 +310,7 @@ def getNextAnalysis():
 @celery.task
 def getAnalysis():
     print fb.getUsername()
-    like , comment , location =fb.get_post_like_comment_location(fb.loadCache(fb.getUsername()),fb.getGraph() , fb.Post())
+    like , comment ,tags, location =fb.get_post_like_comment_location(fb.loadCache(fb.getUsername()),fb.getGraph() , fb.Post())
     address = fb.getLocationAddress()
     saveCache(fb.getUsername())
     return jsonify({ 'LikesComments': render_template('facebook_TopFriends.html', address=address, currentId=fb.getUsername(), likes=like, comments=comment)})
@@ -329,15 +326,15 @@ def saveCache(id):
     locationRelation = fb.getLocationRelatioin()
     posnegneu = fb.getPostNegNeu()
     hour, month,day = fb.getTimePost()
-    cache_comments, cache_likes = fb.getCacheCommentsAndLikes()
+    cache_comments, cache_likes, cache_tags = fb.getCacheCommentsAndLikes()
     locationPost = fb.getLocationPost()
     topic = fb.getTopic()
-    amount_likes , amount_comment = fb.getAmountLikesAndComments()
+    amount_likes , amount_comment , amount_tags= fb.getAmountLikesAndComments()
     address = fb.getLocationAddress()
 
 
     data = {"day":day, "hour":hour, "month":month, "topic":topic, "posnegneu":posnegneu, "locationPost": locationPost, "amount_likes":amount_likes,
-            "amount_comment":amount_comment, "cache_likes":cache_likes,"cache_comments":cache_comments,
+            "cache_tags":cache_tags,"amount_tags": amount_tags, "amount_comment":amount_comment, "cache_likes":cache_likes,"cache_comments":cache_comments,
             "locationPost":locationPost, "locationRelation":locationRelation, "address":address}
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -350,7 +347,7 @@ def saveCache(id):
 
 def getRelationChart(id):
     tempPosNeg = {}
-    cacheComments , cacheLikes = fb.getCacheCommentsAndLikes()
+    cacheComments , cacheLikes ,cachetags  = fb.getCacheCommentsAndLikes()
 
     if id in cacheComments:
         for i in cacheComments[id]:

@@ -114,6 +114,15 @@
                     <li>{{ i["address"] }}</li>
                 {% endfor %}
             </div>
+
+        <div id="box_location">
+                <h4>Tagged Post</h4>
+            <h5>No of post tagged : {{ tags|length }}</h5>
+
+                {% for i in tags %}
+                    <li>{{ i["message"] }}</li>
+                {% endfor %}
+            </div>
             <!--************************************************************************************************* END BOX: LOCATION -->
             <hr>
             <!--************************************************************************************************* BOX: RIGHT COLUMN: POST TAGGED-->
