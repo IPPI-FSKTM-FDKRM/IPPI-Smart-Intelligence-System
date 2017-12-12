@@ -23,6 +23,7 @@ app.config['SECRET_KEY'] = SECRET_KEY
 app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
 app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'
 app.config['GOOGLEMAPS_KEY'] = GOOGLEKEY
+
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///home/kayd/Project/IPPI-Smart-Intelligence-System/Flask/SocialMediaProfiler/database.db' #linux
 
 GoogleMaps(app)
@@ -31,7 +32,7 @@ GoogleMaps(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\user\\Project\\IPPI-Smart-Intelligence-System\\Flask\\SocialMediaProfiler\\database.db' #windows
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\user\\Project\\IPPI-Smart-Intelligence-System\\Flask\\SocialMediaProfiler\\database.db' #windows
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mnt/c/Users/User/Documents/GitHub/IPPI-Smart-Intelligence-System/Flask/SocialMediaProfiler/database.db' #linux raam
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\User\\Documents\\GitHub\\IPPI-Smart-Intelligence-System\\Flask\\SocialMediaProfiler\\database.db' #windows #raam
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\User\\Documents\\GitHub\\IPPI-Smart-Intelligence-System\\Flask\\SocialMediaProfiler\\database.db' #windows #raam
 
 
 
@@ -96,9 +97,13 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 @login_required
 def register():
-    error = ''
-    if User.query.filter_by(username='admin').first():
+    print current_user.username
+    nama = current_user.username
+    hey = str(nama)
 
+    error = ''
+    #if User.query.filter_by(username='admin').first():
+    if hey == 'admin':
         form = RegisterForm()
 
         if form.validate_on_submit():
@@ -120,9 +125,7 @@ def register():
 
         return render_template("register.html", form = form)
 
-    else:
-
-        return render_template("404.html")
+    return render_template("404.html")
 
 
 @app.route('/logout')

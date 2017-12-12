@@ -4,6 +4,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from flask_googlemaps import Map, icons
 from config import *
 from SocialMediaProfiler import app, celery, insta
+from flask_weasyprint import HTML, render_pdf
 
 
 
@@ -51,6 +52,7 @@ def analysis():
     day = insta.getInstaDay()
     month = insta.getInstaMonth()
     hour = insta.getInstaHour()
+    monthloc = insta.getMonthLoc()
 
     print topic
     print "----"
@@ -91,7 +93,7 @@ def analysis():
         )
     return render_template("insta-analysis.html", sndmap=sndmap,posnegneu=posnegneu,topic=topic,posnegneuGraph=posnegneuGraph,
                            topicGraph = topicGraph, day=day, month=month, hour=hour, dayGraph = dayGraph, hourGraph = hourGraph,
-                           monthGraph = monthGraph)
+                           monthGraph = monthGraph, monthloc=monthloc)
 
 @app.route("/insta/report/<id>")
 @login_required
@@ -110,6 +112,8 @@ def instareport(id):
     return render_template("insta-report.html",posnegneuGraph=posnegneuGraph,
                            topicGraph = topicGraph, monthloc=monthloc, dayGraph = dayGraph,
                            hourGraph = hourGraph, monthGraph = monthGraph, user=profile, media=media)
+
+@app.route("/insta/print/<id>")
 
 
 def getPosNegNeuChart(color):
