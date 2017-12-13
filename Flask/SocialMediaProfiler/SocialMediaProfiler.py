@@ -70,11 +70,19 @@ def load_user(user_id):
 @app.route("/")
 @login_required
 def index():
-    first = current_user.first_name
-    last = current_user.last_name
-    email = current_user.email
-    username = current_user.username
-    return render_template("Home.html", first = first, last = last, email = email, username = username)
+    print current_user.username
+    nama = current_user.username
+    hey = str(nama)
+
+    if hey == 'admin':
+        return render_template("HomeAdmin.html")
+
+    else:
+        first = current_user.first_name
+        last = current_user.last_name
+        email = current_user.email
+        username = current_user.username
+        return render_template("Home.html", first = first, last = last, email = email, username = username)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

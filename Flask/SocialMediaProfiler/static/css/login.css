@@ -1,7 +1,7 @@
 body{
     color:white;
     font-family: Tahoma, Geneva, sans-serif;
-    width:50%;
+    width:100%;
     margin:auto;
 }
 
@@ -10,13 +10,15 @@ form {
 
 .kotakbesar{
     margin:auto;
+    width:60%;
 }
 .kotakshade{
     /*border-style: solid;*/
     /*border-color: white;*/
     filter:drop-shadow(0px 10px 20px black);
-    padding-bottom: 20px;
-    margin-top:24px;
+    padding-bottom: 15%;
+    text-align: left;
+    margin-top:18%;
 }
 
 .container{
@@ -34,32 +36,43 @@ input[type=text], input[type=password] {
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border-radius: 30px;
+    border-radius: 5px;
     background-color: white;
     opacity: 0.7;
     border:none;
+    -moz-box-shadow:    inset 0 0 10px #000000;
+    -webkit-box-shadow: inset 0 0 10px #000000;
+    box-shadow:         inset 0 0 10px #000000;
 }
 
 input[type=text]:focus, input[type=password]:focus {
     /*border: 3px solid #555;*/
-    filter:drop-shadow(0px 0px 10px white);
+    /*filter:drop-shadow(0px 0px 10px white);*/
+    background-color: white;
+    opacity: 1.0;
+    border-color: white;
+    border-style: white;
 }
 
 button {
-    background-color: #7B7B7B;
+    background-color: transparent;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
-    border-radius: 30px;
+    border-radius: 5px;
     cursor: pointer;
     width: 100%;
-    opacity: 0.7;
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
 }
 
 button:hover {
-    opacity: 1.0;
-    /*background-color: #273b3e;*/
+    opacity: 0.8;
+    background-color: #990000;
+    color: white;
+     border-color: white;
 }
 
 .cancelbtn {
@@ -70,12 +83,16 @@ button:hover {
 
 .imgcontainer {
     text-align: center;
-    margin: 1px 0 20px 0;
+    /*margin: 1px 0 20px 0;*/
+    width:100%;
+    height:100%;
+    margin:auto;
 }
 
 img.avatar {
-    width: 20%;
-    border-radius: 50%;
+    width: 66%;
+    margin-bottom: 20px;
+    /*border-radius: 50%;*/
 }
 
 
@@ -95,10 +112,10 @@ a:hover{
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
     span.psw {
-       display: block;
-       float: none;
-    }
-    .cancelbtn {
-       width: 100%;
-    }
+     display: block;
+     float: none;
+ }
+ .cancelbtn {
+     width: 100%;
+ }
 }

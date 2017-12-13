@@ -3,72 +3,80 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Register</title>
+  <title>Register</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <!--Content link-->
-    <link rel="stylesheet" type = "text/css" href="{{ url_for('static',filename='css/register.css') }}"/>
+  <!--Content link-->
+  <link rel="stylesheet" type = "text/css" href="{{ url_for('static',filename='css/register.css') }}"/>
 
 </head>
 
-<body background="{{ url_for('static',filename='img/kk.gif')}}">
-    <div class="kotakbesar">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="logobox">
-            	<div>
-                <div class="imgcontainer">
-                    <img src="{{ url_for('static',filename='img/logo.png')}}" alt="Avatar" class="avatar">
-                </div>
+<body>
 
-                <div id="title">
-                    <h1>Register</h1>
-                </div>
-            </div>
-            </div>
+  {% include "header.html" %}
+
+  <div class="row">
+    <div class="col-md-12">
+          <div id="title">
+            <h1>Register</h1>
+          </div>
+    </div>
+  </div>
+
+  <div class="kotakbesar">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="logobox">
+         <div>
+          <div class="imgcontainer">
+            <img src="{{ url_for('static',filename='img/logo.png')}}" alt="Avatar" class="avatar">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-6">
+
+
+
+      <form action="/register" method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="container">
+          First Name:
+          {{ form.first_name }}
+          Last Name:
+          {{ form.last_name }}
+          Email:
+          {{ form.email }}
+          Username:
+          {{ form.username }}
+          Password:
+          {{ form.password }}
+
+
+
+
+          <button type="submit">Register</button>
+          <p style="color:red;">{{ error }}</p>
+
+
+
+
         </div>
 
+      </form>
 
-        <div class="col-md-6">
-            
-
-
-            <form action="/register" method="POST">
-                {{ form.hidden_tag() }}
-
-  <div class="container">
-      First Name:
-        {{ form.first_name }}
-      Last Name:
-        {{ form.last_name }}
-      Email:
-        {{ form.email }}
-      Username:
-        {{ form.username }}
-      Password:
-        {{ form.password }}
-
-
-
-
-    <button type="submit">Register</button>
-      <p style="color:red;">{{ error }}</p>
-
-
-
-
-              </div>
-
-          </form>
-
-      </div> <!-- END COLUMN -->
+    </div> <!-- END COLUMN -->
 
 
   </div>

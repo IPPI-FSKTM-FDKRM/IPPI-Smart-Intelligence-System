@@ -14,22 +14,25 @@
 	
   <div class="kotakbesar">
     <div class="kotakshade">
-    <div id="title">
-      <h1>Intelligent Profilling System</h1>
-    </div>
+    <!-- <div id="title">
+      <h1>Intelligent Profiling System</h1>
+    </div> -->
 
 
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
+        <div class="imgcontainer">
+            <img src="{{ url_for('static',filename='img/logo.png')}}" alt="Avatar" class="avatar"/>
+          </div>
+      </div>
+      <div class="col-md-6">
 
         
         <!-- FORM -->
         <form action="/login" method="POST">
           {{ form.hidden_tag() }}
 
-          <div class="imgcontainer">
-            <img src="{{ url_for('static',filename='img/logo.png')}}" alt="Avatar" class="avatar">
-          </div>
+          
 
 
           <div class="container">

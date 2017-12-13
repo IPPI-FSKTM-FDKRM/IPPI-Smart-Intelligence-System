@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Home</title>
+
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/round-about.css') }}" rel="stylesheet"/>
+  <link href="{{ url_for('static', filename='css/round-about_home.css') }}" rel="stylesheet"/>
+
+
+</head>
+
+<body>
+
+  {% include "header.html" %}
+
+ 
+
+<div class="container">
+
+
+
+  <div class="row">
+
+    <!-- SEARCH EVIDENCE -->
+    <div class="col-lg-6 col-sm-6 text-center mb-4">
+      <a href="{{ url_for('searchGeneral') }}">
+        <!-- ICON -->
+        <img class="rounded-circle img-fluid d-block mx-auto" id="myImg" src={{ url_for('static', filename='img/searchicon.png') }} alt="Search Evidence Icon" style="width:250px; height:250px;">
+      </a>
+      <h3>Search Evidence</h3>
+    </div>
+
+    <!-- REPORT -->
+    <div class="col-lg-6 col-sm-6 text-center mb-4">
+      <a href="{{ url_for('register') }}">
+        <!-- ICON -->
+      <img class="rounded-circle img-fluid d-block mx-auto" id="myImg" src={{ url_for('static', filename='img/report_icon.png') }} alt="Add New User" style="width:250px; height:250px;">
+    </a>
+        <h3>Add New User</h3>
+      </div>
+
+    </div> <!-- END ROW -->
+
+
+    <!-- /.container -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  </body>
+
+  </html>

@@ -27,6 +27,8 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
+
+
 </head>
 
 <body>
@@ -61,7 +63,7 @@
               function myFunctionTime(){
                 document.getElementById("box_main_mapContent").style.display = "none";
                 document.getElementById("box_main_timeContent").style.display = "block";
-                document.getElementById("box_main_timeContent").scrollIntoView();
+                document.getElementById("box_timetitle").scrollIntoView();
                 document.getElementById("box_main_topicContent").style.display = "none";
                 document.getElementById("box_main_posnegContent").style.display = "none";
                 document.getElementById("box_main_recentLocation").style.display = "none";
@@ -130,23 +132,23 @@
             {{sndmap.html}}
           </div>
 
-            <div id="box_main_recentLocation" style="color:white">
+            <div id="box_main_recentLocation" style="color:white; margin-top: 30px">
 
                         {% for key, value in monthloc.iteritems() %}
                         {% if value %}
 
-                            {% if key == 1 %}<h1> January </h1>{% endif %}
-                            {% if key == 2 %}<h1> February </h1>{% endif %}
-                            {% if key == 3 %}<h1> March </h1>{% endif %}
-                            {% if key == 4 %}<h1> April </h1>{% endif %}
-                            {% if key == 5 %}<h1> May </h1>{% endif %}
-                            {% if key == 6 %}<h1> June </h1>{% endif %}
-                            {% if key == 7 %}<h1> July </h1>{% endif %}
-                            {% if key == 8 %}<h1> August </h1>{% endif %}
-                            {% if key == 9 %}<h1> September </h1>{% endif %}
-                            {% if key == 10 %}<h1> October </h1>{% endif %}
-                            {% if key == 11 %}<h1> November </h1>{% endif %}
-                            {% if key == 12 %}<h1> December </h1>{% endif %}
+                            {% if key == 1 %}<h1 style="margin-top: 15px;margin-bottom: 10px;"> January </h1>{% endif %}
+                            {% if key == 2 %}<h1 style="margin-top: 15px;margin-bottom: 10px;"> February </h1>{% endif %}
+                            {% if key == 3 %}<h1 style="margin-top: 15px;margin-bottom: 10px;"> March </h1>{% endif %}
+                            {% if key == 4 %}<h1 style="margin-top: 15px;margin-bottom: 10px;"> April </h1>{% endif %}
+                            {% if key == 5 %}<h1 style="margin-top: 15px;margin-bottom: 10px;"> May </h1>{% endif %}
+                            {% if key == 6 %}<h1 style="margin-top: 15px;margin-bottom: 10px;"> June </h1>{% endif %}
+                            {% if key == 7 %}<h1 style="margin-top: 15px;margin-bottom: 10px;"> July </h1>{% endif %}
+                            {% if key == 8 %}<h1 style="margin-top: 15px;margin-bottom: 10px;"> August </h1>{% endif %}
+                            {% if key == 9 %}<h1 style="margin-top: 15px;margin-bottom: 10px;"> September </h1>{% endif %}
+                            {% if key == 10 %}<h1 style="margin-top: 15px;margin-bottom: 10px;"> October </h1>{% endif %}
+                            {% if key == 11 %}<h1 style="margin-top: 15px;margin-bottom: 10px;"> November </h1>{% endif %}
+                            {% if key == 12 %}<h1 style="margin-top: 15px;margin-bottom: 10px;"> December </h1>{% endif %}
 
                         {% endif %}
 
