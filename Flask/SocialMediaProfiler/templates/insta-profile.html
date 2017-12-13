@@ -139,6 +139,7 @@
 
         <div id="box_id_post">
           {% for media in media %}
+
           <div id="box_eachPost">
             <!-- Location -->
             <div id="box_bigPost_location">
@@ -149,13 +150,32 @@
               <p id="p_bigPost_location">N/A</p>
               {% endif %}
             </div>
+          <!-- on photo -->
+          <div>
+
+                    {% for use in media.users_in_photo %}
+                        User tagged:
+                        <br>
+                        <a href="{{ url_for('instaProfile', id = use.user.id) }}">
+                        <img src="{{ use.user.profile_picture }}" style="width:50px;height:50px;"/>
+                        </a>
+                        {{ use.user.username }}
+
+                        {% endfor %}
+
+          </div>
             <!-- Image -->
+          <a href="{{ media.link }}" id="link_post"
+                           style="color:white; text-decoration: initial;" target="_blank">
             <div id="box_bigPost_picture">
               <img src={{ media.images['standard_resolution'].url }} id="img_bigPost"/>
 
             </div>
+          </a>
             <!-- Caption -->
             <div id="box_caption">
+
+
               <p id="p_caption">
                 {% if media.caption.text %}
                 <strong>{{ user.username }}</strong> {{ media.caption.text }}<br>
@@ -172,6 +192,7 @@
             </div>
 
           </div>
+
           {% endfor %}
 
         </div>
@@ -216,6 +237,9 @@
 <div id="floatingButton" ></div>
 
 
+<a href="{{ url_for('instaPDF', id=user.id) }}" disabled="True" class="float3">
+<i class="fa fa-file my-float"></i>
+</a>
 
 
 </body>

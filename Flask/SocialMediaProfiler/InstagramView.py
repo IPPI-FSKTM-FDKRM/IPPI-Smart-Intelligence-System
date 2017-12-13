@@ -104,7 +104,6 @@ def analysis():
                            monthGraph = monthGraph, monthloc=monthloc)
 
 @app.route("/insta/report/<id>")
-@login_required
 def instareport(id):
     profile = insta.user_profile(id)
     media = insta.user_media(id)
@@ -121,8 +120,10 @@ def instareport(id):
                            topicGraph = topicGraph, monthloc=monthloc, dayGraph = dayGraph,
                            hourGraph = hourGraph, monthGraph = monthGraph, user=profile, media=media)
 
-@app.route("/insta/print/<id>")
-
+@app.route("/insta/reportInstagram_<id>.pdf")
+def instaPDF(id):
+    print "masuk pdf"
+    return render_pdf(url_for('instareport', id=id))
 
 def getPosNegNeuChart(color):
     fig = Visualization.pieChartSentiment(insta.getPostNegNeu(), color)

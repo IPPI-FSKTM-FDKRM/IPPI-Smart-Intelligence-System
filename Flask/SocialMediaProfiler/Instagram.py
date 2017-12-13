@@ -29,6 +29,8 @@ class Instagram():
 
     #display user's profile
     def user_media(self, userID):
+        global topthelikes
+        topthelikes = []
         recent_media , nextt = self.api.user_recent_media(user_id=userID, count=30)
 
         if not recent_media:
@@ -40,8 +42,24 @@ class Instagram():
                     print "user"
                     if media.users_in_photo:
                         print media.users_in_photo
+                        for use in media.users_in_photo:
+                            print use.user.id
+                            print use.user.full_name
+
+                    # likes = self.api.media_likes(media_id=media.id)
+                    # print "heheh"
+                    # for likes in likes:
+                    #     print likes.id
+                    #     print likes.username
+                    #     print likes.profile_picture
 
         return recent_media
+
+    #display likes
+    def media_likes(self, mediaID):
+        likes = self.api.media_likes(media_id = mediaID)
+
+
 
     #display comment
     def comment_media(self, mediaID):
@@ -84,7 +102,6 @@ class Instagram():
 
                         Malaysia = pytz.timezone('Asia/Kuala_Lumpur')
                         time = str(media.created_time.astimezone(Malaysia))
-                        print time
                         test = datetime.datetime.strptime(time[0:19], "%Y-%m-%d %H:%M:%S")
 
                         monthaddress = str(test) + " " + media.location.name
