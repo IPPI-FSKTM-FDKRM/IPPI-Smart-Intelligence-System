@@ -26,26 +26,32 @@ def twitterSearchResult():
 
 @app.route("/profile/<username>")
 def twitterProfile(username):
-    user = twitter.getUserProfile(username)
-    getCreateTime = twitter.getUserCreate()
-    twitter.getFollowingInfo(username)
-    userImg = user["profile_image_url"]
-    userImg = userImg.replace("normal", "400x400")
-    followingCount = twitter.getFollowingCount()
-    followingName = twitter.getFollowingName()
-    followingImgURL = twitter.getFollowingImgURL()
+    try:
+        user = twitter.getUserProfile(username)
+        getCreateTime = twitter.getUserCreate()
+        twitter.getFollowingInfo(username)
+        userImg = user["profile_image_url"]
+        userImg = userImg.replace("normal", "400x400")
+        followingCount = twitter.getFollowingCount()
+        followingName = twitter.getFollowingName()
+        followingImgURL = twitter.getFollowingImgURL()
 
-    twitter.getFollowerInfo(username)
-    followerCount = twitter.getFollowerCount()
-    followerName = twitter.getFollowerName()
-    followerImgURL = twitter.getFollowerImgURL()
+        twitter.getFollowerInfo(username)
+        followerCount = twitter.getFollowerCount()
+        followerName = twitter.getFollowerName()
+        followerImgURL = twitter.getFollowerImgURL()
+
+        return render_template("Twitter.html", user=user, getCreateTime=getCreateTime, userImg=userImg,
+                               followingCount=followingCount,
+                               followingName=followingName, followingImgURL=followingImgURL,
+                               followerCount=followerCount, followerName=followerName, followerImgURL=followerImgURL
+                               )
+    except Exception as e:
+        return render_template("insta-private.html")
 
 
 
-    return render_template("Twitter.html", user=user, getCreateTime=getCreateTime, userImg=userImg, followingCount=followingCount,
-                           followingName=followingName, followingImgURL=followingImgURL,
-                           followerCount=followerCount, followerName=followerName, followerImgURL=followerImgURL
-                          )
+
 
 @app.route("/twitter/gettweet/<username>", methods = ['POST'])
 @celery.task
