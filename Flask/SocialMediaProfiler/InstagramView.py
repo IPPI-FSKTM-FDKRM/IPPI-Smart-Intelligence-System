@@ -27,15 +27,13 @@ def instaSearchResult():
 @login_required
 def instaProfile(id):
 
-    #try:
+    try:
         profile = insta.user_profile(id)
         media = insta.user_media(id)
 
-
-
         return render_template("insta-profile.html", id=id,user=profile, media=media)
-    #except Exception as e:
-    #    return render_template("insta-private.html", error = e)
+    except Exception as e:
+        return render_template("insta-private.html", error = e)
 
 @app.route("/insta/profileAnalysis/<id>" , methods=['POST'])
 @login_required
@@ -49,6 +47,7 @@ def instaProfileData(id):
 @app.route("/insta/analysis")
 @login_required
 def analysis():
+    person = insta.getID_User()
     locate = insta.getLocationInstaPost()
     topic = insta.getTopic()
     posnegneu = insta.getPostNegNeu()
@@ -62,12 +61,6 @@ def analysis():
     hour = insta.getInstaHour()
     monthloc = insta.getMonthLoc()
 
-    print topic
-    print "----"
-    print posnegneu
-    print "----"
-    print locate
-    print month
 
     markers = []
     if locate:
@@ -88,6 +81,7 @@ def analysis():
             cluster_gridsize=10,
             cluster_imagepath='https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
             zoom=2
+
             #fit_markers_to_bounds = True
 
         )
@@ -101,10 +95,11 @@ def analysis():
         )
     return render_template("insta-analysis.html", sndmap=sndmap,posnegneu=posnegneu,topic=topic,posnegneuGraph=posnegneuGraph,
                            topicGraph = topicGraph, day=day, month=month, hour=hour, dayGraph = dayGraph, hourGraph = hourGraph,
-                           monthGraph = monthGraph, monthloc=monthloc)
+                           monthGraph = monthGraph, monthloc=monthloc, person=person)
 
 @app.route("/insta/report/<id>")
 def instareport(id):
+    person = insta.getID_User()
     profile = insta.user_profile(id)
     media = insta.user_media(id)
     monthloc = insta.getMonthLoc()
@@ -118,7 +113,7 @@ def instareport(id):
 
     return render_template("insta-report.html",posnegneuGraph=posnegneuGraph,
                            topicGraph = topicGraph, monthloc=monthloc, dayGraph = dayGraph,
-                           hourGraph = hourGraph, monthGraph = monthGraph, user=profile, media=media)
+                           hourGraph = hourGraph, monthGraph = monthGraph, user=profile, media=media, person=person)
 
 @app.route("/insta/reportInstagram_<id>.pdf")
 def instaPDF(id):

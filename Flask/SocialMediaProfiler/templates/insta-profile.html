@@ -151,18 +151,16 @@
               {% endif %}
             </div>
           <!-- on photo -->
-          <div>
+          <div style="margin:30px; margin-bottom:0px">
           User tagged:
+              <div style="margin-top:5px">
                     {% for use in media.users_in_photo %}
-
-                        <br>
                         <a href="{{ url_for('instaProfile', id = use.user.id) }}">
                         <img src="{{ use.user.profile_picture }}" style="width:50px;height:50px;"/>
                         </a>
                         {{ use.user.username }}
-
                         {% endfor %}
-
+                        </div>
           </div>
             <!-- Image -->
           <a href="{{ media.link }}" id="link_post"

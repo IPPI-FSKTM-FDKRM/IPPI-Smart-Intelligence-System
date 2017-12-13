@@ -69,14 +69,12 @@
             <div id="box_dpFB">
                 <div class="row">
                     <div id="box_dpFB_kecik"> <!--FB DP BOX (EACH)-->
-                        <div class="haha">
+
                             <img src={{ user.profile_picture }}>
-                        </div>
-                    </div>
+
                     <div id="box_biodata">
-                        <h2>{{ user.full_name }}</h2>
-                        <br>
-                        <h2>{{ user.username }}</h2>
+                        <h2>Name : {{ user.full_name }}</h2>
+                        <h2>Username : {{ user.username }}</h2>
 
                     </div>
                 </div>
@@ -115,16 +113,9 @@
             <!--************************************************************************************************* END BOX: LOCATION -->
             <hr>
         </div>
-        <!--************************************************************************************************* BOX: RIGHT COLUMN: POST-->
 
-
-        <hr>
-
-        <!--************************************************************************************************* BOX: RIGHT COLUMN: CHART -->
-        <!-- CHART 1 -->
-        <hr>
         <div id="box_chart">
-            Positive/Negative Chart
+            <h2>Positive/Negative Chart</h2>
             <img src="data:image/png;base64, {{ posnegneuGraph }}">
             <!--PUT DP FB HERE-->
         </div>
@@ -132,27 +123,33 @@
         <hr>
 
         <div id="box_chart">
-            Topic Chart
+            <h2>Topic Chart</h2>
             <img src="data:image/png;base64, {{ topicGraph }}">
         </div>
 
         <hr>
 
         <div id="box_chart">
-            <h2>Time Active</h2>
+            <h2>Time Active(Hourly)</h2>
 
             <img src="data:image/png;base64, {{ hourGraph }}">
+        </div>
 
+        <div id="box_chart">
+            <h2>Time Active(Daily)</h2>
             <img src="data:image/png;base64, {{ dayGraph }}">
+        </div>
 
+        <div id="box_chart">
+            <h2>Time Active(Monthly)</h2>
             <img src="data:image/png;base64, {{ monthGraph }}">
         </div>
 
     </div>
 
+    </div>
+</div>
 
-</div>
-</div>
 
 
 <!-- Bootstrap core JavaScript -->

@@ -11,8 +11,8 @@ class RegisterForm(FlaskForm):
     last_name = StringField('last name', validators=[InputRequired(),Length(min=1, max=50)])
 
 class LoginForm(FlaskForm):
-    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
-    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
+    usernameLogin = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+    passwordLogin = PasswordField('password', validators=[InputRequired(), Length(min=8, max=80)])
     remember = BooleanField('remember me')
 
 class ChangePassword(FlaskForm):

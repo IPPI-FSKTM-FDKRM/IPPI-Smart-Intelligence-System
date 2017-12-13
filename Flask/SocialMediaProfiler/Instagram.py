@@ -30,7 +30,10 @@ class Instagram():
     #display user's profile
     def user_media(self, userID):
         global topthelikes
+        global ID_user
+        ID_user = userID
         topthelikes = []
+
         recent_media , nextt = self.api.user_recent_media(user_id=userID, count=30)
 
         if not recent_media:
@@ -54,12 +57,6 @@ class Instagram():
                     #     print likes.profile_picture
 
         return recent_media
-
-    #display likes
-    def media_likes(self, mediaID):
-        likes = self.api.media_likes(media_id = mediaID)
-
-
 
     #display comment
     def comment_media(self, mediaID):
@@ -206,4 +203,7 @@ class Instagram():
 
     def getMonthLoc(self):
         return monthloc
+
+    def getID_User(self):
+        return ID_user
 
