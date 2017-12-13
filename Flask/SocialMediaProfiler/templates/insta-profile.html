@@ -152,9 +152,9 @@
             </div>
           <!-- on photo -->
           <div>
-
+          User tagged:
                     {% for use in media.users_in_photo %}
-                        User tagged:
+
                         <br>
                         <a href="{{ url_for('instaProfile', id = use.user.id) }}">
                         <img src="{{ use.user.profile_picture }}" style="width:50px;height:50px;"/>
