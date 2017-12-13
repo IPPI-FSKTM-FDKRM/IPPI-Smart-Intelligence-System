@@ -22,7 +22,36 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
+
+<script>
+      window.onload = ayze()
+      function ayze(){
+      $.ajax({
+            type: 'POST',
+            url: '/facebook/analysis',
+            success: function (resp) {
+
+                topFriend(resp);
+                start_next()
+
+
+            },
+            error: function () {
+            }
+        });
+      $.ajax({
+            type: 'POST',
+            url: '/insta/profileAnalysis/{{ id }}',
+            success: function (resp) {
+                document.getElementById("floatingButton").innerHTML= "<a href='{{ url_for('analysis') }}' disabled='True' class='float2'> <i class='fa fa-bar-chart my-float'></i> </a> <a href='{{ url_for('instareport', id=user.id) }}' disabled='True' class='float3'> <i class='fa fa-file my-float'></i> </a>"
+            },
+            error: function () {
+            }
+        });
+    }
+</script>
 <body>
 
   <!-- Navigation -->
@@ -166,8 +195,11 @@
 <i class="fa fa-arrow-up my-float"></i>
 </a>
 
+
+
 <script>
-  window.onscroll = function() {scrollFunction()};
+    window.onscroll = function() {scrollFunction()};
+
   function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       document.getElementById("myBtn").style.display = "block";
@@ -181,13 +213,10 @@
   }
 </script>
 
-<a href="{{ url_for('analysis') }}" disabled="True" class="float2">
-<i class="fa fa-bar-chart my-float"></i>
-</a>
+<div id="floatingButton" ></div>
 
-<a href="{{ url_for('instareport', id=user.id) }}" disabled="True" class="float3">
-<i class="fa fa-file my-float"></i>
-</a>
+
+
 
 </body>
 

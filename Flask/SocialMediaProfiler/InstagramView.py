@@ -31,12 +31,20 @@ def instaProfile(id):
         profile = insta.user_profile(id)
         media = insta.user_media(id)
 
-        insta.location(id)
-        insta.get_created_post(id)
 
-        return render_template("insta-profile.html", user=profile, media=media)
+
+        return render_template("insta-profile.html", id=id,user=profile, media=media)
     #except Exception as e:
     #    return render_template("insta-private.html", error = e)
+
+@app.route("/insta/profileAnalysis/<id>" , methods=['POST'])
+@login_required
+@celery.task
+def instaProfileData(id):
+    insta.location(id)
+    insta.get_created_post(id)
+    return jsonify()
+
 
 @app.route("/insta/analysis")
 @login_required

@@ -29,7 +29,7 @@
 
 <!-- Page Content -->
 
-
+{% if success %}
 <div class="kotakbesar">
     <div class="row">
 
@@ -114,7 +114,7 @@
                     {% for post in post %}
 
                         <a href="https://facebook.com/{{ post['id'] }}" id="link_post"
-                           style="color:white; text-decoration: initial;">
+                           style="color:white; text-decoration: initial;" target="_blank">
 
 
                             <div id="box_post_white">
@@ -180,7 +180,9 @@
 
     </div>
 </div>
-
+{% else %}
+    {{ error }}
+{% endif %}
 <!-- Bootstrap core JavaScript -->
 <link type="text/css" href="{{ url_for('static', filename='css/facebook.css') }}" rel="stylesheet"/>
 <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
@@ -197,6 +199,7 @@
     function start_long_task() {
 
         // send ajax POST request to start background job
+        {% if success %}
         $.ajax({
             type: 'POST',
             url: '/facebook/analysis',
@@ -210,6 +213,7 @@
             error: function () {
             }
         });
+        {% endif %}
     }
 
     function refresh_data() {

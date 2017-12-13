@@ -11,6 +11,7 @@ from Sentiment_Analysis import nBayesTesting
 from flask_login import  login_required
 from flask import render_template, jsonify, request, url_for
 from flask_googlemaps import Map
+import facebook
 from SocialMediaProfiler import app, celery, fb
 
 
@@ -193,23 +194,39 @@ def facebookProfile(username):
         fb.setUsername(username)
         fb.setCache(False)
         print "sekarang username adalah ", fb.getUsername()
+    try :
+        profile     = fb.getProfile(username)
+        userID      = profile['id']
+        fb.object    = userID
+        post        = fb.Post()
+        relationshipStatus = fb.getRelationShipStatus()
+        name        = profile['name']
+        family      = fb.Family()
+        friends = fb.Friends()
+        return render_template("FacebookProfile.html"
+                               , family=family
+                               , friends=friends
+                               , userID=userID
+                               , name=name
+                               , relationshipStatus=relationshipStatus
+                               , post=post['data']
+                               , success=True
+                               , error = None)
+    except facebook.GraphAPIError as error:
+        print error
+        print error.message
 
-    profile     = fb.getProfile(username)
-    userID      = profile['id']
-    fb.object    = userID
-    post        = fb.Post()
-    relationshipStatus = fb.getRelationShipStatus()
-    name        = profile['name']
-    family      = fb.Family()
-    friends = fb.Friends()
+        return render_template("FacebookProfile.html"
+                               , family=[]
+                               , friends=[]
+                               , userID=[]
+                               , name=[]
+                               , relationshipStatus=[]
+                               , post=[]
+                               , success = False
+                               , error = error.message)
 
-    return render_template("FacebookProfile.html"
-                           ,family=family
-                           , friends=friends
-                           , userID = userID
-                           , name = name
-                           , relationshipStatus = relationshipStatus
-                           , post=post['data'])
+
 
 @app.route("/facebook/pageProfile/<username>")
 @login_required
@@ -229,20 +246,35 @@ def facebookPageProfile(username):
         fb.setCache(False)
         print "sekarang username adalah ", fb.getUsername()
 
-    profile     = fb.getProfile(username)
-    userID      = profile['id']
-    fb.object    = userID
-    post        = fb.Post()
-    name        = profile['name']
-    details     = fb.getPageDetails(username)
+    try:
+        profile     = fb.getProfile(username)
+        userID      = profile['id']
+        fb.object    = userID
+        post        = fb.Post()
+        name        = profile['name']
+        details     = fb.getPageDetails(username)
 
-    print details
+        print details
 
-    return render_template("FacebookPageProfile.html"
-                           , userID = userID
-                           , name = name
-                           , post=post['data']
-                           ,details=details)
+        return render_template("FacebookPageProfile.html"
+                               , userID = userID
+                               , name = name
+                               , post=post['data']
+                               , details=details
+                               ,success= True
+                               , error=[])
+
+    except facebook.GraphAPIError as error:
+        print error
+        print error.message
+
+        return render_template("FacebookProfile.html"
+                                   , userID=[]
+                                   , name=[]
+                                   , post=['data']
+                                   , success = False
+                                   , error = error.message)
+
 
 @app.route('/facebook/report/<id>')
 @celery.task
