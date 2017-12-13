@@ -92,7 +92,7 @@ def facebookAnalysis():
             lat=0,
             lng=0
         )
-    return render_template("facebook_Analysis.html", address=address,
+    return render_template("facebook_Analysis.html",  id=fb.getUsername(),address=address,
                            posnegneuGraph=posnegneuGraph,
                            dayGraph=dayGraph,
                            monthGraph=monthGraph,
@@ -345,7 +345,7 @@ def getAnalysis():
     like , comment ,tags, location =fb.get_post_like_comment_location(fb.getUsername(),fb.loadCache(fb.getUsername()),fb.getGraph() , fb.Post())
     address = fb.getLocationAddress()
     saveCache(fb.getUsername())
-    return jsonify({ 'LikesComments': render_template('facebook_TopFriends.html', address=address, currentId=fb.getUsername(), likes=like, comments=comment)})
+    return jsonify({ 'LikesComments': render_template('facebook_TopFriends.html',address=address, currentId=fb.getUsername(), likes=like, comments=comment,tags=tags)})
 
 @app.route('/facebook/refreshAnalysis', methods=['POST'])
 @login_required

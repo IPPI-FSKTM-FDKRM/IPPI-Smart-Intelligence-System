@@ -64,9 +64,9 @@ class Facebook():
     # original app token
     # token = 'EAAFyPKV2cOIBAM1GJtjCW7oIftQzwo8RxujFy9ZBLeYNPrSNpMiuUbMAcpzvEkH6sJ0F2ZAf5ey0yle7toaSLJ2wd3yqZACnXJjKXotl8YHZA8KCLNWPBMHlV2ZAcdD4M4p8Y7RqiXV43sF5rfZCa7pmwOaZBWB6qsZD';
     token = 'EAAFyPKV2cOIBADfar33ktp4UZCPKSZBv6waYUad5GQPimSIc31nrkgjuLDwFIEjU6YgZCdGFHOHq5ZA8cLsDPF0DwJnwS4xJBvhLUvZCxCn8ztRKrMtJNpcQ01PS6AFCaykVPZBhFQoNXKsbilqjdPd1lpw0o1DNj6nMzL9NjhcAZDZD'
-    # token = 'EAACEdEose0cBAO1oQcMVbMEyx7IezcimbTCjeIzHa0VXcFZBt3JZB7Gp7Rg20qCrU1cSuQLhKZBBNmY12hWRbxCXt86ZAzWHSIcNZBsYBYIMUSqckzoeqq0fbvoWzfNtyI7TYJZCpLE5vpiBhaggUFjPGR80cZAoLkj5EVa1IaZASvZCoKCagdXndGITnFzsRbJ0ZD'
+    token = 'EAACEdEose0cBAC7Hc6sDHisqY1zIW02Cnh2fEjuLdbZB6vlACbzBNCOMSWq2MNLJI8UsqCiwlIfASAkj258woO3z8ZALwZBdJOoPZC6jvGIZBAnceLOBLxRgywOull2ZAghZAsjCBgZAz91Y2cY3hZBWWtdBCSccUNQciRTHI7YUsks7ot58J39eZB6CwbAwWPhSEZD'
 
-    graph = facebook.GraphAPI(token);
+    graph = facebook.GraphAPI(token, version="2.9");
 
     def loadCache(self, fileName):
 
@@ -211,6 +211,7 @@ class Facebook():
             cache_com, cache_like, cache_tag = cache_comments, cache_likes, cache_tags
             local_timezone = tzlocal.get_localzone()  # get pytz tzinfo
             for post in post['data'] :
+                print post
                 utc = datetime.strptime(post['created_time'][0:16], '%Y-%m-%dT%H:%M')
                 date = utc.replace(tzinfo=pytz.utc).astimezone(local_timezone)
 
@@ -287,6 +288,8 @@ class Facebook():
 
                 if 'message_tags' in tag:
                     for i in tag['message_tags']:
+                        print id
+                        print i['id']
                         if id != i['id']:
                             if i['id'] not in amount_tags:
                                 amount_tags[i['id']] = 1;

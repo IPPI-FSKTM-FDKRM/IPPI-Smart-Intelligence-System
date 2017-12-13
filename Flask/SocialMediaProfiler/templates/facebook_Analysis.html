@@ -365,52 +365,51 @@
     $('#locationMonth').on('change', function() {
       if ( this.value == "1")
       {
-        document.getElementById("locationReport").innerHTML = "<h2>January</h2>{% for i in address['1'] %} <li>{{ i }}</li>{% endfor %}"
+        document.getElementById("locationReport").innerHTML = "<h2>January</h2>{% for i in address[1] %} <li>{{ i }}</li>{% endfor %}"
     }
     if ( this.value == "2")
     {
-        document.getElementById("locationReport").innerHTML = "<h2>February</h2>{% for i in address['2'] %} <li>{{ i }}</li>{% endfor %}"
+        document.getElementById("locationReport").innerHTML = "<h2>February</h2>{% for i in address[2] %} <li>{{ i }}</li>{% endfor %}"
     }
     if ( this.value == "3")
     {
-        document.getElementById("locationReport").innerHTML = "<h2>March</h2>{% for i in address['3'] %} <li>{{ i }}</li>{% endfor %}"
+        document.getElementById("locationReport").innerHTML = "<h2>March</h2>{% for i in address[3] %} <li>{{ i }}</li>{% endfor %}"
     }
     if ( this.value == "4")
     {
-        document.getElementById("locationReport").innerHTML = "<h2>April</h2>{% for i in address['4'] %} <li>{{ i }}</li>{% endfor %}"
+        document.getElementById("locationReport").innerHTML = "<h2>April</h2>{% for i in address[4] %} <li>{{ i }}</li>{% endfor %}"
     }
     if ( this.value == "5")
     {
-        document.getElementById("locationReport").innerHTML = "<h2>May</h2>{% for i in address['5'] %} <li>{{ i }}</li>{% endfor %}"
+        document.getElementById("locationReport").innerHTML = "<h2>May</h2>{% for i in address[5] %} <li>{{ i }}</li>{% endfor %}"
     }
     if ( this.value == "6")
     {
-        document.getElementById("locationReport").innerHTML = "<h2>June</h2>{% for i in address['6'] %} <li>{{ i }}</li>{% endfor %}"
+        document.getElementById("locationReport").innerHTML = "<h2>June</h2>{% for i in address[6] %} <li>{{ i }}</li>{% endfor %}"
     }
     if ( this.value == "7")
     {
-        document.getElementById("locationReport").innerHTML = "<h2>July</h2>{% for i in address['7'] %} <li>{{ i }}</li>{% endfor %}"
+        document.getElementById("locationReport").innerHTML = "<h2>July</h2>{% for i in address[7] %} <li>{{ i }}</li>{% endfor %}"
     }
     if ( this.value == '8')
     {
-        document.getElementById("locationReport").innerHTML = "<h2>August</h2>{% for i in address['8'] %} <li>{{ i }}</li>{% endfor %}"
+        document.getElementById("locationReport").innerHTML = "<h2>August</h2>{% for i in address[8] %} <li>{{ i }}</li>{% endfor %}"
     }
     if ( this.value == '9')
     {
-        document.getElementById("locationReport").innerHTML = "<h2>September</h2>{% for i in address['9'] %} <li>{{ i }}</li>{% endfor %}"
+        document.getElementById("locationReport").innerHTML = "<h2>September</h2>{% for i in address[9] %} <li>{{ i }}</li>{% endfor %}"
     }
     if ( this.value == '10')
     {
-        document.getElementById("locationReport").innerHTML = "<h2>October</h2>{% for i in address['10'] %} <li>{{ i }}</li>{% endfor %}"
+        document.getElementById("locationReport").innerHTML = "<h2>October</h2>{% for i in address[10] %} <li>{{ i }}</li>{% endfor %}"
     }
     if ( this.value == '11')
     {
-        document.getElementById("locationReport").innerHTML = "<h2>November</h2>{% for i in address['11'] %} <li>{{ i }}</li>{% endfor %}"
+        document.getElementById("locationReport").innerHTML = "<h2>November</h2>{% for i in address[11] %} <li>{{ i }}</li>{% endfor %}"
     }
     if ( this.value == '12')
     {
-      alert("arbasa decem")
-      document.getElementById("locationReport").innerHTML = "<h2>December</h2>{% for i in address['12'] %} <li>{{ i }}</li>{% endfor %}"
+      document.getElementById("locationReport").innerHTML = "<h2>December</h2>{% for i in address[12] %} <li>{{ i }}</li>{% endfor %}"
   }
 });
 });
@@ -436,7 +435,7 @@ function topFunction() {
     document.documentElement.scrollTop = 0;
 }
 </script>
-<a href="{{ url_for('facebookPrintReport', id=userID) }}" disabled="True" class="float2">
+<a href="{{ url_for('facebookPrintReport', id=id) }}" disabled="True" class="float2">
     <i class="fa fa-file my-float"></i>
 </a>
 <!-- END FLOAT BUTTON -->
