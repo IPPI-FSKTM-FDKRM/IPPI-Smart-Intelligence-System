@@ -64,7 +64,7 @@ class Facebook():
     # original app token
     # token = 'EAAFyPKV2cOIBAM1GJtjCW7oIftQzwo8RxujFy9ZBLeYNPrSNpMiuUbMAcpzvEkH6sJ0F2ZAf5ey0yle7toaSLJ2wd3yqZACnXJjKXotl8YHZA8KCLNWPBMHlV2ZAcdD4M4p8Y7RqiXV43sF5rfZCa7pmwOaZBWB6qsZD';
     token = 'EAAFyPKV2cOIBADfar33ktp4UZCPKSZBv6waYUad5GQPimSIc31nrkgjuLDwFIEjU6YgZCdGFHOHq5ZA8cLsDPF0DwJnwS4xJBvhLUvZCxCn8ztRKrMtJNpcQ01PS6AFCaykVPZBhFQoNXKsbilqjdPd1lpw0o1DNj6nMzL9NjhcAZDZD'
-    token = 'EAACEdEose0cBAHxSf1e74IxYqzDhzX0V1YZCYd4IR8KY4tigh5Do0tSfszvRRGmiq3GvcVIOO8ozbH46fDwFHyAM0Ypn0akFLlttc7CITnEoDlPIgZCvsC0ZAiM0yVAEF2Pb7G3f0Fx9AStBqUGQT57oi9GzFsTHIr1NpVmI66MhDWPT0eRNhZC2AgAy0HMZD'
+    # token = 'EAACEdEose0cBAO1oQcMVbMEyx7IezcimbTCjeIzHa0VXcFZBt3JZB7Gp7Rg20qCrU1cSuQLhKZBBNmY12hWRbxCXt86ZAzWHSIcNZBsYBYIMUSqckzoeqq0fbvoWzfNtyI7TYJZCpLE5vpiBhaggUFjPGR80cZAoLkj5EVa1IaZASvZCoKCagdXndGITnFzsRbJ0ZD'
 
     graph = facebook.GraphAPI(token);
 
@@ -96,6 +96,8 @@ class Facebook():
                 jsonDay = d["day"]
                 jsonHour = d["hour"]
                 jsonMonth = d["month"]
+                jsonAddress = d["address"]
+
 
 
                 count = 0
@@ -109,8 +111,8 @@ class Facebook():
                 for i in jsonMonth:
                     month[int(i.encode("utf-8"))] = jsonMonth[i]
 
-
-
+                for i in jsonAddress:
+                    address[int(i.encode("utf-8"))] = jsonAddress[i]
 
 
                 topic = d["topic"]
@@ -123,7 +125,6 @@ class Facebook():
                 amount_comment = d["amount_comment"]
                 amount_tags = d["amount_tags"]
                 amount_likes = d["amount_likes"]
-                address = d["address"]
                 cache = True
 
             return True
