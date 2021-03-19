@@ -24,7 +24,7 @@ httplib2==0.9.1
 hunspell==0.1
 idna==2.0
 itsdangerous==0.24
-Jinja2==2.7.3
+Jinja2==2.11.3
 kombu==3.0.30
 language-selector==0.1
 louis==2.6.4
